@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 import { PAGE_URL, useUserStore } from "@/shared";
 
-import { PAGE_URL } from "../shared";
-
 const AuthRouter = ({ children }: { children: React.ReactNode }) => {
   const isSignIn = useUserStore((state) => state.isSignIn);
   const navigate = useNavigate();

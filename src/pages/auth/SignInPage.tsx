@@ -1,3 +1,3 @@
-const SignInPage = () => <></>;
+const SignInPage = () => <>SignIn</>;
 
 export default SignInPage;

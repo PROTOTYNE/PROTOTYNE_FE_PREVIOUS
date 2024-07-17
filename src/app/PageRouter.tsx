@@ -9,14 +9,14 @@ import {
 import AppStyles from "./AppStyles";
 import AuthRouter from "./AuthRouter";
 
-import { Loading } from "@/entities";
+//import { Loading } from "@/entities";
 
 import { PAGE_URL } from "@/shared";
 
 const SignIn = lazy(() => import("@/pages/auth/SignInPage"));
 
 const PageRouter = () => (
-  <Suspense fallback={<Loading />}>
+  <Suspense fallback={<>Loading...</>}>
     <RootRouter>
       <AppStyles />
       <AuthRouter>
