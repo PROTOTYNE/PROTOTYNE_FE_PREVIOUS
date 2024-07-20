@@ -1,10 +1,5 @@
 export enum PAGE_URL {
   SignIn = "/signin",
+  Redirect = "/oauth",
   Home = "/home",
-
-  Setting = "/setting",
-
-  Project = "/project",
-  Issue = "/issue",
-  Account = "/account",
 }

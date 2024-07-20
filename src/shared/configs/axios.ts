@@ -22,9 +22,9 @@ export const storeAccess = (token: string) => {
   localStorage.setItem(storageAccessKey, token);
 };
 
-export const setAccess = (token: number) => {
-  API.defaults.headers["memberId"] = token;
-  FORMAPI.defaults.headers["memberId"] = token;
+export const setAccess = (token: string) => {
+  API.defaults.headers["memberId"] = `Bearer ${token}`;
+  FORMAPI.defaults.headers["memberId"] = `Bearer ${token}`;
 };
 
 export const resetAccess = () => {
