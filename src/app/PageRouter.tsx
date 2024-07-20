@@ -13,7 +13,7 @@ import AuthRouter from "./AuthRouter";
 
 import { PAGE_URL } from "@/shared";
 
-const SignIn = lazy(() => import("@/pages/auth/SignInPage"));
+const SignIn = lazy(() => import("@/pages/auth/signin/SignInPage"));
 
 const PageRouter = () => (
   <Suspense fallback={<>Loading...</>}>

@@ -8,24 +8,30 @@ export const API = axios.create({
   },
 });
 
+export const FORMAPI = axios.create({
+  baseURL: import.meta.env.VITE_SERVER_URL,
+  headers: {
+    "Content-Type": "multipart/form-data",
+  },
+});
+
+const storageAccessKey = "JWT_REFRESH";
+
 //Auth
-export const setAccess = (token: number): unknown =>
-  (API.defaults.headers["id"] = token);
+export const storeAccess = (token: string) => {
+  localStorage.setItem(storageAccessKey, token);
+};
 
-/* export const resetAccess = (): unknown =>
+export const setAccess = (token: number) => {
+  API.defaults.headers["memberId"] = token;
+  FORMAPI.defaults.headers["memberId"] = token;
+};
+
+export const resetAccess = () => {
   delete API.defaults.headers["Authorization"];
-export const getAccess = (): string =>
-  `${API.defaults.headers["Authorization"]}`;
-
-//Refresh
-const storageRefreshKey = "ZOO_JWT_REFRESH";
-
-export const storeRefresh = (token: string): void => {
-  localStorage.setItem(storageRefreshKey, token);
+  localStorage.removeItem(storageAccessKey);
 };
-export const removeRefresh = (): void => {
-  localStorage.removeItem(storageRefreshKey);
+
+export const getAccess = (): string | null => {
+  return localStorage.getItem(storageAccessKey);
 };
-export const getRefresh = (): string | null => {
-  return localStorage.getItem(storageRefreshKey);
-}; */
