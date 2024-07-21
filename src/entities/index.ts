@@ -1,4 +1,4 @@
-export { Container, CenterContainer, HeaderHome, IconContainer } from "./element/Container";
+export { Container, CenterContainer, HeaderContainer, IconContainer } from "./element/Container";
 export { LargeImage, Logo } from "./element/Image";
 export { Button, Bookmark, Alarm, Search, Account } from "./element/Button";
 

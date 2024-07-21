@@ -1,20 +1,10 @@
-import { HeaderHome, Bookmark, Alarm, Search, Account, Logo, IconContainer } from "@/entities";
+import { HomeHeader } from "@/widget";
 
 const HomePage = () => {
 
     return (
         <>
-            <HeaderHome>
-                <IconContainer>
-                    <Bookmark />
-                    <Alarm />
-                </IconContainer>
-                <Logo src="./image/logo2.png" alt="logo"/>
-                <IconContainer>
-                    <Search />
-                    <Account />
-                </IconContainer>
-            </HeaderHome>
+            <HomeHeader />
 
         </>
     );

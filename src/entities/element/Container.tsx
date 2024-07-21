@@ -14,7 +14,7 @@ export const CenterContainer = styled(Container)`
   transform: translate(-50%, -50%);
 `;
 
-export const HeaderHome = styled.header`
+export const HeaderContainer = styled.header`
     display: flex;
     justify-content: space-between;
     width: 100%;
