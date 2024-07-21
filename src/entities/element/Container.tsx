@@ -13,3 +13,14 @@ export const CenterContainer = styled(Container)`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
+
+export const HeaderHome = styled.header`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background: linear-gradient(to right, #3C435A 0%, #313131 51%, #937A6D 100%);
+`;
+
+export const IconContainer = styled.div`
+  margin: 5px 10px;
+`;
