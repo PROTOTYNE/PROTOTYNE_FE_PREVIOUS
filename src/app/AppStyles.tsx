@@ -1,8 +1,14 @@
 import { Global, css } from "@emotion/react";
 
 const Styles = css`
-  body {
+  * {
     font-family: "Spoqa Han Sans Neo", "sans-seri";
+  }
+  body {
+    overflow-x: hidden;
+  }
+  button {
+    all: unset;
   }
 `;
 

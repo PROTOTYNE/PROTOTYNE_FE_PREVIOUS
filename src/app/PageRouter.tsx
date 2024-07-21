@@ -15,9 +15,7 @@ import { PAGE_URL } from "@/shared";
 
 const SignIn = lazy(() => import("@/pages/auth/signin/SignInPage"));
 const Redirect = lazy(() => import("@/pages/auth/signin/RedirectPage"));
-
 const Home = lazy(() => import("@/pages/home/HomePage"));
-
 const NotFound = lazy(() => import("@/pages/notfound/NotFoundPage"));
 
 const PageRouter = () => (
