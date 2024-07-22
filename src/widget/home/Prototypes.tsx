@@ -1,7 +1,6 @@
 import { PopularContainer, PrototypeImg, PrototypeContainer, SubContainer } from "@/entities";
 import styled from "@emotion/styled";
 
-//api 호출 {사진, 몇명 신청 여부, 제품명}
 const PrototypeName = styled.p`
     font-weight: 500;
     margin-bottom: 5px;
@@ -44,10 +43,10 @@ export const Prototype = ({ path, application, name } : Prop) => {
     );
 };
 
-export const Popular = () => {
+export const Prototypes = ({ type } : { type: string }) => {
     return (
         <>
-            <SubContainer>지금 인기있는 시제품입니다!</SubContainer>
+            <SubContainer>{type}</SubContainer>
             <PopularContainer>
                 <Prototype path="./image/logo.jpg" application="100명 신청" name="마라탕후루 만두 마라맛 확인 시제품"/>
                 <Prototype path="./image/logo.jpg" application="50명 신청" name="마라탕후루 만두 마라맛 확인"/>
