@@ -1,11 +1,12 @@
-import { HomeHeader } from "@/widget";
+import { Categories, HomeHeader, Popular } from "@/widget";
 
 const HomePage = () => {
 
     return (
         <>
             <HomeHeader />
-
+            <Categories />
+            <Popular />
         </>
     );
 }

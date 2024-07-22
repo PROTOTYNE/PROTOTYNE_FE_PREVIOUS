@@ -5,8 +5,17 @@ export const LargeImage = styled.img`
 `;
 
 export const Logo = styled.img`
-    width: 3.5rem;
-    height: 1rem;
-    align-self: center;
-    margin-bottom: 0px;
+  width: 3.5rem;
+  height: 1rem;
+  align-self: center;
+  margin-bottom: 0px;
+`;
+
+export const CategoryImg = styled.img`
+`;
+
+export const PrototypeImg = styled.img`
+  width: 170px;
+  height: 170px;
+  border-radius: 10%;
 `;
