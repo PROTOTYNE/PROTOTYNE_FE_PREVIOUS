@@ -54,6 +54,13 @@ export const SearchContainer = styled.div`
   display: flex;
   justify-content: center;
   background-color: black;
+  padding: 0px 10px;
   height: 50px;
   position: relative;
+`;
+
+export const SearchP = styled.p<{ transparency: string }>`
+    margin: 5px 0px;
+    font-weight: 500;
+    opacity: ${props => props.transparency};
 `;

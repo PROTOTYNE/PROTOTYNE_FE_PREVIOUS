@@ -1,4 +1,5 @@
-import { SearchContainer } from "@/entities";
+import { SearchContainer } from '@/entities';
+import { SearchHeader, Searches } from '@/widget';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import styled from "@emotion/styled";
@@ -18,19 +19,34 @@ const SearchIcon = styled(SearchRoundedIcon)`
     font-size: 24px;
     position: absolute;
     top: 28%;
-    left: 5%;
+    left: 8%;
 `;
 
 const CancelIcon = styled(CancelRoundedIcon)`
     font-size: 20px;
     position: absolute;
-    top: 32%;
-    right: 4%;
+    top: 30%;
+    right: 8%;
+`;
+
+const Container = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 180px;
+
+`;
+
+export const RecentSearchContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
 `;
 
 
-const SearchPage = () => {
+const SearchPage = ({}) => {
     const [isSearch, setIsSearch] = useState('');
+    const [isSearchList, setIsSearchList] = useState(['a', 'bb']);
 
     const deleteSearch = () => {
         const searchInput = document.querySelector('input');
@@ -40,7 +56,14 @@ const SearchPage = () => {
         }
     
     }
+
+    const handleDeleteSearch = (name: string) => {
+        setIsSearchList(isSearchList.filter((search) => search !== name));
+    };
     
+    const handleDeleteAll = () => {
+        setIsSearchList([]);
+    };
     return (
         <>
             <SearchContainer>
@@ -51,6 +74,21 @@ const SearchPage = () => {
                   />
                 )}
             </SearchContainer>
+            <hr />
+            {isSearchList.length !== 0 ? (
+                <>
+                    <SearchHeader onDeleteAll={handleDeleteAll} />
+                    <RecentSearchContainer>
+                        {(isSearchList).map((name: string) => (
+                            <Searches key={name} name={name} onDeleteSearch={handleDeleteSearch}/>
+                        ))}
+                    </RecentSearchContainer>
+                </>
+            ) : (
+                <Container>
+                    체험해보고 싶은 시제품을 검색해보세요!
+                </Container>
+            )}
         </>
     );
 }
