@@ -10,6 +10,7 @@ const HomePage = () => {
             <Categories />
             <Prototypes type="지금 인기있는 시제품입니다!" />
             <Prototypes type="체험 신청 마감 임박!" />
+            <Prototypes type="신규 등록된 시제품 입니다!" />
         </>
     );
 }

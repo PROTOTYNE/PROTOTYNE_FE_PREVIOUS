@@ -27,16 +27,16 @@ const Ticket = styled.div`
 
 interface Prop {
     path: string;
-    application: string;
+    label: string;
     name: string;
 }
 
-export const Prototype = ({ path, application, name } : Prop) => {
+export const Prototype = ({ path, label, name } : Prop) => {
 
     return (
         <PrototypeContainer>
             <PrototypeImg src={path} alt={name} />
-            <Application>{application}</Application>
+            <Application>{label}</Application>
             <PrototypeName>{name}</PrototypeName>
             <Ticket>티켓 X 2</Ticket>
         </PrototypeContainer>
@@ -48,8 +48,8 @@ export const Prototypes = ({ type } : { type: string }) => {
         <>
             <SubContainer>{type}</SubContainer>
             <PopularContainer>
-                <Prototype path="./image/logo.jpg" application="100명 신청" name="마라탕후루 만두 마라맛 확인 시제품"/>
-                <Prototype path="./image/logo.jpg" application="50명 신청" name="마라탕후루 만두 마라맛 확인"/>
+                <Prototype path="./image/logo.jpg" label="100명 신청" name="마라탕후루 만두 마라맛 확인 시제품"/>
+                <Prototype path="./image/logo.jpg" label="50명 신청" name="마라탕후루 만두 마라맛 확인"/>
             </PopularContainer>
         </>
     );
