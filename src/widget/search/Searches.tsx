@@ -18,7 +18,9 @@ export const Searches = ({ name, onDeleteSearch } : Prop) => {
     return (
         <Container>
             <SearchP transparency="100%">
-                { name }
+                {name.length >= 20 ?
+                name.substr(0, 15) + "..." :
+                name}
             </SearchP>
             <SearchP transparency="100%">
                 <CloseIcon onClick={() => onDeleteSearch(name)}/>

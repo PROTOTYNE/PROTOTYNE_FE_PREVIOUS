@@ -45,8 +45,8 @@ export const RecentSearchContainer = styled.div`
 
 
 const SearchPage = ({}) => {
-    const [isSearch, setIsSearch] = useState('');
-    const [isSearchList, setIsSearchList] = useState(['a', 'bb']);
+    const [isSearch, setIsSearch] = useState<string>('');
+    const [isSearchList, setIsSearchList] = useState<string>(['마라탕 만두', '마라탕 만두', '마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두', '가나다라마바사']);
 
     const deleteSearch = () => {
         const searchInput = document.querySelector('input');
