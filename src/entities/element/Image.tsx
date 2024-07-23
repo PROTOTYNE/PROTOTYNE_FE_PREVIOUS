@@ -11,8 +11,6 @@ export const Logo = styled.img`
   margin-bottom: 0px;
 `;
 
-export const CategoryImg = styled.img`
-`;
 
 export const PrototypeImg = styled.img`
   width: 170px;

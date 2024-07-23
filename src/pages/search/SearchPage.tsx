@@ -1,4 +1,3 @@
-import { SearchContainer } from '@/entities';
 import { SearchHeader, Searches } from '@/widget';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
@@ -36,17 +35,26 @@ const Container = styled.div`
 
 `;
 
-export const RecentSearchContainer = styled.div`
+const RecentSearchContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 10px;
   margin-right: 10px;
 `;
 
+const SearchContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  padding: 0px 10px;
+  height: 50px;
+  position: relative;
+`;
+
 
 const SearchPage = ({}) => {
     const [isSearch, setIsSearch] = useState<string>('');
-    const [isSearchList, setIsSearchList] = useState<string>(['마라탕 만두', '마라탕 만두', '마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두', '가나다라마바사']);
+    const [isSearchList, setIsSearchList] = useState<string[]>(['마라탕 만두', '마라탕 만두2', '마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두', '가나다라마바사']);
 
     const deleteSearch = () => {
         const searchInput = document.querySelector('input');

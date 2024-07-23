@@ -25,39 +25,7 @@ export const IconContainer = styled.div`
   margin: 5px 10px;
 `;
 
-export const CategoryContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
-export const CategoriesContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin: 20px 10px;
-`;
-export const PrototypeContainer = styled.div`
-  position: relative;
-  width: 160px;
-`;
-export const PopularContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-`;
-
-export const SubContainer = styled.h4`
-  margin-bottom: 8px;
-  margin-left: 10px;
-`;
-
-export const SearchContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  background-color: black;
-  padding: 0px 10px;
-  height: 50px;
-  position: relative;
-`;
 
 export const SearchP = styled.p<{ transparency: string }>`
     margin: 5px 0px;

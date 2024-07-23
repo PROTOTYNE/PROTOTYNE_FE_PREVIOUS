@@ -1,9 +1,9 @@
-import { PopularContainer, PrototypeImg, PrototypeContainer, SubContainer } from "@/entities";
+import { PrototypeImg } from "@/entities";
 import styled from "@emotion/styled";
 
 const PrototypeName = styled.p`
     font-weight: 500;
-    margin-bottom: 5px;
+    margin-bottom: 1px;
 `;
 
 
@@ -12,17 +12,24 @@ const Application = styled.div`
     background-color: #6482EB;
     color: white;
     font-weight: bold;
-    border-radius: 10%;
+    border-radius: 7px;
     width: 110px;
     text-align: center;
     position: absolute;
     top: 46%;
-    left: 28%;
+    left: 37.5%;
 `;
 const Ticket = styled.div`
     color: #6482EB;
     margin-top: 0px;
     text-align: right;
+`;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 5px;
+  overflow: auto;
 `;
 
 interface Prop {
@@ -31,6 +38,23 @@ interface Prop {
     name: string;
 }
 
+
+export const PrototypeContainer = styled.div`
+  position: relative;
+  width: 160px;
+  margin: 0px 13px;
+`;
+const SubContainer = styled.h4`
+  margin-bottom: 8px;
+  margin-left: 10px;
+`;
+
+
+interface PrototypeProp {
+    path: string, 
+    label: string, 
+    name: string, 
+}
 export const Prototype = ({ path, label, name } : Prop) => {
 
     return (
@@ -43,14 +67,15 @@ export const Prototype = ({ path, label, name } : Prop) => {
     );
 };
 
-export const Prototypes = ({ type } : { type: string }) => {
+export const Prototypes = ({ type, prototype } : { type: string, prototype: PrototypeProp[] }) => {
     return (
         <>
             <SubContainer>{type}</SubContainer>
-            <PopularContainer>
-                <Prototype path="./image/logo.jpg" label="100명 신청" name="마라탕후루 만두 마라맛 확인 시제품"/>
-                <Prototype path="./image/logo.jpg" label="50명 신청" name="마라탕후루 만두 마라맛 확인"/>
-            </PopularContainer>
+            <Container>
+                {(prototype).map((prototype: PrototypeProp) => (
+                    <Prototype key={prototype.name} path={prototype.path} label={prototype.label} name={prototype.name}/>
+                ))}
+            </Container>
         </>
     );
 };
