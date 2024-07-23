@@ -1,4 +1,4 @@
-export { Container, CenterContainer, HeaderContainer, IconContainer, CategoryContainer, CategoriesContainer, PrototypeContainer, PopularContainer, SubContainer } from "./element/Container";
+export { Container, CenterContainer, HeaderContainer, IconContainer, CategoryContainer, CategoriesContainer, PrototypeContainer, PopularContainer, SubContainer, SearchContainer } from "./element/Container";
 export { LargeImage, Logo, CategoryImg, PrototypeImg } from "./element/Image";
 export { Button, Bookmark, Alarm, Search, Account } from "./element/Button";
 

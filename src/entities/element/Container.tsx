@@ -49,3 +49,11 @@ export const SubContainer = styled.h4`
   margin-bottom: 8px;
   margin-left: 10px;
 `;
+
+export const SearchContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  height: 50px;
+  position: relative;
+`;
