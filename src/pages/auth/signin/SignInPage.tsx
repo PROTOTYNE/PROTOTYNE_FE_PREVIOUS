@@ -1,4 +1,5 @@
 import { MidContainer, Background, MidPointLine } from "@/entities";
+
 import * as Styles from "./Styles";
 
 const SignInPage = () => {
