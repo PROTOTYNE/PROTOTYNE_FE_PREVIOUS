@@ -12,7 +12,8 @@ export const Title = styled.div`
 `;
 
 export const LgText = styled.div`
-  font-size: 30px;
+  font-weight: lighter;
+  font-size: 32px;
 `;
 
 export const XlText = styled.div`
