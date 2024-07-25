@@ -2,6 +2,7 @@ import { useState } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 
 import { Button, Header, LargeImage } from "@/entities";
+import { PAGE_URL } from "@/shared";
 
 import * as Styles from "./Styles";
 
@@ -32,6 +33,15 @@ const SignUpPage = () => {
             <Styles.SubTitle>
               회원 가입전 프로토타인 이용약관들을 확인해주세요.
             </Styles.SubTitle>
+            <Styles.Title>전체 동의</Styles.Title>
+            <Styles.StyledLink to={PAGE_URL.TermsOfUse}>
+              <span>필수</span>서비스 이용약관
+              <Styles.LinkIcon />
+            </Styles.StyledLink>
+            <Styles.StyledLink to={PAGE_URL.PersonalInfo}>
+              <span>필수</span>개인정보 수집 동의서
+              <Styles.LinkIcon />
+            </Styles.StyledLink>
           </>
         ) : progress === 2 ? (
           <>

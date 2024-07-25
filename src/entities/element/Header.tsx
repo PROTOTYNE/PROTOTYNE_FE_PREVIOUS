@@ -1,6 +1,31 @@
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
-export const Header = styled.div`
+export const Header = ({
+  children,
+  onBack,
+}: {
+  children: React.ReactNode;
+  onBack?: boolean;
+}) => {
+  const navigate = useNavigate();
+
+  return (
+    <Container>
+      {onBack ? (
+        <BackButton
+          onClick={() => {
+            navigate(-1);
+          }}
+        />
+      ) : null}
+      {children}
+    </Container>
+  );
+};
+
+const Container = styled.div`
   position: fixed;
   top: 0px;
   left: 0px;
@@ -13,9 +38,15 @@ export const Header = styled.div`
 
   margin-top: 20px;
 
-  font-size: 25px;
+  font-size: 23px;
 
   > * {
-    margin-top: 5px;
+    margin-top: 6px;
   }
+`;
+
+const BackButton = styled(ArrowBackIosNewIcon)`
+  position: absolute;
+  top: 1px;
+  left: 18px;
 `;
