@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const Button = styled.button`
   position: fixed;
 
-  bottom: 10px;
+  bottom: 30px;
   left: 50%;
   transform: translate(-50%, 0%);
 

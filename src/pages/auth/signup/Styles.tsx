@@ -13,7 +13,7 @@ export const Title = styled.div`
   font-weight: bold;
   font-size: 23px;
 
-  margin-top: 30px;
+  margin-top: 20px;
 `;
 
 export const SubTitle = styled.div`

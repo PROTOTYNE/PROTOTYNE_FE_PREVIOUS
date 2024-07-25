@@ -2,6 +2,7 @@ export { Container, MidContainer } from "./element/Container";
 export { LargeImage } from "./element/Image";
 export { Button } from "./element/Button";
 export { MidPointLine } from "./element/Line";
+export { Header } from "./element/Header";
 
 export { Background } from "./screen/Background";
 export { GrayBackground } from "./screen/GrayBackground";

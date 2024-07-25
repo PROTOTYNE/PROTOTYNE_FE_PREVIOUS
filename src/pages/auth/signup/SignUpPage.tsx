@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 
-import { Button } from "@/entities";
+import { Button, Header, LargeImage } from "@/entities";
 
 import * as Styles from "./Styles";
 
@@ -10,10 +10,11 @@ const SignUpPage = () => {
 
   return (
     <>
-      <Styles.Container>
+      <Header>
+        약관 동의
         <ProgressBar
           completed={progress}
-          maxCompleted={2}
+          maxCompleted={3}
           labelColor="#6482EB"
           bgColor="#6482EB"
           baseBgColor="#d9d9d9"
@@ -21,8 +22,18 @@ const SignUpPage = () => {
           width="345px"
           height="10px"
         />
+      </Header>
 
-        {progress < 2 ? (
+      <Styles.Container>
+        {progress === 1 ? (
+          <>
+            <LargeImage src="./image/logo.jpg"></LargeImage>
+            <Styles.Title>환영합니다!</Styles.Title>
+            <Styles.SubTitle>
+              회원 가입전 프로토타인 이용약관들을 확인해주세요.
+            </Styles.SubTitle>
+          </>
+        ) : progress === 2 ? (
           <>
             <Styles.Title>
               시제품 체험 신청을 하기 위해서는 <br />
