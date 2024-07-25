@@ -5,7 +5,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { MidContainer } from "@/entities";
 
 export const Container = styled(MidContainer)`
-  top: 40%;
+  top: 50%;
   width: 345px;
 
   align-items: flex-start;
@@ -27,13 +27,12 @@ export const SubTitle = styled.div`
 
 export const StyledLink = styled(Link)`
   display: flex;
-
   align-items: center;
 
+  margin-top: 12px;
+
   color: black;
-
   text-decoration: none;
-
   font-size: 18px;
 
   > span {

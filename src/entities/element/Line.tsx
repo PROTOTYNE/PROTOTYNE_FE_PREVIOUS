@@ -15,3 +15,10 @@ export const MidPointLine = styled.div`
     left: calc(50% - 8px);
   }
 `;
+
+export const GrayLine = styled.div`
+  border-top: 1px solid gray;
+  margin-top: 10px;
+  width: 100%;
+  height: 0px;
+`;
