@@ -85,6 +85,7 @@ export const Prototypes = ({ type, prototype } : { type: string, prototype: Prot
             <Container>
                 {(prototype).map((prototype: PrototypeProp) => (
                     <Prototype 
+                    key={prototype.name}
                     prototype={prototype}
                     width={type !== "지금 인기있는 시제품입니다!" ? "110px" : "170px"} 
                     height={type !== "지금 인기있는 시제품입니다!" ? "190px" : "240px"}

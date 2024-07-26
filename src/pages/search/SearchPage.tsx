@@ -3,7 +3,7 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import styled from "@emotion/styled";
 import { useState } from "react";
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 
 const SearchInput = styled.input`
     border-radius: 7px;
@@ -75,7 +75,8 @@ interface PrototypeProp {
     isBookmark: string,
 };
 const SearchPage = ({}) => {
-    const [isSearch, setIsSearch] = useState<string>('');
+    const location = useLocation();
+    const [isSearch, setIsSearch] = useState<string>(() => (location.state && location.state.category ? location.state.category : ''));
     const [isSearchList, setIsSearchList] = useState<string[]>(['마라탕 만두', '마라탕 만두2', '마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두', '가나다라마바사']);
     const [searchList, setSearchList] = useState<PrototypeProp[]>([
         {path: "./image/temp.svg", label: "", name: "마라탕후루 만두 마라맛 확인 시제품", isBookmark: "true" }, 
@@ -105,7 +106,7 @@ const SearchPage = ({}) => {
         <>
             <SearchContainer>
                 <SearchIcon />
-                <SearchInput placeholder="검색하기" onChange={(e) => {
+                <SearchInput defaultValue={isSearch ? `#${isSearch}` : ''} placeholder="검색하기" onChange={(e) => {
                     setIsSearch(e.target.value);
                 } 
                 }/>
@@ -129,6 +130,7 @@ const SearchPage = ({}) => {
                         <SearchListContainer>
                             {searchList.map((prototype: PrototypeProp) => (
                                 <Prototype 
+                                key={prototype.name}
                                 prototype={prototype}
                                 width="170px" 
                                 height="100%"

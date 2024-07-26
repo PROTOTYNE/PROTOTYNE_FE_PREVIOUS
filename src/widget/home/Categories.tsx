@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-
+import { useNavigate } from "react-router";
+import { useState } from "react";
 
 const Title = styled.p`
     margin: 0px;
@@ -34,8 +35,10 @@ interface Prop {
 
 
 export const Category = ({ path, title, description }: Prop) => {
+    const navigate = useNavigate();
+    const [category, setCategory] = useState(title);
     return (
-        <CategoryContainer>
+        <CategoryContainer onClick={() => navigate('/search', {state: {category}})}>
             <CategoryImg src={path} alt={description}/>
             <Title>{title}</Title>
         </CategoryContainer>
