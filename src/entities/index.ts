@@ -3,8 +3,8 @@ export { Container,
     HeaderContainer, 
     IconContainer,
     SearchP } from "./element/Container";
-export { LargeImage, Logo, PrototypeImg } from "./element/Image";
-export { Button, Bookmark } from "./element/Button";
+export { LargeImage, Logo, PrototypeImg, Bookmark } from "./element/Image";
+export { Button } from "./element/Button";
 
 export { Background } from "./screen/Background";
 export { GrayBackground } from "./screen/GrayBackground";

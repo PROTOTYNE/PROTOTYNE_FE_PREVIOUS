@@ -1,24 +1,13 @@
 import { Logo, IconContainer, HeaderContainer, Bookmark } from '@/entities';
 import { useNavigate } from 'react-router-dom';
 import styled from "@emotion/styled";
-import NotificationsNoneRoundedIcon from '@mui/icons-material/NotificationsNoneRounded';
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
-
-const Alarm = styled(NotificationsNoneRoundedIcon)`
-    color: #FFFFFF;
-    font-size: 30px;
+const Alarm = styled.img`
 `;
 
-const Search = styled(SearchRoundedIcon)`
-    color: #FFFFFF;
-    font-size: 30px;
+const Search = styled.img`
 `;
-
-const Account = styled(AccountCircleOutlinedIcon)`
-    color: #FFFFFF;
-    font-size: 30px;
+const Account = styled.img`
 `;
 
 
@@ -27,13 +16,13 @@ export const HomeHeader = () => {
     return (
         <HeaderContainer>
             <IconContainer>
-                <Bookmark position="none" top="0%" left="0%" />
-                <Alarm />
+                <Bookmark src="./image/bookmark.svg" position="none" top="0%" left="0%" />
+                <Alarm src="./image/alarm.svg" alt="alarm" />
             </IconContainer>
             <Logo src="./image/logo2.png" alt="logo"/>
             <IconContainer>
-                <Search onClick={ () => navigate("/search") } />
-                <Account />
+                <Search src="./image/search.svg" alt='search' onClick={ () => navigate("/search") } />
+                <Account src="./image/account.svg" alt='search' />
             </IconContainer>
         </HeaderContainer>
     );

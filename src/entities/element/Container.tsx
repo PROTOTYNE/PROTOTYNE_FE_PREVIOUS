@@ -23,7 +23,6 @@ export const HeaderContainer = styled.header`
 
 export const IconContainer = styled.div`
   display: flex;
-  width: 74px;
   justify-content: space-between;
   margin: 5px 10px;
 `;

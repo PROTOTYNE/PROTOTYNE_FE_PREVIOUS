@@ -77,7 +77,7 @@ export const Prototype = ({ path, label, name, width, height, isBookmark } : Pro
             <ImageContainer>
                 <PrototypeImg src={path} alt={name} />
                 <Application>{label}</Application>
-                <Bookmark position="absolute" top="10%" left="70%" />
+                <Bookmark src="./image/bookmark.svg" position="absolute" top="10%" left="60%" />
             </ImageContainer>
             <InfoContainer>
                 <PrototypeName>{name.length >= 15 ? name.substr(0, 15) + " ..." : name}</PrototypeName>
