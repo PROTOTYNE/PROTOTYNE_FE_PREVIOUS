@@ -3,12 +3,13 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import styled from "@emotion/styled";
 import { useState } from "react";
+import { useNavigate } from 'react-router';
 
 const SearchInput = styled.input`
     border-radius: 7px;
     padding-left: 40px;
     margin: 9px 10px;
-    width: 90%;
+    width: 100%;
     height: 30px;
     border: none;
 `;
@@ -25,7 +26,7 @@ const CancelIcon = styled(CancelRoundedIcon)`
     font-size: 20px;
     position: absolute;
     top: 30%;
-    right: 8%;
+    right: 17%;
 `;
 
 const Container = styled.div`
@@ -44,17 +45,24 @@ const RecentSearchContainer = styled.div`
 
 const SearchContainer = styled.div`
   display: flex;
-  justify-content: center;
   background-color: black;
   padding: 0px 10px;
   height: 50px;
   position: relative;
+`;
+const Cancel = styled.div`
+  width: 50px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 
 const SearchPage = ({}) => {
     const [isSearch, setIsSearch] = useState<string>('');
     const [isSearchList, setIsSearchList] = useState<string[]>(['마라탕 만두', '마라탕 만두2', '마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두', '가나다라마바사']);
+    const navigate = useNavigate();
 
     const deleteSearch = () => {
         const searchInput = document.querySelector('input');
@@ -81,6 +89,9 @@ const SearchPage = ({}) => {
                     <CancelIcon onClick={ deleteSearch }
                   />
                 )}
+                <Cancel onClick={() => {navigate("/home")}}>
+                    취소
+                </Cancel>
             </SearchContainer>
             <hr />
             {isSearchList.length !== 0 ? (

@@ -68,6 +68,7 @@ interface PrototypeProp {
     path: string, 
     label: string, 
     name: string, 
+    isBookmark: string,
 }
 export const Prototype = ({ path, label, name, width, height, isBookmark } : Prop) => {
 
@@ -86,7 +87,7 @@ export const Prototype = ({ path, label, name, width, height, isBookmark } : Pro
     );
 };
 
-export const Prototypes = ({ isBookmark, type, prototype } : { isBookmark: string, type: string, prototype: PrototypeProp[] }) => {
+export const Prototypes = ({ type, prototype } : { type: string, prototype: PrototypeProp[] }) => {
     return (
         <>
             <SubContainer>{type}</SubContainer>
@@ -99,7 +100,7 @@ export const Prototypes = ({ isBookmark, type, prototype } : { isBookmark: strin
                     name={prototype.name} 
                     width={type !== "지금 인기있는 시제품입니다!" ? "110px" : "170px"} 
                     height={type !== "지금 인기있는 시제품입니다!" ? "190px" : "240px"}
-                    isBookmark={isBookmark}
+                    isBookmark={prototype.isBookmark}
                     />
                 ))}
             </Container>
