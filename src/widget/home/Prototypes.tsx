@@ -33,15 +33,6 @@ const Container = styled.div`
   overflow: auto;
 `;
 
-interface Prop {
-    path: string;
-    label: string;
-    name: string;
-    width: string;
-    height: string;
-    isBookmark: string;
-}
-
 
 const InfoContainer = styled.div`
   display: flex;
@@ -70,17 +61,17 @@ interface PrototypeProp {
     name: string, 
     isBookmark: string,
 }
-export const Prototype = ({ path, label, name, width, height, isBookmark } : Prop) => {
+export const Prototype = ({ prototype, width, height } : { prototype: PrototypeProp, width: string, height: string }) => {
 
     return (
         <PrototypeContainer width={width} height={height}>
             <ImageContainer>
-                <PrototypeImg src={path} alt={name} />
-                <Application>{label}</Application>
+                <PrototypeImg src={prototype.path} alt={prototype.name} />
+                <Application>{prototype.label}</Application>
                 <Bookmark src="./image/bookmark.svg" position="absolute" top="10%" left="60%" />
             </ImageContainer>
             <InfoContainer>
-                <PrototypeName>{name.length >= 15 ? name.substr(0, 15) + " ..." : name}</PrototypeName>
+                <PrototypeName>{prototype.name.length >= 15 ? prototype.name.substring(0, 15) + " ..." : prototype.name}</PrototypeName>
                 <Ticket>티켓 X 2</Ticket>
             </InfoContainer>
         </PrototypeContainer>
@@ -94,13 +85,9 @@ export const Prototypes = ({ type, prototype } : { type: string, prototype: Prot
             <Container>
                 {(prototype).map((prototype: PrototypeProp) => (
                     <Prototype 
-                    key={prototype.name} 
-                    path={prototype.path} 
-                    label={prototype.label} 
-                    name={prototype.name} 
+                    prototype={prototype}
                     width={type !== "지금 인기있는 시제품입니다!" ? "110px" : "170px"} 
                     height={type !== "지금 인기있는 시제품입니다!" ? "190px" : "240px"}
-                    isBookmark={prototype.isBookmark}
                     />
                 ))}
             </Container>

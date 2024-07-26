@@ -14,20 +14,6 @@ export const CenterContainer = styled(Container)`
   transform: translate(-50%, -50%);
 `;
 
-export const HeaderContainer = styled.header`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  background: linear-gradient(to right, #3C435A 0%, #313131 51%, #937A6D 100%);
-`;
-
-export const IconContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 5px 10px;
-`;
-
-
 
 export const SearchP = styled.p<{ transparency: string }>`
     margin: 5px 0px;

@@ -1,13 +1,17 @@
-import { Logo, IconContainer, HeaderContainer, Bookmark } from '@/entities';
+import { Logo, Bookmark } from '@/entities';
 import { useNavigate } from 'react-router-dom';
 import styled from "@emotion/styled";
 
-const Alarm = styled.img`
+const IconContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 10px;
 `;
-
-const Search = styled.img`
-`;
-const Account = styled.img`
+const HeaderContainer = styled.header`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background: linear-gradient(to right, #3C435A 0%, #313131 51%, #937A6D 100%);
 `;
 
 
@@ -17,12 +21,12 @@ export const HomeHeader = () => {
         <HeaderContainer>
             <IconContainer>
                 <Bookmark src="./image/bookmark.svg" position="none" top="0%" left="0%" />
-                <Alarm src="./image/alarm.svg" alt="alarm" />
+                <img src="./image/alarm.svg" alt="alarm" />
             </IconContainer>
             <Logo src="./image/logo2.png" alt="logo"/>
             <IconContainer>
-                <Search src="./image/search.svg" alt='search' onClick={ () => navigate("/search") } />
-                <Account src="./image/account.svg" alt='search' />
+                <img src="./image/search.svg" alt='search' onClick={ () => navigate("/search") } />
+                <img src="./image/account.svg" alt='search' />
             </IconContainer>
         </HeaderContainer>
     );

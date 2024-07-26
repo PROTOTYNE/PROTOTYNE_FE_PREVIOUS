@@ -19,7 +19,7 @@ export const Searches = ({ name, onDeleteSearch } : Prop) => {
         <Container>
             <SearchP transparency="100%">
                 {name.length >= 20 ?
-                name.substr(0, 15) + " ..." :
+                name.substring(0, 15) + " ..." :
                 name}
             </SearchP>
             <SearchP transparency="100%">

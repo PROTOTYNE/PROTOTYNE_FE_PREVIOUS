@@ -1,7 +1,5 @@
 export { Container, 
     CenterContainer, 
-    HeaderContainer, 
-    IconContainer,
     SearchP } from "./element/Container";
 export { LargeImage, Logo, PrototypeImg, Bookmark } from "./element/Image";
 export { Button } from "./element/Button";
