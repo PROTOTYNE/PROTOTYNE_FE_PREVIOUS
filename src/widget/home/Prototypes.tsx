@@ -17,7 +17,7 @@ const Application = styled.div`
     width: 74%;
     text-align: center;
     position: absolute;
-    top: 64%;
+    top: 70%;
     left: 26%;
 `;
 const Ticket = styled.div`
@@ -39,6 +39,7 @@ interface Prop {
     name: string;
     width: string;
     height: string;
+    isBookmark: string;
 }
 
 
@@ -68,7 +69,7 @@ interface PrototypeProp {
     label: string, 
     name: string, 
 }
-export const Prototype = ({ path, label, name, width, height } : Prop) => {
+export const Prototype = ({ path, label, name, width, height, isBookmark } : Prop) => {
 
     return (
         <PrototypeContainer width={width} height={height}>
@@ -85,7 +86,7 @@ export const Prototype = ({ path, label, name, width, height } : Prop) => {
     );
 };
 
-export const Prototypes = ({ type, prototype } : { type: string, prototype: PrototypeProp[] }) => {
+export const Prototypes = ({ isBookmark, type, prototype } : { isBookmark: string, type: string, prototype: PrototypeProp[] }) => {
     return (
         <>
             <SubContainer>{type}</SubContainer>
@@ -96,8 +97,9 @@ export const Prototypes = ({ type, prototype } : { type: string, prototype: Prot
                     path={prototype.path} 
                     label={prototype.label} 
                     name={prototype.name} 
-                    width={type !== "지금 인기있는 시제품입니다!" ? "100px" : "150px"} 
-                    height={type !== "지금 인기있는 시제품입니다!" ? "190px" : "240px"} 
+                    width={type !== "지금 인기있는 시제품입니다!" ? "110px" : "170px"} 
+                    height={type !== "지금 인기있는 시제품입니다!" ? "190px" : "240px"}
+                    isBookmark={isBookmark}
                     />
                 ))}
             </Container>
