@@ -1,9 +1,9 @@
 import { Suspense, lazy } from "react";
 import {
-  BrowserRouter as RootRouter,
-  Routes,
-  Route,
   Navigate,
+  BrowserRouter as RootRouter,
+  Route,
+  Routes,
 } from "react-router-dom";
 
 import AppStyles from "./AppStyles";
@@ -17,6 +17,7 @@ const SignIn = lazy(() => import("@/pages/auth/signin/SignInPage"));
 const Redirect = lazy(() => import("@/pages/auth/signin/RedirectPage"));
 const Home = lazy(() => import("@/pages/home/HomePage"));
 const NotFound = lazy(() => import("@/pages/notfound/NotFoundPage"));
+const My = lazy(() => import("@/pages/mypage/MyPage"));
 
 const PageRouter = () => (
   <Suspense fallback={<Loading />}>
@@ -29,6 +30,7 @@ const PageRouter = () => (
             <Route path={PAGE_URL.SignIn} element={<SignIn />} />
             <Route path={PAGE_URL.Redirect} element={<Redirect />} />
             <Route path={PAGE_URL.Home} element={<Home />} />
+            <Route path={PAGE_URL.My} element={<My />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
