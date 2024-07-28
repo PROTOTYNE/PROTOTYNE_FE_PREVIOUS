@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 
-import { Button, Header, LargeImage, GrayLine } from "@/entities";
+import { Button, Header, LargeImage, GrayLine, Background } from "@/entities";
 import { PAGE_URL } from "@/shared";
 
 import * as Styles from "./Styles";
@@ -11,6 +11,7 @@ const SignUpPage = () => {
 
   return (
     <>
+      <Background src="/background/signup.jpg" />
       <Header>
         약관 동의
         <ProgressBar
@@ -28,7 +29,7 @@ const SignUpPage = () => {
       <Styles.Container>
         {progress === 1 ? (
           <>
-            <LargeImage src="./image/logo.jpg"></LargeImage>
+            <LargeImage src="./image/logo.png"></LargeImage>
             <Styles.Title>환영합니다!</Styles.Title>
             <Styles.SubTitle>
               회원 가입전 프로토타인 이용약관들을 확인해주세요.
