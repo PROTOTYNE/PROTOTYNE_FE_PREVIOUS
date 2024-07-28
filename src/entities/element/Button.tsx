@@ -26,3 +26,7 @@ export const Button = styled.button`
 export const SignUpButton = styled(Button)`
   background: linear-gradient(90deg, #718cab, #505995, #1a0858);
 `;
+
+export const DisableButton = styled(Button)`
+  background-color: #d9d9d9;
+`;

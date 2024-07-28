@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 import {
   SignUpButton,
@@ -7,12 +8,16 @@ import {
   LargeImage,
   GrayLine,
   Background,
+  DisableButton,
 } from "@/entities";
 import { PAGE_URL } from "@/shared";
 
 import * as Styles from "./Styles";
+import { Link } from "react-router-dom";
 
 const SignUpPage = () => {
+  const [agree1, setAgree1] = useState<boolean>(false);
+  const [agree2, setAgree2] = useState<boolean>(false);
   const [progress, setProgress] = useState(1);
 
   return (
@@ -44,16 +49,79 @@ const SignUpPage = () => {
               회원 가입전 프로토타인 이용약관들을 확인해주세요.
             </Styles.SubTitle>
             <div style={{ height: "180px" }}></div>
-            <Styles.Title>전체 동의</Styles.Title>
+            {agree1 && agree2 ? (
+              <Styles.OnTitle>
+                전체 동의
+                <CheckCircleIcon
+                  onClick={() => {
+                    setAgree1(false);
+                    setAgree2(false);
+                  }}
+                />
+              </Styles.OnTitle>
+            ) : (
+              <Styles.Title>
+                전체 동의
+                <CheckCircleIcon
+                  onClick={() => {
+                    setAgree1(true);
+                    setAgree2(true);
+                  }}
+                />
+              </Styles.Title>
+            )}
+
             <GrayLine />
-            <Styles.StyledLink to={PAGE_URL.TermsOfUse}>
-              <span>필수</span>서비스 이용약관
-              <Styles.LinkIcon />
-            </Styles.StyledLink>
-            <Styles.StyledLink to={PAGE_URL.PersonalInfo}>
-              <span>필수</span>개인정보 수집 동의서
-              <Styles.LinkIcon />
-            </Styles.StyledLink>
+            {agree1 ? (
+              <Styles.OnElement>
+                <span>필수</span>서비스 이용약관
+                <Link to={PAGE_URL.TermsOfUse}>
+                  <Styles.LinkIcon />
+                </Link>
+                <CheckCircleIcon
+                  onClick={() => {
+                    setAgree1(false);
+                  }}
+                />
+              </Styles.OnElement>
+            ) : (
+              <Styles.Element>
+                <span>필수</span>서비스 이용약관
+                <Link to={PAGE_URL.TermsOfUse}>
+                  <Styles.LinkIcon />
+                </Link>
+                <CheckCircleIcon
+                  onClick={() => {
+                    setAgree1(true);
+                  }}
+                />
+              </Styles.Element>
+            )}
+            {agree2 ? (
+              <Styles.OnElement>
+                <span>필수</span>개인정보 수집 동의서
+                <Link to={PAGE_URL.PersonalInfo}>
+                  <Styles.LinkIcon />
+                </Link>
+                <CheckCircleIcon
+                  onClick={() => {
+                    setAgree2(false);
+                  }}
+                />
+              </Styles.OnElement>
+            ) : (
+              <Styles.Element>
+                <span>필수</span>개인정보 수집 동의서
+                <Link to={PAGE_URL.PersonalInfo}>
+                  <Styles.LinkIcon />
+                </Link>
+                <CheckCircleIcon
+                  onClick={() => {
+                    setAgree2(true);
+                  }}
+                />
+              </Styles.Element>
+            )}
           </>
         ) : progress === 2 ? (
           <>
@@ -83,13 +151,17 @@ const SignUpPage = () => {
         )}
       </Styles.Container>
 
-      <SignUpButton
-        onClick={() => {
-          setProgress(progress + 1);
-        }}
-      >
-        {progress < 2 ? "계속하기" : "가입하기"}
-      </SignUpButton>
+      {progress === 1 && !(agree1 && agree2) ? (
+        <DisableButton>모든 항목을 동의해주세요!</DisableButton>
+      ) : (
+        <SignUpButton
+          onClick={() => {
+            setProgress(progress + 1);
+          }}
+        >
+          {progress < 2 ? "계속하기" : "가입하기"}
+        </SignUpButton>
+      )}
     </>
   );
 };

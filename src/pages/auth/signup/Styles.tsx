@@ -12,10 +12,27 @@ export const Container = styled(MidContainer)`
 `;
 
 export const Title = styled.div`
+  width: 100%;
+
+  position: relative;
   font-weight: bold;
   font-size: 23px;
 
   margin-top: 20px;
+
+  > svg {
+    position: absolute;
+    right: 0px;
+    top: 10px;
+    font-size: 20px;
+    color: #c4c4c4;
+  }
+`;
+
+export const OnTitle = styled(Title)`
+  > svg {
+    color: #152662;
+  }
 `;
 
 export const SubTitle = styled.div`
@@ -25,7 +42,9 @@ export const SubTitle = styled.div`
   margin-bottom: 10px;
 `;
 
-export const StyledLink = styled(Link)`
+export const Element = styled.div`
+  width: 100%;
+
   display: flex;
   align-items: center;
 
@@ -36,13 +55,26 @@ export const StyledLink = styled(Link)`
   font-size: 18px;
 
   > span {
-    color: #6482eb;
+    color: #152662;
     margin-right: 10px;
+  }
+
+  > svg {
+    position: absolute;
+    right: 0px;
+    font-size: 20px;
+    color: #c4c4c4;
+  }
+`;
+
+export const OnElement = styled(Element)`
+  > svg {
+    color: #152662;
   }
 `;
 
 export const LinkIcon = styled(ArrowForwardIosIcon)`
-  margin-top: 1px;
+  margin-top: 6px;
   margin-left: 10px;
 
   font-size: 18px;
