@@ -28,7 +28,6 @@ const Ticket = styled.div`
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-around;
   padding-bottom: 5px;
   overflow: auto;
 `;
