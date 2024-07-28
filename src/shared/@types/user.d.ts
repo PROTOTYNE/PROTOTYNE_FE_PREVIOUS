@@ -55,5 +55,19 @@ declare namespace User {
   }
 
   //Store
-  export interface UserStore {}
+  export interface UserStore extends BasicInfo, AdditionalInfo {
+    setName: (value: string) => void;
+    setBirthYear: (value: string) => void;
+    setBirthMonth: (value: string) => void;
+    setBirthDay: (value: string) => void;
+    setGender: (value: BasicInfo[geder]) => void;
+    setFamilyNum: (value: number) => void;
+    setOccupation: (value: AdditionalInfo[occupation]) => void;
+    setIncome: (value: AdditionalInfo[income]) => void;
+    setInterests: (value: AdditionalInfo[interests]) => void;
+    setFamilyComposition: (value: AdditionalInfo[familyComposition]) => void;
+    setProductType: (value: AdditionalInfo[productType]) => void;
+    setPhone: (value: AdditionalInfo[phone]) => void;
+    setHealthStatus: (value: AdditionalInfo[healthStatus]) => void;
+  }
 }
