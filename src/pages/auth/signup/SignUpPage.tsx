@@ -9,6 +9,7 @@ import {
   GrayLine,
   Background,
   DisableButton,
+  SelectInput,
 } from "@/entities";
 import { PAGE_URL } from "@/shared";
 
@@ -146,7 +147,14 @@ const SignUpPage = () => {
             <Styles.SubTitle>
               기업이 체험자 선정 중 참고할 수 있는 정보입니다.
             </Styles.SubTitle>
-            <Styles.Ladel>직업</Styles.Ladel>
+            <SelectInput
+              label="직업"
+              option={[
+                { label: "학생", value: "STUDENT" },
+                { label: "사무직", value: "OFFICE" },
+              ]}
+              onChange={() => {}}
+            />
           </>
         )}
       </Styles.Container>
