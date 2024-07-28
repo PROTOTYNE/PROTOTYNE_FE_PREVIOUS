@@ -22,3 +22,7 @@ export const Button = styled.button`
   border-radius: 8px;
   border-color: #6482eb;
 `;
+
+export const SignUpButton = styled(Button)`
+  background: linear-gradient(90deg, #718cab, #505995, #1a0858);
+`;

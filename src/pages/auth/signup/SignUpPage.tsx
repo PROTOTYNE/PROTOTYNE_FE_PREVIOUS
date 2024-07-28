@@ -1,7 +1,13 @@
 import { useState } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 
-import { Button, Header, LargeImage, GrayLine, Background } from "@/entities";
+import {
+  SignUpButton,
+  Header,
+  LargeImage,
+  GrayLine,
+  Background,
+} from "@/entities";
 import { PAGE_URL } from "@/shared";
 
 import * as Styles from "./Styles";
@@ -13,28 +19,31 @@ const SignUpPage = () => {
     <>
       <Background src="/background/signup.jpg" />
       <Header>
-        약관 동의
         <ProgressBar
           completed={progress}
           maxCompleted={3}
-          labelColor="#6482EB"
-          bgColor="#6482EB"
+          labelColor="#1a0858"
+          bgColor="#1a0858"
           baseBgColor="#d9d9d9"
           borderRadius="3px"
           width="345px"
           height="10px"
         />
+        <div style={{ height: "80px" }}></div>
+        {progress === 1 ? (
+          <LargeImage src="./image/logo.png"></LargeImage>
+        ) : null}
       </Header>
 
       <Styles.Container>
         {progress === 1 ? (
           <>
-            <LargeImage src="./image/logo.png"></LargeImage>
+            <div style={{ height: "80px" }}></div>
             <Styles.Title>환영합니다!</Styles.Title>
             <Styles.SubTitle>
               회원 가입전 프로토타인 이용약관들을 확인해주세요.
             </Styles.SubTitle>
-            <div style={{ height: "100px" }}></div>
+            <div style={{ height: "180px" }}></div>
             <Styles.Title>전체 동의</Styles.Title>
             <GrayLine />
             <Styles.StyledLink to={PAGE_URL.TermsOfUse}>
@@ -74,13 +83,13 @@ const SignUpPage = () => {
         )}
       </Styles.Container>
 
-      <Button
+      <SignUpButton
         onClick={() => {
           setProgress(progress + 1);
         }}
       >
         {progress < 2 ? "계속하기" : "가입하기"}
-      </Button>
+      </SignUpButton>
     </>
   );
 };
