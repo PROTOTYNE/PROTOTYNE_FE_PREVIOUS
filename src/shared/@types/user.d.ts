@@ -14,6 +14,27 @@ declare namespace User {
     familyNum: number;
   }
 
+  export type Interest =
+    | "FITNESS"
+    | "TRAVEL"
+    | "READING&MOVIES"
+    | "COOKING"
+    | "GAMES";
+
+  export type ProductType =
+    | "ELECTRONIC"
+    | "FASHION&BEAUTY"
+    | "FOOD"
+    | "HOUSEHOLD"
+    | "HEALTH";
+
+  export type Phone =
+    | "SMARTPHONE1"
+    | "SMARTPHONE2"
+    | "SMARTPHONE9"
+    | "TABLET"
+    | "SMARTWATCH";
+
   export interface AdditionalInfo {
     occupation:
       | "STUDENT"
@@ -23,13 +44,7 @@ declare namespace User {
       | "OTHER"
       | undefined;
     income: 2000 | 4000 | 6000 | 8000 | 9999 | undefined;
-    interests:
-      | "FITNESS"
-      | "TRAVEL"
-      | "READING&MOVIES"
-      | "COOKING"
-      | "GAMES"
-      | undefined;
+    interests: Interests[];
     familyComposition:
       | 1
       | "COUPLE"
@@ -37,20 +52,8 @@ declare namespace User {
       | "PARENTS&CHILDREN"
       | "EXTENDFAMILY"
       | undefined;
-    productType: (
-      | "ELECTRONIC"
-      | "FASHION&BEAUTY"
-      | "FOOD"
-      | "HOUSEHOLD"
-      | "HEALTH"
-    )[];
-    phone: (
-      | "SMARTPHONE1"
-      | "SMARTPHONE2"
-      | "SMARTPHONE9"
-      | "TABLET"
-      | "SMARTWATCH"
-    )[];
+    productTypes: ProductType[];
+    phones: Phone[];
     healthStatus: 1 | 2 | 3 | 4 | 5 | undefined;
   }
 
@@ -65,9 +68,15 @@ declare namespace User {
     setOccupation: (value: AdditionalInfo[occupation]) => void;
     setIncome: (value: AdditionalInfo[income]) => void;
     setInterests: (value: AdditionalInfo[interests]) => void;
+    addInterest: (value: Interests) => void;
+    deleteInterest: (value: Interests) => void;
     setFamilyComposition: (value: AdditionalInfo[familyComposition]) => void;
-    setProductType: (value: AdditionalInfo[productType]) => void;
-    setPhone: (value: AdditionalInfo[phone]) => void;
+    setProductTypes: (value: AdditionalInfo[productType]) => void;
+    addProductType: (value: ProductType) => void;
+    deleteProductType: (value: ProductType) => void;
+    setPhones: (value: AdditionalInfo[phone]) => void;
+    addPhone: (value: Phone) => void;
+    deletePhone: (value: Phone) => void;
     setHealthStatus: (value: AdditionalInfo[healthStatus]) => void;
   }
 }
