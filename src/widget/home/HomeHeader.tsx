@@ -1,4 +1,4 @@
-import { Logo, Bookmark } from '@/entities';
+import { Logo } from '@/entities';
 import { useNavigate } from 'react-router-dom';
 import styled from "@emotion/styled";
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
