@@ -136,9 +136,9 @@ export const MiniPrototype = ({ prototype } : { prototype: PrototypeProp }) => {
     return (
         <>
             <MiniPrototypeContainer>
-                <PrototypeImg src={prototype.path} alt={prototype.name} width={"110px"} height={"110px"} />
+                <PrototypeImg src={prototype.path} alt={prototype.name} width={"106px"} height={"106px"} />
                 <InfoMiniContainer>
-                    <PrototypeName>{prototype.name.length > 10 ? prototype.name.substring(0, 8) + " ..." : prototype.name}</PrototypeName>
+                    <PrototypeName>{prototype.name.length > 7 ? prototype.name.substring(0, 7) + ".." : prototype.name}</PrototypeName>
                     <TicketContainer>
                         <Ticket />
                         <Bookmark src={isBookmark?"./public/image/checkBookmark.svg":"./public/image/unCheckBookmark.svg"} onClick={handleBookmark}></Bookmark>

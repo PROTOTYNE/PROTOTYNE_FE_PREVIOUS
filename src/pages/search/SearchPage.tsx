@@ -1,5 +1,5 @@
 import { SearchHeader, Searches } from '@/widget';
-import { Prototype } from '@/entities';
+import { MiniPrototype } from '@/entities';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import styled from "@emotion/styled";
@@ -47,7 +47,7 @@ const RecentSearchContainer = styled.div`
 
 const SearchContainer = styled.div`
   display: flex;
-  background-color: black;
+  background: linear-gradient(to right, #7995B2 0%, #476090 51%, #0D1B4A 100%);
   padding: 0px 10px;
   height: 50px;
   position: relative;
@@ -66,7 +66,13 @@ const SearchListContainer = styled.div`
 const Info = styled.div`
     display: flex;
     justify-content: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    padding: 10px 0px;
+    border-top: 1px solid #C3C3C3;
+    border-bottom: 1px solid #C3C3C3;
 `;
+
 
 
 interface PrototypeProp {
@@ -118,18 +124,16 @@ const SearchPage = ({}) => {
                     취소
                 </Cancel>
             </SearchContainer>
-            <hr />
             {
                 isSearch ? (
                     <>
                     <Info>
-                        '{isSearch.length >= 6 ? isSearch.substring(0, 6) + '...' : isSearch}'에 대한 '{searchList.length}'개의 시제품이 조회되었습니다.
+                        '{isSearch.length >= 6 ? isSearch.substring(0, 6) + '...' : isSearch}'에 대한 {searchList.length}개의 시제품이 조회되었습니다.
                     </Info>
-                    <hr />
                     <br />
                         <SearchListContainer>
                             {searchList.map((prototype: PrototypeProp) => (
-                                <Prototype 
+                                <MiniPrototype 
                                 key={prototype.name}
                                 prototype={prototype}
                                 />
