@@ -29,7 +29,7 @@ export const FirstLoading = () => {
         <Container>
           <Background src="/background/first_loading.jpg" />
           <MidContainer>
-            <div style={{ height: "150px" }}></div>
+            <div style={{ height: "130px" }}></div>
             <Styles.Title>
               <Styles.LgText>앞서가는 당신을 위한</Styles.LgText>
               <Styles.LgText>특별한 기회</Styles.LgText>
@@ -39,7 +39,7 @@ export const FirstLoading = () => {
             <div style={{ height: "60px" }}></div>
             <ClipLoader color="white" />
           </MidContainer>
-          <BottomImage src="/image/small_logo.png" />
+          <BottomImage src="/image/small_logo.png" alt="logo" />
         </Container>
       ) : null}
     </>

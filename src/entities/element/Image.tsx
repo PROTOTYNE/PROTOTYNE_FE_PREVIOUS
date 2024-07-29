@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const LargeImage = styled.img`
-  width: 250px;
+  width: 300px;
 `;
 
 export const BottomImage = styled.img`
