@@ -13,13 +13,13 @@ export const Logo = styled.img`
 
 
 export const PrototypeImg = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 170px;
+  height: 170px;
   border-radius: 10%;
 `;
-export const Bookmark = styled.img<{ position: string, top: string, left: string }>`
+export const Bookmark = styled.img`
     margin: 0px;
-    position: ${props => props.position};
-    top: ${props => props.top};
-    left: ${props => props.left};
+    width: 25px;
+    height: 25px;
+    border-radius: 30%;
 `;

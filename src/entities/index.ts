@@ -3,6 +3,7 @@ export { Container,
     SearchP } from "./element/Container";
 export { LargeImage, Logo, PrototypeImg, Bookmark } from "./element/Image";
 export { Button } from "./element/Button";
+export { Prototype } from "./element/Prototype";
 
 export { Background } from "./screen/Background";
 export { GrayBackground } from "./screen/GrayBackground";

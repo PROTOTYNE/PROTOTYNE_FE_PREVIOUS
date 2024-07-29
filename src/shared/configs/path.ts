@@ -3,4 +3,5 @@ export enum PAGE_URL {
   Redirect = "/oauth",
   Home = "/home",
   Search = "/search",
+  Detail = "/detail",
 }
