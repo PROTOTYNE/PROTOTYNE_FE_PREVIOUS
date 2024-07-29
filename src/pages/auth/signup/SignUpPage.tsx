@@ -11,7 +11,7 @@ import {
   DisableButton,
   SelectInput,
 } from "@/entities";
-import { PAGE_URL } from "@/shared";
+import { PAGE_URL, additionalInfoOptions } from "@/shared";
 
 import * as Styles from "./Styles";
 import { Link } from "react-router-dom";
@@ -147,6 +147,16 @@ const SignUpPage = () => {
             <Styles.SubTitle>
               기업이 체험자 선정 중 참고할 수 있는 정보입니다.
             </Styles.SubTitle>
+            {additionalInfoOptions.map((additionalInfoOption) => {
+              return (
+                <SelectInput
+                  key={additionalInfoOption.name}
+                  label={additionalInfoOption.label}
+                  option={additionalInfoOption.options}
+                  onChange={() => {}}
+                />
+              );
+            })}
             <SelectInput
               label="직업"
               option={[
