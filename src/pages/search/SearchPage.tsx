@@ -132,8 +132,6 @@ const SearchPage = ({}) => {
                                 <Prototype 
                                 key={prototype.name}
                                 prototype={prototype}
-                                width="170px" 
-                                height="100%"
                                 />
                             ))}
                         </SearchListContainer>

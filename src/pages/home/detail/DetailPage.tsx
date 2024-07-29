@@ -16,8 +16,19 @@ const Container = styled.div`
 const Title = styled.h3`
     margin: 20px 10px;
 `;
-const DetailPage = () => {
+const DetailPage = ({type} : {type: string}) => {
     const navigate = useNavigate();
+
+    const getTitle = (type: string) => {
+        if (type === "popular") {
+            return "지금 인기있는 시제품입니다!";
+        } else if (type === "deadline") {
+            return "체험 신청이 마감 임박한 시제품입니다!";
+        } else {
+            return "신규 등록된 시제품입니다!";
+        }
+    };
+
     return (
         <>
             <Header>
@@ -25,12 +36,12 @@ const DetailPage = () => {
             </Header>
             <Container>
                 <Title>
-                    지금 인기있는 시제품입니다!
+                    {getTitle(type)}
                 </Title>
                 <Prototypes type="지금 인기있는 시제품 >"
-                prototype={[
-                    {path: "./image/temp.svg", label: "100명 신청", name: "마라탕후루 만두 마라맛 확인 시제품", isBookmark: true },
-                    {path: "./image/temp.svg", label: "50명 신청", name: "마라탕후루 만두 마라맛 확인", isBookmark: false }
+                prototype={[{path: "./image/temp.svg", label: "100명 신청", name: "마라탕후루 만두 마라맛 확인 시제품", isBookmark: true }, 
+                    {path: "./image/temp.svg", label: "50명 신청", name: "마라탕후루 만두 마라맛 확인", isBookmark: true }, 
+                    {path: "./image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인2", isBookmark: true }
                 ]} />
             </Container>
         </>

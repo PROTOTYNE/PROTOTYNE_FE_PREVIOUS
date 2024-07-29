@@ -36,14 +36,14 @@ const InfoContainer = styled.div`
   padding: 20px 0px 0px 0px;
 `;
 
-const PrototypeContainer = styled.div<{ width: string, height: string }>`
+const PrototypeContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
   background-color: #EEEEEE;
   border-radius: 16px;
-  width: ${props => props.width};
-  height: ${props => props.height};
+  width: "170px";
+  height: "270px";
   margin: 10px 8px;
 `;
 
@@ -66,8 +66,8 @@ const TicketNeed = styled.div`
 `;
 const TicketImg = styled.img`
     display: flex;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
 `;
 const TicketImgContainer = styled.div`
     display: flex;
@@ -88,19 +88,19 @@ const Ticket = () => {
     );
 }
 
-export const Prototype = ({ prototype, width, height } : { prototype: PrototypeProp, width: string, height: string }) => {
+export const Prototype = ({ prototype} : { prototype: PrototypeProp }) => {
     const [isBookmark, setIsBookmark] = useState(prototype.isBookmark);
 
     const handleBookmark = () => {
         setIsBookmark(!isBookmark);
     }
     return (
-        <PrototypeContainer width={width} height={height}>
-            <PrototypeImg src={prototype.path} alt={prototype.name} />
+        <PrototypeContainer>
+            <PrototypeImg src={prototype.path} alt={prototype.name} width="170px" height="170px" />
             <Application>{prototype.label}</Application>
             <InfoContainer>
                 <InfoSubContainer>
-                    <PrototypeName>{prototype.name.length >= 8 ? prototype.name.substring(0, 8) + " ..." : prototype.name}</PrototypeName>
+                    <PrototypeName>{prototype.name.length > 10 ? prototype.name.substring(0, 8) + " ..." : prototype.name}</PrototypeName>
                     <Bookmark src={isBookmark?"./public/image/checkBookmark.svg":"./public/image/unCheckBookmark.svg"} onClick={handleBookmark}></Bookmark>
                 </InfoSubContainer>
                 <TicketContainer>
@@ -111,5 +111,40 @@ export const Prototype = ({ prototype, width, height } : { prototype: PrototypeP
                 </TicketContainer>
             </InfoContainer>
         </PrototypeContainer>
+    );
+};
+
+const MiniPrototypeContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: "20px";
+    height: "290px";
+    margin: 10px 8px;
+`;
+const InfoMiniContainer = styled.div`
+    width: 100%;
+`;
+
+export const MiniPrototype = ({ prototype } : { prototype: PrototypeProp }) => {
+
+    const [isBookmark, setIsBookmark] = useState(prototype.isBookmark);
+
+    const handleBookmark = () => {
+        setIsBookmark(!isBookmark);
+    }
+    return (
+        <>
+            <MiniPrototypeContainer>
+                <PrototypeImg src={prototype.path} alt={prototype.name} width={"110px"} height={"110px"} />
+                <InfoMiniContainer>
+                    <PrototypeName>{prototype.name.length > 10 ? prototype.name.substring(0, 8) + " ..." : prototype.name}</PrototypeName>
+                    <TicketContainer>
+                        <Ticket />
+                        <Bookmark src={isBookmark?"./public/image/checkBookmark.svg":"./public/image/unCheckBookmark.svg"} onClick={handleBookmark}></Bookmark>
+                    </TicketContainer>
+                </InfoMiniContainer>
+            </MiniPrototypeContainer>
+        </>
     );
 };

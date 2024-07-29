@@ -31,7 +31,9 @@ const PageRouter = () => (
             <Route path={PAGE_URL.Redirect} element={<Redirect />} />
             <Route path={PAGE_URL.Home} element={<Home />} />
             <Route path={PAGE_URL.Search} element={<Search />} />
-            <Route path={PAGE_URL.Detail} element={<Detail />} />
+            <Route path={PAGE_URL.PopularDetail} element={<Detail type="popular" />} />
+            <Route path={PAGE_URL.DeadLineDetail} element={<Detail type="deadline" />} />
+            <Route path={PAGE_URL.NewDetail} element={<Detail type="new" />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

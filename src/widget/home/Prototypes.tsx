@@ -1,4 +1,4 @@
-import { Prototype } from "@/entities/element/Prototype";
+import { Prototype, MiniPrototype } from "@/entities/element/Prototype";
 import styled from "@emotion/styled";
 
 
@@ -20,11 +20,14 @@ export const Prototypes = ({ type, prototype } : { type: string, prototype: Prot
         <>
             <Container>
                 {(prototype).map((prototype: PrototypeProp) => (
+                    type === "지금 인기있는 시제품 >" ? 
                     <Prototype 
                     key={prototype.name}
                     prototype={prototype}
-                    width={type !== "지금 인기있는 시제품 >" ? "110px" : "170px"} 
-                    height={type !== "지금 인기있는 시제품 >" ? "190px" : "270px"}
+                    /> :
+                    <MiniPrototype
+                    key={prototype.name}
+                    prototype={prototype}
                     />
                 ))}
             </Container>

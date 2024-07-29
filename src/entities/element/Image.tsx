@@ -12,9 +12,9 @@ export const Logo = styled.img`
 `;
 
 
-export const PrototypeImg = styled.img`
-  width: 170px;
-  height: 170px;
+export const PrototypeImg = styled.img<{ width: string, height: string }>`
+  width: ${props => props.width};
+  height: ${props => props.height};
   border-radius: 10%;
 `;
 export const Bookmark = styled.img`
