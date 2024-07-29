@@ -1,5 +1,5 @@
 export { Container, MidContainer } from "./element/Container";
-export { LargeImage } from "./element/Image";
+export { LargeImage, BottomImage } from "./element/Image";
 export { Button, SignUpButton, DisableButton } from "./element/Button";
 export { MidPointLine, GrayLine } from "./element/Line";
 export { Header } from "./element/Header";

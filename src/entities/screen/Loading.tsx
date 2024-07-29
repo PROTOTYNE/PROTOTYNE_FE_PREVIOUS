@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { PropagateLoader } from "react-spinners";
+import { ClipLoader } from "react-spinners";
 
 import { Background } from "@/entities";
 
@@ -8,7 +8,7 @@ export const Loading = () => {
     <>
       <Background />
       <LoadingWrapper>
-        <PropagateLoader color="white" size={15} speedMultiplier={1} />
+        <ClipLoader color="white" size={15} speedMultiplier={1} />
       </LoadingWrapper>
     </>
   );

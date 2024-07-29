@@ -2,6 +2,8 @@ import { MidContainer, Background, MidPointLine } from "@/entities";
 
 import * as Styles from "./Styles";
 
+import { FirstLoading } from "./FirstLoading";
+
 const SignInPage = () => {
   const kakaoSignInLink = `https://kauth.kakao.com/oauth/authorize?client_id=${
     import.meta.env.VITE_KAKAO_REST_API_KEY
@@ -13,6 +15,7 @@ const SignInPage = () => {
 
   return (
     <>
+      <FirstLoading />
       <Background src="/background/signin.jpg" />
       <MidContainer>
         <Styles.Title>

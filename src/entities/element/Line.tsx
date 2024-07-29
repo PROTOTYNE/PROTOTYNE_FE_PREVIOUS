@@ -4,15 +4,15 @@ export const MidPointLine = styled.div`
   border-top: 1px solid white;
   margin-top: 30px;
   margin-bottom: 40px;
-  width: 295px;
+  width: 100%;
   height: 0px;
   color: white;
 
   ::after {
-    content: "◆";
+    content: "⬤";
     position: relative;
     top: -12px;
-    left: calc(50% - 8px);
+    left: calc(50% - 5px);
   }
 `;
 
