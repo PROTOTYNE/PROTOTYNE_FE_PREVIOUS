@@ -86,9 +86,10 @@ const SearchPage = ({}) => {
     const [isSearch, setIsSearch] = useState<string>(() => (location.state && location.state.title ? location.state.title : ''));
     const [isSearchList, setIsSearchList] = useState<string[]>(['마라탕 만두', '마라탕 만두2', '마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두', '가나다라마바사']);
     const [searchList, setSearchList] = useState<PrototypeProp[]>([
-        {path: "./image/temp.svg", label: "", name: "마라탕후루 만두 마라맛 확인 시제품", isBookmark: true }, 
-                    {path: "./image/temp.svg", label: "", name: "마라탕후루 만두 마라맛 확인", isBookmark: true }, 
-                    {path: "./image/temp.svg", label: "", name: "마라탕후루 만두 마라맛 확인2", isBookmark: true }
+        {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인 시제품", isBookmark: true }, 
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인", isBookmark: true }, 
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인2", isBookmark: true },
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인3", isBookmark: true }
     ]);
     const navigate = useNavigate();
 

@@ -39,9 +39,16 @@ const DetailPage = ({type} : {type: string}) => {
                     {getTitle(type)}
                 </Title>
                 <Prototypes type="지금 인기있는 시제품 >"
-                prototype={[{path: "./image/temp.svg", label: "100명 신청", name: "마라탕후루 만두 마라맛 확인 시제품", isBookmark: true }, 
-                    {path: "./image/temp.svg", label: "50명 신청", name: "마라탕후루 만두 마라맛 확인", isBookmark: true }, 
-                    {path: "./image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인2", isBookmark: true }
+                prototype={[{path: "../image/temp.svg", label: "100명 신청", name: "마라탕후루 만두 마라맛 확인 시제품", isBookmark: true }, 
+                    {path: "../image/temp.svg", label: "50명 신청", name: "마라탕후루 만두 마라맛 확인", isBookmark: true }, 
+                    {path: "../image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인2", isBookmark: true },
+                    {path: "../image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인3", isBookmark: true },
+                    {path: "../image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인4", isBookmark: true },
+                    {path: "../image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인5", isBookmark: true },
+                    {path: "../image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인6", isBookmark: true },
+                    {path: "../image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인7", isBookmark: true },
+                    {path: "../image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인8", isBookmark: true },
+                    {path: "../image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인9", isBookmark: true }
                 ]} />
             </Container>
         </>

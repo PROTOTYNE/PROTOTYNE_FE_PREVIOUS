@@ -27,9 +27,9 @@ const HomePage = () => {
                 ]} />
             <Title onClick={() => navigate('/detail/new')}>신규 등록된 시제품 &gt;</Title>
             <Prototypes type="신규 등록된 시제품 >" 
-                prototype={[{path: "./image/temp.svg", label: "100명 신청", name: "마라탕후루 만두 마라맛 확인 시제품", isBookmark: true }, 
-                    {path: "./image/temp.svg", label: "50명 신청", name: "마라탕후루 만두 마라맛 확인", isBookmark: true }, 
-                    {path: "./image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인2", isBookmark: true }
+                prototype={[{path: "./image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인 시제품", isBookmark: true }, 
+                    {path: "./image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인", isBookmark: true }, 
+                    {path: "./image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인2", isBookmark: true }
                 ]} />
         </>
     );

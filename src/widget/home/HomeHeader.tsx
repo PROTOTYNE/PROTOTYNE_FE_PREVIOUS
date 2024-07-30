@@ -1,5 +1,6 @@
-import { Logo } from '@/entities';
+import { Logo, Sidebar } from '@/entities';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import styled from "@emotion/styled";
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 
@@ -21,10 +22,15 @@ const Menu = styled(MenuRoundedIcon)`
 `;
 export const HomeHeader = () => {
     const navigate = useNavigate();
+    const [isOpen, setIsOpen] = useState(false);
+    const toggleSide = () => {
+        setIsOpen(true);
+    }
     return (
         <HeaderContainer>
             <IconContainer>
-                <Menu />
+                <Menu onClick={toggleSide} />
+                <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
             </IconContainer>
             <Logo src="./image/logo2.png" alt="logo"/>
             <IconContainer>
