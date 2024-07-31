@@ -1,41 +1,21 @@
-import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
+import { StyledEngineProvider } from '@mui/material';
 
-const BookmarkButton = styled.div`
+const StyledBookmark = styled(BookmarkBorderIcon)`
   position: fixed;
   bottom: 16px;
-  right: 16px;
-  background-color: white;
-  border-radius: 50%;
-  padding: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+  left: 16px;
+`
+//북마크 하단 고정 불가...?
+//누르면 내부 색 변하는 기능 추가
 
-const MyComponent: React.FC = () => {
-  const [isBookmarked, setIsBookmarked] = useState(false);
-
-  const handleBookmarkClick = () => {
-    setIsBookmarked(!isBookmarked);
-  };
-
+const Bookmark = () => {
   return (
-    <div style={{ height: '200vh', position: 'relative' }}>
-      <p>Scroll down to see the fixed Bookmark icon.</p>
-      <BookmarkButton onClick={handleBookmarkClick}>
-        {isBookmarked ? (
-          <BookmarkIcon style={{ color: 'black', fontSize: 24 }} />
-        ) : (
-          <BookmarkBorderIcon style={{ color: 'black', fontSize: 24 }} />
-        )}
-      </BookmarkButton>
-    </div>
-  );
-};
+    <StyledEngineProvider injectFirst>
+      <StyledBookmark></StyledBookmark>
+    </StyledEngineProvider>
+  )
+}
 
-export default MyComponent;
+export default Bookmark;
