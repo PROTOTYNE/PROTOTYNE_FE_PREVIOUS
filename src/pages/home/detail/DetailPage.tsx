@@ -38,7 +38,7 @@ const DetailPage = ({type} : {type: string}) => {
                 <Title>
                     {getTitle(type)}
                 </Title>
-                <Prototypes type="지금 인기있는 시제품 >"
+                <Prototypes type="popular"
                 prototype={[{path: "../image/temp.svg", label: "100명 신청", name: "마라탕후루 만두 마라맛 확인 시제품", isBookmark: true }, 
                     {path: "../image/temp.svg", label: "50명 신청", name: "마라탕후루 만두 마라맛 확인", isBookmark: true }, 
                     {path: "../image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인2", isBookmark: true },

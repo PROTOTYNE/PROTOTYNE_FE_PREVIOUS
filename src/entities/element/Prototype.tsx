@@ -89,11 +89,7 @@ const Ticket = () => {
 }
 
 export const Prototype = ({ prototype} : { prototype: PrototypeProp }) => {
-    const [isBookmark, setIsBookmark] = useState(prototype.isBookmark);
 
-    const handleBookmark = () => {
-        setIsBookmark(!isBookmark);
-    }
     return (
         <PrototypeContainer>
             <PrototypeImg src={prototype.path} alt={prototype.name} width="170px" height="170px" />
@@ -101,7 +97,7 @@ export const Prototype = ({ prototype} : { prototype: PrototypeProp }) => {
             <InfoContainer>
                 <InfoSubContainer>
                     <PrototypeName>{prototype.name.length > 10 ? prototype.name.substring(0, 8) + " ..." : prototype.name}</PrototypeName>
-                    <Bookmark src={isBookmark?"../image/checkBookmark.svg":"../image/unCheckBookmark.svg"} onClick={handleBookmark}></Bookmark>
+                    <Bookmark src={prototype.isBookmark ? "../image/checkBookmark.svg":"../image/unCheckBookmark.svg"}></Bookmark>
                 </InfoSubContainer>
                 <TicketContainer>
                     <TicketNeed>
@@ -145,11 +141,6 @@ const DDay = styled.div`
 
 export const MiniPrototype = ({ prototype } : { prototype: PrototypeProp }) => {
 
-    const [isBookmark, setIsBookmark] = useState(prototype.isBookmark);
-
-    const handleBookmark = () => {
-        setIsBookmark(!isBookmark);
-    }
     return (
         <>
             <MiniPrototypeContainer>
@@ -159,7 +150,7 @@ export const MiniPrototype = ({ prototype } : { prototype: PrototypeProp }) => {
                     <PrototypeName>{prototype.name.length > 7 ? prototype.name.substring(0, 7) + ".." : prototype.name}</PrototypeName>
                     <TicketContainer>
                         <Ticket />
-                        <Bookmark src={isBookmark?"../image/checkBookmark.svg":"../image/unCheckBookmark.svg"} onClick={handleBookmark}></Bookmark>
+                        <Bookmark src={prototype.isBookmark ? "../image/checkBookmark.svg":"../image/unCheckBookmark.svg"}></Bookmark>
                     </TicketContainer>
                 </InfoMiniContainer>
             </MiniPrototypeContainer>

@@ -21,7 +21,7 @@ export const Prototypes = ({ type, prototype } : { type: string, prototype: Prot
         <>
             <Container>
                 {(prototype).map((prototype: PrototypeProp) => (
-                    type === "지금 인기있는 시제품 >" ? 
+                    type === "popular" ? 
                     <Prototype 
                     key={prototype.name}
                     prototype={prototype}
