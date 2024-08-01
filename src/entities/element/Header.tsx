@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import { Background } from "../screen/Background";
 
 export const Header = ({
   children,
@@ -61,7 +60,7 @@ const Container = styled.div`
   z-index: 11;
 
   > * {
-    margin-top: 6px;
+    margin-bottom: 10px;
   }
 `;
 

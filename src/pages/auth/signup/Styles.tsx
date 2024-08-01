@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 import { MidContainer } from "@/entities";
 
@@ -85,4 +85,51 @@ export const Ladel = styled.div`
   font-size: 16px;
 
   margin-top: 10px;
+`;
+
+export const ScrollArea = ({ children }: { children: React.ReactNode }) => (
+  <div style={{ position: "relative" }}>
+    <ScrollBox>
+      <ScrollContainer>{children}</ScrollContainer>
+    </ScrollBox>
+  </div>
+);
+
+const ScrollBox = styled.div`
+  position: relative;
+  background-color: white;
+
+  width: 100%;
+  height: 60vh;
+
+  margin-top: 20px;
+
+  border-radius: 3px;
+
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #dcdcdc;
+  }
+`;
+
+const ScrollContainer = styled.div`
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const BackButton = styled(ArrowBackIosNewIcon)`
+  position: absolute;
+  top: 26px;
+  left: 30px;
+  z-index: 100;
 `;

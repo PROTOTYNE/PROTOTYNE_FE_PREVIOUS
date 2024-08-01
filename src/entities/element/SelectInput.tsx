@@ -1,7 +1,10 @@
 import styled from "@emotion/styled";
 import Select, { StylesConfig } from "react-select";
 
-const customStyles: StylesConfig<{ label: string; value: string }, false> = {
+const customStyles: StylesConfig<
+  { label: string; value: string | number },
+  false
+> = {
   control: (provided, state) => ({
     ...provided,
 
@@ -49,7 +52,7 @@ export const SelectInput = ({
   onChange,
 }: {
   label: string;
-  option: { label: string; value: string }[];
+  option: { label: string; value: string | number }[];
   onChange: () => void;
 }) => (
   <Container>

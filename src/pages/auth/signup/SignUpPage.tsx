@@ -24,7 +24,16 @@ const SignUpPage = () => {
   return (
     <>
       <Background src="/background/signup.jpg" />
+      {progress > 1 ? (
+        <Styles.BackButton
+          onClick={() => {
+            console.log("!!");
+            setProgress(progress - 1);
+          }}
+        ></Styles.BackButton>
+      ) : null}
       <Header>
+        <span>회원 가입</span>
         <ProgressBar
           completed={progress}
           maxCompleted={3}
@@ -35,7 +44,7 @@ const SignUpPage = () => {
           width="345px"
           height="10px"
         />
-        <div style={{ height: "80px" }}></div>
+        <div style={{ height: "20px" }}></div>
         {progress === 1 ? (
           <LargeImage src="./image/logo.png"></LargeImage>
         ) : null}
@@ -147,24 +156,24 @@ const SignUpPage = () => {
             <Styles.SubTitle>
               기업이 체험자 선정 중 참고할 수 있는 정보입니다.
             </Styles.SubTitle>
-            {additionalInfoOptions.map((additionalInfoOption) => {
-              return (
-                <SelectInput
-                  key={additionalInfoOption.name}
-                  label={additionalInfoOption.label}
-                  option={additionalInfoOption.options}
-                  onChange={() => {}}
-                />
-              );
-            })}
-            <SelectInput
-              label="직업"
-              option={[
-                { label: "학생", value: "STUDENT" },
-                { label: "사무직", value: "OFFICE" },
-              ]}
-              onChange={() => {}}
-            />
+            <Styles.ScrollArea>
+              {additionalInfoOptions.map((additionalInfoOption) => {
+                return (
+                  <SelectInput
+                    key={additionalInfoOption.name}
+                    label={additionalInfoOption.label}
+                    option={
+                      additionalInfoOption.options as {
+                        label: string;
+                        value: string | number;
+                      }[]
+                    }
+                    onChange={() => {}}
+                  />
+                );
+              })}
+            </Styles.ScrollArea>
+            <div style={{ height: "50px" }}></div>
           </>
         )}
       </Styles.Container>
