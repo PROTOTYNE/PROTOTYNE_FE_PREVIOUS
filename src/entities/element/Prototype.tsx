@@ -1,6 +1,7 @@
 import { PrototypeImg, Bookmark } from "@/entities";
 import { useState } from "react";
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router";
 
 const PrototypeName = styled.p`
     font-weight: bold;
@@ -88,10 +89,11 @@ const Ticket = () => {
     );
 }
 
-export const Prototype = ({ prototype} : { prototype: PrototypeProp }) => {
 
+export const Prototype = ({ prototype} : { prototype: PrototypeProp }) => {
+    const navigate = useNavigate();
     return (
-        <PrototypeContainer>
+        <PrototypeContainer onClick={() => navigate('/prototype')}>
             <PrototypeImg src={prototype.path} alt={prototype.name} width="170px" height="170px" />
             <Application>{prototype.label}</Application>
             <InfoContainer>
@@ -140,10 +142,10 @@ const DDay = styled.div`
 `;
 
 export const MiniPrototype = ({ prototype } : { prototype: PrototypeProp }) => {
-
+    const navigate = useNavigate();
     return (
         <>
-            <MiniPrototypeContainer>
+            <MiniPrototypeContainer onClick={() => navigate('/prototype')}>
                 <PrototypeImg src={prototype.path} alt={prototype.name} width={"106px"} height={"106px"} />
                 <DDay>{prototype.label}</DDay>
                 <InfoMiniContainer>

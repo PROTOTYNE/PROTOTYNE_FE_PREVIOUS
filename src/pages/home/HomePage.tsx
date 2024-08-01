@@ -5,6 +5,7 @@ import { Categories, HomeHeader, Prototypes } from "@/widget";
 //api 호출 {사진, 몇명 신청 여부, 제품명}
 
 const Title = styled.h3`
+    width: 200px;
     margin: 10px 10px;
 `;
 const HomePage = () => {

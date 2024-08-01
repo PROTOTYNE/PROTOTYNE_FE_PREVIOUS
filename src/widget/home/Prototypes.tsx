@@ -6,6 +6,7 @@ const Container = styled.div`
   display: flex;
   padding-bottom: 5px;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
 
