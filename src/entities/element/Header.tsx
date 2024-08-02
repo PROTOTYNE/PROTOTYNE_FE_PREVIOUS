@@ -66,6 +66,6 @@ const Container = styled.div`
 
 const BackButton = styled(ArrowBackIosNewIcon)`
   position: absolute;
-  top: 1px;
-  left: 18px;
+  top: 6px;
+  left: 30px;
 `;

@@ -11,6 +11,7 @@ import {
   DisableButton,
   SelectInput,
   MultiSelectInput,
+  TwoOptionsButton,
 } from "@/entities";
 import { PAGE_URL, additionalInfoOptions } from "@/shared";
 
@@ -32,7 +33,7 @@ const SignUpPage = () => {
           }}
         ></Styles.BackButton>
       ) : null}
-      <Header>
+      <Header onBack={progress === 1}>
         <span>회원 가입</span>
         <ProgressBar
           completed={progress}
@@ -216,14 +217,21 @@ const SignUpPage = () => {
 
       {progress === 1 && !(agree1 && agree2) ? (
         <DisableButton>모든 항목을 동의해주세요!</DisableButton>
-      ) : (
+      ) : progress < 3 ? (
         <SignUpButton
           onClick={() => {
             setProgress(progress + 1);
           }}
         >
-          {progress < 2 ? "계속하기" : "가입하기"}
+          계속하기
         </SignUpButton>
+      ) : (
+        <TwoOptionsButton
+          leftText="건너뛰기"
+          rightText="가입하기"
+          onClickLeft={() => {}}
+          OnClickRight={() => {}}
+        />
       )}
     </>
   );

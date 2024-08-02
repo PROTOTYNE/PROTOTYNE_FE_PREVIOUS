@@ -65,15 +65,26 @@ const BottomContainer = styled.div`
 `;
 
 const LeftButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 17px;
+  color: white;
+
+  border-radius: 8px;
+  border-color: #6482eb;
+
   width: 28%;
   height: 100%;
 
-  background: linear-gradient(90deg, #718cab, #505995, #1a0858);
+  background-color: #d9d9d9;
 `;
 
-const RightButton = styled.button`
-  width: 70%;
-  height: 100%;
+const RightButton = styled(LeftButton)`
+  margin-left: 10px;
 
-  background-color: #d9d9d9;
+  width: 70%;
+
+  background: linear-gradient(90deg, #718cab, #505995, #1a0858);
 `;
