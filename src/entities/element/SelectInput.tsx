@@ -108,4 +108,6 @@ const Label = styled.span`
   font-size: 16px;
 
   margin-bottom: 2px;
+
+  font-weight: bold;
 `;

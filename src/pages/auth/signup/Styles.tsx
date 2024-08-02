@@ -91,6 +91,7 @@ export const ScrollArea = ({ children }: { children: React.ReactNode }) => (
   <div style={{ position: "relative" }}>
     <ScrollBox>
       <ScrollContainer>{children}</ScrollContainer>
+      <div style={{ height: "30px" }}></div>
     </ScrollBox>
   </div>
 );
@@ -99,21 +100,31 @@ const ScrollBox = styled.div`
   position: relative;
   background-color: #ffffffbe;
 
-  width: 100%;
+  width: calc(100% - 16px);
   height: 60vh;
 
   margin-top: 10px;
 
   border-radius: 12px;
 
-  overflow-y: auto;
+  overflow-y: scroll;
 
   padding-top: 20px;
   padding-left: 5px;
   padding-right: 5px;
 
   ::-webkit-scrollbar {
-    width: 0px;
+    width: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #152662b7;
+
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #dcdcdc;
+
+    border-radius: 5px;
   }
 `;
 
@@ -143,10 +154,11 @@ export const NameInput = styled.input`
   margin-top: 10px;
   margin-bottom: 15px;
 
-  width: 100%;
+  width: calc(100% - 10px);
+
   height: 30px;
 
-  border: 1px solid gray;
+  border: 1px solid #c4c4c4;
 
   border-radius: 7px;
 
@@ -156,8 +168,8 @@ export const NameInput = styled.input`
 `;
 
 export const BirthInput = styled(NameInput)`
-  width: 30%;
-  margin-left: 2.5%;
+  margin-left: 2%;
+  margin-right: 2%;
 
   text-align: center;
 
@@ -170,7 +182,7 @@ export const BirthInput = styled(NameInput)`
   }
 `;
 
-export const GenderInput = styled.div`
+export const GenderButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -187,10 +199,24 @@ export const GenderInput = styled.div`
   height: 30px;
   border-radius: 7px;
 
-  border: 1px solid gray;
+  border: 1px solid #c4c4c4;
 `;
 
-export const SelectedGenderInput = styled(GenderInput)`
+export const FamilyNum = styled(GenderButton)`
+  margin-left: 1%;
+  margin-right: 1%;
+  width: 30%;
+`;
+
+export const FamilyNumButton = styled(FamilyNum)`
+  font-weight: bold;
+  color: #152662;
+
+  width: 30px;
+  background-color: #c4c4c4;
+`;
+
+export const SelectedGenderButton = styled(GenderButton)`
   background-color: #24446b;
 
   color: white;

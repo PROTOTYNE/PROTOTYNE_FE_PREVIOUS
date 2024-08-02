@@ -28,6 +28,8 @@ const Label = styled.span`
 
   margin-top: 15px;
   margin-bottom: 8px;
+
+  font-weight: bold;
 `;
 
 const Container = styled.div`

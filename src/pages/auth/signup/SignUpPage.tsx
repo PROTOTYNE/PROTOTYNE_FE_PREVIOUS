@@ -157,10 +157,16 @@ const SignUpPage = () => {
             </Styles.InputContainer>
             <Styles.Ladel>성별</Styles.Ladel>
             <Styles.InputContainer>
-              <Styles.SelectedGenderInput>남성</Styles.SelectedGenderInput>
-              <Styles.GenderInput>여성</Styles.GenderInput>
+              <Styles.SelectedGenderButton>남성</Styles.SelectedGenderButton>
+              <Styles.GenderButton>여성</Styles.GenderButton>
             </Styles.InputContainer>
             <Styles.Ladel>가구 구성원수</Styles.Ladel>
+            <Styles.InputContainer>
+              <div style={{ width: "calc(32% - 30px)" }}></div>
+              <Styles.FamilyNumButton>-</Styles.FamilyNumButton>
+              <Styles.FamilyNum>{}</Styles.FamilyNum>
+              <Styles.FamilyNumButton>+</Styles.FamilyNumButton>
+            </Styles.InputContainer>
             <div style={{ height: "200px" }}></div>
           </>
         ) : (

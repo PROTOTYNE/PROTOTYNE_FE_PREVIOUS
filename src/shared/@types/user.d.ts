@@ -64,7 +64,8 @@ declare namespace User {
     setBirthMonth: (value: string) => void;
     setBirthDay: (value: string) => void;
     setGender: (value: BasicInfo[geder]) => void;
-    setFamilyNum: (value: number) => void;
+    upFamilyNum: () => void;
+    downFamilyNum: () => void;
     setOccupation: (value: AdditionalInfo[occupation]) => void;
     setIncome: (value: AdditionalInfo[income]) => void;
     setInterests: (value: AdditionalInfo[interests]) => void;

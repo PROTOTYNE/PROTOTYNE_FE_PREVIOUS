@@ -30,3 +30,50 @@ export const SignUpButton = styled(Button)`
 export const DisableButton = styled(Button)`
   background-color: #d9d9d9;
 `;
+
+export const TwoOptionsButton = ({
+  leftText,
+  rightText,
+  onClickLeft,
+  OnClickRight,
+}: {
+  leftText: string;
+  rightText: string;
+  onClickLeft: () => void;
+  OnClickRight: () => void;
+}) => {
+  return (
+    <BottomContainer>
+      <LeftButton onClick={onClickLeft}>{leftText}</LeftButton>
+      <RightButton onClick={OnClickRight}>{rightText}</RightButton>
+    </BottomContainer>
+  );
+};
+
+const BottomContainer = styled.div`
+  position: fixed;
+
+  bottom: 30px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+
+  width: 345px;
+  height: 48px;
+
+  display: flex;
+  flex-direction: row;
+`;
+
+const LeftButton = styled.button`
+  width: 28%;
+  height: 100%;
+
+  background: linear-gradient(90deg, #718cab, #505995, #1a0858);
+`;
+
+const RightButton = styled.button`
+  width: 70%;
+  height: 100%;
+
+  background-color: #d9d9d9;
+`;

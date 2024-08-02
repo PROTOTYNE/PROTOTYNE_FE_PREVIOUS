@@ -34,8 +34,15 @@ export const useUserStore = create<User.UserStore>()(
     setGender: (value) => {
       set(() => ({ gender: value }));
     },
-    setFamilyNum: (value) => {
-      set(() => ({ familyNum: value }));
+    upFamilyNum: () => {
+      set((state) => {
+        if (state.familyNum < 5) return { familyNum: state.familyNum + 1 };
+      });
+    },
+    downFamilyNum: () => {
+      set((state) => {
+        if (state.familyNum > 0) return { familyNum: state.familyNum - 1 };
+      });
     },
     setOccupation: (value) => {
       set(() => ({ occupation: value }));
