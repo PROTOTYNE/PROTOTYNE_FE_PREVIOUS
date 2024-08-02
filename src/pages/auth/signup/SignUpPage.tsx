@@ -10,6 +10,7 @@ import {
   Background,
   DisableButton,
   SelectInput,
+  MultiSelectInput,
 } from "@/entities";
 import { PAGE_URL, additionalInfoOptions } from "@/shared";
 
@@ -27,7 +28,6 @@ const SignUpPage = () => {
       {progress > 1 ? (
         <Styles.BackButton
           onClick={() => {
-            console.log("!!");
             setProgress(progress - 1);
           }}
         ></Styles.BackButton>
@@ -157,20 +157,35 @@ const SignUpPage = () => {
               기업이 체험자 선정 중 참고할 수 있는 정보입니다.
             </Styles.SubTitle>
             <Styles.ScrollArea>
-              {additionalInfoOptions.map((additionalInfoOption) => {
-                return (
-                  <SelectInput
-                    key={additionalInfoOption.name}
-                    label={additionalInfoOption.label}
-                    option={
-                      additionalInfoOption.options as {
-                        label: string;
-                        value: string | number;
-                      }[]
-                    }
-                    onChange={() => {}}
-                  />
-                );
+              {additionalInfoOptions.map((additionalInfoOption, index) => {
+                if (index < 5)
+                  return (
+                    <SelectInput
+                      key={additionalInfoOption.name}
+                      label={additionalInfoOption.label}
+                      option={
+                        additionalInfoOption.options as {
+                          label: string;
+                          value: string | number;
+                        }[]
+                      }
+                      onChange={() => {}}
+                    />
+                  );
+                else
+                  return (
+                    <MultiSelectInput
+                      key={additionalInfoOption.name}
+                      label={additionalInfoOption.label}
+                      options={
+                        additionalInfoOption.options as {
+                          label: string;
+                          value: string | number;
+                        }[]
+                      }
+                      onChange={() => {}}
+                    />
+                  );
               })}
             </Styles.ScrollArea>
             <div style={{ height: "50px" }}></div>

@@ -8,15 +8,17 @@ const customStyles: StylesConfig<
   control: (provided, state) => ({
     ...provided,
 
-    width: "160px",
+    width: "150px",
+    minHeight: "30px",
+    height: "30px",
 
     textAlign: "center",
     color: "#ffffff",
-    fontSize: "17px",
+    fontSize: "15px",
 
     border: "0px solid #B9B9B9",
-    borderRadius: "10px",
-    backgroundColor: state.hasValue ? "#667197" : "#B9B9B9",
+    borderRadius: "30px",
+    backgroundColor: state.hasValue ? "#24446B" : "#B9B9B9",
     appearance: "none",
     boxShadow: "none",
     cursor: "pointer",
@@ -26,10 +28,27 @@ const customStyles: StylesConfig<
     },
   }),
 
+  valueContainer: (provided) => ({
+    ...provided,
+    height: "30px",
+  }),
+
+  input: (provided) => ({
+    ...provided,
+    margin: "0px",
+  }),
+  indicatorSeparator: () => ({
+    display: "none",
+  }),
+  indicatorsContainer: (provided) => ({
+    ...provided,
+    height: "30px",
+  }),
+
   option: (provided, state) => ({
     ...provided,
-    color: state.isSelected ? "#fff" : "#667197",
-    backgroundColor: state.isSelected ? "#667197" : "#fff",
+    color: state.isSelected ? "#fff" : "#24446B",
+    backgroundColor: state.isSelected ? "#24446B" : "#fff",
   }),
 
   menu: (provided) => ({
@@ -43,7 +62,11 @@ const customStyles: StylesConfig<
     color: "#ffffff",
   }),
 
-  placeholder: (provided) => ({ ...provided, color: "#ffffff" }),
+  placeholder: (provided) => ({
+    ...provided,
+    color: "#ffffff",
+    padding: "0 3px",
+  }),
 };
 
 export const SelectInput = ({
@@ -75,15 +98,14 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  width: 95%;
+  width: 90%;
 
   margin-top: 10px;
   margin-bottom: 10px;
 `;
 
 const Label = styled.span`
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 16px;
 
   margin-bottom: 2px;
 `;

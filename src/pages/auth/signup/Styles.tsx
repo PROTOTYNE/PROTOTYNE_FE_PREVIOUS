@@ -97,25 +97,23 @@ export const ScrollArea = ({ children }: { children: React.ReactNode }) => (
 
 const ScrollBox = styled.div`
   position: relative;
-  background-color: white;
+  background-color: #ffffffbe;
 
   width: 100%;
   height: 60vh;
 
-  margin-top: 20px;
+  margin-top: 10px;
 
-  border-radius: 3px;
+  border-radius: 12px;
 
   overflow-y: auto;
 
+  padding-top: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+
   ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: #2f3542;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: #dcdcdc;
+    width: 0px;
   }
 `;
 
