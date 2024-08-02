@@ -11,7 +11,15 @@ const ReviewPage = () => {
     <>
       <Header onBack>후기작성</Header>
       <Styles.ScrollArea>
-        <></>
+        <Styles.MultiChoiceQuestion
+          index={1}
+          label="매운 정도는 어느 정도인가?"
+        ></Styles.MultiChoiceQuestion>
+        <Styles.SujectiveQuestion
+          index={2}
+          label="매운 정도는 어느 정도인가?"
+        ></Styles.SujectiveQuestion>
+        <Styles.Repurchase />
       </Styles.ScrollArea>
       <Button>제출하기</Button>
     </>
