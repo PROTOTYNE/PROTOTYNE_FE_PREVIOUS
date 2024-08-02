@@ -105,7 +105,7 @@ const ScrollBox = styled.div`
 
   margin-top: 10px;
 
-  border-radius: 12px;
+  border-radius: 4px;
 
   overflow-y: scroll;
 

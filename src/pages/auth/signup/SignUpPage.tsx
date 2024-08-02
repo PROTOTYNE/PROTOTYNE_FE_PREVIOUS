@@ -3,7 +3,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 import {
-  SignUpButton,
+  Button,
   Header,
   LargeImage,
   GrayLine,
@@ -218,13 +218,13 @@ const SignUpPage = () => {
       {progress === 1 && !(agree1 && agree2) ? (
         <DisableButton>모든 항목을 동의해주세요!</DisableButton>
       ) : progress < 3 ? (
-        <SignUpButton
+        <Button
           onClick={() => {
             setProgress(progress + 1);
           }}
         >
           계속하기
-        </SignUpButton>
+        </Button>
       ) : (
         <TwoOptionsButton
           leftText="건너뛰기"

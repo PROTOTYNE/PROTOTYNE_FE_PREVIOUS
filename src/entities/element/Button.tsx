@@ -14,7 +14,7 @@ export const Button = styled.button`
   width: 345px;
   height: 48px;
 
-  background-color: #6482eb;
+  background: linear-gradient(90deg, #718cab, #505995, #1a0858);
 
   font-size: 17px;
   color: white;
@@ -23,11 +23,8 @@ export const Button = styled.button`
   border-color: #6482eb;
 `;
 
-export const SignUpButton = styled(Button)`
-  background: linear-gradient(90deg, #718cab, #505995, #1a0858);
-`;
-
 export const DisableButton = styled(Button)`
+  background: none;
   background-color: #d9d9d9;
 `;
 

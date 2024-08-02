@@ -23,6 +23,8 @@ const TermsOfUse = lazy(() => import("@/pages/auth/signup/TermsOfUsePage"));
 const Home = lazy(() => import("@/pages/home/HomePage"));
 const NotFound = lazy(() => import("@/pages/notfound/NotFoundPage"));
 
+const Review = lazy(() => import("@/pages/review/ReviewPage"));
+
 const PageRouter = () => (
   <Suspense fallback={<Loading />}>
     <RootRouter>
@@ -39,6 +41,8 @@ const PageRouter = () => (
             <Route path={PAGE_URL.PersonalInfo} element={<PersonalInfo />} />
 
             <Route path={PAGE_URL.Home} element={<Home />} />
+
+            <Route path={PAGE_URL.Review} element={<Review />} />
 
             <Route path="*" element={<NotFound />} />
           </Route>
