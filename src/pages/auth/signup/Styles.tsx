@@ -131,3 +131,67 @@ export const BackButton = styled(ArrowBackIosNewIcon)`
   left: 30px;
   z-index: 100;
 `;
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+`;
+
+export const NameInput = styled.input`
+  margin-top: 10px;
+  margin-bottom: 15px;
+
+  width: 100%;
+  height: 30px;
+
+  border: 1px solid gray;
+
+  border-radius: 7px;
+
+  font-size: 16px;
+
+  padding-left: 10px;
+`;
+
+export const BirthInput = styled(NameInput)`
+  width: 30%;
+  margin-left: 2.5%;
+
+  text-align: center;
+
+  padding-left: 0px;
+
+  ::placeholder {
+    text-align: center;
+
+    font-size: 16px;
+  }
+`;
+
+export const GenderInput = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 10px;
+  margin-bottom: 15px;
+
+  background-color: #ffffff;
+
+  width: 35%;
+
+  margin-left: 10%;
+
+  height: 30px;
+  border-radius: 7px;
+
+  border: 1px solid gray;
+`;
+
+export const SelectedGenderInput = styled(GenderInput)`
+  background-color: #24446b;
+
+  color: white;
+`;

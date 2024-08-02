@@ -143,10 +143,25 @@ const SignUpPage = () => {
               기업이 체험 신청자를 확인하기 위해서 사용되는 <br />
               필수로 입력해야 하는 정보입니다.
             </Styles.SubTitle>
+            <div style={{ height: "30px" }}></div>
             <Styles.Ladel>이름</Styles.Ladel>
+            <Styles.NameInput></Styles.NameInput>
             <Styles.Ladel>생년월일</Styles.Ladel>
+            <Styles.InputContainer>
+              <Styles.BirthInput
+                placeholder="YYYY"
+                type="number"
+              ></Styles.BirthInput>
+              <Styles.BirthInput placeholder="MM"></Styles.BirthInput>
+              <Styles.BirthInput placeholder="DD"></Styles.BirthInput>
+            </Styles.InputContainer>
             <Styles.Ladel>성별</Styles.Ladel>
+            <Styles.InputContainer>
+              <Styles.SelectedGenderInput>남성</Styles.SelectedGenderInput>
+              <Styles.GenderInput>여성</Styles.GenderInput>
+            </Styles.InputContainer>
             <Styles.Ladel>가구 구성원수</Styles.Ladel>
+            <div style={{ height: "200px" }}></div>
           </>
         ) : (
           <>
