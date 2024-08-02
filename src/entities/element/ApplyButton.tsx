@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import ApplyComplete from './ApplyComplete';
+import ApplyReject from './ApplyReject';
 
 const Button = styled.button`
   /* Rectangle 109 */
@@ -44,9 +45,21 @@ const ApplyButton: React.FC = () => {
       <Button onClick={handleButtonClick}>
         <ButtonText>체험 신청하기</ButtonText>
       </Button>
-      <ApplyComplete visible={isModalVisible} onClose={handleCloseModal} />
-    </div>
+      <ApplyReject visible={isModalVisible} onClose={handleCloseModal} />
+      </div>
   );
 };
+//보러가기 버튼 이벤트 나중에 추가
+
+/*
+<ApplyReject visible={isModalVisible} onClose={handleCloseModal} />
+티켓 부족 모달
+*/
+
+/*
+<ApplyComplete visible={isModalVisible} onClose={handleCloseModal} />
+체험 신청 완료 모달
+*/
+
 
 export default ApplyButton;
