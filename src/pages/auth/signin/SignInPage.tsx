@@ -21,20 +21,25 @@ const SignInPage = () => {
 
   return (
     <>
-      <FirstLoading />
-      <Background src="/background/signin.jpg" />
-      <MidContainer>
-        <Styles.MdText>당신의 선택으로, 당신의 취향으로</Styles.MdText>
-        <LargeImage
-          src="./image/logo.png"
-          style={{ filter: "brightness(100)" }}
-        ></LargeImage>
-      </MidContainer>
-      <Styles.SignInImg
-        src="./image/kakao_login_medium_wide.png"
-        alt="signin"
-        onClick={signInHandler}
-      ></Styles.SignInImg>
+      <Styles.Container>
+        <Background src="/background/first_loading.jpg" />
+        <MidContainer>
+          <div style={{ height: "130px" }}></div>
+          <Styles.Title>
+            <Styles.LgText>앞서가는 당신을 위한</Styles.LgText>
+            <Styles.LgText>특별한 기회</Styles.LgText>
+            <Styles.XlText>Prototyne.</Styles.XlText>
+            <MidPointLine />
+          </Styles.Title>
+          <div style={{ height: "80px" }}></div>
+        </MidContainer>
+        <BottomImage src="/image/small_logo.png" alt="logo" />
+        <Styles.SignInImg
+          src="./image/kakao_login_medium_wide.png"
+          alt="signin"
+          onClick={signInHandler}
+        ></Styles.SignInImg>
+      </Styles.Container>
     </>
   );
 };

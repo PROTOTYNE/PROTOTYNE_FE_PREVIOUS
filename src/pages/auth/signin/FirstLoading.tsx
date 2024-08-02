@@ -11,6 +11,7 @@ import {
 
 import * as Styles from "./Styles";
 
+//디자인 변경에 따라 제거됨
 export const FirstLoading = () => {
   const [show, setShow] = useState(false);
 

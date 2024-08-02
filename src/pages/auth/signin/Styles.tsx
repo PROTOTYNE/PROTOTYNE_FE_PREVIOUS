@@ -1,5 +1,15 @@
 import styled from "@emotion/styled";
 
+export const Container = styled.div`
+  z-index: 100;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+
+  width: 100%;
+  height: 100vh;
+`;
+
 export const Title = styled.div`
   width: 300px;
 
@@ -37,5 +47,5 @@ export const SignInImg = styled.img`
   position: fixed;
   left: 50%;
   transform: translate(-50%, 0%);
-  bottom: 40px;
+  bottom: 80px;
 `;
