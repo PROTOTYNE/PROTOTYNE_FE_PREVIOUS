@@ -10,3 +10,4 @@ declare namespace User {
     isSignIn: boolean;
   }
 }
+

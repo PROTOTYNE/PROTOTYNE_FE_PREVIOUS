@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "@emotion/styled";
 
+
 interface ProductProps {
   category: string;
   company: string;
@@ -51,7 +52,7 @@ const ProductTicket = styled.div`
 
   color: #667197;
 `;
-//티켓 아이콘 추가 필요 
+//티켓 아이콘 추가 필요
 
 const Product: React.FC<ProductProps> = ({ category, company, quantity, name }) => {
   return (
