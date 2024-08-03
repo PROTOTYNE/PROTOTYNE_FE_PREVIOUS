@@ -18,6 +18,8 @@ const Redirect = lazy(() => import("@/pages/auth/signin/RedirectPage"));
 const Home = lazy(() => import("@/pages/home/HomePage"));
 const NotFound = lazy(() => import("@/pages/notfound/NotFoundPage"));
 const Detail = lazy(() => import("@/pages/detail/DetailPage"));
+const Address = lazy(() => import("@/pages/address/AddressPage"));
+
 
 const PageRouter = () => (
   <Suspense fallback={<Loading />}>
@@ -31,6 +33,7 @@ const PageRouter = () => (
             <Route path={PAGE_URL.Redirect} element={<Redirect />} />
             <Route path={PAGE_URL.Home} element={<Home />} />
             <Route path={PAGE_URL.Detail} element={<Detail />} />
+            <Route path={PAGE_URL.Address} element={<Address />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

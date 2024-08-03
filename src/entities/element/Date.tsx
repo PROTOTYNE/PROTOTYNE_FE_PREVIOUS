@@ -7,6 +7,7 @@ interface DateInfo {
   endDate?: Date;
 }
 
+
 const formatDate = (date: Date): string => {
   const month = (date.getMonth() + 1).toString().padStart(2, '0'); // 월 2자리로
   const day = date.getDate().toString().padStart(2, '0'); // 일 2자리로
@@ -35,6 +36,11 @@ const dates: DateInfo[] = [
     startDate: new Date(2024, 7, 14),
   },
 ];
+
+const Styledh2 = styled.h2`
+  margin-left: 20px;
+  margin-bottom: -10px;
+`
 
 const DateListContainer = styled.div`
   padding: 20px 7px;
@@ -95,22 +101,25 @@ const getBackgroundStyles = (startDate?: Date, endDate?: Date): { background: st
 
 const DateList: React.FC = () => {
   return (
-    <DateListContainer>
-      {dates.map((dateInfo, index) => {
-        const { background, opacity } = getBackgroundStyles(dateInfo.startDate, dateInfo.endDate);
-        return (
-          <DateItem key={index}>
-            <Label bgColor={background} opacity={opacity}>
-              {dateInfo.label}
-            </Label>
-            <DateRange>
-              {dateInfo.startDate ? formatDate(dateInfo.startDate) : ''}
-              {dateInfo.endDate ? ` ~ ${formatDate(dateInfo.endDate)}` : ''}
-            </DateRange>
-          </DateItem>
-        );
-      })}
-    </DateListContainer>
+    <div>
+      <Styledh2>체험 일정</Styledh2>
+      <DateListContainer>
+        {dates.map((dateInfo, index) => {
+          const { background, opacity } = getBackgroundStyles(dateInfo.startDate, dateInfo.endDate);
+          return (
+            <DateItem key={index}>
+              <Label bgColor={background} opacity={opacity}>
+                {dateInfo.label}
+              </Label>
+              <DateRange>
+                {dateInfo.startDate ? formatDate(dateInfo.startDate) : ''}
+                {dateInfo.endDate ? ` ~ ${formatDate(dateInfo.endDate)}` : ''}
+              </DateRange>
+            </DateItem>
+          );
+        })}
+      </DateListContainer>
+    </div>
   );
 };
 

@@ -1,5 +1,3 @@
-// button.tsx
-/** @jsxImportSource @emotion/react */
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import ApplyComplete from './ApplyComplete';
@@ -49,17 +47,14 @@ const ApplyButton: React.FC = () => {
       </div>
   );
 };
-//보러가기 버튼 이벤트 나중에 추가
+//TODO: 보러가기 버튼 이벤트 나중에 추가
+//TODO: '체험 신청하기' 눌렀을 때 티켓 충족 시 주소 입력창으로 연결 
 
 /*
 <ApplyReject visible={isModalVisible} onClose={handleCloseModal} />
 티켓 부족 모달
 */
 
-/*
-<ApplyComplete visible={isModalVisible} onClose={handleCloseModal} />
-체험 신청 완료 모달
-*/
 
 
 export default ApplyButton;

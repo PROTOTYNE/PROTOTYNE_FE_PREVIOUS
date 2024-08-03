@@ -7,8 +7,8 @@ const StyledBookmark = styled(BookmarkBorderIcon)`
   bottom: 16px;
   left: 16px;
 `
-//북마크 하단 고정 불가...?
-//누르면 내부 색 변하는 기능 추가
+//TODO: 북마크 하단 고정 스타일 추가
+//TODO: 누르면 색 변하는 기능 추가 
 
 const Bookmark = () => {
   return (
