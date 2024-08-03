@@ -183,7 +183,7 @@ const RepurchaseContainer = styled.div`
 
   height: 40px;
 
-  margin-top: 40px;
+  margin-top: 35px;
 
   font-size: 17px;
   font-weight: bold;
