@@ -41,12 +41,12 @@ const Logo = styled.h1`
     font-weight: bold;
 `;
 const Content = styled.div`
-    padding: 60px 120px 10px 40px;
+    padding: 60px 120px 10px 30px;
 `;
 
 const SideMenu = styled.div`
     display: flex;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
     margin: 0px 0px 30px 0px;
 `;

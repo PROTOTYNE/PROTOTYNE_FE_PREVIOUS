@@ -19,6 +19,7 @@ const Home = lazy(() => import("@/pages/home/HomePage"));
 const NotFound = lazy(() => import("@/pages/notfound/NotFoundPage"));
 const Search = lazy(() => import("@/pages/search/SearchPage"));
 const Detail = lazy(() => import("@/pages/home/detail/DetailPage"));
+const Bookmark = lazy(() => import("@/pages/bookmark/BookmarkPage"))
 const PageRouter = () => (
   <Suspense fallback={<Loading />}>
     <RootRouter>
@@ -34,6 +35,7 @@ const PageRouter = () => (
             <Route path={PAGE_URL.PopularDetail} element={<Detail type="popular" />} />
             <Route path={PAGE_URL.DeadLineDetail} element={<Detail type="deadline" />} />
             <Route path={PAGE_URL.NewDetail} element={<Detail type="new" />} />
+            <Route path={PAGE_URL.Bookmark} element={<Bookmark />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

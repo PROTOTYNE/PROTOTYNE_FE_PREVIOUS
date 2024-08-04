@@ -1,5 +1,4 @@
 import { PrototypeImg, Bookmark } from "@/entities";
-import { useState } from "react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router";
 
@@ -159,3 +158,50 @@ export const MiniPrototype = ({ prototype } : { prototype: PrototypeProp }) => {
         </>
     );
 };
+
+interface BookmarkProp {
+    path: string, 
+    name: string, 
+    isBookmark: boolean,
+}
+const BookmarkContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    flex-wrap: wrap;
+    width: 170px;
+    height: 270px;
+    margin: 10px 8px;
+    position: relative;
+`;
+const BookmarkTicketContainer = styled.div`
+    display: flex;
+    margin-left: 90px;
+`;
+
+const BookmarkIconContainer = styled.div`
+    display: flex;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+`;
+const InfoBookmarkContainer = styled.div`
+    width: 100%;
+    margin-top: 10px;
+`;
+export const BookmarkPrototype = ({ prototype } : { prototype: BookmarkProp }) => {
+    return (
+        <BookmarkContainer>
+            <PrototypeImg src={prototype.path} alt={prototype.name} width="170px" height="170px" />
+            <BookmarkIconContainer>
+                <Bookmark src={prototype.isBookmark ? "../image/checkBookmark.svg":"../image/unCheckBookmark.svg"}></Bookmark>
+            </BookmarkIconContainer>
+            <InfoBookmarkContainer>
+                <PrototypeName>{prototype.name.length > 20 ? prototype.name.substring(0, 17) + ".." : prototype.name}</PrototypeName>
+                <BookmarkTicketContainer>
+                    <Ticket />
+                </BookmarkTicketContainer>
+            </InfoBookmarkContainer>
+        </BookmarkContainer>
+    );
+}

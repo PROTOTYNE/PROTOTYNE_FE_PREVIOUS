@@ -6,4 +6,5 @@ export enum PAGE_URL {
   PopularDetail = "/detail/popular",
   DeadLineDetail = "/detail/deadline",
   NewDetail = "/detail/new",
+  Bookmark = "/bookmark",
 }

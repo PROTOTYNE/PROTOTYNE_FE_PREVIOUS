@@ -1,12 +1,12 @@
-import { Prototype, MiniPrototype } from "@/entities/element/Prototype";
+import { Prototype, MiniPrototype, BookmarkPrototype } from "@/entities/element/Prototype";
 import styled from "@emotion/styled";
 
 
 const Container = styled.div`
   display: flex;
-  padding-bottom: 5px;
+  padding: 20px 8px 5px 8px;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 
@@ -34,5 +34,23 @@ export const Prototypes = ({ type, prototype } : { type: string, prototype: Prot
                 ))}
             </Container>
         </>
+    );
+};
+
+interface BookmarkProp {
+    path: string,
+    name: string,
+    isBookmark: boolean,
+}
+export const BookmarkPrototypes = ({ prototype } : { prototype: BookmarkProp[] }) => {
+    return (
+        <Container>
+            {(prototype).map((prototype: BookmarkProp) => (
+                    <BookmarkPrototype 
+                    key={prototype.name}
+                    prototype={prototype}
+                    />
+                ))}
+        </Container>
     );
 };
