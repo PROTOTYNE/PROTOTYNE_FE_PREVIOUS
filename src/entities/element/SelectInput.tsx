@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Select, { StylesConfig } from "react-select";
+import Select, { StylesConfig, SingleValue } from "react-select";
 
 const customStyles: StylesConfig<
   { label: string; value: string | number },
@@ -76,7 +76,9 @@ export const SelectInput = ({
 }: {
   label: string;
   option: { label: string; value: string | number }[];
-  onChange: () => void;
+  onChange: (
+    newValue: SingleValue<{ label: string; value: string | number }>
+  ) => void;
 }) => (
   <Container>
     <Label>{label}</Label>

@@ -1,24 +1,59 @@
 import styled from "@emotion/styled";
+import { useState } from "react";
 
 export const MultiSelectInput = ({
   label,
   options,
-  onChange,
+  onClick,
 }: {
   label: string;
   options: { label: string; value: string | number }[];
-  onChange: () => void;
+  onClick: (value: string | number) => void;
 }) => {
   return (
     <>
       <Label>{label}</Label>
       <Container>
         {options.map((option) => (
-          <Button>{option.label}</Button>
+          <ButtonComponent onClick={() => onClick(option.value)}>
+            {option.label}
+          </ButtonComponent>
         ))}
       </Container>
     </>
   );
+};
+
+const ButtonComponent = ({
+  onClick,
+  children,
+}: {
+  children: React.ReactNode;
+  onClick: () => void;
+}) => {
+  const [on, setOn] = useState(false);
+  if (!on)
+    return (
+      <Button
+        onClick={() => {
+          onClick();
+          setOn(true);
+        }}
+      >
+        {children}
+      </Button>
+    );
+  else
+    return (
+      <SelectButton
+        onClick={() => {
+          onClick();
+          setOn(false);
+        }}
+      >
+        {children}
+      </SelectButton>
+    );
 };
 
 const Label = styled.span`

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   Button,
@@ -13,15 +14,19 @@ import {
   MultiSelectInput,
   TwoOptionsButton,
 } from "@/entities";
+import { useUserStore } from "@/shared";
 import { PAGE_URL, additionalInfoOptions } from "@/shared";
 
 import * as Styles from "./Styles";
-import { Link } from "react-router-dom";
 
 const SignUpPage = () => {
+  const [progress, setProgress] = useState(1);
+  const userStore = useUserStore((state) => state);
+  const navigation = useNavigate();
+
+  //Step 1
   const [agree1, setAgree1] = useState<boolean>(false);
   const [agree2, setAgree2] = useState<boolean>(false);
-  const [progress, setProgress] = useState(1);
 
   return (
     <>
@@ -146,27 +151,81 @@ const SignUpPage = () => {
             </Styles.SubTitle>
             <div style={{ height: "30px" }}></div>
             <Styles.Ladel>이름</Styles.Ladel>
-            <Styles.NameInput></Styles.NameInput>
+            <Styles.NameInput
+              onChange={(event) => {
+                userStore.setName(event.target.value);
+              }}
+            />
             <Styles.Ladel>생년월일</Styles.Ladel>
             <Styles.InputContainer>
               <Styles.BirthInput
                 placeholder="YYYY"
                 type="number"
-              ></Styles.BirthInput>
-              <Styles.BirthInput placeholder="MM"></Styles.BirthInput>
-              <Styles.BirthInput placeholder="DD"></Styles.BirthInput>
+                onChange={(event) => {
+                  userStore.setBirthYear(event.target.value);
+                }}
+              />
+              <Styles.BirthInput
+                placeholder="MM"
+                onChange={(event) => {
+                  userStore.setBirthMonth(event.target.value);
+                }}
+              />
+              <Styles.BirthInput
+                placeholder="DD"
+                onChange={(event) => {
+                  userStore.setBirthDay(event.target.value);
+                }}
+              />
             </Styles.InputContainer>
             <Styles.Ladel>성별</Styles.Ladel>
             <Styles.InputContainer>
-              <Styles.SelectedGenderButton>남성</Styles.SelectedGenderButton>
-              <Styles.GenderButton>여성</Styles.GenderButton>
+              {userStore.gender === "MALE" ? (
+                <>
+                  <Styles.SelectedGenderButton>
+                    남성
+                  </Styles.SelectedGenderButton>
+                  <Styles.GenderButton
+                    onClick={() => {
+                      userStore.setGender("FEMALE");
+                    }}
+                  >
+                    여성
+                  </Styles.GenderButton>
+                </>
+              ) : (
+                <>
+                  <Styles.GenderButton
+                    onClick={() => {
+                      userStore.setGender("MALE");
+                    }}
+                  >
+                    남성
+                  </Styles.GenderButton>
+                  <Styles.SelectedGenderButton>
+                    여성
+                  </Styles.SelectedGenderButton>
+                </>
+              )}
             </Styles.InputContainer>
             <Styles.Ladel>가구 구성원수</Styles.Ladel>
             <Styles.InputContainer>
               <div style={{ width: "calc(32% - 30px)" }}></div>
-              <Styles.FamilyNumButton>-</Styles.FamilyNumButton>
-              <Styles.FamilyNum>{}</Styles.FamilyNum>
-              <Styles.FamilyNumButton>+</Styles.FamilyNumButton>
+              <Styles.FamilyNumButton
+                onClick={() => {
+                  userStore.downFamilyNum();
+                }}
+              >
+                -
+              </Styles.FamilyNumButton>
+              <Styles.FamilyNum>{userStore.familyNum}</Styles.FamilyNum>
+              <Styles.FamilyNumButton
+                onClick={() => {
+                  userStore.upFamilyNum();
+                }}
+              >
+                +
+              </Styles.FamilyNumButton>
             </Styles.InputContainer>
             <div style={{ height: "200px" }}></div>
           </>
@@ -180,7 +239,7 @@ const SignUpPage = () => {
             </Styles.SubTitle>
             <Styles.ScrollArea>
               {additionalInfoOptions.map((additionalInfoOption, index) => {
-                if (index < 5)
+                if (index < 4)
                   return (
                     <SelectInput
                       key={additionalInfoOption.name}
@@ -191,7 +250,20 @@ const SignUpPage = () => {
                           value: string | number;
                         }[]
                       }
-                      onChange={() => {}}
+                      onChange={(newValue) => {
+                        if (newValue) {
+                          if (additionalInfoOption.name === "occupation")
+                            userStore.setOccupation(newValue.value);
+                          else if (additionalInfoOption.name === "income")
+                            userStore.setIncome(newValue.value);
+                          else if (
+                            additionalInfoOption.name === "familyComposition"
+                          )
+                            userStore.setFamilyComposition(newValue.value);
+                          else if (additionalInfoOption.name === "healthStatus")
+                            userStore.setHealthStatus(newValue.value);
+                        }
+                      }}
                     />
                   );
                 else
@@ -205,7 +277,36 @@ const SignUpPage = () => {
                           value: string | number;
                         }[]
                       }
-                      onChange={() => {}}
+                      onClick={
+                        additionalInfoOption.name === "interests"
+                          ? (value) => {
+                              if (!userStore.interests.includes(value))
+                                userStore.addInterest(value);
+                              else userStore.deleteInterest(value);
+                            }
+                          : additionalInfoOption.name === "productTypes"
+                          ? (value) => {
+                              if (
+                                !userStore.productTypes.includes(
+                                  value as User.ProductType
+                                )
+                              )
+                                userStore.addProductType(
+                                  value as User.ProductType
+                                );
+                              else
+                                userStore.deleteProductType(
+                                  value as User.ProductType
+                                );
+                            }
+                          : (value) => {
+                              if (
+                                !userStore.phones.includes(value as User.Phone)
+                              )
+                                userStore.addPhone(value as User.Phone);
+                              else userStore.deletePhone(value as User.Phone);
+                            }
+                      }
                     />
                   );
               })}
@@ -217,6 +318,14 @@ const SignUpPage = () => {
 
       {progress === 1 && !(agree1 && agree2) ? (
         <DisableButton>모든 항목을 동의해주세요!</DisableButton>
+      ) : progress === 2 &&
+        !(
+          userStore.name &&
+          userStore.birthYear &&
+          userStore.birthMonth &&
+          userStore.birthDay
+        ) ? (
+        <DisableButton>모든 항목을 입력해주세요!</DisableButton>
       ) : progress < 3 ? (
         <Button
           onClick={() => {
@@ -229,8 +338,13 @@ const SignUpPage = () => {
         <TwoOptionsButton
           leftText="건너뛰기"
           rightText="가입하기"
-          onClickLeft={() => {}}
-          OnClickRight={() => {}}
+          onClickLeft={() => {
+            navigation(PAGE_URL.Home);
+          }}
+          OnClickRight={() => {
+            console.log(userStore);
+            navigation(PAGE_URL.Home);
+          }}
         />
       )}
     </>
