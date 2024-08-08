@@ -44,16 +44,19 @@ const ElementContainer = styled.div`
 `;
 
 const Img = styled.img`
-  height: 100px;
-  width: 100px;
+  height: 90px;
+  width: 90px;
+  margin-top: 5px;
 
   border-radius: 10px;
 
   object-fit: contain;
+
+  background-color: #b6b6b6;
 `;
 
 const Content = styled.div`
-  width: 60%;
+  width: 65%;
 
   display: flex;
   flex-direction: column;
@@ -81,11 +84,14 @@ const Content = styled.div`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    margin-bottom: 20px;
   }
 `;
 
 const Time = styled.div`
-  margin-top: 80px;
+  margin-top: 70px;
 
+  font-size: 16px;
   color: #b6b6b6;
 `;
