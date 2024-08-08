@@ -4,9 +4,13 @@ import ImageSlide from '@/entities/element/detail/ImageSlide';
 import Product from '@/entities/element/detail/Product';
 import ProductInfo from '@/entities/element/detail/ProductInfo';
 import Footer from '@/entities/element/detail/Footer';
+import Header from '@/entities/element/Header';
 
 const DetailPage: React.FC = () => {
   return <div>
+    <Header
+    HeaderText='PRT<'
+    />
     <ImageSlide/>
     <Product
     category='#식품'

@@ -13,10 +13,10 @@ const Button = styled.button`
 
 const Icon = styled.img`
   position: fixed;
-  bottom: 17px;
-  left: 25px;
-  width: 35px;
-  height: 35px;
+  bottom: 11px;
+  left: 5%;
+  width: 7%;
+  height: 7%;
 `;
 
 const BookmarkButton: React.FC = () => {

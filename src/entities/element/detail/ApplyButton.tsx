@@ -8,9 +8,8 @@ const Button = styled.button`
   /* Rectangle 109 */
   position: fixed;
   text-align: center;
-  width: 330px;
+  width: 75%;
   height: 48px;
-  right: 20px;
   bottom: 11px;
 
   /* blue gra */
@@ -56,6 +55,13 @@ const ApplyButton: React.FC = () => {
   );
 };
 //TODO: 보러가기 버튼 이벤트 나중에 추가
-//TODO: '체험 신청하기' 눌렀을 때 티켓 충족 시 주소 입력창으로 연결 
+
+/*
+TODO: 
+case i) 티켓 부족 시 -> 티켓 부족 모달 (구현 완료)
+case ii) 티켓 충족 (구현 필요)
+- 배송지 입력 X: addressPage로 navigate
+- 배송지 입력 O: addressInfoPage로 navigate
+*/
 
 export default ApplyButton;

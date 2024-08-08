@@ -13,6 +13,8 @@ const StyledFooter = styled.footer`
     background: #FFFFFF;
     border-top: 0.5px solid #EFEFEF;
     box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    gap: 5px 20%;
 `;
 
 const Footer: React.FC = () => {

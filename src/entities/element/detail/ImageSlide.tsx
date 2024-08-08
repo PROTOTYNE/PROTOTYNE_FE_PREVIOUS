@@ -21,7 +21,8 @@ const images: Image[] = [
 ];
 
 const GalleryWrapper = styled.div`
-  margin-top: 56px;  
+  margin-top: 60px;  
+  z-index: 1;
   .image-gallery-slide {
     img {
       border-radius: 10px; 

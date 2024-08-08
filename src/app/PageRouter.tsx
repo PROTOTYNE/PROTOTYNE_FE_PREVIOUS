@@ -19,6 +19,8 @@ const Home = lazy(() => import("@/pages/home/HomePage"));
 const NotFound = lazy(() => import("@/pages/notfound/NotFoundPage"));
 const Detail = lazy(() => import("@/pages/detail/DetailPage"));
 const Address = lazy(() => import("@/pages/address/AddressPage"));
+const AddressInfo = lazy(() => import("@/pages/addressInfo/AddressInfoPage"));
+const MyTicket = lazy(() => import("@/pages/myTicket/myTicketPage"));
 
 
 const PageRouter = () => (
@@ -34,6 +36,8 @@ const PageRouter = () => (
             <Route path={PAGE_URL.Home} element={<Home />} />
             <Route path={PAGE_URL.Detail} element={<Detail />} />
             <Route path={PAGE_URL.Address} element={<Address />} />
+            <Route path={PAGE_URL.AddressInfo} element={<AddressInfo />} />
+            <Route path={PAGE_URL.MyTicket} element={<MyTicket />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
