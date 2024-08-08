@@ -58,5 +58,4 @@ const ApplyButton: React.FC = () => {
 //TODO: 보러가기 버튼 이벤트 나중에 추가
 //TODO: '체험 신청하기' 눌렀을 때 티켓 충족 시 주소 입력창으로 연결 
 
-
 export default ApplyButton;
