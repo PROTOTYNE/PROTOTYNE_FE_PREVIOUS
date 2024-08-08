@@ -36,6 +36,14 @@ const GalleryWrapper = styled.div`
   .image-gallery-bullets .image-gallery-bullet {
     margin: 2px;
   }
+
+  .image-gallery-left-nav {
+    left: 20px;
+  }
+
+  .image-gallery-right-nav {
+    right: 20px;
+  }
 `;
 
 const ImageSlide: React.FC = () => {
