@@ -1,8 +1,8 @@
 import React from 'react';
 import ApplyButton from './ApplyButton';
+import BookmarkButton from './BookmarkButton';
 import styled from '@emotion/styled';
 
-// styled를 사용하여 Footer 스타일을 정의합니다.
 const StyledFooter = styled.footer`
     position: fixed;
     width: 100%;
@@ -15,10 +15,10 @@ const StyledFooter = styled.footer`
     box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.2);
 `;
 
-// React 컴포넌트로 Footer를 생성합니다.
 const Footer: React.FC = () => {
   return (
     <StyledFooter>
+        <BookmarkButton/>
         <ApplyButton/>
     </StyledFooter>
   );

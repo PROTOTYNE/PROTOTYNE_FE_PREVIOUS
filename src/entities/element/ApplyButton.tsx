@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import styled from '@emotion/styled';
 import ApplyReject from './ApplyReject';
 
@@ -29,9 +30,16 @@ const ButtonText = styled.span`
 
 const ApplyButton: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const navigate = useNavigate();
+
+  const hasTickets = false; // 티켓 충족 여부를 확인하는 조건 (테스트를 위해 false로 설정)
 
   const handleButtonClick = () => {
-    setIsModalVisible(true);
+    if (hasTickets) {
+      navigate('/address');
+    } else {
+      setIsModalVisible(true);
+    }
   };
 
   const handleCloseModal = () => {
@@ -44,11 +52,20 @@ const ApplyButton: React.FC = () => {
         <ButtonText>체험 신청하기</ButtonText>
       </Button>
       <ApplyReject visible={isModalVisible} onClose={handleCloseModal} />
-      </div>
+    </div>
   );
 };
 //TODO: 보러가기 버튼 이벤트 나중에 추가
 //TODO: '체험 신청하기' 눌렀을 때 티켓 충족 시 주소 입력창으로 연결 
 
+/*
+티켓 부족 시 모달 창 
+<Button onClick={handleButtonClick}>
+*/
+
+/* 
+티켓 충족 시 주소 입력 창으로 Route
+
+*/
 
 export default ApplyButton;
