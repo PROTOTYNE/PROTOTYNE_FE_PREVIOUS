@@ -21,7 +21,7 @@ const StyledHeaderText = styled.div`
   left: 40%;
   color: white;
   z-index: 6;
-  font-weight: 900;
+  font-weight: 500;
   font-size: 25px;
 `;
 
