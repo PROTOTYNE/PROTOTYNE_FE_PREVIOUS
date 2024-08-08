@@ -82,7 +82,7 @@ const SubmitButton = styled.button<{ disabled: boolean }>`
   text-align: center;
   padding: 12px;
 
-  background: ${({ disabled }) => (disabled ? '#D9D9D9' : 'linear-gradient(270deg, #0D1B4A 0%, #476090 50%, #7995B2 100%)')};
+  background: ${({ disabled }) => (disabled ? '#D9D9D9' : 'linear-gradient(270deg, #0D1B4A 0%, #476090 50%, #7995B2 100%);')};
   color: white;
   border: none;
   border-radius: 8px;
@@ -98,6 +98,7 @@ const AddressForm: React.FC = () => {
   const [saveAsDefault, setSaveAsDefault] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
+  const [isCompleteModalVisible, setIsCompleteModalVisible] = useState(false);
 
   useEffect(() => {
     const isValid = recipient && phone && address && detailedAddress;
@@ -114,6 +115,16 @@ const AddressForm: React.FC = () => {
 
   const handleSelectAddress = (selectedAddress: string) => {
     setAddress(selectedAddress);
+  };
+
+  const handleSubmit = () => {
+    if (isFormValid) {
+      setIsCompleteModalVisible(true);
+    }
+  };
+
+  const handleCloseCompleteModal = () => {
+    setIsCompleteModalVisible(false);
   };
 
   return (
@@ -178,10 +189,7 @@ const AddressForm: React.FC = () => {
           <Label htmlFor="defaultAddress">기본 주소로 저장하기</Label>
         </CheckboxContainer>
 
-        <ApplyComplete visible={isModalVisible} onClose={handleCloseModal} />
-
-
-        <SubmitButton disabled={!isFormValid}>
+        <SubmitButton disabled={!isFormValid} onClick={handleSubmit}>
           체험 신청하기
         </SubmitButton>
       </FormContainer>
@@ -189,6 +197,10 @@ const AddressForm: React.FC = () => {
         visible={isModalVisible}
         onClose={handleCloseModal}
         onSelectAddress={handleSelectAddress}
+      />
+      <ApplyComplete
+        visible={isCompleteModalVisible}
+        onClose={handleCloseCompleteModal}
       />
     </div>
   );

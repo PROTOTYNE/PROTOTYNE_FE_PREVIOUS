@@ -1,5 +1,5 @@
 import React from 'react';
-import Date from '@/entities/element/Date';
+import Date from '@/entities/element/detail/Date';
 import ImageSlide from '@/entities/element/detail/ImageSlide';
 import Product from '@/entities/element/detail/Product';
 import ProductInfo from '@/entities/element/detail/ProductInfo';

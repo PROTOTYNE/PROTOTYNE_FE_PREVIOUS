@@ -8,7 +8,7 @@ interface ProductInfoProps {
 }
 
 const ProductInfoContainer = styled.div`
-  margin: 0 20px 50px;
+  margin: 0 20px 100px;
 `;
 
 const InfoTitle = styled.h3`
