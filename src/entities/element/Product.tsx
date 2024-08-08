@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "@emotion/styled";
+import ticket from "../../../public/image/ticket.svg"
 
 
 interface ProductProps {
@@ -49,9 +50,14 @@ const ProductTicket = styled.div`
   text-align: right;
   font-family: 'Inter';
   font-size: 13px;
-
   color: #667197;
 `;
+
+const TicketIcon = styled.img`
+  position: relative;
+  top: 10px;
+  margin-left: 5px;
+`
 //티켓 아이콘 추가 필요
 
 const Product: React.FC<ProductProps> = ({ category, company, quantity, name }) => {
@@ -60,7 +66,8 @@ const Product: React.FC<ProductProps> = ({ category, company, quantity, name }) 
       <ProductCategory>{category}</ProductCategory>
       <ProductName>{name}</ProductName>
       <ProductCompany>{company}</ProductCompany>
-      <ProductTicket>필요한 티켓 x {quantity}개</ProductTicket>
+      <ProductTicket>필요한 티켓 <TicketIcon src={ticket} alt="Bookmark Icon" />
+        x {quantity}개</ProductTicket>
     </ProductContainer>
   );
 };

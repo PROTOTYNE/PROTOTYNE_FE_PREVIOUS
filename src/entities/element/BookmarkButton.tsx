@@ -1,8 +1,8 @@
 // BookmarkButton.tsx
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import bookmarkIcon from './assets/bookmark.svg';
-import checkBookmarkIcon from './assets/checkBookmark.svg';
+import bookmarkIcon from '../../../public/image/bookmark.svg';
+import checkBookmarkIcon from '../../../public/image/checkBookmark.svg';
 
 const Button = styled.button`
   background: none;
@@ -12,8 +12,11 @@ const Button = styled.button`
 `;
 
 const Icon = styled.img`
-  width: 24px;
-  height: 24px;
+  position: fixed;
+  bottom: 17px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
 `;
 
 const BookmarkButton: React.FC = () => {
@@ -29,5 +32,7 @@ const BookmarkButton: React.FC = () => {
     </Button>
   );
 };
+
+//checkBookmarkIcon, bookmarkIcon의 별 위치 상이 -> 수정 요망
 
 export default BookmarkButton;
