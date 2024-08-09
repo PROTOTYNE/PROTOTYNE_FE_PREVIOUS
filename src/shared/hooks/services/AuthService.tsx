@@ -1,8 +1,6 @@
 import { AxiosResponse } from "axios";
 
-import styled from "@emotion/styled/macro";
-
-import { API, setAccess } from "@/shared";
+import { API, setAccess, storeAccess } from "@/shared";
 
 export const AuthService = () => {
   const signin = async (code: string) => {
@@ -15,6 +13,7 @@ export const AuthService = () => {
     })) as AxiosResponse<User.SignInResDto>;
 
     setAccess(access_token);
+    storeAccess(access_token);
 
     return newUser;
   };
