@@ -6,12 +6,19 @@ import { useNavigate } from 'react-router';
 const Header = styled.div`
     display: flex;
     justify-content: flex-start;
-    padding: 10px 0px;
+    padding: 20px 0px 10px 20px;
+    background-color: white;
+    height: 30px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
 `;
 const Container = styled.div`
     background-color: #F9F9F9;
     display: flex;
     flex-direction: column;
+    margin-top: 60px;
 `;
 const Title = styled.h3`
     margin: 20px 10px;
