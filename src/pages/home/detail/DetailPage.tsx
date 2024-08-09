@@ -29,7 +29,7 @@ const DetailPage = ({type} : {type: string}) => {
     const getTitle = (type: string) => {
         if (type === "popular") {
             return "지금 인기있는 시제품입니다!";
-        } else if (type === "deadline") {
+        } else if (type === "imminent") {
             return "체험 신청이 마감 임박한 시제품입니다!";
         } else {
             return "신규 등록된 시제품입니다!";

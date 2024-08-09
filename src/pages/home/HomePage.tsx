@@ -20,7 +20,7 @@ const HomePage = () => {
                     {path: "./image/temp.svg", label: "100명 신청", name: "마라탕후루 만두 마라맛 확인 시제품", isBookmark: true },
                     {path: "./image/temp.svg", label: "50명 신청", name: "마라탕후루 만두 마라맛 확인", isBookmark: false }
                 ]} />
-            <Title onClick={() => navigate('/detail/deadline')}>체험 신청 마감 임박! &gt;</Title>
+            <Title onClick={() => navigate('/detail/imminent')}>체험 신청 마감 임박! &gt;</Title>
             <Prototypes type="imminent" 
                 prototype={[{path: "./image/temp.svg", label: "D - 10", name: "마라탕후루 만두", isBookmark: true }, 
                     {path: "./image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인", isBookmark: true }, 
