@@ -8,17 +8,17 @@ import { useNavigate, useLocation } from 'react-router';
 
 const SearchInput = styled.input`
     border-radius: 7px;
-    padding-left: 40px;
-    margin: 9px 10px;
+    padding-left: 45px;
+    margin: 13px 10px;
     width: 100%;
-    height: 30px;
+    height: 40px;
     border: none;
     padding-right: 50px;
 `;
 
 const SearchIcon = styled(SearchRoundedIcon)`
     color: black;
-    font-size: 24px;
+    font-size: 30px;
     position: absolute;
     top: 28%;
     left: 8%;
@@ -27,7 +27,7 @@ const SearchIcon = styled(SearchRoundedIcon)`
 const CancelIcon = styled(CancelRoundedIcon)`
     font-size: 20px;
     position: absolute;
-    top: 30%;
+    top: 34%;
     right: 17%;
 `;
 
@@ -43,13 +43,18 @@ const RecentSearchContainer = styled.div`
   flex-direction: column;
   margin-left: 10px;
   margin-right: 10px;
+  position: fixed;
+  width: 370px;
+  top: 100px;
+  height: 740px;
+  overflow: auto;
 `;
 
 const BackgoundContainer = styled.div`
   display: flex;
   background: linear-gradient(to right, #7995B2 0%, #476090 51%, #0D1B4A 100%);
   padding: 0px 10px;
-  height: 50px;
+  height: 70px;
   width: 100%;
   position: relative;
 `;
@@ -77,7 +82,7 @@ const Info = styled.div`
     display: flex;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.1);
-    margin-top: 70px;
+    margin-top: 85px;
     padding: 10px 0px;
     border-top: 1px solid #C3C3C3;
     border-bottom: 1px solid #C3C3C3;
@@ -94,7 +99,7 @@ interface PrototypeProp {
 const SearchPage = ({}) => {
     const location = useLocation();
     const [isSearch, setIsSearch] = useState<string>(() => (location.state && location.state.title ? location.state.title : ''));
-    const [isSearchList, setIsSearchList] = useState<string[]>(['마라탕 만두', '마라탕 만두2', '마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두', '가나다라마바사']);
+    const [isSearchList, setIsSearchList] = useState<string[]>(['마라탕 만두', '마라탕 만두2', '마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두', '가나다라마바사', '마라탕 만두1', '마라탕 만두3', '마라탕 만두4', '마라탕 만두5', '마라탕 만두6', '마라탕 만두7', '마라탕 만두8', '마라탕 만두9', '마라탕 만두10', '마라탕 만두11', '마라탕 만두12', '마라탕 만두13', '마라탕 만두14']);
     const [searchList, setSearchList] = useState<PrototypeProp[]>([
         {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인 시제품", isBookmark: true }, 
                     {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인", isBookmark: true }, 
