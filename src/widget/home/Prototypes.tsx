@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 
 const Container = styled.div`
   display: flex;
-  padding: 20px 8px 5px 8px;
+  padding: 7px 8px 5px 8px;
   flex-wrap: wrap;
   justify-content: space-between;
 `;

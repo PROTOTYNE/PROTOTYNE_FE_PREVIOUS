@@ -6,7 +6,7 @@ import { Categories, HomeHeader, Prototypes } from "@/widget";
 
 const Title = styled.h3`
     width: 200px;
-    margin: 10px 10px;
+    margin: 15px 0px 0px 20px;
 `;
 const HomePage = () => {
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ const HomePage = () => {
                     {path: "./image/temp.svg", label: "50명 신청", name: "마라탕후루 만두 마라맛 확인", isBookmark: false }
                 ]} />
             <Title onClick={() => navigate('/detail/deadline')}>체험 신청 마감 임박! &gt;</Title>
-            <Prototypes type="deadline" 
+            <Prototypes type="imminent" 
                 prototype={[{path: "./image/temp.svg", label: "D - 10", name: "마라탕후루 만두", isBookmark: true }, 
                     {path: "./image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인", isBookmark: true }, 
                     {path: "./image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인2", isBookmark: true }
