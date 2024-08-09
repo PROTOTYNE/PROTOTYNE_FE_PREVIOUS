@@ -7,6 +7,7 @@ export enum PAGE_URL {
   TermsOfUse = "/signup/term",
 
   MyInfo = "/myinfo",
+  EditMyInfo = "/myinfo/edit",
 
   Home = "/home",
   Alarm = "/alarm",

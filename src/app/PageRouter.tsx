@@ -21,6 +21,7 @@ const PersonalInfo = lazy(() => import("@/pages/auth/signup/PersonalInfoPage"));
 const TermsOfUse = lazy(() => import("@/pages/auth/signup/TermsOfUsePage"));
 
 const MyInfo = lazy(() => import("@/pages/auth/myinfo/MyInfoPage"));
+const EditMyInfo = lazy(() => import("@/pages/auth/myinfo/EditMyInfoPage"));
 
 const Home = lazy(() => import("@/pages/home/HomePage"));
 const NotFound = lazy(() => import("@/pages/notfound/NotFoundPage"));
@@ -44,6 +45,7 @@ const PageRouter = () => (
             <Route path={PAGE_URL.PersonalInfo} element={<PersonalInfo />} />
 
             <Route path={PAGE_URL.MyInfo} element={<MyInfo />} />
+            <Route path={PAGE_URL.EditMyInfo} element={<EditMyInfo />} />
 
             <Route path={PAGE_URL.Home} element={<Home />} />
             <Route path={PAGE_URL.Alarm} element={<Alarm />} />
