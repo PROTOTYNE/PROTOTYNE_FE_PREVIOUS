@@ -89,7 +89,7 @@ export const Sidebar = ({ isOpen, setIsOpen } : { isOpen: boolean; setIsOpen: an
                         <Image src="../image/alarm.svg" alt="alarm" />
                         알림 내역
                     </SideMenu>
-                    <SideMenu onClick={() => navigate('/mypage')}>
+                    <SideMenu onClick={() => navigate('/my')}>
                         <Image src="../image/account.svg" alt="account" />
                         마이페이지
                     </SideMenu>
