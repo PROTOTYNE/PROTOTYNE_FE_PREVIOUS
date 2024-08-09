@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 const RecentContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: 0px 10px 10px 10px;
+    margin: 55px 10px 10px 10px;
 `;
 
 interface Prop {

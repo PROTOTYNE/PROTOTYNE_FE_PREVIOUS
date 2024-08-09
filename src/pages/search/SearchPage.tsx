@@ -71,6 +71,7 @@ const Cancel = styled.div`
 const SearchListContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 `;
 const Info = styled.div`
     display: flex;
@@ -98,7 +99,21 @@ const SearchPage = ({}) => {
         {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인 시제품", isBookmark: true }, 
                     {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인", isBookmark: true }, 
                     {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인2", isBookmark: true },
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인3", isBookmark: true }
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인3", isBookmark: true }, 
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인4", isBookmark: true },
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인5", isBookmark: true }, 
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인6", isBookmark: true },
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인7", isBookmark: true }, 
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인8", isBookmark: true },
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인9", isBookmark: true }, 
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인10", isBookmark: true },
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인11", isBookmark: true }, 
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인12", isBookmark: true },
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인13", isBookmark: true }, 
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인14", isBookmark: true },
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인15", isBookmark: true }, 
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인16", isBookmark: true },
+                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인17", isBookmark: true }
     ]);
     const navigate = useNavigate();
 
