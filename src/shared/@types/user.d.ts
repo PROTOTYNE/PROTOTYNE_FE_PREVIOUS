@@ -1,8 +1,11 @@
 declare namespace User {
   //DTO
-  export interface SignInReqDto {
-    signId: string;
-    password: string;
+  export interface SignInResDto {
+    result: {
+      newUser: boolean;
+      token_type: string;
+      access_token: string;
+    };
   }
 
   export interface BasicInfo {
