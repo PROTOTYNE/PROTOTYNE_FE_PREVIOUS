@@ -7,7 +7,7 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const CenterContainer = styled(Container)`
+export const MidContainer = styled(Container)`
   position: absolute;
   top: 50%;
   left: 50%;
