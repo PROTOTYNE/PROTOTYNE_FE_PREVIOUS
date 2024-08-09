@@ -1,6 +1,6 @@
 
 
-export { Container, MidContainer } from "./element/Container";
+export { Container, MidContainer, SearchP } from "./element/Container";
 export { LargeImage, BottomImage, Logo, PrototypeImg, Bookmark } from "./element/Image";
 export { Prototype, MiniPrototype, BookmarkPrototype } from "./element/Prototype";
 export { Button, DisableButton, TwoOptionsButton } from "./element/Button";
