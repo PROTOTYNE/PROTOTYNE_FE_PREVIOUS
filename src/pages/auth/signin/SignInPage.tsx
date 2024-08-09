@@ -6,9 +6,6 @@ import {
 } from "@/entities";
 
 import * as Styles from "./Styles";
-import { FirstLoading } from "./FirstLoading";
-
-import { LargeImage } from "@/entities";
 
 const SignInPage = () => {
   const kakaoSignInLink = `https://kauth.kakao.com/oauth/authorize?client_id=${

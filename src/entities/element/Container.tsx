@@ -13,3 +13,10 @@ export const MidContainer = styled(Container)`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
+
+
+export const SearchP = styled.p<{ transparency: string }>`
+    margin: 5px 0px;
+    font-weight: 500;
+    opacity: ${props => props.transparency};
+`;

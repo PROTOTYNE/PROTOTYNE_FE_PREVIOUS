@@ -6,6 +6,7 @@ const Styles = css`
   }
   body {
     overflow-x: hidden;
+    margin: 0;
   }
   button {
     all: unset;

@@ -28,6 +28,11 @@ const EditMyAddionalInfo = lazy(
 
 const Home = lazy(() => import("@/pages/home/HomePage"));
 const NotFound = lazy(() => import("@/pages/notfound/NotFoundPage"));
+
+const Search = lazy(() => import("@/pages/search/SearchPage"));
+const Detail = lazy(() => import("@/pages/home/detail/DetailPage"));
+const Bookmark = lazy(() => import("@/pages/bookmark/BookmarkPage"))
+
 const Alarm = lazy(() => import("@/pages/alarm/AlarmPage"));
 
 const Review = lazy(() => import("@/pages/review/ReviewPage"));
@@ -55,6 +60,13 @@ const PageRouter = () => (
             />
 
             <Route path={PAGE_URL.Home} element={<Home />} />
+
+            <Route path={PAGE_URL.Search} element={<Search />} />
+            <Route path={PAGE_URL.PopularDetail} element={<Detail type="popular" />} />
+            <Route path={PAGE_URL.DeadLineDetail} element={<Detail type="deadline" />} />
+            <Route path={PAGE_URL.NewDetail} element={<Detail type="new" />} />
+            <Route path={PAGE_URL.Bookmark} element={<Bookmark />} />
+
             <Route path={PAGE_URL.Alarm} element={<Alarm />} />
 
             <Route path={PAGE_URL.Review} element={<Review />} />

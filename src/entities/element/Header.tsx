@@ -82,6 +82,8 @@ const StyledContioner = styled.div`
   left: 0px;
 
   color: white;
+
+  z-index: 10;
 `;
 
 const BackButton = styled(ArrowBackIosNewIcon)`
