@@ -1,9 +1,9 @@
 import { Suspense, lazy } from "react";
 import {
-  BrowserRouter as RootRouter,
-  Routes,
-  Route,
   Navigate,
+  BrowserRouter as RootRouter,
+  Route,
+  Routes,
 } from "react-router-dom";
 
 import AppStyles from "./AppStyles";
@@ -28,10 +28,11 @@ const EditMyAddionalInfo = lazy(
 
 const Home = lazy(() => import("@/pages/home/HomePage"));
 const NotFound = lazy(() => import("@/pages/notfound/NotFoundPage"));
+const My = lazy(() => import("@/pages/mypage/MyPage"));
 
 const Search = lazy(() => import("@/pages/search/SearchPage"));
 const Detail = lazy(() => import("@/pages/home/detail/DetailPage"));
-const Bookmark = lazy(() => import("@/pages/bookmark/BookmarkPage"))
+const Bookmark = lazy(() => import("@/pages/bookmark/BookmarkPage"));
 
 const Alarm = lazy(() => import("@/pages/alarm/AlarmPage"));
 
@@ -61,9 +62,17 @@ const PageRouter = () => (
 
             <Route path={PAGE_URL.Home} element={<Home />} />
 
+            <Route path={PAGE_URL.My} element={<My />} />
+
             <Route path={PAGE_URL.Search} element={<Search />} />
-            <Route path={PAGE_URL.PopularDetail} element={<Detail type="popular" />} />
-            <Route path={PAGE_URL.DeadLineDetail} element={<Detail type="deadline" />} />
+            <Route
+              path={PAGE_URL.PopularDetail}
+              element={<Detail type="popular" />}
+            />
+            <Route
+              path={PAGE_URL.DeadLineDetail}
+              element={<Detail type="deadline" />}
+            />
             <Route path={PAGE_URL.NewDetail} element={<Detail type="new" />} />
             <Route path={PAGE_URL.Bookmark} element={<Bookmark />} />
 

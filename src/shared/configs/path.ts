@@ -12,6 +12,8 @@ export enum PAGE_URL {
 
   Home = "/home",
 
+  My = "/my",
+
   Search = "/search",
   PopularDetail = "/detail/popular",
   DeadLineDetail = "/detail/deadline",
