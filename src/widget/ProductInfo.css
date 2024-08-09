@@ -1,0 +1,141 @@
+.product-info-container {
+    width: 100%; /* 화면 너비에 맞추기 */
+    max-width: 390px; /* 최대 너비를 화면 너비에 맞춤 */
+    padding: 16px; /* 패딩 조정 */
+    border: 1px solid #ccc;
+    border-radius: 8px; /* 더 부드러운 모서리 */
+    background-color: #f9f9f9;
+    box-sizing: border-box; /* 패딩과 보더를 포함한 너비 계산 */
+    margin: 0 auto; /* 화면 중앙에 정렬 */
+}
+
+.product-info-header {
+    border-bottom: 2px solid #333;
+    padding-bottom: 8px; /* 패딩 조정 */
+    margin-bottom: 16px; /* 마진 조정 */
+    font-size: 16px; /* 폰트 크기 조정 */
+    font-weight: bold; /* 텍스트 굵게 */
+}
+
+.status-indicator {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* 너비를 100%로 설정하여 페이지에 맞게 조정 */
+    max-width: 360px; /* 최대 너비 설정 */
+    margin-bottom: 12px; /* 마진 조정 */
+}
+
+.status-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 360px; /* 최대 너비 설정 */
+    font-size: 14px; /* 폰트 크기 조정 */
+    color: rgba(0, 0, 0, 0.5); /* 기본 텍스트 색상 (회색) */
+}
+
+.status-number {
+    font-weight: bold;
+    font-size: 16px; /* 숫자 폰트 크기 */
+    color: rgba(0, 0, 0, 0.5); /* 기본 숫자 색상 (회색) */
+}
+
+.status-number.active {
+    color: #007bff; /* 활성 상태 숫자 색상 (파란색) */
+}
+
+.status-label {
+    font-weight: bold;
+    text-align: center; /* 텍스트 중앙 정렬 */
+    margin-top: 4px; /* 숫자와 텍스트 사이 여백 추가 */
+}
+
+.status-label.active {
+    color: #000; /* 활성 상태 텍스트 색상 (검정색) */
+}
+
+.application-info {
+    margin-top: 16px; /* 마진 조정 */
+}
+
+.application-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.view-all {
+    color: rgba(128, 128, 128, 0.7); /* 약간 투명한 회색 */
+    font-size: 14px; /* 폰트 크기 */
+    cursor: pointer;
+}
+
+.product-card {
+    display: flex;
+    align-items: center;
+    padding: 12px; /* 패딩 조정 */
+    border: 1px solid #ddd;
+    border-radius: 8px; /* 더 부드러운 모서리 */
+    background-color: #fff;
+    margin-bottom: 12px; /* 마진 조정 */
+    box-sizing: border-box; /* 패딩과 보더를 포함한 너비 계산 */
+}
+
+.product-image {
+    width: 72px; /* 크기 조정 */
+    height: 72px; /* 크기 조정 */
+    background-color: #ddd;
+    border-radius: 5px;
+    margin-right: 12px; /* 여백 조정 */
+}
+
+.product-details {
+    flex: 1;
+}
+
+.product-title {
+    font-weight: bold;
+    font-size: 14px; /* 폰트 크기 조정 */
+}
+
+.product-date {
+    color: #666;
+    font-size: 12px; /* 폰트 크기 조정 */
+}
+
+.product-status {
+    text-align: right;
+    font-weight: bold;
+    font-size: 14px; /* 폰트 크기 조정 */
+}
+
+.delivery-progress {
+    display: flex;
+    width: 100%; /* 너비를 100%로 설정하여 페이지에 맞게 조정 */
+    border: 1px solid #ddd;
+    border-radius: 8px; /* 더 부드러운 모서리 */
+    overflow: hidden;
+    margin-top: 12px; /* 마진 조정 */
+}
+
+.progress-item {
+    flex: 1;
+    text-align: center;
+    padding: 6px; /* 패딩 조정 */
+    font-size: 12px; /* 폰트 크기 조정 */
+}
+
+.progress-item.review {
+    background-color: #007bff; /* 파란색 배경 */
+    color: #fff; /* 흰색 텍스트 */
+}
+
+.product-status.penalty {
+    color: #dc3545; /* 패널티 상태 색상 */
+}
+
+.product-status.completed {
+    color: #28a745; /* 완료 상태 색상 */
+}

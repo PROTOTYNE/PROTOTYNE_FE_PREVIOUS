@@ -1,3 +1,5 @@
+export { default as ProductInfo } from "./ProductInfo";
+
 export { HomeHeader } from "./home/HomeHeader";
 export { Categories } from "./home/Categories";
 export { Prototypes, BookmarkPrototypes } from "./home/Prototypes";
