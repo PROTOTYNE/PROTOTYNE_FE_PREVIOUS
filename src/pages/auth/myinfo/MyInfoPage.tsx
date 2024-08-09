@@ -1,9 +1,13 @@
+import { useNavigate } from "react-router";
+
 import { Background, Header } from "@/entities";
-import { useUserStore, additionalInfoOptions } from "@/shared";
+import { useUserStore, additionalInfoOptions, PAGE_URL } from "@/shared";
 
 import * as Styles from "./Styles";
 
 const MyInfo = () => {
+  const navigation = useNavigate();
+
   const name = useUserStore((state) => state.name);
   const birthYear = useUserStore((state) => state.birthYear);
   const birthMonth = useUserStore((state) => state.birthMonth);
@@ -17,11 +21,19 @@ const MyInfo = () => {
       <Header onBack>내 정보 관리</Header>
       <Background src="/background/signup.jpg" />
       <Styles.TopContainer>
+        <div style={{ height: "30px" }}></div>
         <Styles.Name>
           <span>{name}</span>
         </Styles.Name>
         <Styles.Title>
-          개인 정보<span>수정하기</span>
+          개인 정보
+          <span
+            onClick={() => {
+              navigation(PAGE_URL.EditMyInfo);
+            }}
+          >
+            수정하기
+          </span>
         </Styles.Title>
         <Styles.InfoContianer>
           <Styles.Info>
@@ -39,7 +51,14 @@ const MyInfo = () => {
           </Styles.Info>
         </Styles.InfoContianer>
         <Styles.Title>
-          추가 정보<span>수정하기</span>
+          추가 정보
+          <span
+            onClick={() => {
+              navigation(PAGE_URL.EditMyInfo);
+            }}
+          >
+            수정하기
+          </span>
         </Styles.Title>
         <Styles.AdditionalInfoContainer>
           <Styles.SubTitle>추가정보를 입력하면 더 많은 시제품</Styles.SubTitle>

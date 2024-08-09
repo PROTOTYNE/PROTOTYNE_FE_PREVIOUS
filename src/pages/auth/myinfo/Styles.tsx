@@ -50,7 +50,7 @@ export const InfoContianer = styled(Container)`
 `;
 
 export const AdditionalInfoContainer = styled(InfoContianer)`
-  height: 50%;
+  height: 47%;
 `;
 
 export const Info = styled.div`

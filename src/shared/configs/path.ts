@@ -8,6 +8,7 @@ export enum PAGE_URL {
 
   MyInfo = "/myinfo",
   EditMyInfo = "/myinfo/edit",
+  EditMyAddionalInfo = "/myinfo/additionaledit",
 
   Home = "/home",
   Alarm = "/alarm",
