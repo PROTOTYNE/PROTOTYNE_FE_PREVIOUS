@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const StatusContainer = styled.div`
   display: flex;
   align-items: center;
+  position: relative; /* 자식 요소의 절대 위치를 위한 설정 */
 `;
 
 // 상태 사각형
@@ -22,7 +23,6 @@ const StatusBox = styled.div<StatusBoxProps>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
   margin: 0 5px; /* 사각형 간격 */
 `;
 
@@ -54,5 +54,16 @@ const Arrow = styled.div`
   margin: 0 5px; /* 화살표 간격 */
 `;
 
-export { Arrow, StatusBox, StatusContainer, StatusCount, StatusName };
+// 전체 가로 직선
+const Divider = styled.div`
+  width: 100%; /* 직선의 너비를 100%로 설정 */
+  height: 2px; /* 직선 두께 */
+  background-color: #D1D1D1; /* 직선 색상 */
+  margin-top: 10px; /* 사각형과 직선 간격 */
+  position: absolute; /* 절대 위치 설정 */
+  top: 80px; /* Y 위치에 맞춰 조정 */
+  left: 0; /* 왼쪽 기준으로 정렬 */
+`;
+
+export { Arrow, StatusBox, StatusContainer, StatusCount, StatusName, Divider };
 
