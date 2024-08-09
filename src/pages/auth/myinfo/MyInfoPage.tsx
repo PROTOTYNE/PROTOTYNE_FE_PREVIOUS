@@ -18,7 +18,9 @@ const MyInfo = () => {
 
   return (
     <>
-      <Header onBack>내 정보 관리</Header>
+      <Header onBack styled>
+        내 정보 관리
+      </Header>
       <Background src="/background/signup.jpg" />
       <Styles.TopContainer>
         <div style={{ height: "30px" }}></div>

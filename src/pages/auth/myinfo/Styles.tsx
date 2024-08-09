@@ -45,8 +45,9 @@ export const SubTitle = styled.div`
 export const InfoContianer = styled(Container)`
   width: 100%;
   height: 15%;
+
   background-color: white;
-  border-radius: 10px;
+  border-radius: 8px;
 `;
 
 export const AdditionalInfoContainer = styled(InfoContianer)`

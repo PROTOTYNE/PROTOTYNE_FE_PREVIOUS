@@ -6,17 +6,20 @@ export const Header = ({
   children,
   onBack,
   background,
+  styled,
 }: {
   children: React.ReactNode;
   onBack?: boolean;
   background?: boolean;
+  styled?: boolean;
 }) => {
   const navigate = useNavigate();
 
   return (
     <>
       {background ? <BackGround /> : null}
-      <Container>
+      {styled ? <StyledContioner /> : null}
+      <Container style={{ color: styled ? "white" : "none" }}>
         {onBack ? (
           <BackButton
             onClick={() => {
@@ -62,6 +65,23 @@ const Container = styled.div`
   > * {
     margin-bottom: 10px;
   }
+`;
+
+const StyledContioner = styled.div`
+  background-image: url("/background/first_loading.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  height: 70px;
+  width: 100%;
+
+  position: fixed;
+  top: 0px;
+  left: 0px;
+
+  color: white;
 `;
 
 const BackButton = styled(ArrowBackIosNewIcon)`
