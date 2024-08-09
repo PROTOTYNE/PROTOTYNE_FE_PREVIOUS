@@ -7,5 +7,6 @@ export {
   resetAccess,
   getAccess,
 } from "./configs/axios";
+export { additionalInfoOptions } from "./configs/options";
 
 export { useUserStore } from "./hooks/stores/useUserStore";

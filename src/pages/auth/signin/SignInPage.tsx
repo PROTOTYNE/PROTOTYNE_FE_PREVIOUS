@@ -1,4 +1,11 @@
-import { CenterContainer, LargeImage } from "@/entities";
+import {
+  MidContainer,
+  Background,
+  MidPointLine,
+  BottomImage,
+} from "@/entities";
+
+import * as Styles from "./Styles";
 
 const SignInPage = () => {
   const kakaoSignInLink = `https://kauth.kakao.com/oauth/authorize?client_id=${
@@ -11,14 +18,25 @@ const SignInPage = () => {
 
   return (
     <>
-      <CenterContainer>
-        <LargeImage src="./image/logo.jpg" alt="logo"></LargeImage>
-        <img
+      <Styles.Container>
+        <Background src="/background/first_loading.jpg" />
+        <MidContainer>
+          <div style={{ height: "130px" }}></div>
+          <Styles.Title>
+            <Styles.LgText>앞서가는 당신을 위한</Styles.LgText>
+            <Styles.LgText>특별한 기회</Styles.LgText>
+            <Styles.XlText>Prototyne.</Styles.XlText>
+            <MidPointLine />
+          </Styles.Title>
+          <div style={{ height: "80px" }}></div>
+        </MidContainer>
+        <BottomImage src="/image/small_logo.png" alt="logo" />
+        <Styles.SignInImg
           src="./image/kakao_login_medium_wide.png"
           alt="signin"
           onClick={signInHandler}
-        ></img>
-      </CenterContainer>
+        ></Styles.SignInImg>
+      </Styles.Container>
     </>
   );
 };
