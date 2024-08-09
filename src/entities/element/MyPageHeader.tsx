@@ -1,11 +1,11 @@
 // MyPageHeader.tsx
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "@emotion/styled";
 
 const Container = styled.div`
   width: 375px;
   height: 52px;
-  background-color: #7995B2;
+  background-color: #7995b2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,7 +21,7 @@ const BackIcon = styled.div`
 
 const Title = styled.span`
   color: white;
-  font-weight: 600;  /* Semi-bold */
+  font-weight: 600; /* Semi-bold */
   font-size: 16px;
 `;
 

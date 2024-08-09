@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "@emotion/styled";
 
 // Styled Components 정의
 const WidgetContainer = styled.div`
@@ -31,7 +31,7 @@ const TicketInfo = styled.p`
 
 const TicketCount = styled.span`
   font-size: 14px;
-  color: #24446B;
+  color: #24446b;
   font-weight: 600;
 `;
 
@@ -41,7 +41,7 @@ const PurchaseContainer = styled.div`
 
 const PurchaseBox = styled.div`
   height: 20px; /* 높이를 조정하여 공간 확보 */
-  background-color: #F8F9FF;
+  background-color: #f8f9ff;
   border-radius: 19px;
   display: flex;
   justify-content: space-between; /* 좌우 정렬 */
@@ -58,22 +58,29 @@ const BuyButton = styled.span`
 
 // Props 인터페이스 정의
 interface UserInfoProps {
-  userName: string;          // 사용자 이름
-  ticketsOwned: number;     // 보유한 티켓 수
-  ticketsUsed: number;      // 체험한 시제품 수
-  status: '신청' | '진행중' | '당첨' | '종료';  // 상태 (신청 또는 기타)
+  userName: string; // 사용자 이름
+  ticketsOwned: number; // 보유한 티켓 수
+  ticketsUsed: number; // 체험한 시제품 수
+  status: "신청" | "진행중" | "당첨" | "종료"; // 상태 (신청 또는 기타)
 }
 
 // UserInfoWidget 컴포넌트 정의
-const UserInfo: React.FC<UserInfoProps> = ({ userName, ticketsOwned, ticketsUsed, status }) => {
+const UserInfo: React.FC<UserInfoProps> = ({
+  userName,
+  ticketsOwned,
+  ticketsUsed,
+  status,
+}) => {
   return (
     <WidgetContainer>
       <UserInfoContainer>
         <UserName>{userName}</UserName>
-        <span style={{ color: '#000' }}>&gt;</span>
+        <span style={{ color: "#000" }}>&gt;</span>
       </UserInfoContainer>
-      <TicketInfo>{ticketsOwned}개의 티켓으로 총 {ticketsUsed}개의 시제품을 체험했어요!</TicketInfo>
-      {status === '신청' && (
+      <TicketInfo>
+        {ticketsOwned}개의 티켓으로 총 {ticketsUsed}개의 시제품을 체험했어요!
+      </TicketInfo>
+      {status === "신청" && (
         <PurchaseContainer>
           <PurchaseBox>
             <TicketCount>보유 티켓: {ticketsOwned}개</TicketCount>

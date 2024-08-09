@@ -1,5 +1,5 @@
 // entities/UsageStatusProcess.tsx
-import styled from 'styled-components';
+import styled from "@emotion/styled";
 
 // 전체 컨테이너
 const StatusContainer = styled.div`
@@ -17,7 +17,7 @@ const StatusBox = styled.div<StatusBoxProps>`
   width: 55px;
   height: 59px;
   padding: 9px;
-  background-color: ${({ isActive }) => (isActive ? '#24446B' : '#C2BFBD')};
+  background-color: ${({ isActive }) => (isActive ? "#24446B" : "#C2BFBD")};
   border-radius: 15px; /* 휘어짐 정도 조절 */
   display: flex;
   flex-direction: column;
@@ -58,7 +58,7 @@ const Arrow = styled.div`
 const Divider = styled.div`
   width: 100%; /* 직선의 너비를 100%로 설정 */
   height: 2px; /* 직선 두께 */
-  background-color: #D1D1D1; /* 직선 색상 */
+  background-color: #d1d1d1; /* 직선 색상 */
   margin-top: 10px; /* 사각형과 직선 간격 */
   position: absolute; /* 절대 위치 설정 */
   top: 80px; /* Y 위치에 맞춰 조정 */
@@ -66,4 +66,3 @@ const Divider = styled.div`
 `;
 
 export { Arrow, StatusBox, StatusContainer, StatusCount, StatusName, Divider };
-
