@@ -45,13 +45,22 @@ const RecentSearchContainer = styled.div`
   margin-right: 10px;
 `;
 
-const SearchContainer = styled.div`
+const BackgoundContainer = styled.div`
   display: flex;
   background: linear-gradient(to right, #7995B2 0%, #476090 51%, #0D1B4A 100%);
   padding: 0px 10px;
   height: 50px;
+  width: 100%;
   position: relative;
 `;
+const SearchContainer = styled.div`
+    display: flex;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+`;
+
 const Cancel = styled.div`
   width: 50px;
   color: white;
@@ -67,7 +76,7 @@ const Info = styled.div`
     display: flex;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+    margin-top: 70px;
     padding: 10px 0px;
     border-top: 1px solid #C3C3C3;
     border-bottom: 1px solid #C3C3C3;
@@ -111,7 +120,8 @@ const SearchPage = ({}) => {
     };
     return (
         <>
-            <SearchContainer>
+        <SearchContainer>
+            <BackgoundContainer>
                 <SearchIcon />
                 <SearchInput defaultValue={isSearch ? `#${isSearch}` : ''} placeholder="검색하기" onChange={(e) => {
                     setIsSearch(e.target.value);
@@ -124,14 +134,15 @@ const SearchPage = ({}) => {
                 <Cancel onClick={() => {navigate("/home")}}>
                     취소
                 </Cancel>
-            </SearchContainer>
+            </BackgoundContainer>
+        </SearchContainer>
             {
                 isSearch ? (
                     <>
-                    <Info>
-                        '{isSearch.length >= 6 ? isSearch.substring(0, 6) + '...' : isSearch}'에 대한 {searchList.length}개의 시제품이 조회되었습니다.
-                    </Info>
-                    <br />
+                        <Info>
+                            '{isSearch.length >= 6 ? isSearch.substring(0, 6) + '...' : isSearch}'에 대한 {searchList.length}개의 시제품이 조회되었습니다.
+                        </Info>
+                        <br />
                         <SearchListContainer>
                             {searchList.map((prototype: PrototypeProp) => (
                                 <MiniPrototype 
