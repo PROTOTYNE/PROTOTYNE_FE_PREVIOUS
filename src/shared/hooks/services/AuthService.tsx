@@ -1,8 +1,10 @@
 import { AxiosResponse } from "axios";
 
-import { API, setAccess, storeAccess } from "@/shared";
+import { API, setAccess, storeAccess, useUserStore } from "@/shared";
 
 export const AuthService = () => {
+  const userStore = useUserStore((state) => state);
+
   const signin = async (code: string) => {
     const {
       data: {
@@ -18,5 +20,9 @@ export const AuthService = () => {
     return newUser;
   };
 
-  return { signin };
+  const signup = async () => {
+    const { data } = await API.post("/oauth2/signup");
+  };
+
+  return { signin, signup };
 };
