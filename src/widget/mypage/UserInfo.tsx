@@ -65,7 +65,7 @@ interface UserInfoProps {
 }
 
 // UserInfoWidget 컴포넌트 정의
-const UserInfo: React.FC<UserInfoProps> = ({
+export const UserInfoWidget: React.FC<UserInfoProps> = ({
   userName,
   ticketsOwned,
   ticketsUsed,
@@ -91,5 +91,3 @@ const UserInfo: React.FC<UserInfoProps> = ({
     </WidgetContainer>
   );
 };
-
-export default UserInfo;

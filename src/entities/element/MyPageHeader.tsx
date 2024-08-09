@@ -29,7 +29,7 @@ interface MyPageHeaderProps {
   title: string;
 }
 
-const MyPageHeader: React.FC<MyPageHeaderProps> = ({ title }) => {
+export const MyPageHeader: React.FC<MyPageHeaderProps> = ({ title }) => {
   return (
     <Container>
       <BackIcon>&lt;</BackIcon>
@@ -37,5 +37,3 @@ const MyPageHeader: React.FC<MyPageHeaderProps> = ({ title }) => {
     </Container>
   );
 };
-
-export default MyPageHeader;

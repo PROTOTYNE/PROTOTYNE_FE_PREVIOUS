@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './WishList.css';
+import React, { useState } from "react";
+import "./WishList.css";
 
 interface WishListItemProps {
   productName: string;
@@ -7,7 +7,11 @@ interface WishListItemProps {
   imageUrl?: string;
 }
 
-const WishListItem: React.FC<WishListItemProps> = ({ productName, ticketsAvailable, imageUrl }) => {
+const WishListItem: React.FC<WishListItemProps> = ({
+  productName,
+  ticketsAvailable,
+  imageUrl,
+}) => {
   const [isBookmarked, setIsBookmarked] = useState<boolean>(false);
 
   const toggleBookmark = () => {
@@ -19,11 +23,11 @@ const WishListItem: React.FC<WishListItemProps> = ({ productName, ticketsAvailab
       <div className="wishlist-item-image">
         {imageUrl && <img src={imageUrl} alt={productName} />}
         <div
-          className={`wishlist-item-bookmark ${isBookmarked ? 'bookmarked' : ''}`}
+          className={`wishlist-item-bookmark ${
+            isBookmarked ? "bookmarked" : ""
+          }`}
           onClick={toggleBookmark}
-        >
-          
-        </div>   
+        ></div>
       </div>
       <div className="wishlist-item-details">
         <div className="wishlist-item-name">{productName}</div>
@@ -33,7 +37,7 @@ const WishListItem: React.FC<WishListItemProps> = ({ productName, ticketsAvailab
   );
 };
 
-const WishList: React.FC = () => {
+export const WishList: React.FC = () => {
   return (
     <div className="wishlist-container">
       <div className="wishlist-items">
@@ -47,5 +51,3 @@ const WishList: React.FC = () => {
     </div>
   );
 };
-
-export default WishList;

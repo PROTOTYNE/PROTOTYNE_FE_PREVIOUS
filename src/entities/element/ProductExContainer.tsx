@@ -35,7 +35,7 @@ interface ProductExContainerProps {
   children: ReactNode; // children 속성을 추가
 }
 
-const ProductExContainer: React.FC<ProductExContainerProps> = ({
+export const ProductExContainer: React.FC<ProductExContainerProps> = ({
   title,
   children,
 }) => {
@@ -47,5 +47,3 @@ const ProductExContainer: React.FC<ProductExContainerProps> = ({
     </Container>
   );
 };
-
-export default ProductExContainer;

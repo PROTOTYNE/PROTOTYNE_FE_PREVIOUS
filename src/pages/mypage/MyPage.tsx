@@ -1,12 +1,11 @@
-// pages/MyPage.tsx
-import React from "react";
-import MyPageHeader from "../../entities/element/MyPageHeader";
-import ProductExContainer from "../../entities/element/ProductExContainer";
-import ProductExperience from "../../widget/ProductExperience";
-import ProductInfo from "../../widget/ProductInfo";
-import UserInfoWidget from "../../widget/UserInfo";
-import WishList from "../../widget/WishList";
-import ProductList from "../../entities/element/ProductList"; // ProductList 컴포넌트 임포트
+import { MyPageHeader, ProductExContainer, ProductList } from "@/entities";
+
+import {
+  ProductExperience,
+  ProductInfo,
+  UserInfoWidget,
+  WishList,
+} from "@/widget";
 
 const MyPage: React.FC = () => {
   const statuses = [
