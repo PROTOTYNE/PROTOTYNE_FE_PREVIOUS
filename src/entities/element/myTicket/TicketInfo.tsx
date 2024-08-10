@@ -6,8 +6,7 @@ const TicketInfoContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100px;
-  margin-top: 60px;
+  width: 110px;
 `;
 
 const TicketCount = styled.div`

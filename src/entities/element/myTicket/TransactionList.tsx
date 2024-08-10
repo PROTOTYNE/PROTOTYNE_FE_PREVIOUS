@@ -38,15 +38,11 @@ const TransactionDetail = styled.div`
 `;
 
 const TransactionAmount = styled.div<{ isNegative?: boolean }>`
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 17px;
-
-
-  color: ${(props) => (props.isNegative ? 'red' : '#0d1b4a')};
+  font-family: 'Inter';
+  font-weight: 700;
+  font-size: 17px;
   align-self: flex-end;
+  color: ${(props) => (props.isNegative ? '#FF1304' : '#1d3656')};
 `;
 
 interface Transaction {
