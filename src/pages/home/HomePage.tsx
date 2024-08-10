@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router";
 import { Categories, HomeHeader, Prototypes } from "@/widget";
+import { useEffect } from "react";
 
 //api 호출 {사진, 몇명 신청 여부, 제품명}
 
@@ -10,6 +11,7 @@ const Title = styled.h3`
 `;
 const HomePage = () => {
     const navigate = useNavigate();
+    
     return (
         <>
             <HomeHeader />
