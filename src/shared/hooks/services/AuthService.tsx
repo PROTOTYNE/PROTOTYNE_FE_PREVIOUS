@@ -3,7 +3,7 @@ import { AxiosResponse } from "axios";
 import { API, setAccess, storeAccess, useUserStore } from "@/shared";
 
 export const AuthService = () => {
-  const userStore = useUserStore((state) => state);
+  const setAllUserInfo = useUserStore((state) => state.setAllUserInfo);
 
   const signin = async (code: string) => {
     const {

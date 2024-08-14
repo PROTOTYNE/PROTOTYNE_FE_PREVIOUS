@@ -60,8 +60,12 @@ declare namespace User {
     healthStatus: 1 | 2 | 3 | 4 | 5 | undefined;
   }
 
+  export interface AllInfo extends BasicInfo, AdditionalInfo {}
+
   //Store
   export interface UserStore extends BasicInfo, AdditionalInfo {
+    setUserAllInfo: (value: AllInfo) => void;
+    getUserAllInfo: () => AllInfo;
     setName: (value: string) => void;
     setBirthYear: (value: string) => void;
     setBirthMonth: (value: string) => void;
