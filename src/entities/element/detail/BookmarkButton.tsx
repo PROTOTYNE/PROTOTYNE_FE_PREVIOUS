@@ -1,8 +1,8 @@
 // BookmarkButton.tsx
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import bookmarkIcon from '../../../../public/image/bookmark.svg';
-import checkBookmarkIcon from '../../../../public/image/checkBookmark.svg';
+import bookmarkIcon from '../../../../public/image/product/bookmark.svg';
+import checkBookmarkIcon from '../../../../public/image/product/checkBookmark.svg';
 
 const Button = styled.button`
   background: none;

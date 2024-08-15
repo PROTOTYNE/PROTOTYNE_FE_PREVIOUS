@@ -7,9 +7,9 @@ const AuthRouter = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const access_token = getAccess();
-    if (!access_token) navigate(PAGE_URL.SignIn);
-    else setAccess(access_token);
+    //const access_token = getAccess();
+    //if (!access_token) navigate(PAGE_URL.SignIn);
+    //else setAccess(access_token);
   }, []);
 
   return <>{children}</>;

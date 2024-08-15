@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import ticket from "../../../../public/image/ticket.svg";
+import ticket from "../../../../public/image/product/ticket.svg";
 
 interface ProductProps {
   category: string;
