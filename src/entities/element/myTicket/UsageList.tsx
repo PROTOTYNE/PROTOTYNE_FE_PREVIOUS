@@ -1,6 +1,6 @@
 // UsageList.tsx
-import React from 'react';
-import styled from '@emotion/styled';
+import React from "react";
+import styled from "@emotion/styled";
 
 const UsageListContainer = styled.div`
   display: flex;
@@ -51,7 +51,7 @@ interface UsageListProps {
   usages: Usage[];
 }
 
-const UsageList: React.FC<UsageListProps> = ({ usages }) => {
+export const UsageList: React.FC<UsageListProps> = ({ usages }) => {
   return (
     <UsageListContainer>
       {usages.map((usage, index) => (
@@ -67,5 +67,3 @@ const UsageList: React.FC<UsageListProps> = ({ usages }) => {
     </UsageListContainer>
   );
 };
-
-export default UsageList;

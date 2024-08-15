@@ -1,10 +1,6 @@
 import { useParams } from "react-router";
 
-import Date from "@/entities/element/detail/Date";
-import ImageSlide from "@/entities/element/detail/ImageSlide";
-import Product from "@/entities/element/detail/Product";
-import ProductInfo from "@/entities/element/detail/ProductInfo";
-import Footer from "@/entities/element/detail/Footer";
+import { Date, ImageSlide, Product, ProductInfo, Footer } from "@/entities";
 import Header from "@/entities/element/Header";
 
 const ProductPage: React.FC = () => {

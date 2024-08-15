@@ -1,6 +1,6 @@
 // TicketInfo.tsx
-import React from 'react';
-import styled from '@emotion/styled';
+import React from "react";
+import styled from "@emotion/styled";
 
 const TicketInfoContainer = styled.div`
   display: flex;
@@ -20,28 +20,26 @@ const TicketLabel = styled.div`
 `;
 
 const TicketLine = styled.div`
-width: 100%;
-height: 0.5px;
-left: 100px;
-margin-top: 10px;
+  width: 100%;
+  height: 0.5px;
+  left: 100px;
+  margin-top: 10px;
 
-background: #8E8E8E;
-`
+  background: #8e8e8e;
+`;
 
 interface TicketInfoProps {
   count: number;
 }
 
-const TicketInfo: React.FC<TicketInfoProps> = ({ count }) => {
+export const TicketInfo: React.FC<TicketInfoProps> = ({ count }) => {
   return (
     <>
-        <TicketInfoContainer>
+      <TicketInfoContainer>
         <TicketLabel>보유 티켓</TicketLabel>
         <TicketCount>{count}</TicketCount>
-        </TicketInfoContainer>
-        <TicketLine/>
+      </TicketInfoContainer>
+      <TicketLine />
     </>
   );
 };
-
-export default TicketInfo;

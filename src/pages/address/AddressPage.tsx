@@ -1,7 +1,4 @@
-// src/App.tsx
-
-import React from 'react';
-import AddressForm from '@/entities/element/address/AddressForm';
+import { AddressForm } from "@/entities";
 
 const App: React.FC = () => {
   return (

@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from '@emotion/styled';
+import React from "react";
+import styled from "@emotion/styled";
 
 interface ProductInfoProps {
   productName: string;
@@ -20,7 +20,11 @@ const InfoContent = styled.div`
   /* 내용 부분 스타일 */
 `;
 
-const ProductInfo: React.FC<ProductInfoProps> = ({ productName, productDescription, additionalNotes }) => {
+export const ProductInfo: React.FC<ProductInfoProps> = ({
+  productName,
+  productDescription,
+  additionalNotes,
+}) => {
   return (
     <ProductInfoContainer>
       <div>
@@ -38,5 +42,3 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ productName, productDescripti
     </ProductInfoContainer>
   );
 };
-
-export default ProductInfo;

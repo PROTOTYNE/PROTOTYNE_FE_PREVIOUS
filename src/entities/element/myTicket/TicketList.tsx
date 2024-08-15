@@ -1,6 +1,6 @@
 // TicketList.tsx
-import React from 'react';
-import styled from '@emotion/styled';
+import React from "react";
+import styled from "@emotion/styled";
 
 const TicketListContainer = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ const TicketItem = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  border-bottom: 1.5px solid #E9E9E9;
+  border-bottom: 1.5px solid #e9e9e9;
 `;
 
 const TicketButton = styled.button`
@@ -39,17 +39,20 @@ interface TicketListProps {
   onBuyTicket: (count: number) => void;
 }
 
-const TicketList: React.FC<TicketListProps> = ({ tickets, onBuyTicket }) => {
+export const TicketList: React.FC<TicketListProps> = ({
+  tickets,
+  onBuyTicket,
+}) => {
   return (
     <TicketListContainer>
       {tickets.map((ticket, index) => (
         <TicketItem key={index}>
           <div>티켓 {ticket.count}개</div>
-          <TicketButton onClick={() => onBuyTicket(ticket.count)}>{ticket.price}</TicketButton>
+          <TicketButton onClick={() => onBuyTicket(ticket.count)}>
+            {ticket.price}
+          </TicketButton>
         </TicketItem>
       ))}
     </TicketListContainer>
   );
 };
-
-export default TicketList;

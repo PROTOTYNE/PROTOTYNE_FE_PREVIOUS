@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import styled from '@emotion/styled';
-import ApplyComplete from './ApplyComplete';
-import AddressSearchModal from './AddressSearchModal';
+import React, { useState, useEffect } from "react";
+import styled from "@emotion/styled";
+import ApplyComplete from "./ApplyComplete";
+import AddressSearchModal from "./AddressSearchModal";
 
 const TopBar = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const TopBar = styled.div`
 
 const FormContainer = styled.div`
   padding: 10px;
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
   max-width: 400px;
   margin: 0 auto;
   border-radius: 8px;
@@ -82,19 +82,22 @@ const SubmitButton = styled.button<{ disabled: boolean }>`
   text-align: center;
   padding: 12px;
 
-  background: ${({ disabled }) => (disabled ? '#D9D9D9' : 'linear-gradient(270deg, #0D1B4A 0%, #476090 50%, #7995B2 100%);')};
+  background: ${({ disabled }) =>
+    disabled
+      ? "#D9D9D9"
+      : "linear-gradient(270deg, #0D1B4A 0%, #476090 50%, #7995B2 100%);"};
   color: white;
   border: none;
   border-radius: 8px;
   font-size: 18px;
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 `;
 
-const AddressForm: React.FC = () => {
-  const [recipient, setRecipient] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
-  const [detailedAddress, setDetailedAddress] = useState('');
+export const AddressForm: React.FC = () => {
+  const [recipient, setRecipient] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [detailedAddress, setDetailedAddress] = useState("");
   const [saveAsDefault, setSaveAsDefault] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
@@ -205,5 +208,3 @@ const AddressForm: React.FC = () => {
     </div>
   );
 };
-
-export default AddressForm;
