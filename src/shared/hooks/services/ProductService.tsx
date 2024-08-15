@@ -1,16 +1,18 @@
 import { AxiosResponse } from "axios";
 
-import { API } from "@/shared";
+import { API, useProductStore } from "@/shared";
 
 export const ProductService = () => {
+  //const useStore = useProductStore((state) => state);
+
   const getProduct = async (code: string) => {
     const {
       data: {
-        path : product,
+        result: product,
       },
     } = (await API.get("/product/list", {
-      params: { code: code },
-    })) as AxiosResponse<Product.ProductDto>;
+      params: { type: code },
+    })) as AxiosResponse<Product.ProductApplicantDto>;
 
     return product;
   };

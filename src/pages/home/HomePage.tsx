@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router";
 import { Categories, HomeHeader, Prototypes } from "@/widget";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { ProductService } from "@/shared";
 
-//api 호출 {사진, 몇명 신청 여부, 제품명}
+const productService = ProductService();
+
 
 const Title = styled.h3`
     width: 200px;
@@ -11,6 +13,17 @@ const Title = styled.h3`
 `;
 const HomePage = () => {
     const navigate = useNavigate();
+    const [product, setProduct] = useState({});
+
+    const fetchProduct = async () => {
+        const product = await productService.getProduct("popular");
+        return product;
+    }
+    
+    useEffect(() => {
+        fetchProduct()
+        .then(product => setProduct(product));
+    }, [])
     
     return (
         <>
