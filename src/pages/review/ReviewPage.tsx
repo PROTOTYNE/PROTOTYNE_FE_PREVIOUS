@@ -1,11 +1,11 @@
-import { useParams } from "react-router";
+//import { useParams } from "react-router";
 
 import { Button, Header } from "@/entities";
 
 import * as Styles from "./Styles";
 
 const ReviewPage = () => {
-  const { id } = useParams();
+  //const { id } = useParams();
 
   return (
     <>

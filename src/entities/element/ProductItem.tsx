@@ -76,7 +76,7 @@ const Divider = styled.div`
   align-items: center;
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   background-color: transparent;
   color: black;
   border: 1px solid black;

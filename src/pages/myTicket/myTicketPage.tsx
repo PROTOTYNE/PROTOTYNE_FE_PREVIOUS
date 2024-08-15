@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 
-import Header from "@/entities/element/Header";
+import { Header } from "@/entities";
 
 import {
   TicketInfo,
@@ -127,7 +127,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Header HeaderText="내 티켓" />
+      <Header>내 티켓</Header>
       <Container>
         <TicketInfo count={ticketCount} />
         <Tabs activeTab={activeTab} onTabClick={handleTabClick} />

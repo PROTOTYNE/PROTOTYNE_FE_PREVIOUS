@@ -12,3 +12,6 @@ export { additionalInfoOptions } from "./configs/options";
 export { useUserStore } from "./hooks/stores/useUserStore";
 
 export { AuthService } from "./hooks/services/AuthService";
+export { TicketService } from "./hooks/services/TicketService";
+export { ProductService } from "./hooks/services/ProductService";
+export { MyPageService } from "./hooks/services/MyPageService";

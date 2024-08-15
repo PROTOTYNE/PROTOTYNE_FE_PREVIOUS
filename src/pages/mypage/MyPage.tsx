@@ -3,7 +3,7 @@ import {
   ProductExperience,
   UserInfoWidget,
   WishList,
-  ProductInfoContainer
+  ProductInfoContainer,
 } from "@/widget";
 
 const MyPage: React.FC = () => {
@@ -14,7 +14,9 @@ const MyPage: React.FC = () => {
     { count: 1, name: "종료", isActive: false },
   ];
 
-  const isWinnerStatusActive = statuses.some(status => status.name === "신청" && status.isActive);
+  const isWinnerStatusActive = statuses.some(
+    (status) => status.name === "신청" && status.isActive
+  );
 
   return (
     <div

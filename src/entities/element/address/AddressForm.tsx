@@ -100,7 +100,7 @@ export const AddressForm: React.FC = () => {
   const [detailedAddress, setDetailedAddress] = useState("");
   const [saveAsDefault, setSaveAsDefault] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [isFormValid, setIsFormValid] = useState<boolean | string>(false);
   const [isCompleteModalVisible, setIsCompleteModalVisible] = useState(false);
 
   useEffect(() => {
