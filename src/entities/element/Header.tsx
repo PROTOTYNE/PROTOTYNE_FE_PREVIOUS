@@ -1,37 +1,93 @@
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
-interface HeaderProps {
-  HeaderText: string;
-}
+export const Header = ({
+  children,
+  onBack,
+  background,
+  styled,
+}: {
+  children: React.ReactNode;
+  onBack?: boolean;
+  background?: boolean;
+  styled?: boolean;
+}) => {
+  const navigate = useNavigate();
 
-const StyledHeader = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 52px;
-  left: 0px;
-  top: 0;
-  background-color: #000000;
-  z-index: 5;
-  background: linear-gradient(270deg, #0D1B4A 0%, #476090 50%, #7995B2 100%);
-`;
-
-const StyledHeaderText = styled.div`
-  position: fixed;
-  top: 5px;
-  left: 40%;
-  color: white;
-  z-index: 6;
-  font-weight: 500;
-  font-size: 25px;
-`;
-
-const Header: React.FC<HeaderProps> = ({ HeaderText }) => {
   return (
     <>
-      <StyledHeaderText>{HeaderText}</StyledHeaderText>
-      <StyledHeader />
+      {background ? <BackGround /> : null}
+      {styled ? <StyledContioner /> : null}
+      <Container style={{ color: styled ? "white" : "none" }}>
+        {onBack ? (
+          <BackButton
+            onClick={() => {
+              navigate(-1);
+            }}
+          />
+        ) : null}
+        {children}
+      </Container>
     </>
   );
 };
 
-export default Header;
+const BackGround = styled.div`
+  background-color: white;
+  width: 100%;
+  height: 70px;
+
+  position: fixed;
+  top: 0px;
+  left: 0px;
+
+  z-index: 10;
+`;
+
+const Container = styled.div`
+  position: fixed;
+  top: 0px;
+  left: 0px;
+
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 20px;
+
+  font-size: 23px;
+
+  z-index: 11;
+
+  > * {
+    margin-bottom: 10px;
+  }
+`;
+
+const StyledContioner = styled.div`
+  background-image: url("/background/first_loading.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  height: 70px;
+  width: 100%;
+
+  position: fixed;
+  top: 0px;
+  left: 0px;
+
+  color: white;
+
+  z-index: 10;
+`;
+
+const BackButton = styled(ArrowBackIosNewIcon)`
+  position: absolute;
+  top: 6px;
+  left: 30px;
+`;
