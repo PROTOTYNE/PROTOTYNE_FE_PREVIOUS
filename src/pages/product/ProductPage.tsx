@@ -1,14 +1,21 @@
 import { useParams } from "react-router";
 
-import { Date, ImageSlide, Product, ProductInfo, Footer, Header } from "@/entities";
+import {
+  Date,
+  ImageSlide,
+  Product,
+  ProductInfo,
+  Footer,
+  Header,
+} from "@/entities";
 
 const ProductPage: React.FC = () => {
   const { id } = useParams();
   console.log(id);
   return (
     <div>
-      <Header onBack>
-        <img src="/image/logo2.png" alt="logo"/>
+      <Header colorBackground onBack>
+        <img src="/image/logo2.png" alt="logo"></img>
       </Header>
       <ImageSlide />
       <Product
