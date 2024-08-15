@@ -1,8 +1,11 @@
 declare namespace User {
   //DTO
-  export interface SignInReqDto {
-    signId: string;
-    password: string;
+  export interface SignInResDto {
+    result: {
+      newUser: boolean;
+      token_type: string;
+      access_token: string;
+    };
   }
 
   export interface BasicInfo {
@@ -57,8 +60,12 @@ declare namespace User {
     healthStatus: 1 | 2 | 3 | 4 | 5 | undefined;
   }
 
+  export interface AllInfo extends BasicInfo, AdditionalInfo {}
+
   //Store
   export interface UserStore extends BasicInfo, AdditionalInfo {
+    setUserAllInfo: (value: AllInfo) => void;
+    getUserAllInfo: () => AllInfo;
     setName: (value: string) => void;
     setBirthYear: (value: string) => void;
     setBirthMonth: (value: string) => void;
@@ -81,3 +88,4 @@ declare namespace User {
     setHealthStatus: (value: AdditionalInfo[healthStatus]) => void;
   }
 }
+
