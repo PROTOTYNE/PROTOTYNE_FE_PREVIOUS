@@ -10,3 +10,5 @@ export {
 export { additionalInfoOptions } from "./configs/options";
 
 export { useUserStore } from "./hooks/stores/useUserStore";
+
+export { AuthService } from "./hooks/services/AuthService";
