@@ -100,26 +100,7 @@ const SearchPage = ({}) => {
     const location = useLocation();
     const [isSearch, setIsSearch] = useState<string>(() => (location.state && location.state.title ? location.state.title : ''));
     const [isSearchList, setIsSearchList] = useState<string[]>(['마라탕 만두', '마라탕 만두2', '마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두', '가나다라마바사', '마라탕 만두1', '마라탕 만두3', '마라탕 만두4', '마라탕 만두5', '마라탕 만두6', '마라탕 만두7', '마라탕 만두8', '마라탕 만두9', '마라탕 만두10', '마라탕 만두11', '마라탕 만두12', '마라탕 만두13', '마라탕 만두14']);
-    const [searchList, setSearchList] = useState<PrototypeProp[]>([
-        {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인 시제품", isBookmark: true }, 
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인", isBookmark: true }, 
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인2", isBookmark: true },
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인3", isBookmark: true }, 
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인4", isBookmark: true },
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인5", isBookmark: true }, 
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인6", isBookmark: true },
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인7", isBookmark: true }, 
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인8", isBookmark: true },
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인9", isBookmark: true }, 
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인10", isBookmark: true },
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인11", isBookmark: true }, 
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인12", isBookmark: true },
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인13", isBookmark: true }, 
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인14", isBookmark: true },
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인15", isBookmark: true }, 
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인16", isBookmark: true },
-                    {path: "../image/temp.svg", label: "D - 10", name: "마라탕후루 만두 마라맛 확인17", isBookmark: true }
-    ]);
+    const [searchList, setSearchList] = useState<PrototypeProp[]>([]);
     const navigate = useNavigate();
 
     const deleteInput = () => {

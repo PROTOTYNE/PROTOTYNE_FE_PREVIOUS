@@ -6,32 +6,35 @@ const Container = styled.div`
   display: flex;
   padding: 7px 8px 5px 8px;
   flex-wrap: wrap;
-  justify-content: space-between;
 `;
 
 
 interface PrototypeProp {
-    path: string, 
-    label: string, 
+    id: 0,
     name: string, 
-    isBookmark: boolean,
+    thumbnailUrl: string, 
+    investCount: 0, 
+    reqTickets: 0,
 }
 
-export const Prototypes = ({ type, prototype } : { type: string, prototype: PrototypeProp[] }) => {
+
+export const Prototypes = ({ type, prototypes } : { type: string, prototypes: PrototypeProp[] }) => {
     return (
         <>
             <Container>
-                {(prototype).map((prototype: PrototypeProp) => (
-                    type === "popular" ? 
-                    <Prototype 
-                    key={prototype.name}
-                    prototype={prototype}
-                    /> :
-                    <MiniPrototype
-                    key={prototype.name}
-                    prototype={prototype}
-                    />
-                ))}
+                {prototypes.map((prototype: PrototypeProp) => {
+                    return (
+                        type === "popular" ? 
+                        <Prototype 
+                        key={prototype.id}
+                        prototype={prototype}
+                        /> :
+                        <MiniPrototype
+                        key={prototype.id}
+                        prototype={prototype}
+                        />
+                    );
+                })}
             </Container>
         </>
     );
@@ -47,7 +50,7 @@ export const BookmarkPrototypes = ({ prototype } : { prototype: BookmarkProp[] }
         <Container>
             {(prototype).map((prototype: BookmarkProp) => (
                     <BookmarkPrototype 
-                    key={prototype.name}
+                    key={prototype.path}
                     prototype={prototype}
                     />
                 ))}

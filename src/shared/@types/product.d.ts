@@ -1,12 +1,12 @@
 declare namespace Product {
-    export interface ProductApplicantDto {
-        result: {
-            img: string;
-            title: string;
-            bookmark: "BOOKMARK" | "UNBOOKMARK";
-            applicationNum: number;
-            ticket: string;
-        }
+    export interface ProductPopularDto {
+        result: [{
+            id: 0;
+            name: string;
+            thumbnailUrl: string;
+            investCount: 0;
+            reqTickets: 0;
+        }];
     }
 
     export interface ProductImminentDto {

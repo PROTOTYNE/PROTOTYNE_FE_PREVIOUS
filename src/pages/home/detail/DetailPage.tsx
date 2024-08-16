@@ -2,6 +2,10 @@ import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRound
 import { Prototypes } from "@/widget"
 import styled from "@emotion/styled";
 import { useNavigate } from 'react-router';
+import { useEffect, useState } from 'react';
+import { ProductDetailService } from "@/shared";
+
+const productDetailService = ProductDetailService();
 
 const Header = styled.div`
     display: flex;
@@ -23,8 +27,28 @@ const Container = styled.div`
 const Title = styled.h3`
     margin: 20px 10px;
 `;
+
+interface PrototypeProp {
+    id: 0;
+    name: string;
+    thumbnailUrl: string;
+    investCount: 0;
+    reqTickets: 0;
+}
+
 const DetailPage = ({type} : {type: string}) => {
     const navigate = useNavigate();
+    const [product, setProduct] = useState<PrototypeProp[]>([]);
+
+    const fetchProduct = async () => {
+        const productArray = await productDetailService.getProductDetail(type);
+        return productArray;
+    }
+    
+    useEffect(() => {
+        fetchProduct()
+        .then(product => setProduct(product));
+    }, [])
 
     const getTitle = (type: string) => {
         if (type === "popular") {
@@ -34,7 +58,7 @@ const DetailPage = ({type} : {type: string}) => {
         } else {
             return "신규 등록된 시제품입니다!";
         }
-    };
+    }; 
 
     return (
         <>
@@ -45,18 +69,10 @@ const DetailPage = ({type} : {type: string}) => {
                 <Title>
                     {getTitle(type)}
                 </Title>
-                <Prototypes type="popular"
-                prototype={[{path: "../image/temp.svg", label: "100명 신청", name: "마라탕후루 만두 마라맛 확인 시제품", isBookmark: true }, 
-                    {path: "../image/temp.svg", label: "50명 신청", name: "마라탕후루 만두 마라맛 확인", isBookmark: true }, 
-                    {path: "../image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인2", isBookmark: true },
-                    {path: "../image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인3", isBookmark: true },
-                    {path: "../image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인4", isBookmark: true },
-                    {path: "../image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인5", isBookmark: true },
-                    {path: "../image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인6", isBookmark: true },
-                    {path: "../image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인7", isBookmark: true },
-                    {path: "../image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인8", isBookmark: true },
-                    {path: "../image/temp.svg", label: "5명 신청", name: "마라탕후루 만두 마라맛 확인9", isBookmark: true }
-                ]} />
+                <Prototypes
+                    type={type}
+                    prototypes={product}
+                />
             </Container>
         </>
     );

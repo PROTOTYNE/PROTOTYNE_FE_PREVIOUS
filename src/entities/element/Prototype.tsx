@@ -74,10 +74,11 @@ const TicketImgContainer = styled.div`
 `;
 
 interface PrototypeProp {
-    path: string, 
-    label: string, 
+    id: 0,
     name: string, 
-    isBookmark: boolean,
+    thumbnailUrl: string, 
+    investCount: 0, 
+    reqTickets: 0,
 }
 const Ticket = () => {
     return (
@@ -89,16 +90,16 @@ const Ticket = () => {
 }
 
 
-export const Prototype = ({ prototype} : { prototype: PrototypeProp }) => {
+export const Prototype = ({ prototype } : { prototype: PrototypeProp }) => {
     const navigate = useNavigate();
     return (
         <PrototypeContainer onClick={() => navigate('/prototype')}>
-            <PrototypeImg src={prototype.path} alt={prototype.name} width="170px" height="170px" />
-            <Application>{prototype.label}</Application>
+            <PrototypeImg src={prototype.thumbnailUrl} alt={prototype.name} width="170px" height="170px" />
+            <Application>{prototype.investCount}</Application>
             <InfoContainer>
                 <InfoSubContainer>
                     <PrototypeName>{prototype.name.length > 10 ? prototype.name.substring(0, 8) + " ..." : prototype.name}</PrototypeName>
-                    <Bookmark src={prototype.isBookmark ? "../image/checkBookmark.svg":"../image/unCheckBookmark.svg"}></Bookmark>
+                    <Bookmark src={prototype.name ? "../image/checkBookmark.svg":"../image/unCheckBookmark.svg"}></Bookmark>
                 </InfoSubContainer>
                 <TicketContainer>
                     <TicketNeed>
@@ -145,13 +146,13 @@ export const MiniPrototype = ({ prototype } : { prototype: PrototypeProp }) => {
     return (
         <>
             <MiniPrototypeContainer onClick={() => navigate('/prototype')}>
-                <PrototypeImg src={prototype.path} alt={prototype.name} width={"106px"} height={"106px"} />
-                <DDay>{prototype.label}</DDay>
+                <PrototypeImg src={prototype.thumbnailUrl} alt={prototype.name} width={"106px"} height={"106px"} />
+                <DDay>{prototype.investCount}</DDay>
                 <InfoMiniContainer>
                     <PrototypeName>{prototype.name.length > 7 ? prototype.name.substring(0, 7) + ".." : prototype.name}</PrototypeName>
                     <TicketContainer>
                         <Ticket />
-                        <Bookmark src={prototype.isBookmark ? "../image/checkBookmark.svg":"../image/unCheckBookmark.svg"}></Bookmark>
+                        <Bookmark src={prototype.name ? "../image/checkBookmark.svg":"../image/unCheckBookmark.svg"}></Bookmark>
                     </TicketContainer>
                 </InfoMiniContainer>
             </MiniPrototypeContainer>
