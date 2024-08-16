@@ -1,9 +1,9 @@
 import { AxiosResponse } from "axios";
 
-import { API, setAccess, storeAccess } from "@/shared";
+import { API, setAccess, storeAccess, useUserStore } from "@/shared";
 
 export const AuthService = () => {
-  //const setAllUserInfo = useUserStore((state) => state.setAllUserInfo);
+  const setUserAllInfo = useUserStore((state) => state.setUserAllInfo);
 
   const signin = async (code: string) => {
     const {
@@ -20,9 +20,19 @@ export const AuthService = () => {
     return newUser;
   };
 
-  /* const signup = async () => {
-    const { data } = await API.post("/oauth2/signup");
-  }; */
+  const getUserInfo = async () => {
+    const {
+      data: {
+        result: { detailInfo, addInfo },
+      },
+    } = (await API.get("/my/detail")) as AxiosResponse<User.GetUserResDto>;
 
-  return { signin };
+    setUserAllInfo({ ...detailInfo, ...addInfo });
+  };
+
+  const signup = async () => {
+    //const { data } = await API.post("/oauth2/signup");
+  };
+
+  return { signin, getUserInfo };
 };

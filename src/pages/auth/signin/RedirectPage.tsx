@@ -5,13 +5,16 @@ import { PAGE_URL, AuthService } from "@/shared";
 
 const RedirectPage = () => {
   const navigate = useNavigate();
-  const { signin } = AuthService();
+  const { signin, getUserInfo } = AuthService();
 
   const signinHandler = async (code: string) => {
     const newUser = await signin(code);
 
     if (newUser) navigate(PAGE_URL.SignUp);
-    else navigate(PAGE_URL.Home);
+    else {
+      await getUserInfo();
+      navigate(PAGE_URL.Home);
+    }
   };
 
   useEffect(() => {

@@ -1,13 +1,4 @@
 declare namespace User {
-  //DTO
-  export interface SignInResDto {
-    result: {
-      newUser: boolean;
-      token_type: string;
-      access_token: string;
-    };
-  }
-
   export interface BasicInfo {
     name: string;
     birthYear: string;
@@ -87,5 +78,20 @@ declare namespace User {
     deletePhone: (value: Phone) => void;
     setHealthStatus: (value: AdditionalInfo[healthStatus]) => void;
   }
-}
 
+  //DTO
+  export interface SignInResDto {
+    result: {
+      newUser: boolean;
+      token_type: string;
+      access_token: string;
+    };
+  }
+
+  export interface GetUserResDto {
+    result: {
+      detailInfo: BasicInfo;
+      addInfo: AdditionalInfo;
+    };
+  }
+}
