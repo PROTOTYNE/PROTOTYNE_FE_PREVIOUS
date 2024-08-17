@@ -80,6 +80,13 @@ interface PrototypeProp {
     investCount: 0, 
     reqTickets: 0,
 }
+interface MiniPrototypeProp {
+    id: 0,
+    name: string, 
+    thumbnailUrl: string,
+    reqTickets: 0,
+    dday: 0,
+}
 const Ticket = () => {
     return (
         <TicketImgContainer>
@@ -141,13 +148,13 @@ const DDay = styled.div`
 
 `;
 
-export const MiniPrototype = ({ prototype } : { prototype: PrototypeProp }) => {
+export const MiniPrototype = ({ prototype } : { prototype: MiniPrototypeProp }) => {
     const navigate = useNavigate();
     return (
         <>
             <MiniPrototypeContainer onClick={() => navigate('/prototype')}>
                 <PrototypeImg src={prototype.thumbnailUrl} alt={prototype.name} width={"106px"} height={"106px"} />
-                <DDay>{prototype.investCount}</DDay>
+                <DDay>{prototype.dday}</DDay>
                 <InfoMiniContainer>
                     <PrototypeName>{prototype.name.length > 7 ? prototype.name.substring(0, 7) + ".." : prototype.name}</PrototypeName>
                     <TicketContainer>

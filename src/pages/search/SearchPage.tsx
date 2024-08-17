@@ -3,8 +3,11 @@ import { MiniPrototype } from '@/entities';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from 'react-router';
+import { SearchService } from '@/shared';
+
+const searchService = SearchService();
 
 const SearchInput = styled.input`
     border-radius: 7px;
@@ -76,7 +79,6 @@ const Cancel = styled.div`
 const SearchListContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 `;
 const Info = styled.div`
     display: flex;
@@ -91,44 +93,75 @@ const Info = styled.div`
 
 
 interface PrototypeProp {
-    path: string, 
-    label: string, 
-    name: string, 
-    isBookmark: boolean,
+    id: 0;
+    name: string;
+    thumbnailUrl: string;
+    reqTickets: 0;
+    dday: 0;
 };
+
 const SearchPage = ({}) => {
     const location = useLocation();
-    const [isSearch, setIsSearch] = useState<string>(() => (location.state && location.state.title ? location.state.title : ''));
-    const [isSearchList, setIsSearchList] = useState<string[]>(['마라탕 만두', '마라탕 만두2', '마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두 마라탕 만두', '가나다라마바사', '마라탕 만두1', '마라탕 만두3', '마라탕 만두4', '마라탕 만두5', '마라탕 만두6', '마라탕 만두7', '마라탕 만두8', '마라탕 만두9', '마라탕 만두10', '마라탕 만두11', '마라탕 만두12', '마라탕 만두13', '마라탕 만두14']);
+    const [search, setSearch] = useState<string>(() => (location.state && location.state.title ? location.state.title : ''));
+    const [recentSearch, setRecentSearch] = useState<string[]>([]);
     const [searchList, setSearchList] = useState<PrototypeProp[]>([]);
     const navigate = useNavigate();
+
+    const fetchRecentSearch = async () => {
+        const searchList = await searchService.getSearchList();
+        return searchList;
+    }
+
+    useEffect(() => {
+        fetchRecentSearch()
+        .then(searchList => setRecentSearch(searchList));
+    }, [])
+
+    const fetchProduct = async (code: string) => {
+        const product = await searchService.getSearchProduct(code);
+        return product;
+    };
+
+    // useEffect(() => {
+    //     fetchProduct(search)
+    //     .then(product => setSearchList(product));
+    // }, [search]);
+
 
     const deleteInput = () => {
         const searchInput = document.querySelector('input');
         if(searchInput !== null) {
             searchInput.value = '';
-            setIsSearch('');
+            setSearch('');
         }
     
     }
 
     const handleDeleteSearch = (name: string) => {
-        setIsSearchList(isSearchList.filter((search) => search !== name));
+        setRecentSearch(recentSearch.filter((search) => search !== name));
+        searchService.deleteSearchList(name);
     };
     
     const handleDeleteAll = () => {
-        setIsSearchList([]);
+        setRecentSearch([]);
+        searchService.deleteAllSearch();
     };
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            setSearch(event.currentTarget.value);
+            fetchProduct(search).then(product => setSearchList(product));
+        }
+    };
+
     return (
         <>
         <SearchContainer>
             <BackgoundContainer>
                 <SearchIcon />
-                <SearchInput defaultValue={isSearch ? `#${isSearch}` : ''} placeholder="검색하기" onChange={(e) => {
-                    setIsSearch(e.target.value);
-                } 
-                }/>
-                {isSearch && (
+                <SearchInput defaultValue={search ? `#${search}` : ''} placeholder="검색하기" onKeyDown={handleKeyDown}
+                />
+                {search && (
                     <CancelIcon onClick={ deleteInput }
                   />
                 )}
@@ -138,10 +171,10 @@ const SearchPage = ({}) => {
             </BackgoundContainer>
         </SearchContainer>
             {
-                isSearch ? (
+                search ? (
                     <>
                         <Info>
-                            '{isSearch.length >= 6 ? isSearch.substring(0, 6) + '...' : isSearch}'에 대한 {searchList.length}개의 시제품이 조회되었습니다.
+                            '{search.length >= 6 ? search.substring(0, 6) + '...' : search}'에 대한 {searchList.length}개의 시제품이 조회되었습니다.
                         </Info>
                         <br />
                         <SearchListContainer>
@@ -154,11 +187,11 @@ const SearchPage = ({}) => {
                         </SearchListContainer>
                     </>
                 ) : (
-                    isSearchList.length !== 0 ? (
+                    recentSearch.length !== 0 ? (
                         <>
                             <SearchHeader onDeleteAll={handleDeleteAll} />
                             <RecentSearchContainer>
-                                {(isSearchList).map((name: string) => (
+                                {(recentSearch).map((name: string) => (
                                     <Searches key={name} name={name} onDeleteSearch={handleDeleteSearch}/>
                                 ))}
                             </RecentSearchContainer>

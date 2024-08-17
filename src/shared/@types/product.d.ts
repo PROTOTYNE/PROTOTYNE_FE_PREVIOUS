@@ -1,5 +1,5 @@
 declare namespace Product {
-    export interface ProductPopularDto {
+    export interface ProductDto {
         result: [{
             id: 0;
             name: string;
@@ -8,7 +8,15 @@ declare namespace Product {
             reqTickets: 0;
         }];
     }
-
+    export interface SearchProductDto {
+        result: [{
+            id: 0;
+            name: string;
+            thumbnailUrl: string;
+            reqTickets: 0;
+            dday: 0;
+        }];
+    }
     export interface ProductImminentDto {
         img: string;
         dDay: number;
