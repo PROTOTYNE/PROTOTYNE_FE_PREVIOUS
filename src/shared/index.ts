@@ -9,6 +9,8 @@ export {
 } from "./configs/axios";
 export { additionalInfoOptions } from "./configs/options";
 
+export { AuthService } from "./hooks/services/AuthService";
+
 export { useUserStore } from "./hooks/stores/useUserStore";
 export { useProductStore } from "./hooks/stores/useProductStore";
 export { ProductDetailService } from "./hooks/services/HomeService";
