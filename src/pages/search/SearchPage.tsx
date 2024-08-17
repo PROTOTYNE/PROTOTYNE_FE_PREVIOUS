@@ -149,6 +149,10 @@ const SearchPage = ({}) => {
         searchService.deleteSearchList(name);
     };
     
+    const onClickSearch = (name: string) => {
+        setSearch(name);
+        fetchProduct(name).then(product => setSearchList(product));
+    }
     const handleDeleteAll = () => {
         setRecentSearch([]);
         searchService.deleteAllSearch();
@@ -166,7 +170,7 @@ const SearchPage = ({}) => {
         <SearchContainer>
             <BackgoundContainer>
                 <SearchIcon />
-                <SearchInput defaultValue={search ? `#${search}` : ''} placeholder="검색하기" onKeyDown={handleKeyDown}
+                <SearchInput defaultValue={search ? (location.state ? `#${search}` : `${search}`) : ''} placeholder="검색하기" onKeyDown={handleKeyDown}
                 />
                 {search && (
                     <CancelIcon onClick={ deleteInput }
@@ -187,7 +191,7 @@ const SearchPage = ({}) => {
                         <SearchListContainer>
                             {searchList.map((prototype: PrototypeProp) => (
                                 <MiniPrototype 
-                                key={prototype.name}
+                                key={prototype.id}
                                 prototype={prototype}
                                 />
                             ))}
@@ -199,7 +203,7 @@ const SearchPage = ({}) => {
                             <SearchHeader onDeleteAll={handleDeleteAll} />
                             <RecentSearchContainer>
                                 {(recentSearch).map((name: string) => (
-                                    <Searches key={name} name={name} onDeleteSearch={handleDeleteSearch}/>
+                                    <Searches key={name} name={name} onClickSearch={onClickSearch} onDeleteSearch={handleDeleteSearch}/>
                                 ))}
                             </RecentSearchContainer>
                         </>
