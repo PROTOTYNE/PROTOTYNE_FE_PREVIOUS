@@ -1,11 +1,11 @@
-import { useParams } from "react-router";
+//import { useParams } from "react-router";
 
 import { Button, Header } from "@/entities";
 
 import * as Styles from "./Styles";
 
 const ReviewPage = () => {
-  const { id } = useParams();
+  //const { id } = useParams();
 
   return (
     <>
@@ -19,6 +19,7 @@ const ReviewPage = () => {
           index={2}
           label="매운 정도는 어느 정도인가?"
         ></Styles.SujectiveQuestion>
+        <Styles.ImageQuestion index={3} label="사용한 이미지를 붙여주세요!" />
         <Styles.Repurchase />
       </Styles.ScrollArea>
       <Button>제출하기</Button>

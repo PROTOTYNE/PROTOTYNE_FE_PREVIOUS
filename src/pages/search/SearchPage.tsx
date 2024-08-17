@@ -1,7 +1,7 @@
-import { SearchHeader, Searches } from '@/widget';
-import { MiniPrototype } from '@/entities';
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
+import { SearchHeader, Searches } from "@/widget";
+import { MiniPrototype } from "@/entities";
+import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import styled from "@emotion/styled";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from 'react-router';
@@ -35,10 +35,9 @@ const CancelIcon = styled(CancelRoundedIcon)`
 `;
 
 const Container = styled.div`
-    display: flex;
-    justify-content: center;
-    margin-top: 180px;
-
+  display: flex;
+  justify-content: center;
+  margin-top: 180px;
 `;
 
 const RecentSearchContainer = styled.div`
@@ -55,7 +54,7 @@ const RecentSearchContainer = styled.div`
 
 const BackgoundContainer = styled.div`
   display: flex;
-  background: linear-gradient(to right, #7995B2 0%, #476090 51%, #0D1B4A 100%);
+  background: linear-gradient(to right, #7995b2 0%, #476090 51%, #0d1b4a 100%);
   padding: 0px 10px;
   height: 70px;
   width: 100%;
@@ -77,8 +76,8 @@ const Cancel = styled.div`
   justify-content: center;
 `;
 const SearchListContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 `;
 const Info = styled.div`
     display: flex;
@@ -89,8 +88,6 @@ const Info = styled.div`
     border-top: 1px solid #C3C3C3;
     border-bottom: 1px solid #C3C3C3;
 `;
-
-
 
 interface PrototypeProp {
     id: 0;
@@ -217,5 +214,6 @@ const SearchPage = ({}) => {
         </>
     );
 }
+
 
 export default SearchPage;

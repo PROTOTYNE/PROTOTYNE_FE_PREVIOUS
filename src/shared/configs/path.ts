@@ -12,6 +12,11 @@ export enum PAGE_URL {
 
   Home = "/home",
 
+  Product = "/product/:id",
+  Address = "/address",
+  AddressInfo = "/addressinfo",
+  MyTicket = "/MyTicket",
+
   My = "/my",
 
   Search = "/search",

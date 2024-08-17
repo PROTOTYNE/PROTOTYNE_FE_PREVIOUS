@@ -7,11 +7,13 @@ export const Header = ({
   onBack,
   background,
   styled,
+  colorBackground,
 }: {
   children: React.ReactNode;
   onBack?: boolean;
   background?: boolean;
   styled?: boolean;
+  colorBackground?: boolean;
 }) => {
   const navigate = useNavigate();
 
@@ -19,8 +21,11 @@ export const Header = ({
     <>
       {background ? <BackGround /> : null}
       {styled ? <StyledContioner /> : null}
+      {colorBackground ? <ColorBackGround /> : null}
       <Container style={{ color: styled ? "white" : "none" }}>
-        {onBack ? (
+        {onBack && colorBackground ? (
+          <WhiteBackButton />
+        ) : onBack ? (
           <BackButton
             onClick={() => {
               navigate(-1);
@@ -36,7 +41,20 @@ export const Header = ({
 const BackGround = styled.div`
   background-color: white;
   width: 100%;
-  height: 70px;
+  height: 54px;
+
+  position: fixed;
+  top: 0px;
+  left: 0px;
+
+  z-index: 10;
+`;
+
+const ColorBackGround = styled.div`
+  background: linear-gradient(to right, #7995b2 0%, #476090 51%, #0d1b4a 100%);
+
+  width: 100%;
+  height: 54px;
 
   position: fixed;
   top: 0px;
@@ -88,6 +106,10 @@ const StyledContioner = styled.div`
 
 const BackButton = styled(ArrowBackIosNewIcon)`
   position: absolute;
-  top: 6px;
+  top: -3px;
   left: 30px;
+`;
+
+const WhiteBackButton = styled(BackButton)`
+  color: white;
 `;

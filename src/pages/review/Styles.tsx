@@ -166,6 +166,66 @@ const Textarea = styled.textarea`
   margin-top: 10px;
 `;
 
+export const ImageQuestion = ({
+  index,
+  label,
+}: {
+  index: number;
+  label: string;
+}) => (
+  <>
+    <Label>
+      [{index}] {label}
+    </Label>
+    <ImageContainer>
+      <ImageBlock src="/image/logo.png"></ImageBlock>
+      <AddImageBlock>+</AddImageBlock>
+    </ImageContainer>
+  </>
+);
+
+const ImageContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+
+  justify-content: flex-start;
+
+  margin-top: 8px;
+`;
+
+const ImageBlock = styled.div`
+  width: 101px;
+  height: 101px;
+
+  background-image: url(${(props: { src: string }) => props.src});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border-radius: 10px;
+
+  margin-right: 10px;
+`;
+
+const AddImageBlock = styled.div`
+  width: 101px;
+  height: 101px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 50px;
+
+  background-color: #d9d9d9;
+
+  border-radius: 10px;
+
+  color: white;
+`;
+
 export const Repurchase = () => (
   <RepurchaseContainer>
     <div>⭐ 재구매 의향이 있나요?</div>
