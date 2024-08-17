@@ -16,22 +16,28 @@ interface PrototypeProp {
     investCount: 0, 
     reqTickets: 0,
 }
+interface MiniPrototypeProp {
+    id: 0,
+    name: string, 
+    thumbnailUrl: string,
+    reqTickets: 0,
+    dday: 0,
+}
 
-
-export const Prototypes = ({ type, prototypes } : { type: string, prototypes: PrototypeProp[] }) => {
+export const Prototypes = ({ type, prototypes } : { type: string, prototypes: PrototypeProp[] | MiniPrototypeProp[] }) => {
     return (
         <>
             <Container>
-                {prototypes.map((prototype: PrototypeProp) => {
+                {prototypes.map((prototype: PrototypeProp | MiniPrototypeProp) => {
                     return (
                         type === "popular" ? 
                         <Prototype 
                         key={prototype.id}
-                        prototype={prototype}
+                        prototype={prototype as PrototypeProp}
                         /> :
                         <MiniPrototype
                         key={prototype.id}
-                        prototype={prototype}
+                        prototype={prototype as MiniPrototypeProp}
                         />
                     );
                 })}
@@ -41,16 +47,28 @@ export const Prototypes = ({ type, prototypes } : { type: string, prototypes: Pr
 };
 
 interface BookmarkProp {
-    path: string,
-    name: string,
-    isBookmark: boolean,
+    userId: 0;
+    products: [{
+        productId: 0;
+        name: string;
+        reqTickets: 0;
+        thumbnailUrl: string;
+        count: 0;
+    }]
 }
-export const BookmarkPrototypes = ({ prototype } : { prototype: BookmarkProp[] }) => {
+interface ProductProp {
+    productId: 0;
+    name: string;
+    reqTickets: 0;
+    thumbnailUrl: string;
+    count: 0;
+}
+export const BookmarkPrototypes = ({ prototype } : { prototype: BookmarkProp }) => {
     return (
         <Container>
-            {(prototype).map((prototype: BookmarkProp) => (
+            {(prototype.products).map((prototype: ProductProp) => (
                     <BookmarkPrototype 
-                    key={prototype.path}
+                    key={prototype.productId}
                     prototype={prototype}
                     />
                 ))}

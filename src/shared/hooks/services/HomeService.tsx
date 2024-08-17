@@ -10,7 +10,7 @@ export const ProductDetailService = () => {
       data: {
         result: product,
       },
-    } = (await API.get("http://15.165.65.130/product/list", {
+    } = (await API.get("/product/list", {
       params: { type: code },
     })) as AxiosResponse<Product.ProductDto>;
 

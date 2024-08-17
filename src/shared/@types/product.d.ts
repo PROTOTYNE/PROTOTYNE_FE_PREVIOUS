@@ -17,6 +17,29 @@ declare namespace Product {
             dday: 0;
         }];
     }
+
+    export interface CategoryListDto {
+        result: [{
+            id: 0;
+            name: string;
+            thumbnailUrl: string;
+            reqTickets: 0;
+            dday: 0;
+        }];
+    }
+
+    export interface BookmarkListDto {
+        result: {
+            userId: 0;
+            products: [{
+                productId: 0;
+                name: string;
+                reqTickets: 0;
+                thumbnailUrl: string;
+                count: 0;
+            }];
+        };
+    }
     export interface ProductImminentDto {
         img: string;
         dDay: number;

@@ -127,6 +127,16 @@ const SearchPage = ({}) => {
     //     .then(product => setSearchList(product));
     // }, [search]);
 
+    const fetchCategoryProduct = async (code: string) => {
+        const categoryList = await searchService.getCategoryList(code);
+        return categoryList;
+    }
+    useEffect(() => {
+        if (location.state && location.state.title) {
+            fetchCategoryProduct(search)
+            .then(product => setSearchList(product));
+        }
+    }, [location.state]);
 
     const deleteInput = () => {
         const searchInput = document.querySelector('input');

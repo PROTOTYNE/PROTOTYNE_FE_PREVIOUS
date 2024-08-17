@@ -9,7 +9,7 @@ export const SearchService = () => {
       data: {
         result: searchList,
       },
-    } = (await API.delete("http://15.165.65.130/product/search", {
+    } = (await API.delete("/product/search", {
       params: { name: code },
       headers: {
         "Authorization": `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
@@ -23,7 +23,7 @@ export const SearchService = () => {
       data: {
         result: searchList,
       },
-    } = (await API.delete("http://15.165.65.130/product/search/all", {
+    } = (await API.delete("/product/search/all", {
       headers: {
         "Authorization": `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
       }
@@ -36,7 +36,7 @@ export const SearchService = () => {
       data: {
         result: product,
       },
-    } = (await API.post("http://15.165.65.130/product/search", null, {
+    } = (await API.post("/product/search", null, {
       params: { name: code },
       headers: {
         "Authorization": `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
@@ -51,13 +51,24 @@ export const SearchService = () => {
       data: {
         result: searchList,
       },
-    } = (await API.get("http://15.165.65.130/product/search/recent", {
+    } = (await API.get("/product/search/recent", {
       headers: {
         "Authorization": `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
       }
     }));
-        return searchList;
+      return searchList;
     };
 
-  return { deleteSearchList, deleteAllSearch, getSearchProduct, getSearchList };
+  const getCategoryList = async (code: string) => {
+    const {
+      data: {
+        result: categoryList,
+      },
+    } = (await API.get("/product/select", {
+      params: { category: code },
+    })) as AxiosResponse<Product.CategoryListDto>;
+    return categoryList;
+  }
+
+  return { deleteSearchList, deleteAllSearch, getSearchProduct, getSearchList, getCategoryList };
 };
