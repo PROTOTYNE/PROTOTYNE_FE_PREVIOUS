@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
 import styled from "@emotion/styled";
+import React, { ReactNode } from "react";
 
 // 제목 텍스트
 const Title = styled.h2`

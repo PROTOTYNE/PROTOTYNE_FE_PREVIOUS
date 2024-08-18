@@ -1,21 +1,20 @@
-import { useState } from "react";
-import ProgressBar from "@ramonak/react-progress-bar";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import ProgressBar from "@ramonak/react-progress-bar";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import {
+  Background,
   Button,
+  DisableButton,
+  GrayLine,
   Header,
   LargeImage,
-  GrayLine,
-  Background,
-  DisableButton,
-  SelectInput,
   MultiSelectInput,
+  SelectInput,
   TwoOptionsButton,
 } from "@/entities";
-import { useUserStore } from "@/shared";
-import { PAGE_URL, additionalInfoOptions } from "@/shared";
+import { PAGE_URL, additionalInfoOptions, useUserStore } from "@/shared";
 
 import * as Styles from "./Styles";
 

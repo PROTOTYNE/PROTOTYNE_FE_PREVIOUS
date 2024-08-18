@@ -1,3 +1,4 @@
+import { StatusType } from "@/service/my/product";
 import React from "react";
 import ProductItem from "./ProductItem";
 
@@ -14,7 +15,7 @@ interface Product {
 }
 
 interface ProductListProps {
-  status: "신청" | "진행중" | "당첨" | "종료";
+  status: StatusType
 }
 
 export const ProductList: React.FC<ProductListProps> = ({ status }) => {
@@ -82,11 +83,11 @@ export const ProductList: React.FC<ProductListProps> = ({ status }) => {
   return (
     <div>
       <h2>
-        {status === "신청"
+        {status === StatusType.applied
           ? "신청중인 체험"
-          : status === "진행중"
+          : status === StatusType.ongoing
           ? "진행중인 체험"
-          : status === "당첨"
+          : status === StatusType.winning
           ? "당첨된 체험"
           : "종료된 체험"}
       </h2>

@@ -1,5 +1,8 @@
-import React from "react";
+import { getTicketCount, getTicketUsed } from "@/service/my/ticket";
 import styled from "@emotion/styled";
+import React, { useEffect, useState } from "react";
+
+
 
 // Styled Components 정의
 const WidgetContainer = styled.div`
@@ -59,18 +62,31 @@ const BuyButton = styled.span`
 // Props 인터페이스 정의
 interface UserInfoProps {
   userName: string; // 사용자 이름
-  ticketsOwned: number; // 보유한 티켓 수
-  ticketsUsed: number; // 체험한 시제품 수
   status: "신청" | "진행중" | "당첨" | "종료"; // 상태 (신청 또는 기타)
 }
+
 
 // UserInfoWidget 컴포넌트 정의
 export const UserInfoWidget: React.FC<UserInfoProps> = ({
   userName,
-  ticketsOwned,
-  ticketsUsed,
   status,
 }) => {
+
+  const [ticketsOwned, setTicketsOwned]= useState <number>(0);
+  const [ticketsUsed, setTicketsUsed]= useState <number>(0);    //값은 만들어놓았음
+
+  //api로 가져와야 함(useeffect)
+
+  useEffect(()=> {
+   async function load(){
+    const usedCount = await getTicketUsed("2024-08-18","2024-12-02")
+    if (usedCount !== null ) {setTicketsUsed(usedCount)}
+    const ownedCount = await getTicketCount("2024-08-18","2024-12-02")
+    if(ownedCount !== null) {setTicketsOwned(ownedCount)}
+   }
+   load() .then()
+  },[])
+
   return (
     <WidgetContainer>
       <UserInfoContainer>

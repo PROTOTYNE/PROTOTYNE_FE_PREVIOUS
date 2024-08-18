@@ -1,20 +1,33 @@
 import { MyPageHeader, ProductExContainer, ProductList } from "@/entities";
+import { getProductCount, ProductCount, StatusType } from "@/service/my/product";
 import {
   ProductExperience,
+  ProductInfoContainer,
   UserInfoWidget,
-  WishList,
-  ProductInfoContainer
+  WishList
 } from "@/widget";
+import { useEffect, useState } from "react";
+
+
 
 const MyPage: React.FC = () => {
-  const statuses = [
-    { count: 3, name: "신청", isActive: true },
-    { count: 5, name: "진행중", isActive: false },
-    { count: 2, name: "당첨", isActive: false },
-    { count: 1, name: "종료", isActive: false },
-  ];
+  const [countStatus, setCountStatus] = useState<ProductCount>({
+    applied: 0,
+    ongoing: 0,
+    winning: 0,
+    completed: 0
+  })
+  // 선택된 상태값 관리
+  const [selected, setSelected] = useState<StatusType>(StatusType.applied)
 
-  const isWinnerStatusActive = statuses.some(status => status.name === "신청" && status.isActive);
+  useEffect(() => {
+    async function load() {
+      const result = await getProductCount()
+      setCountStatus(result)
+    }
+
+    load().then()
+  }, [])
 
   return (
     <div
@@ -29,21 +42,25 @@ const MyPage: React.FC = () => {
       <div className="user-info-section">
         <UserInfoWidget
           userName="조서영"
-          ticketsOwned={12}
-          ticketsUsed={4}
           status="신청"
         />
       </div>
       <ProductInfoContainer>
         <div className="product-info-section">
           <ProductExContainer title="나의 시제품 체험">
-            <ProductExperience statuses={statuses} />
+            <ProductExperience 
+              status={countStatus} 
+              selected={selected}
+              onStatusSelected={(selected:StatusType) => {
+                setSelected(selected)
+              }}
+            />
           </ProductExContainer>
         </div>
         <div className="product-list-section">
-          <ProductList status="신청" /> {/* 상태에 따라 다르게 표시 */}
+          <ProductList status={selected} /> {/* 상태에 따라 다르게 표시 */}
         </div>
-        {isWinnerStatusActive && ( // '당첨' 상태일 때만 위시리스트 표시
+        {selected === StatusType.applied && ( // '당첨' 상태일 때만 위시리스트 표시
           <div className="wishlist-section">
             <div className="wishlist-header">
               <span className="wishlist-title">관심 목록</span>

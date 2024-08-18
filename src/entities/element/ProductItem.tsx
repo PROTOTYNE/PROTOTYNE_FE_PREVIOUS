@@ -145,7 +145,7 @@ const ShippingDetails = styled.div`
   margin-top: 5px;
 `;
 
-// ProductItem Component
+// ProductItem Component -> 여기 주석처리 하기 //
 interface ProductItemProps {
   productName: string;
   color?: string;

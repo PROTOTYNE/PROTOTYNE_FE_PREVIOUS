@@ -1,30 +1,52 @@
-import React from "react";
 import {
-  Arrow,
+  Divider,
   StatusBox,
   StatusContainer,
   StatusCount,
-  StatusName,
-  Divider,
+  StatusName
 } from "@/entities";
+import { ProductCount, StatusType } from "@/service/my/product";
+import React from "react";
 
 interface StatusProps {
-  statuses: { count: number; name: string; isActive: boolean }[];
+  status: ProductCount
+  selected: StatusType
+  onStatusSelected: (status: StatusType) => void
 }
 
-export const ProductExperience: React.FC<StatusProps> = ({ statuses }) => {
+export const ProductExperience: React.FC<StatusProps> = ({ status, selected, onStatusSelected }) => {
   return (
     <StatusContainer>
-      {statuses.map((status, index) => (
-        <React.Fragment key={index}>
-          <StatusBox isActive={status.isActive}>
-            <StatusCount>{status.count}</StatusCount>
-            <StatusName>{status.name}</StatusName>
-          </StatusBox>
-          {index < statuses.length - 1 && <Arrow />}{" "}
-          {/* 마지막 상태 뒤에는 화살표를 추가하지 않음 */}
-        </React.Fragment>
-      ))}
+      <StatusBox 
+        isActive={selected == StatusType.applied}
+        onClick={() => onStatusSelected(StatusType.applied)}
+      >
+        <StatusCount>{status.applied}</StatusCount>
+        <StatusName>{StatusType.applied}</StatusName>
+      </StatusBox>
+      <StatusBox 
+        isActive={selected == StatusType.ongoing}
+        onClick={() => onStatusSelected(StatusType.ongoing)}
+        >
+        <StatusCount>{status.ongoing}</StatusCount>
+        <StatusName>{StatusType.ongoing}</StatusName>
+      </StatusBox>
+      <StatusBox 
+        isActive={selected == StatusType.winning}
+        onClick={() => onStatusSelected(StatusType.winning)}
+      >
+        <StatusCount>{status.winning}</StatusCount>
+        <StatusName>{StatusType.winning}</StatusName>
+      </StatusBox>
+      <StatusBox 
+        isActive={selected == StatusType.completed}
+        onClick={() => onStatusSelected(StatusType.completed)}
+      >
+        <StatusCount>{status.completed}</StatusCount>
+        <StatusName>{StatusType.completed}</StatusName>
+      </StatusBox>
+
+    
       <Divider /> {/* 모든 상태 아래에 하나의 Divider 추가 */}
     </StatusContainer>
   );

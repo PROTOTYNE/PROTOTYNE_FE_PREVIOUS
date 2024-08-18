@@ -67,3 +67,15 @@
     color: #007bff; /* 티켓 수 색상 */
     font-size: 12px; /* 폰트 크기 조정 */
 }
+
+.wishlist-title {
+    font-weight: bold;  /* 볼드체 설정 */
+    font-size: 14pt;    /* 14pt 크기 설정 */
+  }
+  
+  .wishlist-view-all {
+    font-size: 10pt;     /* 10pt 크기 설정 */
+    color: gray;         /* 회색 글씨 설정 */
+    float: right;        /* 오른쪽 정렬 */
+  }
+  
