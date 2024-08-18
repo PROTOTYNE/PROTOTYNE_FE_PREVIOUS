@@ -59,11 +59,38 @@ export const AuthService = () => {
     });
   };
 
-  const getAlarm = async () => {
+  const getAlarms = async () => {
     const { data } = await API.get("/alarm");
 
     return data;
   };
 
-  return { signin, getUserInfo, signup };
+  const updateBasicInfo = async () => {
+    await API.post("/my/basicinfo", {
+      familyMember: userStore.familyNum,
+      gender: userStore.gender,
+      birth: `${userStore.birthYear}-${userStore.birthMonth}-${userStore.birthDay}`,
+    });
+  };
+
+  const updateAdditionalInfo = async () => {
+    await API.post("/my/addinfo", {
+      occupation: userStore.occupation,
+      income: userStore.income,
+      interests: userStore.interests,
+      familyComposition: userStore.familyComposition,
+      productTypes: userStore.productTypes,
+      phones: userStore.phones,
+      healthStatus: userStore.healthStatus,
+    });
+  };
+
+  return {
+    signin,
+    getUserInfo,
+    signup,
+    getAlarms,
+    updateBasicInfo,
+    updateAdditionalInfo,
+  };
 };

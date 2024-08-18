@@ -6,13 +6,13 @@ import { AuthService } from "@/shared";
 import * as Styles from "./Styles";
 
 const AlarmPage = () => {
-  const { getAlarm } = AuthService();
+  const { getAlarms } = AuthService();
 
   const [alarms, setAlarms] = useState<User.Alarms>([]);
 
   useEffect(() => {
     (async () => {
-      const data = await getAlarm();
+      const data = await getAlarms();
       setAlarms(data);
     })();
   }, []);
