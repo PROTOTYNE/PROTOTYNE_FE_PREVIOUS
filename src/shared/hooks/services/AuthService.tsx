@@ -3,7 +3,7 @@ import { AxiosResponse } from "axios";
 import { API, setAccess, storeAccess, useUserStore } from "@/shared";
 
 export const AuthService = () => {
-  const setUserAllInfo = useUserStore((state) => state.setUserAllInfo);
+  const userStore = useUserStore((state) => state);
 
   const signin = async (code: string) => {
     const {
@@ -29,7 +29,7 @@ export const AuthService = () => {
 
     const birth = detailInfo.birth.split("-");
 
-    setUserAllInfo({
+    userStore.setUserAllInfo({
       name: detailInfo.name,
       birthYear: birth[0],
       birthMonth: birth[1],
@@ -41,8 +41,23 @@ export const AuthService = () => {
   };
 
   const signup = async () => {
-    //const { data } = await API.post("/oauth2/signup");
+    await API.post("/oauth2/signup", {
+      detailRequest: {
+        familyMember: userStore.familyNum,
+        gender: userStore.gender,
+        birth: `${userStore.birthYear}-${userStore.birthMonth}-${userStore.birthDay}`,
+      },
+      addInfoRequest: {
+        occupation: userStore.occupation,
+        income: userStore.income,
+        interests: userStore.interests,
+        familyComposition: userStore.familyComposition,
+        productTypes: userStore.productTypes,
+        phones: userStore.phones,
+        healthStatus: userStore.healthStatus,
+      },
+    });
   };
 
-  return { signin, getUserInfo };
+  return { signin, getUserInfo, signup };
 };

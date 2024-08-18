@@ -14,7 +14,7 @@ import {
   MultiSelectInput,
   TwoOptionsButton,
 } from "@/entities";
-import { useUserStore } from "@/shared";
+import { useUserStore, AuthService } from "@/shared";
 import { PAGE_URL, additionalInfoOptions } from "@/shared";
 
 import * as Styles from "./Styles";
@@ -27,6 +27,8 @@ const SignUpPage = () => {
   //Step 1
   const [agree1, setAgree1] = useState<boolean>(false);
   const [agree2, setAgree2] = useState<boolean>(false);
+
+  const { signup } = AuthService();
 
   return (
     <>
@@ -342,7 +344,7 @@ const SignUpPage = () => {
             navigation(PAGE_URL.Home);
           }}
           OnClickRight={() => {
-            console.log(userStore);
+            signup();
             navigation(PAGE_URL.Home);
           }}
         />
