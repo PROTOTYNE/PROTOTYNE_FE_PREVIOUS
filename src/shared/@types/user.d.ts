@@ -82,7 +82,7 @@ declare namespace User {
   //DTO
   export interface SignInResDto {
     result: {
-      newUser: boolean;
+      signupComplete: boolean;
       token_type: string;
       access_token: string;
     };

@@ -8,7 +8,7 @@ export const AuthService = () => {
   const signin = async (code: string) => {
     const {
       data: {
-        result: { access_token, newUser },
+        result: { access_token, signupComplete },
       },
     } = (await API.get("/oauth2/login", {
       params: { code: code },
@@ -17,7 +17,7 @@ export const AuthService = () => {
     setAccess(access_token);
     storeAccess(access_token);
 
-    return newUser;
+    return signupComplete;
   };
 
   const getUserInfo = async () => {

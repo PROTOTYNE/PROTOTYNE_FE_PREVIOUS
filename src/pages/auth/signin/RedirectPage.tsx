@@ -8,9 +8,9 @@ const RedirectPage = () => {
   const { signin, getUserInfo } = AuthService();
 
   const signinHandler = async (code: string) => {
-    const newUser = await signin(code);
+    const signupComplete = await signin(code);
 
-    if (newUser) navigate(PAGE_URL.SignUp);
+    if (!signupComplete) navigate(PAGE_URL.SignUp);
     else {
       await getUserInfo();
       navigate(PAGE_URL.Home);
