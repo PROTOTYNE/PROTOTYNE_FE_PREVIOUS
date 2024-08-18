@@ -1,4 +1,11 @@
 declare namespace User {
+  export type Alarms = {
+    img: string;
+    name: string;
+    content: string;
+    time: Date;
+  }[];
+
   export interface BasicInfo {
     name: string;
     birthYear: string;

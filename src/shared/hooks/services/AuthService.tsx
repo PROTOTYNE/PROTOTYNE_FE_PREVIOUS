@@ -59,5 +59,11 @@ export const AuthService = () => {
     });
   };
 
+  const getAlarm = async () => {
+    const { data } = await API.get("/alarm");
+
+    return data;
+  };
+
   return { signin, getUserInfo, signup };
 };
