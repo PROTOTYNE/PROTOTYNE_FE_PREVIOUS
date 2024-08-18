@@ -90,7 +90,12 @@ declare namespace User {
 
   export interface GetUserResDto {
     result: {
-      detailInfo: BasicInfo;
+      detailInfo: {
+        name: string;
+        birth: string;
+        gender: "MALE" | "FEMALE";
+        familyNum: number;
+      };
       addInfo: AdditionalInfo;
     };
   }

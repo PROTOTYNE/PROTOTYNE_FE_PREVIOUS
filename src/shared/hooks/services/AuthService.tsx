@@ -27,7 +27,17 @@ export const AuthService = () => {
       },
     } = (await API.get("/my/detail")) as AxiosResponse<User.GetUserResDto>;
 
-    setUserAllInfo({ ...detailInfo, ...addInfo });
+    const birth = detailInfo.birth.split("-");
+
+    setUserAllInfo({
+      name: detailInfo.name,
+      birthYear: birth[0],
+      birthMonth: birth[1],
+      birthDay: birth[2],
+      gender: detailInfo.gender,
+      familyNum: detailInfo.familyNum,
+      ...addInfo,
+    });
   };
 
   const signup = async () => {
