@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 
-import { API, getAccess, setAccess } from "@/shared";
+import { API, getAccess } from "@/shared";
 
 export const SearchService = () => {
 
@@ -12,7 +12,7 @@ export const SearchService = () => {
     } = (await API.delete("/product/search", {
       params: { name: code },
       headers: {
-        "Authorization": `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
+        "Authorization": getAccess(),
       }
     }));
     return searchList;
@@ -25,7 +25,7 @@ export const SearchService = () => {
       },
     } = (await API.delete("/product/search/all", {
       headers: {
-        "Authorization": `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
+        "Authorization": getAccess(),
       }
     }));
     return searchList;
@@ -39,7 +39,7 @@ export const SearchService = () => {
     } = (await API.post("/product/search", null, {
       params: { name: code },
       headers: {
-        "Authorization": `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
+        "Authorization": getAccess(),
       }
     })) as AxiosResponse<Product.SearchProductDto>;
   
@@ -53,7 +53,7 @@ export const SearchService = () => {
       },
     } = (await API.get("/product/search/recent", {
       headers: {
-        "Authorization": `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
+        "Authorization": getAccess(),
       }
     }));
       return searchList;

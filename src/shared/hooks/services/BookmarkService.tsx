@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 
-import { API } from "@/shared";
+import { API, getAccess } from "@/shared";
 
 export const BookmarkService = () => {
 
@@ -11,7 +11,7 @@ export const BookmarkService = () => {
       },
     } = (await API.get("/like/list", {
         headers: {
-            "Authorization": `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
+            "Authorization": getAccess(),
         }
     })) as AxiosResponse<Product.BookmarkListDto>;
 
