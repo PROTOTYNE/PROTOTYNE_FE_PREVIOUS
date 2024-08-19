@@ -28,5 +28,6 @@ declare namespace Review {
     setSubjectiveAnswer: (answer: string) => void;
     setRepurchase: (answer: boolean) => void;
     addImage: (file: File) => void;
+    reset: () => void;
   }
 }

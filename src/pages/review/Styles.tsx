@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 
+import { useAnswersStore } from "@/shared";
+
 export const ScrollArea = ({ children }: { children: React.ReactNode }) => (
   <div style={{ position: "relative" }}>
     <ScrollBox>
@@ -116,9 +118,13 @@ const ChoiceContainer = styled.div`
 export const MultiChoiceQuestion = ({
   index,
   label,
+  state,
+  onChange,
 }: {
   index: number;
   label: string;
+  state: number;
+  onChange: (num: number) => void;
 }) => (
   <>
     <Label>
@@ -126,8 +132,15 @@ export const MultiChoiceQuestion = ({
     </Label>
     <ChoicesContainer>
       {[1, 2, 3, 4, 5].map((num) => (
-        <ChoiceContainer>
-          <input type="checkbox" id={`${num}`} />
+        <ChoiceContainer key={num}>
+          <input
+            type="checkbox"
+            id={`${num}`}
+            checked={num === state}
+            onChange={() => {
+              onChange(num);
+            }}
+          />
           <label htmlFor={`${num}`}>{num}</label>
         </ChoiceContainer>
       ))}
@@ -138,15 +151,21 @@ export const MultiChoiceQuestion = ({
 export const SubjectiveQuestion = ({
   index,
   label,
+  onChange,
 }: {
   index: number;
   label: string;
+  onChange: (content: string) => void;
 }) => (
   <>
     <Label>
       [{index}] {label}
     </Label>
-    <Textarea />
+    <Textarea
+      onChange={(event) => {
+        onChange(event.target.value);
+      }}
+    />
   </>
 );
 
@@ -172,17 +191,35 @@ export const ImageQuestion = ({
 }: {
   index: number;
   label: string;
-}) => (
-  <>
-    <Label>
-      [{index}] {label}
-    </Label>
-    <ImageContainer>
-      <ImageBlock src="/image/logo.png"></ImageBlock>
-      <AddImageBlock>+</AddImageBlock>
-    </ImageContainer>
-  </>
-);
+}) => {
+  const addImage = useAnswersStore((state) => state.addImage);
+  const images = useAnswersStore((state) => state.images);
+
+  return (
+    <>
+      <Label>
+        [{index}] {label}
+      </Label>
+      <ImageContainer>
+        {images.map((image) => (
+          <ImageBlock src={URL.createObjectURL(image)}></ImageBlock>
+        ))}
+        <AddImageBlock htmlFor="upload">+</AddImageBlock>
+        <input
+          type="file"
+          id="upload"
+          style={{ display: "none" }}
+          name="upload"
+          accept="image/*"
+          capture="environment"
+          onChange={(event) => {
+            if (event.target.files) addImage(event.target.files[0]);
+          }}
+        ></input>
+      </ImageContainer>
+    </>
+  );
+};
 
 const ImageContainer = styled.div`
   display: flex;
@@ -209,7 +246,7 @@ const ImageBlock = styled.div`
   margin-right: 10px;
 `;
 
-const AddImageBlock = styled.div`
+const AddImageBlock = styled.label`
   width: 101px;
   height: 101px;
 
@@ -226,17 +263,36 @@ const AddImageBlock = styled.div`
   color: white;
 `;
 
-export const Repurchase = () => (
-  <RepurchaseContainer>
-    <div>⭐ 재구매 의향이 있나요?</div>
-    <RepurchaseChoiceContainer>
-      <input type="checkbox" id="yes" />
-      <label htmlFor="yes">있음</label>
-      <input type="checkbox" id="no" />
-      <label htmlFor="no">없음</label>
-    </RepurchaseChoiceContainer>
-  </RepurchaseContainer>
-);
+export const Repurchase = () => {
+  const setRepurchase = useAnswersStore((state) => state.setRepurchase);
+  const answer6 = useAnswersStore((state) => state.answer6);
+
+  return (
+    <RepurchaseContainer>
+      <div>⭐ 재구매 의향이 있나요?</div>
+      <RepurchaseChoiceContainer>
+        <input
+          type="checkbox"
+          id="yes"
+          checked={answer6}
+          onChange={() => {
+            setRepurchase(true);
+          }}
+        />
+        <label htmlFor="yes">있음</label>
+        <input
+          type="checkbox"
+          id="no"
+          checked={!answer6}
+          onChange={() => {
+            setRepurchase(false);
+          }}
+        />
+        <label htmlFor="no">없음</label>
+      </RepurchaseChoiceContainer>
+    </RepurchaseContainer>
+  );
+};
 
 const RepurchaseContainer = styled.div`
   width: 90%;

@@ -33,5 +33,16 @@ export const useAnswersStore = create<Review.AnswersStore>()(
         state.images.push(file);
       });
     },
+    reset: () => {
+      set(() => ({
+        answer1: 0,
+        answer2: 0,
+        answer3: 0,
+        answer4: 0,
+        answer5: "",
+        answer6: true,
+        images: [],
+      }));
+    },
   }))
 );
