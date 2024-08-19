@@ -1,9 +1,13 @@
+import { useNavigate } from "react-router";
+
 import { Background, Header, Button } from "@/entities";
-import { useUserStore, AuthService } from "@/shared";
+import { useUserStore, AuthService, PAGE_URL } from "@/shared";
 
 import * as Styles from "./Styles";
 
 const EditMyInfoPage = () => {
+  const navigate = useNavigate();
+
   const userStore = useUserStore((state) => state);
 
   const { updateBasicInfo } = AuthService();
@@ -91,6 +95,7 @@ const EditMyInfoPage = () => {
       <Button
         onClick={() => {
           updateBasicInfo();
+          navigate(PAGE_URL.MyInfo);
         }}
       >
         저장하기

@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router";
+
 import {
   Background,
   Header,
@@ -5,12 +7,18 @@ import {
   SelectInput,
   MultiSelectInput,
 } from "@/entities";
-
-import { useUserStore, additionalInfoOptions, AuthService } from "@/shared";
+import {
+  useUserStore,
+  additionalInfoOptions,
+  AuthService,
+  PAGE_URL,
+} from "@/shared";
 
 import * as Styles from "./Styles";
 
 const EditMyAddtionalInfoPage = () => {
+  const navigate = useNavigate();
+
   const userStore = useUserStore((state) => state);
 
   const { updateAdditionalInfo } = AuthService();
@@ -104,6 +112,7 @@ const EditMyAddtionalInfoPage = () => {
       <Button
         onClick={() => {
           updateAdditionalInfo();
+          navigate(PAGE_URL.MyInfo);
         }}
       >
         저장하기
