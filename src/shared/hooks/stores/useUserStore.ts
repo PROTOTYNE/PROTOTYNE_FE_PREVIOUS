@@ -5,11 +5,11 @@ export const useUserStore = create<User.UserStore>()(
   immer((set, get) => ({
     //State
     name: "",
-    birthYear: "",
-    birthMonth: "",
-    birthDay: "",
-    gender: "MALE",
-    familyNum: 0,
+    birthYear: "2001",
+    birthMonth: "11",
+    birthDay: "07",
+    gender: "FEMALE",
+    familyNum: 6,
     occupation: undefined,
     income: undefined,
     interests: [],

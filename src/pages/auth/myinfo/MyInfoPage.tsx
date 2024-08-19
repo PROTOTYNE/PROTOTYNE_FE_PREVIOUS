@@ -56,7 +56,7 @@ const MyInfo = () => {
           추가 정보
           <span
             onClick={() => {
-              navigation(PAGE_URL.EditMyInfo);
+              navigation(PAGE_URL.EditMyAddionalInfo);
             }}
           >
             수정하기
