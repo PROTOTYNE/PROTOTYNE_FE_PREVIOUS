@@ -1,4 +1,6 @@
 import { useParams } from "react-router";
+import { useEffect, useState } from "react";
+import { ProductService } from "@/shared";
 
 import {
   Date,
@@ -9,9 +11,10 @@ import {
   Header,
 } from "@/entities";
 
-const ProductPage: React.FC = () => {
+const ProductPage = () => {
   const { id } = useParams();
-  console.log(id);
+  const [product, setProduct] = useState({});
+
   return (
     <div>
       <Header colorBackground onBack>
@@ -33,6 +36,7 @@ const ProductPage: React.FC = () => {
       <Footer />
     </div>
   );
-};
+}
+
 
 export default ProductPage;

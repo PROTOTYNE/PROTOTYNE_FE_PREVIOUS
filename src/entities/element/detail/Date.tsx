@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { ProductService } from "@/shared";
+import { useEffect, useState } from "react";
 
 interface DateInfo {
   label: string;
@@ -7,34 +9,15 @@ interface DateInfo {
   endDate?: Date;
 }
 
+interface DateListProps {
+  dates: DateInfo[];  // DateList 컴포넌트가 받을 props를 정의
+}
+
 const formatDate = (date: Date): string => {
-  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // 월 2자리로
-  const day = date.getDate().toString().padStart(2, "0"); // 일 2자리로
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
   return `${month}.${day}`;
 };
-
-// 날짜 정보 데이터
-const dates: DateInfo[] = [
-  {
-    label: "체험 신청기간",
-    startDate: new Date(2024, 6, 2),
-    endDate: new Date(2024, 6, 25),
-  },
-  {
-    label: "후기 작성기간",
-    startDate: new Date(2024, 6, 29),
-    endDate: new Date(2024, 7, 10),
-  },
-  {
-    label: "심사중",
-    startDate: new Date(2024, 7, 11),
-    endDate: new Date(2024, 7, 12),
-  },
-  {
-    label: "체험 종료",
-    startDate: new Date(2024, 7, 14),
-  },
-];
 
 const Styledh2 = styled.h2`
   margin-left: 20px;
@@ -75,7 +58,6 @@ const DateRange = styled.div`
   color: #333;
 `;
 
-// 현재 날짜 가져오기
 const currentDate = new Date();
 
 const getBackgroundStyles = (
@@ -83,7 +65,6 @@ const getBackgroundStyles = (
   endDate?: Date
 ): { background: string; opacity: number } => {
   if (!startDate) {
-    // 날짜가 없는 경우
     return {
       background: "linear-gradient(270deg, #f0f0f0 0%, #e0e0e0 100%)",
       opacity: 1,
@@ -91,7 +72,6 @@ const getBackgroundStyles = (
   }
 
   if (currentDate >= startDate && currentDate <= (endDate || startDate)) {
-    // 현재 날짜와 겹칠 때
     return {
       background:
         "linear-gradient(270deg, #0D1B4A 0%, #476090 50%, #7995B2 100%)",
@@ -100,11 +80,9 @@ const getBackgroundStyles = (
   }
 
   if (currentDate < startDate) {
-    // 현재 날짜 이후
     return { background: "#C2BFBD", opacity: 1 };
   }
 
-  // 현재 날짜 이전
   return {
     background:
       "linear-gradient(270deg, #0D1B4A 0%, #476090 50%, #7995B2 100%)",
@@ -112,7 +90,7 @@ const getBackgroundStyles = (
   };
 };
 
-export const DateList: React.FC = () => {
+const DateList: React.FC<DateListProps> = ({ dates }) => {
   return (
     <div>
       <Styledh2>체험 일정</Styledh2>
@@ -137,4 +115,48 @@ export const DateList: React.FC = () => {
       </DateListContainer>
     </div>
   );
+};
+
+export const DateData: React.FC = () => {
+  const [dates, setDates] = useState<DateInfo[]>([]);
+  const eventId = '1110';
+
+  useEffect(() => {
+    const fetchDates = async () => {
+      try {
+        const response = await ProductService.getProduct(eventId);
+        const dateInfo = response.result.dateInfo;
+
+        const datesFromAPI: DateInfo[] = [
+          {
+            label: "체험 신청기간",
+            startDate: new Date(dateInfo.eventStart),
+            endDate: new Date(dateInfo.eventEnd),
+          },
+          {
+            label: "후기 작성기간",
+            startDate: new Date(dateInfo.feedbackStart),
+            endDate: new Date(dateInfo.feedbackEnd),
+          },
+          {
+            label: "심사중",
+            startDate: new Date(dateInfo.judgeStart),
+            endDate: new Date(dateInfo.judgeEnd),
+          },
+          {
+            label: "체험 종료",
+            startDate: new Date(dateInfo.endDate),
+          },
+        ];
+
+        setDates(datesFromAPI);
+      } catch (error) {
+        console.error("Error fetching date info:", error);
+      }
+    };
+
+    fetchDates();
+  }, []);
+
+  return <DateList dates={dates} />;  // DateList에 dates prop 전달
 };
