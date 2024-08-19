@@ -8,7 +8,7 @@ const AuthRouter = ({ children }: { children: React.ReactNode }) => {
 
   const { getUserInfo } = AuthService();
 
-  /* useEffect(() => {
+  useEffect(() => {
     (async () => {
       const access_token = getAccess();
       if (!access_token) navigate(PAGE_URL.SignIn);
@@ -17,7 +17,7 @@ const AuthRouter = ({ children }: { children: React.ReactNode }) => {
         await getUserInfo();
       }
     })();
-  }, []); */
+  }, []);
 
   return <>{children}</>;
 };

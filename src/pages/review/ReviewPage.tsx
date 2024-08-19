@@ -1,8 +1,8 @@
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 
-import { Button, Header } from "@/entities";
-import { ReviewService, useAnswersStore } from "@/shared";
+import { Button, Header, DisableButton } from "@/entities";
+import { PAGE_URL, ReviewService, useAnswersStore } from "@/shared";
 
 import * as Styles from "./Styles";
 
@@ -27,7 +27,10 @@ const ReviewPage = () => {
     useAnswersStore((state) => state.answer4),
   ];
 
-  const a = useAnswersStore((state) => state);
+  const subjectAnswer = useAnswersStore((state) => state.answer5);
+  const images = useAnswersStore((state) => state.images);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -66,14 +69,22 @@ const ReviewPage = () => {
         />
         <Styles.Repurchase />
       </Styles.ScrollArea>
-      <Button
-        onClick={() => {
-          console.log(a);
-          if (id) submitReview(id);
-        }}
-      >
-        제출하기
-      </Button>
+      {multiChoiceAnswers.findIndex((answer) => answer === 0) === -1 &&
+      subjectAnswer.length > 30 &&
+      images.length > 0 ? (
+        <Button
+          onClick={() => {
+            if (id) {
+              submitReview(id);
+              navigate(PAGE_URL.Home); //업데이트 필요
+            }
+          }}
+        >
+          제출하기
+        </Button>
+      ) : (
+        <DisableButton>제출하기 </DisableButton>
+      )}
     </>
   );
 };

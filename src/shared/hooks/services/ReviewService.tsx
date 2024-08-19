@@ -43,8 +43,8 @@ export const ReviewService = () => {
 
     //img
     const formData = new FormData();
-    store.images.forEach((file, index) => {
-      formData.append(`image${index}`, file);
+    store.images.forEach((file) => {
+      formData.append(`imageFiles`, file);
     });
 
     await FORMAPI.post(`/review/image/${id}`, formData);

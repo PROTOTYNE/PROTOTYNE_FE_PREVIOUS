@@ -159,7 +159,7 @@ export const SubjectiveQuestion = ({
 }) => (
   <>
     <Label>
-      [{index}] {label}
+      [{index}] {label} (30자 이상)
     </Label>
     <Textarea
       onChange={(event) => {

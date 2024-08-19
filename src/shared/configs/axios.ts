@@ -5,8 +5,6 @@ export const API = axios.create({
   baseURL: import.meta.env.VITE_SERVER_URL,
   headers: {
     "Content-Type": "application/json",
-    Authorization:
-      "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzI0MDc4NDAyLCJleHAiOjE3MjQwODIwMDJ9.WWlqlc4Z40AxIxu8y1uLGhb4LyH8eP0c2o-QI-hXTy8",
   },
 });
 
@@ -14,8 +12,6 @@ export const FORMAPI = axios.create({
   baseURL: import.meta.env.VITE_SERVER_URL,
   headers: {
     "Content-Type": "multipart/form-data",
-    Authorization:
-      "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzI0MDc4NDAyLCJleHAiOjE3MjQwODIwMDJ9.WWlqlc4Z40AxIxu8y1uLGhb4LyH8eP0c2o-QI-hXTy8",
   },
 });
 
