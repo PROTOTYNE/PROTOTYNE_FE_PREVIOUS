@@ -1,7 +1,13 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
 import { Background, Header } from "@/entities";
-import { useUserStore, additionalInfoOptions, PAGE_URL } from "@/shared";
+import {
+  useUserStore,
+  additionalInfoOptions,
+  PAGE_URL,
+  AuthService,
+} from "@/shared";
 
 import * as Styles from "./Styles";
 
@@ -15,6 +21,14 @@ const MyInfo = () => {
   const gender = useUserStore((state) => state.gender);
   const familyNum = useUserStore((state) => state.familyNum);
   const state = useUserStore((state) => state);
+
+  const { getUserInfo } = AuthService();
+
+  useEffect(() => {
+    (async () => {
+      await getUserInfo();
+    })();
+  }, []);
 
   return (
     <>
@@ -82,7 +96,7 @@ const MyInfo = () => {
                 </span>
               </Styles.Info>
             ) : (
-              <Styles.MultiInfo>
+              <Styles.MultiInfo key={additionalInfoOption.name}>
                 {additionalInfoOption.label}
                 <span>
                   {(state[additionalInfoOption.name] as string[]).length

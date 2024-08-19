@@ -5,11 +5,11 @@ export const useUserStore = create<User.UserStore>()(
   immer((set, get) => ({
     //State
     name: "",
-    birthYear: "2001",
-    birthMonth: "11",
-    birthDay: "07",
-    gender: "FEMALE",
-    familyNum: 6,
+    birthYear: "",
+    birthMonth: "",
+    birthDay: "",
+    gender: "MALE",
+    familyNum: 1,
     occupation: undefined,
     income: undefined,
     interests: [],
@@ -20,7 +20,15 @@ export const useUserStore = create<User.UserStore>()(
 
     //Set Function
     setUserAllInfo: (value) => {
-      set(() => ({ ...value }));
+      set((state) => {
+        for (const key in value) {
+          if (value[key as keyof typeof value]) {
+            state[key as keyof typeof state] = value[
+              key as keyof typeof value
+            ] as never;
+          }
+        }
+      });
     },
     getUserAllInfo: () => ({
       name: get().name,

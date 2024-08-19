@@ -1,5 +1,4 @@
 import { Background, Header, Button } from "@/entities";
-
 import { useUserStore, AuthService } from "@/shared";
 
 import * as Styles from "./Styles";
