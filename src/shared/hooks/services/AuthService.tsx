@@ -66,7 +66,7 @@ export const AuthService = () => {
   };
 
   const updateBasicInfo = async () => {
-    await API.post("/my/basicinfo", {
+    await API.patch("/my/basicinfo", {
       familyMember: userStore.familyNum,
       gender: userStore.gender,
       birth: `${userStore.birthYear}-${userStore.birthMonth}-${userStore.birthDay}`,
@@ -74,7 +74,7 @@ export const AuthService = () => {
   };
 
   const updateAdditionalInfo = async () => {
-    await API.post("/my/addinfo", {
+    await API.patch("/my/addinfo", {
       occupation: userStore.occupation,
       income: userStore.income,
       interests: userStore.interests,

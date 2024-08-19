@@ -135,7 +135,7 @@ export const MultiChoiceQuestion = ({
   </>
 );
 
-export const SujectiveQuestion = ({
+export const SubjectiveQuestion = ({
   index,
   label,
 }: {

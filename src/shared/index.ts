@@ -15,3 +15,4 @@ export { AuthService } from "./hooks/services/AuthService";
 export { TicketService } from "./hooks/services/TicketService";
 export { ProductService } from "./hooks/services/ProductService";
 export { MyPageService } from "./hooks/services/MyPageService";
+export { ReviewService } from "./hooks/services/ReviewService";
