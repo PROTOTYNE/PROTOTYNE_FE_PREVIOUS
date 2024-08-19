@@ -117,9 +117,8 @@ const DateList: React.FC<DateListProps> = ({ dates }) => {
   );
 };
 
-export const DateData: React.FC = () => {
+export const DateData: React.FC<{ eventId }> = ({ eventId }) => {
   const [dates, setDates] = useState<DateInfo[]>([]);
-  const eventId = '1110';
 
   useEffect(() => {
     const fetchDates = async () => {
@@ -151,12 +150,12 @@ export const DateData: React.FC = () => {
 
         setDates(datesFromAPI);
       } catch (error) {
-        console.error("Error fetching date info:", error);
+        console.error(error);
       }
     };
 
     fetchDates();
-  }, []);
+  }, [eventId]);
 
   return <DateList dates={dates} />;  // DateList에 dates prop 전달
 };

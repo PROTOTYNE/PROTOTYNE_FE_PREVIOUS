@@ -37,7 +37,7 @@ interface ProductDetailResponse {
 
 
 export const ProductService = {
-  getProduct: async (eventId: string): Promise<ProductDetailResponse> => {
+  getProduct: async (eventId: number): Promise<ProductDetailResponse> => {
     const response = await axios.get<ProductDetailResponse>(`/product/detail/${eventId}`);
     return response.data;
   },

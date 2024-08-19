@@ -22,7 +22,7 @@ export { Background } from "./screen/Background";
 export { GrayBackground } from "./screen/GrayBackground";
 export { Loading } from "./screen/Loading";
 
-export { DateData as Date } from "./element/detail/Date";
+export { DateData } from "./element/detail/Date";
 export { ImageSlide } from "./element/detail/ImageSlide";
 export { Product } from "./element/detail/Product";
 export { ProductInfo } from "./element/detail/ProductInfo";
