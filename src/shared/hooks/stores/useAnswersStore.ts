@@ -29,7 +29,7 @@ export const useAnswersStore = create<Review.AnswersStore>()(
     },
     addImage: (file) => {
       set((state) => {
-        if (state.images.length > 3) return;
+        if (state.images.length > 4) return;
         state.images.push(file);
       });
     },

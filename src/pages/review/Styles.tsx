@@ -19,7 +19,7 @@ const ScrollBox = styled.div`
 
   width: 332px;
   top: 60px;
-  height: 70vh;
+  height: 80vh;
 
   border-radius: 4px;
 
@@ -135,13 +135,13 @@ export const MultiChoiceQuestion = ({
         <ChoiceContainer key={num}>
           <input
             type="checkbox"
-            id={`${num}`}
+            id={`${num}${index}`}
             checked={num === state}
             onChange={() => {
               onChange(num);
             }}
           />
-          <label htmlFor={`${num}`}>{num}</label>
+          <label htmlFor={`${num}${index}`}>{num}</label>
         </ChoiceContainer>
       ))}
     </ChoicesContainer>
@@ -201,21 +201,25 @@ export const ImageQuestion = ({
         [{index}] {label}
       </Label>
       <ImageContainer>
-        {images.map((image) => (
-          <ImageBlock src={URL.createObjectURL(image)}></ImageBlock>
+        {images.map((image, index) => (
+          <ImageBlock key={index} src={URL.createObjectURL(image)}></ImageBlock>
         ))}
-        <AddImageBlock htmlFor="upload">+</AddImageBlock>
-        <input
-          type="file"
-          id="upload"
-          style={{ display: "none" }}
-          name="upload"
-          accept="image/*"
-          capture="environment"
-          onChange={(event) => {
-            if (event.target.files) addImage(event.target.files[0]);
-          }}
-        ></input>
+        {images.length < 3 ? (
+          <>
+            <AddImageBlock htmlFor="upload">+</AddImageBlock>
+            <input
+              type="file"
+              id="upload"
+              style={{ display: "none" }}
+              name="upload"
+              accept="image/*"
+              capture="environment"
+              onChange={(event) => {
+                if (event.target.files) addImage(event.target.files[0]);
+              }}
+            ></input>
+          </>
+        ) : null}
       </ImageContainer>
     </>
   );

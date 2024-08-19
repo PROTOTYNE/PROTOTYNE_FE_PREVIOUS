@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { Loading } from "@/entities";
 import { PAGE_URL, AuthService } from "@/shared";
 
 const RedirectPage = () => {
@@ -24,7 +25,7 @@ const RedirectPage = () => {
     } else navigate(PAGE_URL.SignIn);
   });
 
-  return <>SignIn...</>;
+  return <Loading />;
 };
 
 export default RedirectPage;

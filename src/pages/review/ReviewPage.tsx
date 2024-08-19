@@ -8,7 +8,7 @@ import * as Styles from "./Styles";
 
 const ReviewPage = () => {
   const { id } = useParams();
-  const { getReview } = ReviewService();
+  const { getReview, submitReview } = ReviewService();
 
   const [multiChoiceQuestion, setMultiChoiceQuestion] = useState<string[]>([]);
   const [subjectiveQuestion, setSubjectQuestion] = useState("");
@@ -26,6 +26,8 @@ const ReviewPage = () => {
     useAnswersStore((state) => state.answer3),
     useAnswersStore((state) => state.answer4),
   ];
+
+  const a = useAnswersStore((state) => state);
 
   useEffect(() => {
     (async () => {
@@ -48,7 +50,7 @@ const ReviewPage = () => {
             label={question}
             state={multiChoiceAnswers[index]}
             onChange={(num: number) => {
-              setMutiChoiceAnswer(index, num);
+              setMutiChoiceAnswer(index + 1, num);
             }}
           ></Styles.MultiChoiceQuestion>
         ))}
@@ -58,10 +60,20 @@ const ReviewPage = () => {
           onChange={setSubjectiveAnswer}
         ></Styles.SubjectiveQuestion>
 
-        <Styles.ImageQuestion index={3} label="사용한 이미지를 붙여주세요!" />
+        <Styles.ImageQuestion
+          index={multiChoiceQuestion.length + 2}
+          label="사용한 이미지를 붙여주세요!"
+        />
         <Styles.Repurchase />
       </Styles.ScrollArea>
-      <Button>제출하기</Button>
+      <Button
+        onClick={() => {
+          console.log(a);
+          if (id) submitReview(id);
+        }}
+      >
+        제출하기
+      </Button>
     </>
   );
 };

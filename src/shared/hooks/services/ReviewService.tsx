@@ -15,7 +15,11 @@ export const ReviewService = () => {
     const questions: string[] = [];
 
     for (const key in result) {
-      if (result[key as keyof typeof result] && key !== "question5") {
+      if (
+        result[key as keyof typeof result] &&
+        key !== "question5" &&
+        key !== "id"
+      ) {
         questions.push(result[key as keyof typeof result] as string);
       }
     }
