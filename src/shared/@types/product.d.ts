@@ -14,7 +14,7 @@ declare namespace Product {
                 id: 0,
                 name: string,
                 thumbnailUrl: string,
-                investCount: 0,
+                dday: 0,
                 reqTickets: 0,
                 bookmark: true
             }],
@@ -22,7 +22,7 @@ declare namespace Product {
                 id: 0,
                 name: string,
                 thumbnailUrl: string,
-                investCount: 0,
+                dday: 0,
                 reqTickets: 0,
                 bookmark: true
             }]

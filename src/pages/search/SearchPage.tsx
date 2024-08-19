@@ -106,25 +106,29 @@ const SearchPage = ({}) => {
     const [result, setResult] = useState<string>(() => (location.state && location.state.title ? location.state.title : ''));
     const navigate = useNavigate();
 
+    // 최근 검색 기록 불러오기
     const fetchRecentSearch = async () => {
         const searchList = await searchService.getSearchList();
         return searchList;
     }
+
+    // 상품 불러오기
+    const fetchProduct = async (code: string) => {
+        const product = await searchService.getSearchProduct(code);
+        return product;
+    };
+
+    // 카테고리 상품 불러오기
+    const fetchCategoryProduct = async (code: string) => {
+        const categoryList = await searchService.getCategoryList(code);
+        return categoryList;
+    };
 
     useEffect(() => {
         fetchRecentSearch()
         .then(searchList => setRecentSearch(searchList));
     }, [result])
 
-    const fetchProduct = async (code: string) => {
-        const product = await searchService.getSearchProduct(code);
-        return product;
-    };
-    
-    const fetchCategoryProduct = async (code: string) => {
-        const categoryList = await searchService.getCategoryList(code);
-        return categoryList;
-    }
     useEffect(() => {
         if (location.state && location.state.title) {
             fetchCategoryProduct(search)
@@ -134,7 +138,6 @@ const SearchPage = ({}) => {
 
     const deleteInput = () => {
         const searchInput = document.querySelector('input');
-
         if(searchInput !== null) {
             searchInput.value = '';
             setSearch('');
@@ -150,6 +153,11 @@ const SearchPage = ({}) => {
     
     const onClickSearch = (name: string) => {
         setSearch(name);
+        setResult(name);
+        const searchInput = document.querySelector('input');
+        if( searchInput) {
+            searchInput.value = name;
+        }
         fetchProduct(name).then(product => setSearchList(product));
     }
     const handleDeleteAll = () => {
@@ -158,10 +166,14 @@ const SearchPage = ({}) => {
     };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        setSearch(event.currentTarget.value);
-        if (event.key === 'Enter') {
-            setResult(event.currentTarget.value);
-            fetchProduct(search).then(product => setSearchList(product));
+        if(event.currentTarget.value !== '') {
+            setSearch(event.currentTarget.value);
+            if (event.key === 'Enter') {
+                setResult(event.currentTarget.value);
+                if(result != '') {
+                    fetchProduct(result).then(product => setSearchList(product));
+                }
+            }
         }
     };
 

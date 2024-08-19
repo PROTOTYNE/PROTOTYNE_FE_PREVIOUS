@@ -24,7 +24,7 @@ interface ProductProp {
         id: 0,
         name: string,
         thumbnailUrl: string,
-        investCount: 0,
+        dday: 0,
         reqTickets: 0,
         bookmark: true
     }],
@@ -32,7 +32,7 @@ interface ProductProp {
         id: 0,
         name: string,
         thumbnailUrl: string,
-        investCount: 0,
+        dday: 0,
         reqTickets: 0,
         bookmark: true
     }]
@@ -53,7 +53,7 @@ const HomePage = () => {
                 id: 0,
                 name: "",
                 thumbnailUrl: "",
-                investCount: 0,
+                dday: 0,
                 reqTickets: 0,
                 bookmark: true
             }],
@@ -61,7 +61,7 @@ const HomePage = () => {
                 id: 0,
                 name: "",
                 thumbnailUrl: "",
-                investCount: 0,
+                dday: 0,
                 reqTickets: 0,
                 bookmark: true
             }]

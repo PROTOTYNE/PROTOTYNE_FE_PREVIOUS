@@ -102,7 +102,7 @@ const Ticket = ({ticketNum}:{ticketNum: number}) => {
 export const Prototype = ({ prototype } : { prototype: PrototypeProp }) => {
     const navigate = useNavigate();
     return (
-        <PrototypeContainer onClick={() => navigate('/prototype')}>
+        <PrototypeContainer onClick={() => navigate(`/product/${prototype.id}`)}>
             <PrototypeImg src={prototype.thumbnailUrl} alt={prototype.name} width="170px" height="170px" />
             <Application>{prototype.investCount}명 신청</Application>
             <InfoContainer>
@@ -154,7 +154,7 @@ export const MiniPrototype = ({ prototype } : { prototype: MiniPrototypeProp }) 
     const navigate = useNavigate();
     return (
         <>
-            <MiniPrototypeContainer onClick={() => navigate('/prototype')}>
+            <MiniPrototypeContainer onClick={() => navigate(`/product/${prototype.id}`)}>
                 <PrototypeImg src={prototype.thumbnailUrl} alt={prototype.name} width={"106px"} height={"106px"} />
                 <DDay>D - {prototype.dday}</DDay>
                 <InfoMiniContainer>
@@ -202,8 +202,9 @@ const InfoBookmarkContainer = styled.div`
     margin-top: 10px;
 `;
 export const BookmarkPrototype = ({ prototype } : { prototype: BookmarkProp }) => {
+    const navigate = useNavigate();
     return (
-        <BookmarkContainer>
+        <BookmarkContainer onClick={() => navigate(`/product/${prototype.productId}`)}>
             <PrototypeImg src={prototype.thumbnailUrl} alt={prototype.name} width="170px" height="170px" />
             <BookmarkIconContainer>
                 <Bookmark src="../image/checkBookmark.svg"></Bookmark>
