@@ -61,7 +61,7 @@ const ProductPage = () => {
   }, [eventId]);
 
   if (!product) {
-    return <div>데이터 에러</div>;
+    return <div>API 에러</div>;
   }
 
   return (
@@ -69,7 +69,7 @@ const ProductPage = () => {
       <Header colorBackground onBack>
         <img src="/image/logo2.png" alt="logo"></img>
       </Header>
-      <ImageSlide imageUrls={product.imageUrls} />
+      <ImageSlide/>
       <Product
         category={`#${product.category}`}
         name={product.name}

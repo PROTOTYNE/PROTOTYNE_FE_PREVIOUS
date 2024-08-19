@@ -117,7 +117,7 @@ const DateList: React.FC<DateListProps> = ({ dates }) => {
   );
 };
 
-export const DateData: React.FC<{ eventId }> = ({ eventId }) => {
+export const DateData: React.FC<{ eventId: number }> = ({ eventId }) => {
   const [dates, setDates] = useState<DateInfo[]>([]);
 
   useEffect(() => {
