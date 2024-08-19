@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+
 import { MidContainer, Container } from "@/entities";
 
 export const TopContainer = styled(MidContainer)`

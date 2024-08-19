@@ -1,11 +1,13 @@
-import { useUserStore } from "@/shared";
-
 import { Background, Header, Button } from "@/entities";
+
+import { useUserStore, AuthService } from "@/shared";
 
 import * as Styles from "./Styles";
 
 const EditMyInfoPage = () => {
   const userStore = useUserStore((state) => state);
+
+  const { updateBasicInfo } = AuthService();
 
   return (
     <>
@@ -87,7 +89,13 @@ const EditMyInfoPage = () => {
         </Styles.SubTitle>
         <div style={{ height: "300px" }}></div>
       </Styles.Container>
-      <Button onClick={() => {}}>저장하기</Button>
+      <Button
+        onClick={() => {
+          updateBasicInfo();
+        }}
+      >
+        저장하기
+      </Button>
     </>
   );
 };

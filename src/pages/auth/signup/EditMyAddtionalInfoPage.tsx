@@ -6,12 +6,14 @@ import {
   MultiSelectInput,
 } from "@/entities";
 
-import { useUserStore, additionalInfoOptions } from "@/shared";
+import { useUserStore, additionalInfoOptions, AuthService } from "@/shared";
 
 import * as Styles from "./Styles";
 
 const EditMyAddtionalInfoPage = () => {
   const userStore = useUserStore((state) => state);
+
+  const { updateAdditionalInfo } = AuthService();
 
   return (
     <>
@@ -99,7 +101,13 @@ const EditMyAddtionalInfoPage = () => {
         </Styles.ScrollArea>
         <div style={{ height: "50px" }}></div>
       </Styles.Container>
-      <Button onClick={() => {}}>저장하기</Button>
+      <Button
+        onClick={() => {
+          updateAdditionalInfo();
+        }}
+      >
+        저장하기
+      </Button>
     </>
   );
 };
