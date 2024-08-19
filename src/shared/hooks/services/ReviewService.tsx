@@ -1,8 +1,10 @@
 import { AxiosResponse } from "axios";
 
-import { API } from "@/shared";
+import { API, FORMAPI, useAnswersStore } from "@/shared";
 
 export const ReviewService = () => {
+  const store = useAnswersStore((state) => state);
+
   const getReview = async (id: string) => {
     const {
       data: { result },
@@ -24,7 +26,25 @@ export const ReviewService = () => {
     };
   };
 
-  const submitReview = () => {};
+  const submitReview = async (id: string) => {
+    //text
+    await API.put(`/review/text/${id}`, {
+      answer1: store.answer1,
+      answer2: store.answer2,
+      answer3: store.answer3,
+      answer4: store.answer4,
+      answer5: store.answer5,
+      answer6: store.answer6,
+    });
+
+    //img
+    const formData = new FormData();
+    store.images.forEach((file, index) => {
+      formData.append(`image${index}`, file);
+    });
+
+    await FORMAPI.post(`/review/image/${id}`, formData);
+  };
 
   return { getReview, submitReview };
 };

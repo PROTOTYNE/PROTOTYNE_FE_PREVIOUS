@@ -10,6 +10,7 @@ export {
 export { additionalInfoOptions } from "./configs/options";
 
 export { useUserStore } from "./hooks/stores/useUserStore";
+export { useAnswersStore } from "./hooks/stores/useAnswersStore";
 
 export { AuthService } from "./hooks/services/AuthService";
 export { TicketService } from "./hooks/services/TicketService";

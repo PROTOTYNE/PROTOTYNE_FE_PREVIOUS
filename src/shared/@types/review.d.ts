@@ -20,6 +20,13 @@ declare namespace Review {
     answer4: number;
     answer5: string; //주관식
     answer6: boolean; //재사용 유무
-    image: File[];
+    images: File[];
+  }
+
+  export interface AnswersStore extends Answers {
+    setMutiChoiceAnswer: (index: number, answer: number) => void;
+    setSubjectiveAnswer: (answer: string) => void;
+    setRepurchase: (answer: boolean) => void;
+    addImage: (file: File) => void;
   }
 }
