@@ -13,12 +13,13 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  height: 70px;
   background: linear-gradient(to right, #7995B2 0%, #476090 51%, #0D1B4A 100%);
 `;
 const Menu = styled(MenuRoundedIcon)`
     color: white;
-    font-size: 2rem;
-    margin: 5px 0px;
+    font-size: 2.4rem;
+    margin: 10px 5px;
 `;
 export const HomeHeader = () => {
     const navigate = useNavigate();
