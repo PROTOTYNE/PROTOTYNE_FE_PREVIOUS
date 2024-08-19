@@ -83,7 +83,7 @@ const ReviewPage = () => {
           제출하기
         </Button>
       ) : (
-        <DisableButton>제출하기 </DisableButton>
+        <DisableButton>모든 항목을 입력해주세요!</DisableButton>
       )}
     </>
   );

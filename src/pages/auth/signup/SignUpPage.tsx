@@ -341,6 +341,7 @@ const SignUpPage = () => {
           leftText="건너뛰기"
           rightText="가입하기"
           onClickLeft={() => {
+            signup();
             navigation(PAGE_URL.Home);
           }}
           OnClickRight={() => {
