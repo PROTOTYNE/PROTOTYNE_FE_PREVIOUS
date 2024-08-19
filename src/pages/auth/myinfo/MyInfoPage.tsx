@@ -65,7 +65,7 @@ const MyInfo = () => {
         <Styles.AdditionalInfoContainer>
           <Styles.SubTitle>추가정보를 입력하면 더 많은 시제품</Styles.SubTitle>
           <Styles.SubTitle>체험 대상자로 선정될 수 있습니다.</Styles.SubTitle>
-          <div style={{ height: "10px" }}></div>
+          <div style={{ height: "5px" }}></div>
           {additionalInfoOptions.map((additionalInfoOption, index) =>
             index < 4 ? (
               <Styles.Info key={additionalInfoOption.name}>
@@ -82,7 +82,22 @@ const MyInfo = () => {
             ) : (
               <Styles.MultiInfo>
                 {additionalInfoOption.label}
-                <span>??</span>
+                <span>
+                  {(state[additionalInfoOption.name] as string[]).length
+                    ? (state[additionalInfoOption.name] as string[]).map(
+                        (value, index) => (
+                          <span key={value}>
+                            {index !== 0 ? " / " : null}
+                            {
+                              additionalInfoOption.options.find(
+                                (option) => option.value === value
+                              )?.label
+                            }
+                          </span>
+                        )
+                      )
+                    : "입력된 정보가 없습니다."}
+                </span>
               </Styles.MultiInfo>
             )
           )}

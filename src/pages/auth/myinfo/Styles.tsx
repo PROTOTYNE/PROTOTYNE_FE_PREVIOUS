@@ -27,7 +27,7 @@ export const Title = styled.div`
   > span {
     position: absolute;
 
-    bottom: 0px;
+    bottom: 1px;
     right: 0px;
 
     color: #667197;
@@ -40,6 +40,8 @@ export const SubTitle = styled.div`
   width: 95%;
   color: gray;
   font-size: 16px;
+
+  margin-left: -7px;
 `;
 
 export const InfoContianer = styled(Container)`
@@ -61,8 +63,8 @@ export const Info = styled.div`
   width: 100%;
   font-size: 17px;
 
-  margin-top: 3px;
-  margin-bottom: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 
   font-weight: bold;
 
