@@ -41,7 +41,7 @@ export const SubTitle = styled.div`
   color: gray;
   font-size: 16px;
 
-  margin-left: -7px;
+  margin-left: 1px;
 `;
 
 export const InfoContianer = styled(Container)`
@@ -63,12 +63,14 @@ export const Info = styled.div`
   width: 100%;
   font-size: 17px;
 
+  margin-left: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
 
   font-weight: bold;
 
   > span {
+    color: #555555;
     font-weight: normal;
     position: absolute;
     left: 47%;

@@ -74,7 +74,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  margin-top: 20px;
+  margin-top: 10px;
 
   font-size: 23px;
 
@@ -92,7 +92,7 @@ const StyledContioner = styled.div`
   background-position: center;
   background-repeat: no-repeat;
 
-  height: 70px;
+  height: 54px;
   width: 100%;
 
   position: fixed;
@@ -106,7 +106,7 @@ const StyledContioner = styled.div`
 
 const BackButton = styled(ArrowBackIosNewIcon)`
   position: absolute;
-  top: -3px;
+  top: 5px;
   left: 30px;
 `;
 
