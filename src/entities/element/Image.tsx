@@ -12,12 +12,11 @@ export const BottomImage = styled.img`
 `;
 
 export const Logo = styled.img`
-  width: 3.5rem;
-  height: 1rem;
+  width: 4.2rem;
+  height: 1.2rem;
   align-self: center;
   margin-bottom: 0px;
 `;
-
 
 export const PrototypeImg = styled.img<{ width: string, height: string }>`
   width: ${props => props.width};

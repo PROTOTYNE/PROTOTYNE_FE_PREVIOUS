@@ -83,8 +83,8 @@ const PageRouter = () => (
               element={<Detail type="popular" />}
             />
             <Route
-              path={PAGE_URL.DeadLineDetail}
-              element={<Detail type="deadline" />}
+              path={PAGE_URL.ImminentDetail}
+              element={<Detail type="imminent" />}
             />
             <Route path={PAGE_URL.NewDetail} element={<Detail type="new" />} />
             <Route path={PAGE_URL.Bookmark} element={<Bookmark />} />
