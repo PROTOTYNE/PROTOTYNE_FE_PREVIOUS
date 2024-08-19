@@ -17,5 +17,14 @@ export const ProductDetailService = () => {
     return product;
   };
 
-  return { getProductDetail };
+  const getHomeProduct = async () => {
+    const {
+      data: {
+        result: product,
+      },
+    } = (await API.get("/product/home")) as AxiosResponse<Product.ProductHomeDto>;
+    return product;
+  };
+
+  return { getProductDetail, getHomeProduct };
 };

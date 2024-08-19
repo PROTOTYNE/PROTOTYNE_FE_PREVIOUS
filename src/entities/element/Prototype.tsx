@@ -79,6 +79,7 @@ interface PrototypeProp {
     thumbnailUrl: string, 
     investCount: 0, 
     reqTickets: 0,
+    bookmark: true,
 }
 interface MiniPrototypeProp {
     id: 0,
@@ -86,6 +87,7 @@ interface MiniPrototypeProp {
     thumbnailUrl: string,
     reqTickets: 0,
     dday: 0,
+    bookmark: true,
 }
 const Ticket = ({ticketNum}:{ticketNum: number}) => {
     return (
@@ -102,7 +104,7 @@ export const Prototype = ({ prototype } : { prototype: PrototypeProp }) => {
     return (
         <PrototypeContainer onClick={() => navigate('/prototype')}>
             <PrototypeImg src={prototype.thumbnailUrl} alt={prototype.name} width="170px" height="170px" />
-            <Application>{prototype.investCount}</Application>
+            <Application>{prototype.investCount}명 신청</Application>
             <InfoContainer>
                 <InfoSubContainer>
                     <PrototypeName>{prototype.name.length > 10 ? prototype.name.substring(0, 8) + " ..." : prototype.name}</PrototypeName>
@@ -154,7 +156,7 @@ export const MiniPrototype = ({ prototype } : { prototype: MiniPrototypeProp }) 
         <>
             <MiniPrototypeContainer onClick={() => navigate('/prototype')}>
                 <PrototypeImg src={prototype.thumbnailUrl} alt={prototype.name} width={"106px"} height={"106px"} />
-                <DDay>{prototype.dday}</DDay>
+                <DDay>D - {prototype.dday}</DDay>
                 <InfoMiniContainer>
                     <PrototypeName>{prototype.name.length > 7 ? prototype.name.substring(0, 7) + ".." : prototype.name}</PrototypeName>
                     <TicketContainer>

@@ -1,4 +1,33 @@
 declare namespace Product {
+
+    export interface ProductHomeDto {
+        result: {
+            popularList: [{
+                id: 0,
+                name: string,
+                thumbnailUrl: string,
+                investCount: 0,
+                reqTickets: 0,
+                bookmark: true
+            }],
+            imminentList: [{
+                id: 0,
+                name: string,
+                thumbnailUrl: string,
+                investCount: 0,
+                reqTickets: 0,
+                bookmark: true
+            }],
+            newList: [{
+                id: 0,
+                name: string,
+                thumbnailUrl: string,
+                investCount: 0,
+                reqTickets: 0,
+                bookmark: true
+            }]
+        }
+    }
     export interface ProductDto {
         result: [{
             id: 0;
@@ -15,6 +44,7 @@ declare namespace Product {
             thumbnailUrl: string;
             reqTickets: 0;
             dday: 0;
+            bookmark: true;
         }];
     }
 
@@ -25,6 +55,7 @@ declare namespace Product {
             thumbnailUrl: string;
             reqTickets: 0;
             dday: 0;
+            bookmark: true;
         }];
     }
 

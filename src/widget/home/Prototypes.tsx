@@ -15,6 +15,7 @@ interface PrototypeProp {
     thumbnailUrl: string, 
     investCount: 0, 
     reqTickets: 0,
+    bookmark: true,
 }
 interface MiniPrototypeProp {
     id: 0,
@@ -22,6 +23,7 @@ interface MiniPrototypeProp {
     thumbnailUrl: string,
     reqTickets: 0,
     dday: 0,
+    bookmark: true,
 }
 
 export const Prototypes = ({ type, prototypes } : { type: string, prototypes: PrototypeProp[] | MiniPrototypeProp[] }) => {

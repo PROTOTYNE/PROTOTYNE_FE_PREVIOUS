@@ -90,11 +90,12 @@ const Info = styled.div`
 `;
 
 interface PrototypeProp {
-    id: 0;
-    name: string;
-    thumbnailUrl: string;
-    reqTickets: 0;
-    dday: 0;
+    id: 0,
+    name: string,
+    thumbnailUrl: string,
+    reqTickets: 0,
+    dday: 0,
+    bookmark: true,
 };
 
 const SearchPage = ({}) => {
@@ -102,6 +103,7 @@ const SearchPage = ({}) => {
     const [search, setSearch] = useState<string>(() => (location.state && location.state.title ? location.state.title : ''));
     const [recentSearch, setRecentSearch] = useState<string[]>([]);
     const [searchList, setSearchList] = useState<PrototypeProp[]>([]);
+    const [result, setResult] = useState<string>(() => (location.state && location.state.title ? location.state.title : ''));
     const navigate = useNavigate();
 
     const fetchRecentSearch = async () => {
@@ -112,18 +114,13 @@ const SearchPage = ({}) => {
     useEffect(() => {
         fetchRecentSearch()
         .then(searchList => setRecentSearch(searchList));
-    }, [])
+    }, [result])
 
     const fetchProduct = async (code: string) => {
         const product = await searchService.getSearchProduct(code);
         return product;
     };
-
-    // useEffect(() => {
-    //     fetchProduct(search)
-    //     .then(product => setSearchList(product));
-    // }, [search]);
-
+    
     const fetchCategoryProduct = async (code: string) => {
         const categoryList = await searchService.getCategoryList(code);
         return categoryList;
@@ -137,9 +134,11 @@ const SearchPage = ({}) => {
 
     const deleteInput = () => {
         const searchInput = document.querySelector('input');
+
         if(searchInput !== null) {
             searchInput.value = '';
             setSearch('');
+            setResult('');
         }
     
     }
@@ -159,8 +158,9 @@ const SearchPage = ({}) => {
     };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        setSearch(event.currentTarget.value);
         if (event.key === 'Enter') {
-            setSearch(event.currentTarget.value);
+            setResult(event.currentTarget.value);
             fetchProduct(search).then(product => setSearchList(product));
         }
     };
@@ -182,7 +182,7 @@ const SearchPage = ({}) => {
             </BackgoundContainer>
         </SearchContainer>
             {
-                search ? (
+                result ? (
                     <>
                         <Info>
                             '{search.length >= 6 ? search.substring(0, 6) + '...' : search}'에 대한 {searchList.length}개의 시제품이 조회되었습니다.

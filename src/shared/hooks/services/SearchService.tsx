@@ -9,7 +9,7 @@ export const SearchService = () => {
       data: {
         result: searchList,
       },
-    } = (await API.delete("/product/search", {
+    } = (await API.delete("/search", {
       params: { name: code },
       headers: {
         "Authorization": getAccess(),
@@ -23,7 +23,7 @@ export const SearchService = () => {
       data: {
         result: searchList,
       },
-    } = (await API.delete("/product/search/all", {
+    } = (await API.delete("/search/all", {
       headers: {
         "Authorization": getAccess(),
       }
@@ -36,7 +36,7 @@ export const SearchService = () => {
       data: {
         result: product,
       },
-    } = (await API.post("/product/search", null, {
+    } = (await API.post("/search", null, {
       params: { name: code },
       headers: {
         "Authorization": getAccess(),
@@ -51,7 +51,7 @@ export const SearchService = () => {
       data: {
         result: searchList,
       },
-    } = (await API.get("/product/search/recent", {
+    } = (await API.get("/search/recent", {
       headers: {
         "Authorization": getAccess(),
       }
