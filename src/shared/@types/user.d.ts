@@ -115,4 +115,25 @@ declare namespace User {
       thumbnailUrl: string;
     }[];
   }
+
+  export interface GetTicketResDto {
+    result: {
+      ticketNumber: number;
+    };
+  }
+
+  export interface GetMyProductsApplied {
+    result: {
+      commonInfo: {
+        investmentId: number;
+        eventId: number;
+        productId: number;
+        name: string;
+        thumbnailUrl: string;
+        calculatedStatus: string;
+        createdAt: string;
+      };
+      ddayToSelected: 0;
+    }[];
+  }
 }
