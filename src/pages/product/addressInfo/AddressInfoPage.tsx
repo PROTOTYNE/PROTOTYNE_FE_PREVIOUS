@@ -1,6 +1,4 @@
-import React from "react";
-
-const AddressInfoPage: React.FC = () => {
+const AddressInfoPage = () => {
   return <>addressInfoPage</>;
 };
 

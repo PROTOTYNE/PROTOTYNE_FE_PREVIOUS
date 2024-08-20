@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
+
 import ApplyComplete from "./ApplyComplete";
 import AddressSearchModal from "./AddressSearchModal";
+
+import { AuthService } from "@/shared";
 
 const TopBar = styled.div`
   display: flex;
@@ -76,7 +79,11 @@ const Checkbox = styled.input`
 
 const SubmitButton = styled.button<{ disabled: boolean }>`
   position: fixed;
+
   bottom: 3%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+
   width: 85%;
   height: 25px;
   text-align: center;
@@ -87,6 +94,7 @@ const SubmitButton = styled.button<{ disabled: boolean }>`
       ? "#D9D9D9"
       : "linear-gradient(270deg, #0D1B4A 0%, #476090 50%, #7995B2 100%);"};
   color: white;
+
   border: none;
   border-radius: 8px;
   font-size: 18px;
@@ -98,10 +106,12 @@ export const AddressForm: React.FC = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [detailedAddress, setDetailedAddress] = useState("");
-  const [saveAsDefault, setSaveAsDefault] = useState(false);
+  const [saveAsDefault, setSaveAsDefault] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isFormValid, setIsFormValid] = useState<boolean | string>(false);
   const [isCompleteModalVisible, setIsCompleteModalVisible] = useState(false);
+
+  const { patchDelivery } = AuthService();
 
   useEffect(() => {
     const isValid = recipient && phone && address && detailedAddress;
@@ -121,9 +131,16 @@ export const AddressForm: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    if (isFormValid) {
+    if (!isFormValid) return;
+
+    patchDelivery({
+      deliveryName: recipient,
+      deliveryPhone: phone,
+      baseAddress: address,
+      detailAddress: detailedAddress,
+    }).then(() => {
       setIsCompleteModalVisible(true);
-    }
+    });
   };
 
   const handleCloseCompleteModal = () => {
