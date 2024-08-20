@@ -53,18 +53,51 @@ export const InfoContianer = styled(Container)`
   border-radius: 8px;
 `;
 
-export const AdditionalInfoContainer = styled(InfoContianer)`
-  height: 47%;
+export const AdditionalInfoContainer = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => (
+  <ScrollBox>
+    <ScrollContainer>{children}</ScrollContainer>
+  </ScrollBox>
+);
+
+const ScrollBox = styled(InfoContianer)`
+  height: 40vh;
+
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #152662b7;
+
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #dcdcdc;
+
+    border-radius: 5px;
+  }
+`;
+
+const ScrollContainer = styled.div`
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  padding-top: 30px;
 `;
 
 export const Info = styled.div`
-  padding-left: 13px;
-
   position: relative;
-  width: 100%;
+  width: calc(100% - 30px);
   font-size: 17px;
 
-  margin-left: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
 
@@ -84,7 +117,7 @@ export const MultiInfo = styled(Info)`
     position: absolute;
     font-weight: normal;
 
-    left: 12px;
+    left: 0px;
     top: 23px;
   }
 `;

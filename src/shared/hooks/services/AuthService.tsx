@@ -23,14 +23,14 @@ export const AuthService = () => {
   const getUserInfo = async () => {
     const {
       data: {
-        result: { detailInfo, addInfo },
+        result: { username, detailInfo, addInfo },
       },
     } = (await API.get("/my/detail")) as AxiosResponse<User.GetUserResDto>;
 
     const birth = detailInfo.birth.split("-");
 
     userStore.setUserAllInfo({
-      name: detailInfo.name,
+      name: username,
       birthYear: birth[0],
       birthMonth: birth[1],
       birthDay: birth[2],
