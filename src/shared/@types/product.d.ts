@@ -1,15 +1,17 @@
 declare namespace Product {
   export interface DateDto {
     result: {
-      eventStart: string;
-      eventEnd: string;
-      releaseStart: string;
-      releaseEnd: string;
-      feedbackStart: string;
-      feedbackEnd: string;
-      judgeStart: string;
-      judgeEnd: string;
-      endDate: string;
+      dateInfo: {
+        eventStart: string;
+        eventEnd: string;
+        releaseStart: string;
+        releaseEnd: string;
+        feedbackStart: string;
+        feedbackEnd: string;
+        judgeStart: string;
+        judgeEnd: string;
+        endDate: string;
+      };
     };
   }
 

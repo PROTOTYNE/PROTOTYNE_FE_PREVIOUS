@@ -117,8 +117,8 @@ const DateList: React.FC<DateListProps> = ({ dates }) => {
   );
 };
 
-export const DateData = ({eventId}) => {
-  const {getDates} = ProductService();
+export const DateData = ({ eventId }: { eventId: string }) => {
+  const { getDates } = ProductService();
 
   const [dates, setDates] = useState<DateInfo[]>([]);
 
@@ -159,7 +159,7 @@ export const DateData = ({eventId}) => {
     };
 
     fetchDates();
-  }, [eventId]);
+  }, []);
 
-  return <DateList dates={dates} />;  
+  return <DateList dates={dates} />;
 };

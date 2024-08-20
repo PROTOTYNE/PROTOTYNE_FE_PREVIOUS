@@ -4,15 +4,16 @@ import { AxiosResponse } from "axios";
 export const ProductService = () => {
   const getDates = async (eventId: string) => {
     const {
-      data: { result },
+      data: {
+        result: { dateInfo },
+      },
     } = (await API.get(`/product/detail/${eventId}`, {
       headers: {
         Authorization: getAccess(),
       },
     })) as AxiosResponse<Product.DateDto>;
-    console.log(result);
 
-    return result;
+    return dateInfo;
   };
 
   const getInvest = async (eventId: string) => {
@@ -40,5 +41,9 @@ export const ProductService = () => {
     return result;
   };
 
-  return { getDates, getInvest, getResult };
+  const application = async (id: string) => {
+    await API.post(`/application/${id}`);
+  };
+
+  return { getDates, getInvest, getResult, application };
 };

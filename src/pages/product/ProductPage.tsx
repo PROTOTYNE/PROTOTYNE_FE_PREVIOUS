@@ -63,18 +63,18 @@ const ProductPage = () => {
       </Header>
       <ImageSlide imageUrls={result.imageUrls} />
       <Product
-        category={`#${result.category}`}
+        category={result.category}
         name={result.name}
         company={result.enterprise}
         quantity={result.reqTickets}
       />
-      <DateData eventId={eventId} />
+      {eventId ? <DateData eventId={eventId} /> : null}
       <ProductInfo
         productName={result.name}
         productDescription={result.contents}
         additionalNotes={result.notes}
       />
-      <Footer />
+      {eventId ? <Footer require={result.reqTickets} id={eventId} /> : null}
     </div>
   );
 };

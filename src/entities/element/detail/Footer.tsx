@@ -17,11 +17,11 @@ const StyledFooter = styled.footer`
   gap: 5px 20%;
 `;
 
-export const Footer: React.FC = () => {
+export const Footer = ({ require, id }: { require: number; id: string }) => {
   return (
     <StyledFooter>
       <BookmarkButton />
-      <ApplyButton />
+      <ApplyButton require={require} id={id} />
     </StyledFooter>
   );
 };
