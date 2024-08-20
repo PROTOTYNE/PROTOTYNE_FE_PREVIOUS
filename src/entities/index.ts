@@ -47,3 +47,5 @@ export {
   StatusName,
   Divider,
 } from "./element/UsageStatusProcess";
+
+export { ApplyComplete } from "./element/address/ApplyComplete";

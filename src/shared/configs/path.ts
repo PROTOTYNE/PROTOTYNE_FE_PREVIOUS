@@ -14,7 +14,7 @@ export enum PAGE_URL {
 
   Product = "/product/:eventId",
   Address = "/address",
-  AddressInfo = "/addressinfo",
+  AddressInfo = "/addressinfo/:id",
   MyTicket = "/MyTicket",
 
   My = "/my",

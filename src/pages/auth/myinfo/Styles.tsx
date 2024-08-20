@@ -110,6 +110,14 @@ export const Info = styled.div`
   }
 `;
 
+export const Address = styled.div`
+  width: calc(100% - 30px);
+
+  > span {
+    font-weight: bold;
+  }
+`;
+
 export const MultiInfo = styled(Info)`
   height: 45px;
   > span {

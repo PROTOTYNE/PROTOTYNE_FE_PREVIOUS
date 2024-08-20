@@ -2,7 +2,6 @@ import { API, getAccess } from "@/shared/configs/axios";
 import { AxiosResponse } from "axios";
 
 export const ProductService = () => {
-  
   const getDates = async (eventId: string) => {
     const {
       data: { result },
