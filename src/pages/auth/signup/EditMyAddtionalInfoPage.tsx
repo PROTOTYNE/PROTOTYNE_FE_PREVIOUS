@@ -111,8 +111,9 @@ const EditMyAddtionalInfoPage = () => {
       </Styles.Container>
       <Button
         onClick={() => {
-          updateAdditionalInfo();
-          navigate(PAGE_URL.MyInfo);
+          updateAdditionalInfo().then(() => {
+            navigate(PAGE_URL.MyInfo);
+          });
         }}
       >
         저장하기

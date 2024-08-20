@@ -23,19 +23,21 @@ export const AuthService = () => {
   const getUserInfo = async () => {
     const {
       data: {
-        result: { detailInfo, addInfo },
+        result: { username, detailInfo, addInfo },
       },
     } = (await API.get("/my/detail")) as AxiosResponse<User.GetUserResDto>;
 
     const birth = detailInfo.birth.split("-");
 
+    console.log(detailInfo.familyMember);
+
     userStore.setUserAllInfo({
-      name: detailInfo.name,
+      name: username,
       birthYear: birth[0],
       birthMonth: birth[1],
       birthDay: birth[2],
       gender: detailInfo.gender,
-      familyNum: detailInfo.familyNum,
+      familyNum: detailInfo.familyMember,
       ...addInfo,
     });
   };
