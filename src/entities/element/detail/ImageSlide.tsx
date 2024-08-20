@@ -1,16 +1,9 @@
-/** @jsxImportSource @emotion/react */
-import { ProductService } from "@/shared";
-import ImageGallery from "react-image-gallery";
+import ImageGallery, { ReactImageGalleryItem } from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import styled from "@emotion/styled";
-import { useState, useEffect } from "react";
-
-interface Image {
-  eventId: string;
-}
 
 const GalleryWrapper = styled.div`
-  margin-top: 60px;
+  margin-top: 72px;
   z-index: 1;
   .image-gallery-slide {
     img {
@@ -20,8 +13,6 @@ const GalleryWrapper = styled.div`
   }
   .image-gallery-bullets {
     bottom: 10px;
-    right: 10px;
-    left: auto;
   }
 
   .image-gallery-bullets .image-gallery-bullet {
@@ -37,34 +28,17 @@ const GalleryWrapper = styled.div`
   }
 `;
 
-export const ImageSlide: React.FC = ({eventId}) => {
-  const { getResult } = ProductService();
-  const [images, setImages] = useState<Image[]>([]);
+export const ImageSlide = ({ imageUrls }: { imageUrls: string[] }) => {
+  const items: ReactImageGalleryItem[] = [];
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const result = await getResult(eventId);
-
-        // Assuming the API returns an array of image URLs
-        const fetchedImages = result.imageUrls.map((url: string) => ({
-          original: url,
-          thumbnail: url, // You can modify this to use a different thumbnail URL if available
-        }));
-
-        setImages(fetchedImages);
-      } catch (error) {
-        console.error("Failed to fetch images:", error);
-      }
-    };
-
-    fetchImages();
-  }, [eventId]);
+  imageUrls.forEach((imageUrl) => {
+    items.push({ original: imageUrl });
+  });
 
   return (
     <GalleryWrapper>
       <ImageGallery
-        items={images}
+        items={items}
         showThumbnails={false}
         showPlayButton={false}
         showFullscreenButton={false}

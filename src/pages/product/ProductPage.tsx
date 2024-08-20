@@ -21,7 +21,7 @@ const ProductPage = () => {
     enterprise: "",
     category: "",
     reqTickets: 0,
-    imageUrls: ["string"],
+    imageUrls: [""],
     notes: "",
     contents: "",
     isBookmarked: true,
@@ -61,7 +61,7 @@ const ProductPage = () => {
           alt="logo"
         ></img>
       </Header>
-      <ImageSlide />
+      <ImageSlide imageUrls={result.imageUrls} />
       <Product
         category={`#${result.category}`}
         name={result.name}
