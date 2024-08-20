@@ -7,10 +7,10 @@ declare namespace User {
   }[];
 
   export interface Delivery {
-    deliveryName: string;
-    deliveryPhone: string;
-    baseAddress: string;
-    detailAddress: string;
+    deliveryName: string | null;
+    deliveryPhone: string | null;
+    baseAddress: string | null;
+    detailAddress: string | null;
   }
 
   export interface BasicInfo {

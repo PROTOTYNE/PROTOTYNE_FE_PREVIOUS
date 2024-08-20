@@ -1,17 +1,11 @@
 import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router";
 
-import ApplyComplete from "./ApplyComplete";
 import AddressSearchModal from "./AddressSearchModal";
 
 import { AuthService } from "@/shared";
-
-const TopBar = styled.div`
-  display: flex;
-  justify-content: center;
-  height: 10%;
-  text-align: center;
-`;
+import { Header } from "../Header";
 
 const FormContainer = styled.div`
   padding: 10px;
@@ -19,12 +13,8 @@ const FormContainer = styled.div`
   max-width: 400px;
   margin: 0 auto;
   border-radius: 8px;
-`;
 
-const FormTitle = styled.h2`
-  font-size: 18px;
-  margin-bottom: 20px;
-  text-align: center;
+  margin-top: 50px;
 `;
 
 const FormGroup = styled.div`
@@ -109,8 +99,8 @@ export const AddressForm: React.FC = () => {
   const [saveAsDefault, setSaveAsDefault] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isFormValid, setIsFormValid] = useState<boolean | string>(false);
-  const [isCompleteModalVisible, setIsCompleteModalVisible] = useState(false);
 
+  const navigate = useNavigate();
   const { patchDelivery } = AuthService();
 
   useEffect(() => {
@@ -139,19 +129,17 @@ export const AddressForm: React.FC = () => {
       baseAddress: address,
       detailAddress: detailedAddress,
     }).then(() => {
-      setIsCompleteModalVisible(true);
+      navigate(-1);
     });
   };
 
-  const handleCloseCompleteModal = () => {
+  /* const handleCloseCompleteModal = () => {
     setIsCompleteModalVisible(false);
-  };
+  }; */
 
   return (
-    <div>
-      <TopBar>
-        <FormTitle>배송지 입력</FormTitle>
-      </TopBar>
+    <>
+      <Header onBack>배송지 입력</Header>
       <FormContainer>
         <h3>배송지 정보</h3>
         <FormGroup>
@@ -218,10 +206,6 @@ export const AddressForm: React.FC = () => {
         onClose={handleCloseModal}
         onSelectAddress={handleSelectAddress}
       />
-      <ApplyComplete
-        visible={isCompleteModalVisible}
-        onClose={handleCloseCompleteModal}
-      />
-    </div>
+    </>
   );
 };

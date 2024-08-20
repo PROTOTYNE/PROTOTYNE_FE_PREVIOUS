@@ -6,48 +6,45 @@ export const ProductService = () => {
 
   const getDates = async (code: string) => {
     const {
-      data: {
-        result: product,
-      },
+      data: { result: product },
     } = (await API.get(`/product/detail/${eventId}`, {
       headers: {
-        "Authorization": getAccess(),
+        Authorization: getAccess(),
       },
-      params: {type: code},
+      params: { type: code },
     })) as AxiosResponse<Product.DateDto>;
 
     return product;
-  }
+  };
 
   const getInvest = async (code: string) => {
     const {
-      data: {
-        result: product,
-      },
+      data: { result: product },
     } = (await API.get(`/product/detail/${eventId}`, {
       headers: {
-        "Authorization": getAccess(),
+        Authorization: getAccess(),
       },
-      params: {type: code},
+      params: { type: code },
     })) as AxiosResponse<Product.InvestDto>;
 
-    return product
-  }
+    return product;
+  };
 
   const getResult = async (eventId: number) => {
     const {
-      data: {
-        result,
-      },
+      data: { result },
     } = (await API.get(`/product/detail/${eventId}`, {
       headers: {
-        "Authorization": getAccess(),
+        Authorization: getAccess(),
       },
     })) as AxiosResponse<Product.ResultDto>;
 
-    return result
-  }
+    return result;
+  };
 
-  return { getDates, getInvest, getResult };
+  const application = async (id: string) => {
+    await API.post(`/application/${id}`);
+  };
 
+  return { getDates, getInvest, getResult, application };
 };
