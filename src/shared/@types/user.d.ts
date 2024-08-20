@@ -6,6 +6,13 @@ declare namespace User {
     dateAgo: number;
   }[];
 
+  export interface Delivery {
+    deliveryName: string;
+    deliveryPhone: string;
+    baseAddress: string;
+    detailAddress: string;
+  }
+
   export interface BasicInfo {
     name: string;
     birthYear: string;
@@ -114,5 +121,9 @@ declare namespace User {
       dateAgo: number;
       thumbnailUrl: string;
     }[];
+  }
+
+  export interface GetDelivery {
+    result: Delivery;
   }
 }
