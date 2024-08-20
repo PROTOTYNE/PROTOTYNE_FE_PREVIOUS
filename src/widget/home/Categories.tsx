@@ -5,6 +5,7 @@ const CategoriesContainer = styled.div`
   display: flex;
   justify-content: space-around;
   margin: 20px 10px;
+  margin-top: 60px;
   padding-bottom: 5px;
   overflow: auto;
 `;
