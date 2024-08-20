@@ -5,7 +5,7 @@ export const API = axios.create({
   baseURL: import.meta.env.VITE_SERVER_URL,
   headers: {
     "Content-Type": "application/json",
-    "ngrok-skip-brower-warning": true,
+    "ngrok-skip-browser-warning": "69420",
   },
 });
 
@@ -13,7 +13,7 @@ export const FORMAPI = axios.create({
   baseURL: import.meta.env.VITE_SERVER_URL,
   headers: {
     "Content-Type": "multipart/form-data",
-    "ngrok-skip-brower-warning": true,
+    "ngrok-skip-browser-warning": "69420",
   },
 });
 
@@ -57,10 +57,14 @@ API.interceptors.response.use(
         config.headers["Authorization"] = token;
 
         return API.request(config);
+      } else {
+        resetAccess();
+        location.href = PAGE_URL.SignIn;
       }
     }
-
-    resetAccess();
-    location.href = PAGE_URL.SignIn;
+    if (code === "TOKEN4001") {
+      resetAccess();
+      location.href = PAGE_URL.SignIn;
+    }
   }
 );
