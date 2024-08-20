@@ -38,11 +38,10 @@ export const Title = styled.div`
 `;
 
 export const SubTitle = styled.div`
-  width: 95%;
   color: gray;
   font-size: 16px;
 
-  margin-left: 1px;
+  width: calc(100% - 30px);
 `;
 
 export const InfoContianer = styled(Container)`

@@ -78,9 +78,9 @@ const MyInfo = () => {
         </Styles.Title>
         <Styles.AdditionalInfoContainer>
           <Styles.SubTitle>
-            추가정보를 입력하면 더 많은 시제품 체험 대상자로
+            추가정보를 입력하면 더 많은 시제품 체험 대상자로 <br /> 선정될 수
+            있습니다.
           </Styles.SubTitle>
-          <Styles.SubTitle>선정될 수 있습니다.</Styles.SubTitle>
           <div style={{ height: "5px" }}></div>
           {additionalInfoOptions.map((additionalInfoOption, index) =>
             index < 4 ? (
