@@ -1,44 +1,44 @@
-import { MyPageHeader, ProductExContainer, ProductList } from "@/entities";
+import { Header, ProductExContainer, ProductList } from "@/entities";
 import {
   getProductCount,
   ProductCount,
   StatusType,
 } from "@/service/my/product";
-import { MyPageService } from "@/shared";
+import { BookmarkService } from "@/shared";
+// import { useUserStore } from "@/shared";
 import {
+  BookmarkPrototypes,
   ProductExperience,
   ProductInfoContainer,
   UserInfoWidget,
-  WishList,
 } from "@/widget";
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
-const myPageService = MyPageService();
+const bookmarkService = BookmarkService();
+
+// const userStore = useUserStore((state) => state);
 const UserInfoContainer = styled.div`
   display: flex;
+  margin-top: 60px;
 `;
 const ProductContainer = styled.div`
   display: flex;
   flex-direction: column;
   with: 350px;
 `;
-
-interface Product {
-  commonInfo: {
-    investmentId: 0,
-    eventId: 0,
-    productId: 0,
-    name: string,
-    thumbnailUrl: string,
-    calculatedStatus: string,
-    createdAt: string,
-  },
-  shipping: string,
-  transportNum: string,
-  feedbackStart: string,
-  feedbackEnd: string
+interface ProductProp {
+  userId: 0;
+  products: [{
+    productId: 0;
+    name: string;
+    reqTickets: 0;
+    thumbnailUrl: string;
+    count: 0;
+  }]
 }
+
 const MyPage: React.FC = () => {
   const [countStatus, setCountStatus] = useState<ProductCount>({
     applied: 0,
@@ -48,17 +48,27 @@ const MyPage: React.FC = () => {
   });
   // 선택된 상태값 관리
   const [selected, setSelected] = useState<StatusType>(StatusType.applied);
-  const [ongoingProduct, setOngoingProduct] = useState<Product[]>([]);
-
-  const fetchOngoing = async () => {
-    const result = await myPageService.getProgress();
-    return result;
+  const [product, setProduct] = useState<ProductProp>({
+    userId: 0,
+    products: [{
+      productId: 0,
+      name: "",
+      reqTickets: 0,
+      thumbnailUrl: "",
+      count: 0,
+    }]
+  });
+  const navigate = useNavigate();
+  const fetchProduct = async () => {
+    const product = await bookmarkService.getBookmarkProduct();
+    return product;
   }
+
   useEffect(() => {
-    fetchOngoing()
-    .then((result) => setOngoingProduct(result));
-  }, []);
-  
+      fetchProduct()
+      .then(product => setProduct(product));
+  }, [])
+
   useEffect(() => {
     async function load() {
       const result = await getProductCount();
@@ -77,9 +87,11 @@ const MyPage: React.FC = () => {
         padding: "20px", // 여백을 주기 위해 추가
       }}
     >
-      <MyPageHeader title="마이페이지" />
+      <Header onBack styled>
+        마이 페이지
+      </Header>
       <UserInfoContainer>
-        <UserInfoWidget userName="조서영" status="신청" />
+        <UserInfoWidget userName="aaa" status="신청" />
       </UserInfoContainer>
       <ProductContainer>
         <ProductInfoContainer>
@@ -99,10 +111,13 @@ const MyPage: React.FC = () => {
           <div className="wishlist-section">
             <div className="wishlist-header">
               <span className="wishlist-title">관심 목록</span>
-              <span className="wishlist-view-all">전체보기</span>
+              <span className="wishlist-view-all" onClick={() => navigate('/bookmark')}>전체보기</span>
+              <hr />
             </div>
             <div className="wishlist-divider"></div>
-            <WishList />
+            <BookmarkPrototypes
+              prototype={product}
+            />
           </div>
         )}
         </ProductInfoContainer>

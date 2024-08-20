@@ -136,4 +136,56 @@ declare namespace User {
       ddayToSelected: 0;
     }[];
   }
+  export interface GetMyProductsOngoing {
+    result: [
+      {
+        commonInfo: {
+          investmentId: 0,
+          eventId: 0,
+          productId: 0,
+          name: string,
+          thumbnailUrl: string,
+          calculatedStatus: string,
+          createdAt: string,
+        },
+        shipping: string,
+        transportNum: string,
+        feedbackStart: string,
+        feedbackEnd: string
+      }
+    ]
+  }
+  export interface GetMyProductsSelected {
+    result: [
+      {
+        commonInfo: {
+          investmentId: 0,
+          eventId: 0,
+          productId: 0,
+          name: string,
+          thumbnailUrl: string,
+          calculatedStatus: string,
+          createdAt: string,
+        },
+        judgeEnd: string,
+        ddayToComplete: 0,
+      }
+    ]
+  }
+  export interface GetMyProductsCompleted {
+    result: [
+      {
+        commonInfo: {
+          investmentId: 0,
+          eventId: 0,
+          productId: 0,
+          name: string,
+          thumbnailUrl: string,
+          calculatedStatus: string,
+          createdAt: string,
+        },
+        penalty: true,
+      }
+    ]
+  }
 }

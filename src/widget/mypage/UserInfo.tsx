@@ -7,8 +7,7 @@ import React, { useEffect, useState } from "react";
 // Styled Components 정의
 const WidgetContainer = styled.div`
   width: 343px;
-  height: auto; /* 높이를 자동으로 조정 */
-  background-color: #9dc2e9cd;
+  height: auto;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -21,7 +20,7 @@ const UserInfoContainer = styled.div`
 `;
 
 const UserName = styled.span`
-  font-size: 16px;
+  font-size: 24spx;
   color: #000;
   font-weight: bold;
   margin-right: 8px;

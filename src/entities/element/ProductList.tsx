@@ -1,7 +1,11 @@
 import { StatusType } from "@/service/my/product";
+import { MyPageService } from "@/shared";
 import React from "react";
+import { useEffect, useState } from "react";
 // import ProductItem from "./ProductItem";
 
+
+const myPageService = MyPageService();
 interface AnnouncementDate {
   daysLeft: number;
   status: "당첨" | "미당첨" | null; // 특정 문자열로 제한
@@ -14,71 +18,125 @@ interface Product {
   shippingStatus?: "배송 준비중" | "배송중" | "배송 완료" | undefined; // 특정 문자열로 제한
 }
 
-interface ProductListProps {
-  status: StatusType
+interface Ongoing {
+  commonInfo: {
+    investmentId: 0,
+    eventId: 0,
+    productId: 0,
+    name: string,
+    thumbnailUrl: string,
+    calculatedStatus: string,
+    createdAt: string,
+  },
+  shipping: string,
+  transportNum: string,
+  feedbackStart: string,
+  feedbackEnd: string
+}
+interface Selected {
+  commonInfo: {
+    investmentId: 0,
+    eventId: 0,
+    productId: 0,
+    name: string,
+    thumbnailUrl: string,
+    calculatedStatus: string,
+    createdAt: string,
+  },
+  judgeEnd: string,
+  ddayToComplete: 0,
+}
+interface Completed {
+  commonInfo: {
+    investmentId: 0,
+    eventId: 0,
+    productId: 0,
+    name: string,
+    thumbnailUrl: string,
+    calculatedStatus: string,
+    createdAt: string,
+  },
+  penalty: true,
 }
 
-export const ProductList: React.FC<ProductListProps> = ({ status }) => {
-  const products: Record<string, Product[]> = {
-    신청: [
-      {
-        name: "마라탕후루 만두 마라맛 확인 시제품",
-        applicationDate: "2024-08-01",
-        announcementDate: { daysLeft: 30, status: null },
-      },
-      {
-        name: "마라탕후루 만두 마라맛 확인 시제품",
-        applicationDate: "2024-08-02",
-        announcementDate: { daysLeft: 0, status: "미당첨" },
-      },
-    ],
-    진행중: [
-      {
-        name: "마라탕후루 만두 마라맛 확인 시제품",
-        applicationDate: "2024-08-01",
-        announcementDate: { daysLeft: 10, status: "당첨" },
-      },
-      {
-        name: "마라탕후루 만두 마라맛 확인 시제품",
-        applicationDate: "2024-08-02",
-        announcementDate: { daysLeft: 0, status: "미당첨" },
-      },
-    ],
-    당첨: [
-      {
-        name: "마라탕후루 만두 마라맛 확인 시제품",
-        applicationDate: "2024-07-01",
-        announcementDate: null,
-        shippingStatus: "배송 준비중",
-      },
-      {
-        name: "마라탕후루 만두 마라맛 확인 시제품",
-        applicationDate: "2024-07-02",
-        announcementDate: null,
-        shippingStatus: "배송중",
-      },
-      {
-        name: "당첨된 체험3",
-        applicationDate: "2024-07-03",
-        announcementDate: null,
-        shippingStatus: "배송 완료",
-      },
-    ],
-    종료: [
-      {
-        name: "마라탕후루 만두 마라맛 확인 시제품",
-        applicationDate: "2024-07-02",
-        announcementDate: null,
-        shippingStatus: undefined, // 상태가 없을 경우 undefined로 설정
-      },
-      {
-        name: "마라탕후루 만두 마라맛 확인 시제품",
-        applicationDate: "2024-07-02",
-        announcementDate: null,
-        shippingStatus: undefined,
-      },
-    ],
+interface ProductListProps {
+  status: StatusType;
+}
+
+interface appliedProduct {
+  commonInfo: {
+    investmentId: number;
+    eventId: number;
+    productId: number;
+    name: string;
+    thumbnailUrl: string;
+    calculatedStatus: string;
+    createdAt: string;
   };
+  ddayToSelected: 0;
+}[];
+
+interface AllRequested {
+  investmentId: number;
+  eventId: number;
+  productId: number;
+  name: string;
+  thumbnailUrl: string;
+  calculatedStatus: string;
+  createdAt: string;
+}
+export const ProductList: React.FC<ProductListProps> = ({ status }) => {
+  const [ongoingProduct, setOngoingProduct] = useState<Ongoing[]>([]);
+  const [selectedProduct, setSelectedProduct] = useState<Selected[]>([]);
+  const [completedProduct, setCompletedProduct] = useState<Completed[]>([]);
+  const [appliedProduct, setAppliedProduct] = useState<appliedProduct[]>([]);
+  const [all, setAll] = useState<AllRequested[]>([]);
+  const fetchApplied = async () => {
+    const result = await myPageService.getMyProductsApplied();
+    return result;
+  }
+  useEffect(() => {
+    fetchApplied()
+    .then((result) => setAppliedProduct(result));
+  }, []);
+  
+  const fetchOngoing = async () => {
+    const result = await myPageService.getOngoing();
+    return result;
+  }
+  useEffect(() => {
+    fetchOngoing()
+    .then((result) => setOngoingProduct(result));
+  }, []);
+
+  const fetchSelected = async () => {
+    const result = await myPageService.getSelectedProduct();
+    return result;
+  }
+
+  useEffect(() => {
+    fetchSelected()
+    .then((result) => setSelectedProduct(result));
+  }, []);
+  
+  const fetchCompleted = async () => {
+    const result = await myPageService.getCompleted();
+    return result;
+  }
+
+  useEffect(() => {
+    fetchCompleted()
+    .then((result) => setCompletedProduct(result));
+  }, []);
+
+  const allRequested = async () => {
+    const result = await myPageService.getAllRequested();
+    return result;
+  }
+  useEffect(() => {
+    allRequested()
+    .then((result) => setAll(result));
+  },[]);
 
   return (
     <div>
@@ -91,17 +149,28 @@ export const ProductList: React.FC<ProductListProps> = ({ status }) => {
           ? "당첨된 체험"
           : "종료된 체험"}
       </h2>
-      {products[status].map((product, index) => (
-        // <ProductItem
-        //   key={index}
-        //   productName={product.name}
-        //   applicationDate={product.applicationDate}
-        //   announcementDate={product.announcementDate}
-        //   shippingStatus={product.shippingStatus}
-        //   status={status} // 상태를 추가
-        // />
-        <></>
-      ))}
+      <div>
+        {status === StatusType.applied
+          ? all.map((product) => (
+              <div key={product.eventId}>
+                <h3>{product.name}</h3>
+                <p>{product.calculatedStatus}</p>
+              </div>
+            ))
+          : status === StatusType.ongoing
+          ? all.map((product) => (
+            <div key={product.eventId}>
+              <h3>{product.name}</h3>
+              <p>{product.calculatedStatus}</p>
+            </div>
+          ))
+          : all.map((product) => (
+            <div key={product.eventId}>
+              <h3>{product.name}</h3>
+              <p>{product.calculatedStatus}</p>
+            </div>
+          ))}
+      </div>
     </div>
   );
 };
