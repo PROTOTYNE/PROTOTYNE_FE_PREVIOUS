@@ -1,6 +1,6 @@
 import { StatusType } from "@/service/my/product";
 import React from "react";
-import ProductItem from "./ProductItem";
+// import ProductItem from "./ProductItem";
 
 interface AnnouncementDate {
   daysLeft: number;
@@ -92,14 +92,15 @@ export const ProductList: React.FC<ProductListProps> = ({ status }) => {
           : "종료된 체험"}
       </h2>
       {products[status].map((product, index) => (
-        <ProductItem
-          key={index}
-          productName={product.name}
-          applicationDate={product.applicationDate}
-          announcementDate={product.announcementDate}
-          shippingStatus={product.shippingStatus}
-          status={status} // 상태를 추가
-        />
+        // <ProductItem
+        //   key={index}
+        //   productName={product.name}
+        //   applicationDate={product.applicationDate}
+        //   announcementDate={product.announcementDate}
+        //   shippingStatus={product.shippingStatus}
+        //   status={status} // 상태를 추가
+        // />
+        <></>
       ))}
     </div>
   );

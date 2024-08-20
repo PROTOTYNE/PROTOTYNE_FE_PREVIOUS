@@ -4,14 +4,41 @@ import {
   ProductCount,
   StatusType,
 } from "@/service/my/product";
+import { MyPageService } from "@/shared";
 import {
   ProductExperience,
   ProductInfoContainer,
   UserInfoWidget,
   WishList,
 } from "@/widget";
+import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 
+const myPageService = MyPageService();
+const UserInfoContainer = styled.div`
+  display: flex;
+`;
+const ProductContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  with: 350px;
+`;
+
+interface Product {
+  commonInfo: {
+    investmentId: 0,
+    eventId: 0,
+    productId: 0,
+    name: string,
+    thumbnailUrl: string,
+    calculatedStatus: string,
+    createdAt: string,
+  },
+  shipping: string,
+  transportNum: string,
+  feedbackStart: string,
+  feedbackEnd: string
+}
 const MyPage: React.FC = () => {
   const [countStatus, setCountStatus] = useState<ProductCount>({
     applied: 0,
@@ -21,7 +48,17 @@ const MyPage: React.FC = () => {
   });
   // 선택된 상태값 관리
   const [selected, setSelected] = useState<StatusType>(StatusType.applied);
+  const [ongoingProduct, setOngoingProduct] = useState<Product[]>([]);
 
+  const fetchOngoing = async () => {
+    const result = await myPageService.getProgress();
+    return result;
+  }
+  useEffect(() => {
+    fetchOngoing()
+    .then((result) => setOngoingProduct(result));
+  }, []);
+  
   useEffect(() => {
     async function load() {
       const result = await getProductCount();
@@ -41,11 +78,11 @@ const MyPage: React.FC = () => {
       }}
     >
       <MyPageHeader title="마이페이지" />
-      <div className="user-info-section">
+      <UserInfoContainer>
         <UserInfoWidget userName="조서영" status="신청" />
-      </div>
-      <ProductInfoContainer>
-        <div className="product-info-section">
+      </UserInfoContainer>
+      <ProductContainer>
+        <ProductInfoContainer>
           <ProductExContainer title="나의 시제품 체험">
             <ProductExperience
               status={countStatus}
@@ -55,8 +92,7 @@ const MyPage: React.FC = () => {
               }}
             />
           </ProductExContainer>
-        </div>
-        <div className="product-list-section">
+          <div className="product-list-section">
           <ProductList status={selected} /> {/* 상태에 따라 다르게 표시 */}
         </div>
         {selected === StatusType.applied && ( // '당첨' 상태일 때만 위시리스트 표시
@@ -69,7 +105,9 @@ const MyPage: React.FC = () => {
             <WishList />
           </div>
         )}
-      </ProductInfoContainer>
+        </ProductInfoContainer>
+        
+      </ProductContainer>
     </div>
   );
 };

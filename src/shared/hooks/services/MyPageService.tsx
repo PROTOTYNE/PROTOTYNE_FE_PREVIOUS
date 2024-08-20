@@ -1,5 +1,19 @@
-//import { API } from "@/shared";
+import { API, getAccess } from "@/shared";
 
 export const MyPageService = () => {
-  return {};
+
+  const getProgress = async () => {
+    const {
+      data: {
+        result: progressProduct,
+      },
+    } = (await API.get("/myproduct/ongoing", {
+      headers: {
+        "Authorization": getAccess(),
+      }
+    }));
+    return progressProduct;
+  }
+
+  return {getProgress};
 };
