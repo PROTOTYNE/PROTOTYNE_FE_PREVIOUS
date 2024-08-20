@@ -101,7 +101,7 @@ declare namespace User {
       detailInfo: {
         birth: string;
         gender: "MALE" | "FEMALE";
-        familyNum: number;
+        familyMember: number;
       };
       addInfo: AdditionalInfo;
     };

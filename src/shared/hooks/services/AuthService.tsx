@@ -29,13 +29,15 @@ export const AuthService = () => {
 
     const birth = detailInfo.birth.split("-");
 
+    console.log(detailInfo.familyMember);
+
     userStore.setUserAllInfo({
       name: username,
       birthYear: birth[0],
       birthMonth: birth[1],
       birthDay: birth[2],
       gender: detailInfo.gender,
-      familyNum: detailInfo.familyNum,
+      familyNum: detailInfo.familyMember,
       ...addInfo,
     });
   };
