@@ -35,6 +35,7 @@ declare namespace Product {
             thumbnailUrl: string;
             investCount: 0;
             reqTickets: 0;
+            bookmark: true;
         }];
     }
     export interface SearchProductDto {
