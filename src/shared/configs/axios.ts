@@ -40,9 +40,14 @@ export const getAccess = (): string | null => {
 API.interceptors.response.use(
   (response) => response,
   async (error) => {
-    const { message, config } = error;
+    const {
+      response: {
+        data: { code },
+      },
+      config,
+    } = error;
 
-    if (message === "Request failed with status code 401") {
+    if (code === "TOKEN4002") {
       const token = getAccess();
 
       if (token) {
