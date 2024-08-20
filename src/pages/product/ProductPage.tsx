@@ -55,7 +55,11 @@ const ProductPage = () => {
   return (
     <div>
       <Header colorBackground onBack>
-        <img src="/image/logo2.png" alt="logo"></img>
+        <img
+          style={{ marginTop: "10px", width: "4.3rem" }}
+          src="/image/logo2.png"
+          alt="logo"
+        ></img>
       </Header>
       <ImageSlide />
       <Product

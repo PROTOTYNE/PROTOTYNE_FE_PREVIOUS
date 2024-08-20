@@ -24,7 +24,11 @@ export const Header = ({
       {colorBackground ? <ColorBackGround /> : null}
       <Container style={{ color: styled ? "white" : "none" }}>
         {onBack && colorBackground ? (
-          <WhiteBackButton />
+          <WhiteBackButton
+            onClick={() => {
+              navigate(-1);
+            }}
+          />
         ) : onBack ? (
           <BackButton
             onClick={() => {
