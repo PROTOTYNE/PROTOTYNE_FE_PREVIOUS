@@ -35,7 +35,7 @@ const ApplyButton: React.FC = () => {
 
   const handleButtonClick = () => {
     if (hasTickets) {
-      navigate('/address');
+      navigate("/addressinfo/:id");
     } else {
       setIsModalVisible(true);
     }
