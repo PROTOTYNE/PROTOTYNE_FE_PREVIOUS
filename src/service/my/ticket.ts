@@ -1,42 +1,6 @@
 import { API, getAccess } from "@/shared";
 
-// 1. 배송 상태와 송장 번호를 조회하는 API 가 없음
-interface DeliveryResponse {
-  isSuccess: boolean;
-  code: string;
-  message: string;
-  result: {
-    deliveryName: string;
-    deliveryPhone: string;
-    deliveryAddress: string;
-  };
-}
-
-
-export async function getDeliveryInfo() {
-  try {
-    const accessToken = await getAccess();
-    const response = await API.get('/delivery', {
-      headers: { Authorization: `Bearer ${accessToken}` }
-    });
-
-    const data: DeliveryResponse = response.data;
-
-    if (!data.isSuccess) {
-      console.warn(`Failed to fetch delivery info. Code: ${data.code}, Message: ${data.message}`);
-      return null;
-    }
-
-    // 필요한 정보를 추출
-    const { deliveryName, deliveryPhone, deliveryAddress } = data.result;
-    return { deliveryName, deliveryPhone, deliveryAddress };
-  } catch (error) {
-    console.error('Error fetching delivery info:', error);
-    return null;
-  }
-}
-
-// 2. 티켓 개수 조회 API
+// 1. 티켓 개수 조회 API
 interface TicketCountResponse {
   isSuccess: boolean;
   code: string;
@@ -59,7 +23,7 @@ export async function getTicketCount(p0: string, p1: string) {
       return null;
     }
 
-    // 티켓 개수를 반환합니다.
+    // 티켓 개수를 반환
     return data.result.ticketNumber;
   } catch (error) {
     console.error('Error fetching ticket count:', error);
@@ -67,7 +31,7 @@ export async function getTicketCount(p0: string, p1: string) {
   }
 }
 
-// 3. 티켓 사용 내역 조회 API
+// 2. 티켓 사용 내역 조회 API
 interface TicketUsedResponse {
   isSuccess: boolean;
   code: string;
@@ -103,7 +67,7 @@ export async function getTicketUsed(startDate: string, endDate: string) {
   }
 }
 
-// 4. 티켓 전체 내역 조회 API
+// 3. 티켓 전체 내역 조회 API
 interface TicketAllResponse {
   isSuccess: boolean;
   code: string;
