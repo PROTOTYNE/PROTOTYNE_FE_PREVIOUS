@@ -15,14 +15,16 @@ interface PrizeInfoResponse {
 export async function getPrizeInfo() {
   try {
     const accessToken = await getAccess();
-    const response = await API.get('/prize/info', {
-      headers: { Authorization: `Bearer ${accessToken}` }
+    const response = await API.get("/prize/info", {
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
 
     const data: PrizeInfoResponse = response.data;
 
     if (!data.isSuccess) {
-      console.warn(`Failed to fetch prize info. Code: ${data.code}, Message: ${data.message}`);
+      console.warn(
+        `Failed to fetch prize info. Code: ${data.code}, Message: ${data.message}`
+      );
       return null;
     }
 
@@ -32,7 +34,7 @@ export async function getPrizeInfo() {
 
     return { name };
   } catch (error) {
-    console.error('Error fetching prize info:', error);
+    console.error("Error fetching prize info:", error);
     return null;
   }
 }
@@ -43,7 +45,7 @@ interface DeliveryStatusResponse {
   code: string;
   message: string;
   result: Array<{
-    shipping: '배송 준비중' | '배송중' | '배송 완료';
+    shipping: "배송 준비중" | "배송중" | "배송 완료";
     transportNum: string;
     feedbackStart: string;
     feedbackEnd: string;
@@ -56,14 +58,16 @@ interface DeliveryStatusResponse {
 export async function getDeliveryStatus() {
   try {
     const accessToken = await getAccess();
-    const response = await API.get('/delivery/status', {
-      headers: { Authorization: `Bearer ${accessToken}` }
+    const response = await API.get("/delivery/status", {
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
 
     const data: DeliveryStatusResponse = response.data;
 
     if (!data.isSuccess) {
-      console.warn(`Failed to fetch delivery status. Code: ${data.code}, Message: ${data.message}`);
+      console.warn(
+        `Failed to fetch delivery status. Code: ${data.code}, Message: ${data.message}`
+      );
       return null;
     }
 
@@ -77,7 +81,7 @@ export async function getDeliveryStatus() {
       feedbackPeriod: `${feedbackStart} ~ ${feedbackEnd}`, // Format the review period
     };
   } catch (error) {
-    console.error('Error fetching delivery status:', error);
+    console.error("Error fetching delivery status:", error);
     return null;
   }
 }

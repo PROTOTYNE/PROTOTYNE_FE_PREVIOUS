@@ -21,13 +21,21 @@ const PersonalInfo = lazy(() => import("@/pages/auth/signup/PersonalInfoPage"));
 const TermsOfUse = lazy(() => import("@/pages/auth/signup/TermsOfUsePage"));
 
 const MyInfo = lazy(() => import("@/pages/auth/myinfo/MyInfoPage"));
-const EditMyInfo = lazy(() => import("@/pages/auth/myinfo/EditMyInfoPage"));
+const EditMyInfo = lazy(() => import("@/pages/auth/signup/EditMyInfoPage"));
 const EditMyAddionalInfo = lazy(
-  () => import("@/pages/auth/myinfo/EditMyAddtionalInfoPage")
+  () => import("@/pages/auth/signup/EditMyAddtionalInfoPage")
 );
 
 const Home = lazy(() => import("@/pages/home/HomePage"));
 const NotFound = lazy(() => import("@/pages/notfound/NotFoundPage"));
+
+const Product = lazy(() => import("@/pages/product/ProductPage"));
+const Address = lazy(() => import("@/pages/address/AddressPage"));
+const AddressInfo = lazy(
+  () => import("@/pages/product/addressInfo/AddressInfoPage")
+);
+const MyTicket = lazy(() => import("@/pages/myTicket/myTicketPage"));
+
 const My = lazy(() => import("@/pages/mypage/MyPage"));
 
 const Search = lazy(() => import("@/pages/search/SearchPage"));
@@ -62,6 +70,11 @@ const PageRouter = () => (
 
             <Route path={PAGE_URL.Home} element={<Home />} />
 
+            <Route path={PAGE_URL.Product} element={<Product />} />
+            <Route path={PAGE_URL.Address} element={<Address />} />
+            <Route path={PAGE_URL.AddressInfo} element={<AddressInfo />} />
+            <Route path={PAGE_URL.MyTicket} element={<MyTicket />} />
+
             <Route path={PAGE_URL.My} element={<My />} />
 
             <Route path={PAGE_URL.Search} element={<Search />} />
@@ -70,8 +83,8 @@ const PageRouter = () => (
               element={<Detail type="popular" />}
             />
             <Route
-              path={PAGE_URL.DeadLineDetail}
-              element={<Detail type="deadline" />}
+              path={PAGE_URL.ImminentDetail}
+              element={<Detail type="imminent" />}
             />
             <Route path={PAGE_URL.NewDetail} element={<Detail type="new" />} />
             <Route path={PAGE_URL.Bookmark} element={<Bookmark />} />

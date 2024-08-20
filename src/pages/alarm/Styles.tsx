@@ -4,12 +4,12 @@ export const Element = ({
   img,
   name,
   content,
-  time,
+  dateAgo,
 }: {
   img: string;
   name: string;
   content: string;
-  time: Date;
+  dateAgo: number;
 }) => {
   return (
     <ElementContainer>
@@ -18,19 +18,10 @@ export const Element = ({
         <div>{name}</div>
         <span>{content}</span>
       </Content>
-      <Time>{getDaysDifference(time)}</Time>
+      <Time>{dateAgo === 0 ? "오늘" : `${dateAgo}일 전`}</Time>
     </ElementContainer>
   );
 };
-
-function getDaysDifference(date: Date): string {
-  const now = new Date();
-  const diffInMs = now.getTime() - date.getTime();
-  const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
-  return Math.floor(diffInDays) === 0
-    ? "오늘"
-    : `${Math.floor(diffInDays)}일전`;
-}
 
 const ElementContainer = styled.div`
   height: 100px;

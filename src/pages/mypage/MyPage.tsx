@@ -1,33 +1,35 @@
 import { MyPageHeader, ProductExContainer, ProductList } from "@/entities";
-import { getProductCount, ProductCount, StatusType } from "@/service/my/product";
+import {
+  getProductCount,
+  ProductCount,
+  StatusType,
+} from "@/service/my/product";
 import {
   ProductExperience,
   ProductInfoContainer,
   UserInfoWidget,
-  WishList
+  WishList,
 } from "@/widget";
 import { useEffect, useState } from "react";
-
-
 
 const MyPage: React.FC = () => {
   const [countStatus, setCountStatus] = useState<ProductCount>({
     applied: 0,
     ongoing: 0,
     winning: 0,
-    completed: 0
-  })
+    completed: 0,
+  });
   // 선택된 상태값 관리
-  const [selected, setSelected] = useState<StatusType>(StatusType.applied)
+  const [selected, setSelected] = useState<StatusType>(StatusType.applied);
 
   useEffect(() => {
     async function load() {
-      const result = await getProductCount()
-      setCountStatus(result)
+      const result = await getProductCount();
+      setCountStatus(result);
     }
 
-    load().then()
-  }, [])
+    load().then();
+  }, []);
 
   return (
     <div
@@ -40,19 +42,16 @@ const MyPage: React.FC = () => {
     >
       <MyPageHeader title="마이페이지" />
       <div className="user-info-section">
-        <UserInfoWidget
-          userName="조서영"
-          status="신청"
-        />
+        <UserInfoWidget userName="조서영" status="신청" />
       </div>
       <ProductInfoContainer>
         <div className="product-info-section">
           <ProductExContainer title="나의 시제품 체험">
-            <ProductExperience 
-              status={countStatus} 
+            <ProductExperience
+              status={countStatus}
               selected={selected}
-              onStatusSelected={(selected:StatusType) => {
-                setSelected(selected)
+              onStatusSelected={(selected: StatusType) => {
+                setSelected(selected);
               }}
             />
           </ProductExContainer>

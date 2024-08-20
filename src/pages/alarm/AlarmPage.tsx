@@ -1,31 +1,36 @@
+import { useEffect, useState } from "react";
+
 import { Header, Container } from "@/entities";
+import { AuthService } from "@/shared";
 
 import * as Styles from "./Styles";
 
 const AlarmPage = () => {
+  const { getAlarms } = AuthService();
+
+  const [alarms, setAlarms] = useState<User.Alarms>([]);
+
+  useEffect(() => {
+    (async () => {
+      const data = await getAlarms();
+      setAlarms(data);
+    })();
+  }, []);
+
   return (
     <>
       <Header onBack>알림</Header>
       <div style={{ height: "65px" }}></div>
       <Container>
-        <Styles.Element
-          img="/image/logo.png"
-          name="강민규의 시제품강민규의 시제품강민규의 시제품강민규의 시제품강민규의 시제품"
-          content="당첨을 축하합니다~당첨을 축하합니다~당첨을 축하합니다~당첨을 축하합니다~당첨을 축하합니다~당첨을 축하합니다~"
-          time={new Date()}
-        />
-        <Styles.Element
-          img="/image/logo.png"
-          name="강민규의 시제품"
-          content="당첨을 축하합니다~"
-          time={new Date()}
-        />
-        <Styles.Element
-          img="/image/logo.png"
-          name="강민규의 시제품"
-          content="당첨을 축하합니다~"
-          time={new Date()}
-        />
+        {alarms.map((alarm) => (
+          <Styles.Element
+            key={alarm.title}
+            img={alarm.thumbnailUrl ?? "/apple-icon-180x180.png"}
+            name={alarm.title}
+            content={alarm.contents}
+            dateAgo={alarm.dateAgo}
+          />
+        ))}
       </Container>
     </>
   );

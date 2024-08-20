@@ -138,7 +138,7 @@ const ScrollContainer = styled.div`
 
 export const BackButton = styled(ArrowBackIosNewIcon)`
   position: absolute;
-  top: 26px;
+  top: 16px;
   left: 30px;
   z-index: 100;
 `;

@@ -1,7 +1,13 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
 import { Background, Header } from "@/entities";
-import { useUserStore, additionalInfoOptions, PAGE_URL } from "@/shared";
+import {
+  useUserStore,
+  additionalInfoOptions,
+  PAGE_URL,
+  AuthService,
+} from "@/shared";
 
 import * as Styles from "./Styles";
 
@@ -15,6 +21,14 @@ const MyInfo = () => {
   const gender = useUserStore((state) => state.gender);
   const familyNum = useUserStore((state) => state.familyNum);
   const state = useUserStore((state) => state);
+
+  const { getUserInfo } = AuthService();
+
+  useEffect(() => {
+    (async () => {
+      await getUserInfo();
+    })();
+  }, []);
 
   return (
     <>
@@ -56,16 +70,18 @@ const MyInfo = () => {
           추가 정보
           <span
             onClick={() => {
-              navigation(PAGE_URL.EditMyInfo);
+              navigation(PAGE_URL.EditMyAddionalInfo);
             }}
           >
             수정하기
           </span>
         </Styles.Title>
         <Styles.AdditionalInfoContainer>
-          <Styles.SubTitle>추가정보를 입력하면 더 많은 시제품</Styles.SubTitle>
-          <Styles.SubTitle>체험 대상자로 선정될 수 있습니다.</Styles.SubTitle>
-          <div style={{ height: "10px" }}></div>
+          <Styles.SubTitle>
+            추가정보를 입력하면 더 많은 시제품 체험 대상자로 <br /> 선정될 수
+            있습니다.
+          </Styles.SubTitle>
+          <div style={{ height: "5px" }}></div>
           {additionalInfoOptions.map((additionalInfoOption, index) =>
             index < 4 ? (
               <Styles.Info key={additionalInfoOption.name}>
@@ -80,9 +96,24 @@ const MyInfo = () => {
                 </span>
               </Styles.Info>
             ) : (
-              <Styles.MultiInfo>
+              <Styles.MultiInfo key={additionalInfoOption.name}>
                 {additionalInfoOption.label}
-                <span>??</span>
+                <span>
+                  {(state[additionalInfoOption.name] as string[]).length
+                    ? (state[additionalInfoOption.name] as string[]).map(
+                        (value, index) => (
+                          <span key={value}>
+                            {index !== 0 ? " / " : null}
+                            {
+                              additionalInfoOption.options.find(
+                                (option) => option.value === value
+                              )?.label
+                            }
+                          </span>
+                        )
+                      )
+                    : "입력된 정보가 없습니다."}
+                </span>
               </Styles.MultiInfo>
             )
           )}

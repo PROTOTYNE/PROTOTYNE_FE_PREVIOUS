@@ -2,14 +2,14 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
 export const useUserStore = create<User.UserStore>()(
-  immer((set) => ({
+  immer((set, get) => ({
     //State
     name: "",
     birthYear: "",
     birthMonth: "",
     birthDay: "",
     gender: "MALE",
-    familyNum: 0,
+    familyNum: 1,
     occupation: undefined,
     income: undefined,
     interests: [],
@@ -19,6 +19,32 @@ export const useUserStore = create<User.UserStore>()(
     healthStatus: undefined,
 
     //Set Function
+    setUserAllInfo: (value) => {
+      set((state) => {
+        for (const key in value) {
+          if (value[key as keyof typeof value]) {
+            state[key as keyof typeof state] = value[
+              key as keyof typeof value
+            ] as never;
+          }
+        }
+      });
+    },
+    getUserAllInfo: () => ({
+      name: get().name,
+      birthYear: get().birthYear,
+      birthMonth: get().birthMonth,
+      birthDay: get().birthDay,
+      gender: get().gender,
+      familyNum: get().familyNum,
+      occupation: get().occupation,
+      income: get().income,
+      interests: get().interests,
+      familyComposition: get().familyComposition,
+      productTypes: get().productTypes,
+      phones: get().phones,
+      healthStatus: get().healthStatus,
+    }),
     setName: (value) => {
       set(() => ({ name: value }));
     },
