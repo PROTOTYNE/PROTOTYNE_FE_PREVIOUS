@@ -1,3 +1,4 @@
+import { getAccess } from "@/shared/configs/axios";
 import axios from "axios";
 
 interface ProductDetailResponse {
@@ -35,10 +36,16 @@ interface ProductDetailResponse {
   };
 }
 
+const API_BASE_URL = 'http://15.165.65.130';
 
 export const ProductService = {
   getProduct: async (eventId: number): Promise<ProductDetailResponse> => {
-    const response = await axios.get<ProductDetailResponse>(`/product/detail/${eventId}`);
+    const response = await axios.get<ProductDetailResponse>(`${API_BASE_URL}/product/detail/${eventId}`, {
+      headers: {
+        'Authorization': getAccess(),
+      }
+    });
+
     return response.data;
   },
 };

@@ -51,6 +51,7 @@ const ProductPage = () => {
     const fetchProduct = async () => {
       try {
         const response = await ProductService.getProduct(eventId);
+        console.log("API response:", response); // API 응답 확인
         setProduct(response.result);
       } catch (error) {
         console.error("Error fetching product details:", error);
@@ -70,7 +71,7 @@ const ProductPage = () => {
         <img src="/image/logo2.png" alt="logo"></img>
       </Header>
       <ImageSlide/>
-      <Product
+      {/* <Product
         category={`#${product.category}`}
         name={product.name}
         company={product.enterprise}
@@ -81,7 +82,7 @@ const ProductPage = () => {
         productName={product.name}
         productDescription={product.contents}
         additionalNotes={product.notes}
-      />
+      /> */}
       <Footer />
     </div>
   );
