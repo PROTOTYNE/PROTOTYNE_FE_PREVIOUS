@@ -77,29 +77,30 @@ export const Sidebar = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   });
-
-  return (
-    <BackGround open={isOpen ? "fixed" : "none"}>
-      <SideBarContainer ref={outside} className={isOpen ? "open" : ""}>
-        <Top>
-          <Logo>Prototyne.</Logo>
-        </Top>
-        <Content>
-          <SideMenu onClick={() => navigate("/bookmark")}>
-            <Image src="../image/checkBookmark.svg" alt="checkBookMark" />
-            관심목록
-          </SideMenu>
-          <SideMenu onClick={() => navigate("/alarm")}>
-            <Image src="../image/alarm.svg" alt="alarm" />
-            알림 내역
-          </SideMenu>
-          <SideMenu onClick={() => navigate("/mypage")}>
-            <Image src="../image/account.svg" alt="account" />
-            마이페이지
-          </SideMenu>
-        </Content>
-      </SideBarContainer>
-    </BackGround>
-  );
+    return (
+        <BackGround open={isOpen ? "fixed" : "none"}>
+            <SideBarContainer ref={outside} className={isOpen ? 'open' : ''}>
+                <Top>
+                    <Logo>
+                        Prototyne.
+                    </Logo>
+                </Top>
+                <Content>
+                    <SideMenu onClick={() => navigate('/bookmark')}>
+                        <Image src="../image/checkBookmark.svg" alt="checkBookMark" />
+                        관심목록
+                    </SideMenu>
+                    <SideMenu onClick={() => navigate('/alarm')}>
+                        <Image src="../image/alarm.svg" alt="alarm" />
+                        알림 내역
+                    </SideMenu>
+                    <SideMenu onClick={() => navigate('/my')}>
+                        <Image src="../image/account.svg" alt="account" />
+                        마이페이지
+                    </SideMenu>
+                </Content>
+            </SideBarContainer>
+        </BackGround>
+    );
 };
 export default Sidebar;

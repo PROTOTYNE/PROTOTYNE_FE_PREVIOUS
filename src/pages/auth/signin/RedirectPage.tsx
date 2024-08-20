@@ -1,17 +1,21 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { Loading } from "@/entities";
 import { PAGE_URL, AuthService } from "@/shared";
 
 const RedirectPage = () => {
   const navigate = useNavigate();
-  const { signin } = AuthService();
+  const { signin, getUserInfo } = AuthService();
 
   const signinHandler = async (code: string) => {
-    const newUser = await signin(code);
+    const signupComplete = await signin(code);
 
-    if (newUser) navigate(PAGE_URL.SignUp);
-    else navigate(PAGE_URL.Home);
+    if (!signupComplete) navigate(PAGE_URL.SignUp);
+    else {
+      await getUserInfo();
+      navigate(PAGE_URL.Home);
+    }
   };
 
   useEffect(() => {
@@ -21,7 +25,7 @@ const RedirectPage = () => {
     } else navigate(PAGE_URL.SignIn);
   });
 
-  return <>SignIn...</>;
+  return <Loading />;
 };
 
 export default RedirectPage;

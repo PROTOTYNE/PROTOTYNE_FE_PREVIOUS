@@ -36,7 +36,7 @@ export const additionalInfoOptions: {
     name: "familyComposition",
     label: "가족 구성",
     options: [
-      { value: 1, label: "1인 가구" },
+      { value: "1", label: "1인 가구" },
       { value: "COUPLE", label: "부부" },
       { value: "COUPLE&CHILDREN", label: "부부 + 자녀" },
       { value: "PARENTS&CHILDREN", label: "부모 + 자녀" },

@@ -23,8 +23,8 @@ export const storeAccess = (token: string) => {
 };
 
 export const setAccess = (token: string) => {
-  API.defaults.headers["Authorization"] = `${token}`;
-  FORMAPI.defaults.headers["Authorization"] = `${token}`;
+  API.defaults.headers["Authorization"] = token;
+  FORMAPI.defaults.headers["Authorization"] = token;
 };
 
 export const resetAccess = () => {
@@ -39,7 +39,25 @@ export const getAccess = (): string | null => {
 
 API.interceptors.response.use(
   (response) => response,
-  async () => {
+  async (error) => {
+    const {
+      response: {
+        data: { code },
+      },
+      config,
+    } = error;
+
+    if (code === "TOKEN4002") {
+      const token = getAccess();
+
+      if (token) {
+        setAccess(token);
+        config.headers["Authorization"] = token;
+
+        return API.request(config);
+      }
+    }
+
     resetAccess();
     location.href = PAGE_URL.SignIn;
   }

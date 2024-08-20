@@ -21,9 +21,9 @@ const PersonalInfo = lazy(() => import("@/pages/auth/signup/PersonalInfoPage"));
 const TermsOfUse = lazy(() => import("@/pages/auth/signup/TermsOfUsePage"));
 
 const MyInfo = lazy(() => import("@/pages/auth/myinfo/MyInfoPage"));
-const EditMyInfo = lazy(() => import("@/pages/auth/myinfo/EditMyInfoPage"));
+const EditMyInfo = lazy(() => import("@/pages/auth/signup/EditMyInfoPage"));
 const EditMyAddionalInfo = lazy(
-  () => import("@/pages/auth/myinfo/EditMyAddtionalInfoPage")
+  () => import("@/pages/auth/signup/EditMyAddtionalInfoPage")
 );
 
 const Home = lazy(() => import("@/pages/home/HomePage"));
@@ -83,8 +83,8 @@ const PageRouter = () => (
               element={<Detail type="popular" />}
             />
             <Route
-              path={PAGE_URL.DeadLineDetail}
-              element={<Detail type="deadline" />}
+              path={PAGE_URL.ImminentDetail}
+              element={<Detail type="imminent" />}
             />
             <Route path={PAGE_URL.NewDetail} element={<Detail type="new" />} />
             <Route path={PAGE_URL.Bookmark} element={<Bookmark />} />

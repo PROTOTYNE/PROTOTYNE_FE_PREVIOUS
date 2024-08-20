@@ -15,7 +15,10 @@ export const MultiSelectInput = ({
       <Label>{label}</Label>
       <Container>
         {options.map((option) => (
-          <ButtonComponent onClick={() => onClick(option.value)}>
+          <ButtonComponent
+            key={option.value}
+            onClick={() => onClick(option.value)}
+          >
             {option.label}
           </ButtonComponent>
         ))}
