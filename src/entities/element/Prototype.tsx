@@ -125,13 +125,11 @@ const MiniPrototypeContainer = styled.div`
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    width: "20px";
-    height: "290px";
     margin: 10px 8px;
     position: relative;
 `;
 const InfoMiniContainer = styled.div`
-    width: 100%;
+    width: 107.82px;
 `;
 const DDay = styled.div`
     position: absolute;
