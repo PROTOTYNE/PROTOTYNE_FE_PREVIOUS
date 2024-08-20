@@ -66,8 +66,6 @@ export const AuthService = () => {
     if (userStore.healthStatus)
       reqData.addInfoRequest.healthStatus = userStore.healthStatus;
 
-    console.log(reqData);
-
     await API.post("/oauth2/signup", reqData);
   };
 

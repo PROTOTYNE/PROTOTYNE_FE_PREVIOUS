@@ -94,8 +94,9 @@ const EditMyInfoPage = () => {
       </Styles.Container>
       <Button
         onClick={() => {
-          updateBasicInfo();
-          navigate(PAGE_URL.MyInfo);
+          updateBasicInfo().then(() => {
+            navigate(PAGE_URL.MyInfo);
+          });
         }}
       >
         저장하기
