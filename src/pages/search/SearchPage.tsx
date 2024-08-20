@@ -12,16 +12,16 @@ const searchService = SearchService();
 const SearchInput = styled.input`
     border-radius: 7px;
     padding-left: 45px;
-    margin: 13px 10px;
+    margin: 11px 10px;
     width: 100%;
-    height: 40px;
+    height: 30px;
     border: none;
     padding-right: 50px;
 `;
 
 const SearchIcon = styled(SearchRoundedIcon)`
     color: black;
-    font-size: 30px;
+    font-size: 25px;
     position: absolute;
     top: 28%;
     left: 8%;
@@ -56,7 +56,7 @@ const BackgoundContainer = styled.div`
   display: flex;
   background: linear-gradient(to right, #7995b2 0%, #476090 51%, #0d1b4a 100%);
   padding: 0px 10px;
-  height: 70px;
+  height: 54px;
   width: 100%;
   position: relative;
 `;
@@ -64,6 +64,7 @@ const SearchContainer = styled.div`
     display: flex;
     position: fixed;
     width: 100%;
+    hight: 54px;
     top: 0;
     z-index: 10;
 `;
@@ -83,7 +84,7 @@ const Info = styled.div`
     display: flex;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.1);
-    margin-top: 85px;
+    margin-top: 70px;
     padding: 10px 0px;
     border-top: 1px solid #C3C3C3;
     border-bottom: 1px solid #C3C3C3;
