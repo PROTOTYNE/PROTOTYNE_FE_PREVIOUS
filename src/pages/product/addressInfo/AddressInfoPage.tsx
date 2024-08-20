@@ -31,7 +31,7 @@ const AddressInfoPage = () => {
     getDelivery().then((data) => {
       setDelivery(data);
     });
-  });
+  }, []);
 
   return (
     <>

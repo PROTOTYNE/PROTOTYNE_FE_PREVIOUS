@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 import { Background, Header } from "@/entities";
@@ -12,7 +12,7 @@ import {
 import * as Styles from "./Styles";
 
 const MyInfo = () => {
-  const navigation = useNavigate();
+  const navigate = useNavigate();
 
   const name = useUserStore((state) => state.name);
   const birthYear = useUserStore((state) => state.birthYear);
@@ -22,7 +22,20 @@ const MyInfo = () => {
   const familyNum = useUserStore((state) => state.familyNum);
   const state = useUserStore((state) => state);
 
-  const { getUserInfo } = AuthService();
+  const { getUserInfo, getDelivery } = AuthService();
+
+  const [delivery, setDelivery] = useState<User.Delivery>({
+    deliveryName: null,
+    deliveryPhone: null,
+    baseAddress: null,
+    detailAddress: null,
+  });
+
+  useEffect(() => {
+    getDelivery().then((data) => {
+      setDelivery(data);
+    });
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -45,7 +58,7 @@ const MyInfo = () => {
           개인 정보
           <span
             onClick={() => {
-              navigation(PAGE_URL.EditMyInfo);
+              navigate(PAGE_URL.EditMyInfo);
             }}
           >
             수정하기
@@ -70,7 +83,7 @@ const MyInfo = () => {
           추가 정보
           <span
             onClick={() => {
-              navigation(PAGE_URL.EditMyAddionalInfo);
+              navigate(PAGE_URL.EditMyAddionalInfo);
             }}
           >
             수정하기
@@ -119,9 +132,32 @@ const MyInfo = () => {
           )}
         </Styles.AdditionalInfoContainer>
         <Styles.Title>
-          배송지 정보<span>수정하기</span>
+          배송지 정보
+          <span
+            onClick={() => {
+              navigate(PAGE_URL.Address);
+            }}
+          >
+            수정하기
+          </span>
         </Styles.Title>
-        <Styles.InfoContianer></Styles.InfoContianer>
+        <Styles.InfoContianer>
+          <Styles.Address>
+            {delivery.baseAddress &&
+            delivery.deliveryName &&
+            delivery.deliveryPhone &&
+            delivery.detailAddress ? (
+              <>
+                <span>{delivery.deliveryName}</span>
+                <div>{delivery.deliveryPhone}</div>
+                <div>{delivery.baseAddress}</div>
+                <div>{delivery.detailAddress}</div>
+              </>
+            ) : (
+              <span> 배송지를 아직 입력하지 않았습니다.</span>
+            )}
+          </Styles.Address>
+        </Styles.InfoContianer>
       </Styles.TopContainer>
     </>
   );
