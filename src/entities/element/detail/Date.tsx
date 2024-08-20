@@ -126,15 +126,9 @@ export const DateData = ({eventId}) => {
     const fetchDates = async () => {
       try {
         const response = await getDates(eventId);
-        const dateInfo = response || {
-          eventStart: "2024-08-01",
-          eventEnd: "2025-01-10",
-          feedbackStart: "2025-01-11",
-          feedbackEnd: "2025-01-20",
-          judgeStart: "2025-01-21",
-          judgeEnd: "2025-01-30",
-          endDate: "2025-01-31",
-        };
+        console.log("API Response:", response);
+
+        const dateInfo = response;
 
         const datesFromAPI: DateInfo[] = [
           {

@@ -1,5 +1,5 @@
 // BookmarkButton.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import bookmarkIcon from '/image/product/bookmark.svg';
 import checkBookmarkIcon from '/image/product/checkBookmark.svg';
