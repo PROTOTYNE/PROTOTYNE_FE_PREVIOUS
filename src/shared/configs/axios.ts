@@ -5,6 +5,7 @@ export const API = axios.create({
   baseURL: import.meta.env.VITE_SERVER_URL,
   headers: {
     "Content-Type": "application/json",
+    "ngrok-skip-brower-warning": true,
   },
 });
 
@@ -12,6 +13,7 @@ export const FORMAPI = axios.create({
   baseURL: import.meta.env.VITE_SERVER_URL,
   headers: {
     "Content-Type": "multipart/form-data",
+    "ngrok-skip-brower-warning": true,
   },
 });
 
