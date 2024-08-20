@@ -24,11 +24,11 @@ const AlarmPage = () => {
       <Container>
         {alarms.map((alarm) => (
           <Styles.Element
-            key={alarm.name}
-            img={alarm.img}
-            name={alarm.name}
-            content={alarm.content}
-            time={alarm.time}
+            key={alarm.title}
+            img={alarm.thumbnailUrl ?? "/apple-icon-180x180.png"}
+            name={alarm.title}
+            content={alarm.contents}
+            dateAgo={alarm.dateAgo}
           />
         ))}
       </Container>

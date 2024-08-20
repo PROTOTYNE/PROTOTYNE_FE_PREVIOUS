@@ -41,28 +41,42 @@ export const AuthService = () => {
   };
 
   const signup = async () => {
-    await API.post("/oauth2/signup", {
+    const reqData: {
+      detailRequest: { [key: string]: string | number };
+      addInfoRequest: { [key: string]: string | number | (string | number)[] };
+    } = {
       detailRequest: {
         familyMember: userStore.familyNum,
         gender: userStore.gender,
         birth: `${userStore.birthYear}-${userStore.birthMonth}-${userStore.birthDay}`,
       },
-      addInfoRequest: {
-        occupation: userStore.occupation,
-        income: userStore.income,
-        interests: userStore.interests,
-        familyComposition: userStore.familyComposition,
-        productTypes: userStore.productTypes,
-        phones: userStore.phones,
-        healthStatus: userStore.healthStatus,
-      },
-    });
+      addInfoRequest: {},
+    };
+
+    if (userStore.occupation)
+      reqData.addInfoRequest.occupation = userStore.occupation;
+    if (userStore.income) reqData.addInfoRequest.income = userStore.income;
+    if (userStore.interests)
+      reqData.addInfoRequest.interests = userStore.interests;
+    if (userStore.familyComposition)
+      reqData.addInfoRequest.familyComposition = userStore.familyComposition;
+    if (userStore.productTypes)
+      reqData.addInfoRequest.productTypes = userStore.productTypes;
+    if (userStore.phones) reqData.addInfoRequest.phones = userStore.phones;
+    if (userStore.healthStatus)
+      reqData.addInfoRequest.healthStatus = userStore.healthStatus;
+
+    console.log(reqData);
+
+    await API.post("/oauth2/signup", reqData);
   };
 
   const getAlarms = async () => {
-    const { data } = await API.get("/alarm");
+    const {
+      data: { result },
+    } = (await API.get("/alarm")) as AxiosResponse<User.GetAlarmsResDto>;
 
-    return data;
+    return result;
   };
 
   const updateBasicInfo = async () => {

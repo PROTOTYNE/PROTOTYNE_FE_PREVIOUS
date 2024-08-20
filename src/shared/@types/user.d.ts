@@ -1,9 +1,9 @@
 declare namespace User {
   export type Alarms = {
-    img: string;
-    name: string;
-    content: string;
-    time: Date;
+    thumbnailUrl: string;
+    title: string;
+    contents: string;
+    dateAgo: number;
   }[];
 
   export interface BasicInfo {
@@ -47,7 +47,7 @@ declare namespace User {
     income: 2000 | 4000 | 6000 | 8000 | 9999 | undefined;
     interests: Interests[];
     familyComposition:
-      | 1
+      | "1"
       | "COUPLE"
       | "COUPLE&CHILDREN"
       | "PARENTS&CHILDREN"
@@ -105,5 +105,14 @@ declare namespace User {
       };
       addInfo: AdditionalInfo;
     };
+  }
+
+  export interface GetAlarmsResDto {
+    result: {
+      title: string;
+      contents: string;
+      dateAgo: number;
+      thumbnailUrl: string;
+    }[];
   }
 }
