@@ -1,5 +1,16 @@
-//import { API } from "@/shared";
+import { API } from "@/shared";
+import { AxiosResponse } from "axios";
 
 export const TicketService = () => {
-  return {};
+  const getTicketNumber = async () => {
+    const {
+      data: {
+        result: { ticketNumber },
+      },
+    } = (await API.get("/ticket")) as AxiosResponse<User.GetTicketResDto>;
+
+    return ticketNumber;
+  };
+
+  return { getTicketNumber };
 };
