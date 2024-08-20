@@ -12,21 +12,19 @@ import {
 } from "@/entities";
 
 const ProductPage = () => {
-  const {eventId} = useParams();
-  const {getResult} = ProductService();
+  const { eventId } = useParams();
+  const { getResult } = ProductService();
 
   const [result, setResult] = useState({
-    "id": 0,
-    "name": "",
-    "enterprise": "",
-    "category": "",
-    "reqTickets": 0,
-    "imageUrls": [
-      "string"
-    ],
-    "notes": "",
-    "contents": "",
-    "isBookmarked": true,
+    id: 0,
+    name: "",
+    enterprise: "",
+    category: "",
+    reqTickets: 0,
+    imageUrls: ["string"],
+    notes: "",
+    contents: "",
+    isBookmarked: true,
   });
 
   const fetchProduct = async () => {
@@ -35,11 +33,11 @@ const ProductPage = () => {
     if (!eventId) {
       console.log(`eventId error=${eventId}`);
       return;
-    } 
+    }
     try {
       console.log(`Fetching product data for flag=${eventId}`);
-      const data = await getResult(eventId.toString());
-      
+      const data = await getResult(eventId);
+
       console.log("API Response Data:", data);
 
       if (data) {
@@ -59,7 +57,7 @@ const ProductPage = () => {
       <Header colorBackground onBack>
         <img src="/image/logo2.png" alt="logo"></img>
       </Header>
-      <ImageSlide/>
+      <ImageSlide />
       <Product
         category={`#${result.category}`}
         name={result.name}
