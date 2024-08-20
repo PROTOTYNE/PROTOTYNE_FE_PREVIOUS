@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 
-import { API } from "@/shared";
+import { API, getAccess } from "@/shared";
 
 export const ProductDetailService = () => {
   //const useStore = useProductStore((state) => state);
@@ -22,7 +22,11 @@ export const ProductDetailService = () => {
       data: {
         result: product,
       },
-    } = (await API.get("/product/home")) as AxiosResponse<Product.ProductHomeDto>;
+    } = (await API.get("/product/home", {
+      headers: {
+        "Authorization": getAccess(),
+      }
+    })) as AxiosResponse<Product.ProductHomeDto>;
     return product;
   };
 

@@ -12,16 +12,16 @@ const searchService = SearchService();
 const SearchInput = styled.input`
     border-radius: 7px;
     padding-left: 45px;
-    margin: 13px 10px;
+    margin: 11px 10px;
     width: 100%;
-    height: 40px;
+    height: 30px;
     border: none;
     padding-right: 50px;
 `;
 
 const SearchIcon = styled(SearchRoundedIcon)`
     color: black;
-    font-size: 30px;
+    font-size: 25px;
     position: absolute;
     top: 28%;
     left: 8%;
@@ -56,7 +56,7 @@ const BackgoundContainer = styled.div`
   display: flex;
   background: linear-gradient(to right, #7995b2 0%, #476090 51%, #0d1b4a 100%);
   padding: 0px 10px;
-  height: 70px;
+  height: 54px;
   width: 100%;
   position: relative;
 `;
@@ -64,6 +64,7 @@ const SearchContainer = styled.div`
     display: flex;
     position: fixed;
     width: 100%;
+    hight: 54px;
     top: 0;
     z-index: 10;
 `;
@@ -83,7 +84,7 @@ const Info = styled.div`
     display: flex;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.1);
-    margin-top: 85px;
+    margin-top: 70px;
     padding: 10px 0px;
     border-top: 1px solid #C3C3C3;
     border-bottom: 1px solid #C3C3C3;
@@ -106,25 +107,29 @@ const SearchPage = ({}) => {
     const [result, setResult] = useState<string>(() => (location.state && location.state.title ? location.state.title : ''));
     const navigate = useNavigate();
 
+    // 최근 검색 기록 불러오기
     const fetchRecentSearch = async () => {
         const searchList = await searchService.getSearchList();
         return searchList;
     }
+
+    // 상품 불러오기
+    const fetchProduct = async (code: string) => {
+        const product = await searchService.getSearchProduct(code);
+        return product;
+    };
+
+    // 카테고리 상품 불러오기
+    const fetchCategoryProduct = async (code: string) => {
+        const categoryList = await searchService.getCategoryList(code);
+        return categoryList;
+    };
 
     useEffect(() => {
         fetchRecentSearch()
         .then(searchList => setRecentSearch(searchList));
     }, [result])
 
-    const fetchProduct = async (code: string) => {
-        const product = await searchService.getSearchProduct(code);
-        return product;
-    };
-    
-    const fetchCategoryProduct = async (code: string) => {
-        const categoryList = await searchService.getCategoryList(code);
-        return categoryList;
-    }
     useEffect(() => {
         if (location.state && location.state.title) {
             fetchCategoryProduct(search)
@@ -134,7 +139,6 @@ const SearchPage = ({}) => {
 
     const deleteInput = () => {
         const searchInput = document.querySelector('input');
-
         if(searchInput !== null) {
             searchInput.value = '';
             setSearch('');
@@ -150,6 +154,11 @@ const SearchPage = ({}) => {
     
     const onClickSearch = (name: string) => {
         setSearch(name);
+        setResult(name);
+        const searchInput = document.querySelector('input');
+        if( searchInput) {
+            searchInput.value = name;
+        }
         fetchProduct(name).then(product => setSearchList(product));
     }
     const handleDeleteAll = () => {
@@ -158,10 +167,14 @@ const SearchPage = ({}) => {
     };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        setSearch(event.currentTarget.value);
-        if (event.key === 'Enter') {
-            setResult(event.currentTarget.value);
-            fetchProduct(search).then(product => setSearchList(product));
+        if(event.currentTarget.value !== '') {
+            setSearch(event.currentTarget.value);
+            if (event.key === 'Enter') {
+                setResult(event.currentTarget.value);
+                if(result != '') {
+                    fetchProduct(result).then(product => setSearchList(product));
+                }
+            }
         }
     };
 

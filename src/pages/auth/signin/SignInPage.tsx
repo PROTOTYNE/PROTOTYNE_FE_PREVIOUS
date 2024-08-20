@@ -21,7 +21,7 @@ const SignInPage = () => {
       <Styles.Container>
         <Background src="/background/first_loading.jpg" />
         <MidContainer>
-          <div style={{ height: "130px" }}></div>
+          <div style={{ height: "30px" }}></div>
           <Styles.Title>
             <Styles.LgText>앞서가는 당신을 위한</Styles.LgText>
             <Styles.LgText>특별한 기회</Styles.LgText>

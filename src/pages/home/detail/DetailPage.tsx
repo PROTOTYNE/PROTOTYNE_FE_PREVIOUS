@@ -34,6 +34,7 @@ interface PrototypeProp {
     thumbnailUrl: string;
     investCount: 0;
     reqTickets: 0;
+    bookmark: true;
 }
 
 const DetailPage = ({type} : {type: string}) => {
@@ -70,7 +71,7 @@ const DetailPage = ({type} : {type: string}) => {
                     {getTitle(type)}
                 </Title>
                 <Prototypes
-                    type={type}
+                    type={"popular"}
                     prototypes={product}
                 />
             </Container>

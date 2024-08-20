@@ -5,47 +5,41 @@ import { BookmarkService } from "@/shared";
 
 const bookmarkService = BookmarkService();
 
-interface PrototypeProp {
-  userId: 0;
-  products: [{
-    productId: 0;
-    name: string;
-    thumbnailUrl: string;
-    count: 0;
-  }]
-};
 interface ProductProp {
   userId: 0;
-  products: [{
-    productId: 0;
-    name: string;
-    reqTickets: 0;
-    thumbnailUrl: string;
-    count: 0;
-  }]
+  products: [
+    {
+      productId: 0;
+      name: string;
+      reqTickets: 0;
+      thumbnailUrl: string;
+      count: 0;
+    }
+  ];
 }
 
 const BookmarkPage = () => {
   const [product, setProduct] = useState<ProductProp>({
     userId: 0,
-    products: [{
-      productId: 0,
-      name: "",
-      reqTickets: 0,
-      thumbnailUrl: "",
-      count: 0,
-    }]
+    products: [
+      {
+        productId: 0,
+        name: "",
+        reqTickets: 0,
+        thumbnailUrl: "",
+        count: 0,
+      },
+    ],
   });
 
   const fetchProduct = async () => {
     const product = await bookmarkService.getBookmarkProduct();
     return product;
-  }
+  };
 
   useEffect(() => {
-      fetchProduct()
-      .then(product => setProduct(product));
-  }, [])
+    fetchProduct().then((product) => setProduct(product));
+  }, []);
 
   return (
     <>
@@ -53,9 +47,7 @@ const BookmarkPage = () => {
         관심 목록
       </Header>
       <div style={{ height: "70px" }}></div>
-      <BookmarkPrototypes
-        prototype={product}
-      />
+      <BookmarkPrototypes prototype={product} />
     </>
   );
 };
