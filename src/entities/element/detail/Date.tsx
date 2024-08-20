@@ -2,6 +2,8 @@ import React from "react";
 import styled from "@emotion/styled";
 import { ProductService } from "@/shared";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+
 
 interface DateInfo {
   label: string;
@@ -10,7 +12,7 @@ interface DateInfo {
 }
 
 interface DateListProps {
-  dates: DateInfo[];  // DateList 컴포넌트가 받을 props를 정의
+  dates: DateInfo[];
 }
 
 const formatDate = (date: Date): string => {
@@ -117,14 +119,17 @@ const DateList: React.FC<DateListProps> = ({ dates }) => {
   );
 };
 
-export const DateData: React.FC<{ eventId: number }> = ({ eventId }) => {
+export const DateData = () => {
+  const eventId = useParams();
+  const productService = ProductService();
+
   const [dates, setDates] = useState<DateInfo[]>([]);
 
   useEffect(() => {
     const fetchDates = async () => {
       try {
-        const response = await ProductService.getProduct(eventId);
-        const dateInfo = response.result.dateInfo;
+        const response = await productService.getDates("");
+        const dateInfo = response;
 
         const datesFromAPI: DateInfo[] = [
           {
@@ -157,5 +162,5 @@ export const DateData: React.FC<{ eventId: number }> = ({ eventId }) => {
     fetchDates();
   }, [eventId]);
 
-  return <DateList dates={dates} />;  // DateList에 dates prop 전달
+  return <DateList dates={dates} />;  
 };

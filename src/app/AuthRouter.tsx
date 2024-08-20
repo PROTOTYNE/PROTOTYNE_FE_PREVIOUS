@@ -6,11 +6,11 @@ import { PAGE_URL, getAccess, setAccess } from "@/shared";
 const AuthRouter = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-     const access_token = getAccess();
-     if (!access_token) navigate(PAGE_URL.SignIn);
-     else setAccess(access_token);
-  }, []);
+  // useEffect(() => {
+  //    const access_token = getAccess();
+  //    if (!access_token) navigate(PAGE_URL.SignIn);
+  //    else setAccess(access_token);
+  // }, []);
 
   return <>{children}</>;
 };

@@ -11,59 +11,37 @@ import {
   Header,
 } from "@/entities";
 
-interface ProductDetail {
-  id: number;
-  name: string;
-  enterprise: string;
-  category: string;
-  reqTickets: number;
-  imageUrls: string[];
-  notes: string;
-  contents: string;
-  isBookmarked: boolean;
-  dateInfo: {
-    eventStart: string;
-    eventEnd: string;
-    releaseStart: string;
-    releaseEnd: string;
-    feedbackStart: string;
-    feedbackEnd: string;
-    judgeStart: string;
-    judgeEnd: string;
-    endDate: string;
-  };
-  investInfo: {
-    apply: boolean;
-    status: string;
-    shipping: string;
-    transportNum: string;
-    penalty: boolean;
-  };
-}
-
 const ProductPage = () => {
-  const { id } = useParams<{ id: string }>();
-  const eventId = Number(id);
+  const {param} = useParams();
+  const eventId = Number(param);
+  const {getResult} = ProductService();
 
-  const [product, setProduct] = useState<ProductDetail | null>(null);
+  const [result, setResult] = useState({
+    "id": 0,
+    "name": "string",
+    "enterprise": "string",
+    "category": "뷰티",
+    "reqTickets": 0,
+    "imageUrls": [
+      "string"
+    ],
+    "notes": "string",
+    "contents": "string",
+    "isBookmarked": true,
+  });
+  console.log(result);
+
+
+  const fetchProduct = async () => {
+    if(!eventId) return
+    const result = await getResult(eventId);
+    return result;
+  }
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await ProductService.getProduct(eventId);
-        console.log("API response:", response); // API 응답 확인
-        setProduct(response.result);
-      } catch (error) {
-        console.error("Error fetching product details:", error);
-      }
-    };
-
-    fetchProduct();
+    fetchProduct()
+    .then(result => setResult(result));
   }, [eventId]);
-
-  if (!product) {
-    return <div>API 에러</div>;
-  }
 
   return (
     <div>
@@ -72,16 +50,16 @@ const ProductPage = () => {
       </Header>
       <ImageSlide/>
       {/* <Product
-        category={`#${product.category}`}
-        name={product.name}
-        company={product.enterprise}
-        quantity={product.reqTickets}
+        category={`#${result.category}`}
+        name={result.name}
+        company={result.enterprise}
+        quantity={result.reqTickets}
       />
-      <DateData eventId={eventId} />
+      <DateData />
       <ProductInfo
-        productName={product.name}
-        productDescription={product.contents}
-        additionalNotes={product.notes}
+        productName={result.name}
+        productDescription={result.contents}
+        additionalNotes={result.notes}
       /> */}
       <Footer />
     </div>
