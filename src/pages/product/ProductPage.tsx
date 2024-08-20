@@ -64,7 +64,7 @@ const ProductPage = () => {
         company={result.enterprise}
         quantity={result.reqTickets}
       />
-      {/* <DateData /> */}
+      <DateData eventId={eventId} />
       <ProductInfo
         productName={result.name}
         productDescription={result.contents}

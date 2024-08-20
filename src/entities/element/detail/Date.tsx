@@ -117,7 +117,7 @@ const DateList: React.FC<DateListProps> = ({ dates }) => {
   );
 };
 
-export const DateData = () => {
+export const DateData = ({eventId}) => {
   const {getDates} = ProductService();
 
   const [dates, setDates] = useState<DateInfo[]>([]);
