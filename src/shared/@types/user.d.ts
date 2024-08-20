@@ -1,12 +1,10 @@
 declare namespace User {
-  //DTO
-  export interface SignInResDto {
-    result: {
-      newUser: boolean;
-      token_type: string;
-      access_token: string;
-    };
-  }
+  export type Alarms = {
+    thumbnailUrl: string;
+    title: string;
+    contents: string;
+    dateAgo: number;
+  }[];
 
   export interface BasicInfo {
     name: string;
@@ -49,7 +47,7 @@ declare namespace User {
     income: 2000 | 4000 | 6000 | 8000 | 9999 | undefined;
     interests: Interests[];
     familyComposition:
-      | 1
+      | "1"
       | "COUPLE"
       | "COUPLE&CHILDREN"
       | "PARENTS&CHILDREN"
@@ -87,5 +85,34 @@ declare namespace User {
     deletePhone: (value: Phone) => void;
     setHealthStatus: (value: AdditionalInfo[healthStatus]) => void;
   }
-}
 
+  //DTO
+  export interface SignInResDto {
+    result: {
+      signupComplete: boolean;
+      token_type: string;
+      access_token: string;
+    };
+  }
+
+  export interface GetUserResDto {
+    result: {
+      username: string;
+      detailInfo: {
+        birth: string;
+        gender: "MALE" | "FEMALE";
+        familyMember: number;
+      };
+      addInfo: AdditionalInfo;
+    };
+  }
+
+  export interface GetAlarmsResDto {
+    result: {
+      title: string;
+      contents: string;
+      dateAgo: number;
+      thumbnailUrl: string;
+    }[];
+  }
+}

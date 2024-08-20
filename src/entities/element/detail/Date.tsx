@@ -125,7 +125,7 @@ export const DateData = () => {
   useEffect(() => {
     const fetchDates = async () => {
       try {
-        const response = await getDates("1110");
+        const response = await getDates(eventId);
         const dateInfo = response || {
           eventStart: "2024-08-01",
           eventEnd: "2025-01-10",

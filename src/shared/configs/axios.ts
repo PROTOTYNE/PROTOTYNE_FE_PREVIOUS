@@ -5,7 +5,7 @@ export const API = axios.create({
   baseURL: import.meta.env.VITE_SERVER_URL,
   headers: {
     "Content-Type": "application/json",
-    Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNzI0MTE3MTQ0LCJleHAiOjE3MjQxMjA3NDR9.OM1wpngdhrpK0kpvYlN0iVsW9cYIwlYXbEXko7ZsMmI",
+    "ngrok-skip-browser-warning": "69420",
   },
 });
 
@@ -13,6 +13,7 @@ export const FORMAPI = axios.create({
   baseURL: import.meta.env.VITE_SERVER_URL,
   headers: {
     "Content-Type": "multipart/form-data",
+    "ngrok-skip-browser-warning": "69420",
   },
 });
 
@@ -24,8 +25,8 @@ export const storeAccess = (token: string) => {
 };
 
 export const setAccess = (token: string) => {
-  API.defaults.headers["Authorization"] = `${token}`;
-  FORMAPI.defaults.headers["Authorization"] = `${token}`;
+  API.defaults.headers["Authorization"] = token;
+  FORMAPI.defaults.headers["Authorization"] = token;
 };
 
 export const resetAccess = () => {
@@ -40,8 +41,30 @@ export const getAccess = (): string | null => {
 
 API.interceptors.response.use(
   (response) => response,
-  async () => {
-    resetAccess();
-    location.href = PAGE_URL.SignIn;
+  async (error) => {
+    const {
+      response: {
+        data: { code },
+      },
+      config,
+    } = error;
+
+    if (code === "TOKEN4002") {
+      const token = getAccess();
+
+      if (token) {
+        setAccess(token);
+        config.headers["Authorization"] = token;
+
+        return API.request(config);
+      } else {
+        resetAccess();
+        location.href = PAGE_URL.SignIn;
+      }
+    }
+    if (code === "TOKEN4001") {
+      resetAccess();
+      location.href = PAGE_URL.SignIn;
+    }
   }
 );

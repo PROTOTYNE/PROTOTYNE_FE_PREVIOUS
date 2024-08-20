@@ -21,7 +21,7 @@ export enum PAGE_URL {
 
   Search = "/search",
   PopularDetail = "/detail/popular",
-  DeadLineDetail = "/detail/deadline",
+  ImminentDetail = "/detail/imminent",
   NewDetail = "/detail/new",
   Bookmark = "/bookmark",
 
