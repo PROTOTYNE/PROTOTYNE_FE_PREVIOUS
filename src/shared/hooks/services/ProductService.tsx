@@ -2,50 +2,41 @@ import { API, getAccess } from "@/shared/configs/axios";
 import { AxiosResponse } from "axios";
 
 export const ProductService = () => {
-  const eventId = 1234;
 
-  const getDates = async (code: string) => {
+  const getDates = async (eventId: string) => {
     const {
-      data: {
-        result: product,
-      },
+      data
     } = (await API.get(`/product/detail/${eventId}`, {
       headers: {
         "Authorization": getAccess(),
       },
-      params: {type: code},
     })) as AxiosResponse<Product.DateDto>;
+    console.log(data);
 
-    return product;
+    return data;
   }
 
-  const getInvest = async (code: string) => {
-    const {
-      data: {
-        result: product,
-      },
-    } = (await API.get(`/product/detail/${eventId}`, {
+  const getInvest = async (eventId: string) => {
+    const {data} = (await API.get(`/product/detail/${eventId}`, {
       headers: {
         "Authorization": getAccess(),
       },
-      params: {type: code},
     })) as AxiosResponse<Product.InvestDto>;
+    console.log(data);
 
-    return product
+    return data
   }
 
-  const getResult = async (eventId: number) => {
-    const {
-      data: {
-        result,
-      },
-    } = (await API.get(`/product/detail/${eventId}`, {
+  const getResult = async (eventId: string) => {
+    const {data} = (await API.get(`/product/detail/${eventId}`, {
       headers: {
         "Authorization": getAccess(),
       },
     })) as AxiosResponse<Product.ResultDto>;
+    
+    console.log(data);
 
-    return result
+    return data
   }
 
   return { getDates, getInvest, getResult };

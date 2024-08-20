@@ -2,8 +2,6 @@ import React from "react";
 import styled from "@emotion/styled";
 import { ProductService } from "@/shared";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-
 
 interface DateInfo {
   label: string;
@@ -120,16 +118,23 @@ const DateList: React.FC<DateListProps> = ({ dates }) => {
 };
 
 export const DateData = () => {
-  const eventId = useParams();
-  const productService = ProductService();
+  const {getDates} = ProductService();
 
   const [dates, setDates] = useState<DateInfo[]>([]);
 
   useEffect(() => {
     const fetchDates = async () => {
       try {
-        const response = await productService.getDates("");
-        const dateInfo = response;
+        const response = await getDates("1110");
+        const dateInfo = response || {
+          eventStart: "2024-08-01",
+          eventEnd: "2025-01-10",
+          feedbackStart: "2025-01-11",
+          feedbackEnd: "2025-01-20",
+          judgeStart: "2025-01-21",
+          judgeEnd: "2025-01-30",
+          endDate: "2025-01-31",
+        };
 
         const datesFromAPI: DateInfo[] = [
           {

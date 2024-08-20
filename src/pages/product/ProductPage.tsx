@@ -12,35 +12,46 @@ import {
 } from "@/entities";
 
 const ProductPage = () => {
-  const {param} = useParams();
-  const eventId = Number(param);
+  const {eventId} = useParams();
   const {getResult} = ProductService();
 
   const [result, setResult] = useState({
     "id": 0,
-    "name": "string",
-    "enterprise": "string",
-    "category": "뷰티",
+    "name": "",
+    "enterprise": "",
+    "category": "",
     "reqTickets": 0,
     "imageUrls": [
       "string"
     ],
-    "notes": "string",
-    "contents": "string",
+    "notes": "",
+    "contents": "",
     "isBookmarked": true,
   });
-  console.log(result);
-
 
   const fetchProduct = async () => {
-    if(!eventId) return
-    const result = await getResult(eventId);
-    return result;
-  }
+    console.log(`Request URL: /product/detail/${eventId}`);
+
+    if (!eventId) {
+      console.log(`eventId error=${eventId}`);
+      return;
+    } 
+    try {
+      console.log(`Fetching product data for flag=${eventId}`);
+      const data = await getResult(eventId.toString());
+      
+      console.log("API Response Data:", data);
+
+      if (data) {
+        setResult(data);
+      }
+    } catch (error) {
+      console.error("Failed to fetch product data:", error);
+    }
+  };
 
   useEffect(() => {
-    fetchProduct()
-    .then(result => setResult(result));
+    fetchProduct();
   }, [eventId]);
 
   return (
@@ -49,18 +60,18 @@ const ProductPage = () => {
         <img src="/image/logo2.png" alt="logo"></img>
       </Header>
       <ImageSlide/>
-      {/* <Product
+      <Product
         category={`#${result.category}`}
         name={result.name}
         company={result.enterprise}
         quantity={result.reqTickets}
       />
-      <DateData />
+      {/* <DateData /> */}
       <ProductInfo
         productName={result.name}
         productDescription={result.contents}
         additionalNotes={result.notes}
-      /> */}
+      />
       <Footer />
     </div>
   );

@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import bookmarkIcon from '/image/product/bookmark.svg';
 import checkBookmarkIcon from '/image/product/checkBookmark.svg';
-import { ProductService } from '@/shared';
 
 const Button = styled.button`
   background: none;
@@ -21,21 +20,7 @@ const Icon = styled.img`
 `;
 
 const BookmarkButton: React.FC = () => {
-  const {getResult} = ProductService();
-
-  const [isBookmarked, setIsBookmarked] = useState({
-    "id": 0,
-    "name": "string",
-    "enterprise": "string",
-    "category": "뷰티",
-    "reqTickets": 0,
-    "imageUrls": [
-      "string"
-    ],
-    "notes": "string",
-    "contents": "string",
-    "isBookmarked": true,
-  });
+  const [isBookmarked, setIsBookmarked] = useState(false);
 
   const handleBookmarkClick = () => {
     setIsBookmarked(prevState => !prevState);
@@ -47,5 +32,7 @@ const BookmarkButton: React.FC = () => {
     </Button>
   );
 };
+
+//checkBookmarkIcon, bookmarkIcon의 별 위치 상이 -> 수정 요망
 
 export default BookmarkButton;
