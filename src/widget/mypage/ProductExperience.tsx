@@ -5,7 +5,7 @@ import {
   StatusCount,
   StatusName,
 } from "@/entities";
-import { ProductCount, StatusType } from "@/service/my/product";
+import { StatusType } from "@/service/my/product";
 import { MyPageService } from "@/shared";
 import React from "react";
 import { useEffect, useState } from "react";

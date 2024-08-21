@@ -1,10 +1,6 @@
 import { Header, ProductExContainer, ProductList } from "@/entities";
-import {
-  getProductCount,
-  ProductCount,
-  StatusType,
-} from "@/service/my/product";
-import { BookmarkService, MyPageService } from "@/shared";
+import { StatusType } from "@/service/my/product";
+import { BookmarkService } from "@/shared";
 import { useUserStore } from "@/shared";
 import {
   SmallBookmarkPrototypes,
@@ -17,7 +13,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 const bookmarkService = BookmarkService();
-const myPageService = MyPageService();
 
 const UserInfoContainer = styled.div`
   width: 100%;
@@ -50,10 +45,7 @@ interface ProductProp {
   ];
 }
 
-
 const MyPage: React.FC = () => {
-
-
   const name = useUserStore((state) => state.name);
   // 선택된 상태값 관리
   const [selected, setSelected] = useState<StatusType>(StatusType.applied);

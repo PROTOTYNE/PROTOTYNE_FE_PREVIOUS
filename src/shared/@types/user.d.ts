@@ -1,17 +1,21 @@
 declare namespace User {
-  export type Alarms = {
-    thumbnailUrl: string;
-    title: string;
-    contents: string;
-    dateAgo: number;
-  }[];
-
   export interface Delivery {
     deliveryName: string | null;
     deliveryPhone: string | null;
     baseAddress: string | null;
     detailAddress: string | null;
   }
+
+  export interface GetDelivery {
+    result: Delivery;
+  }
+
+  export type Alarms = {
+    thumbnailUrl: string;
+    title: string;
+    contents: string;
+    dateAgo: number;
+  }[];
 
   export interface BasicInfo {
     name: string;
@@ -123,6 +127,10 @@ declare namespace User {
     }[];
   }
 
+  export interface GetDelivery {
+    result: Delivery;
+  }
+
   export interface GetTicketResDto {
     result: {
       ticketNumber: number;
@@ -140,60 +148,18 @@ declare namespace User {
         calculatedStatus: string;
         createdAt: string;
       };
-      ddayToSelected: number;
+      ddayToSelected: 0;
     }[];
   }
 
-  export interface GetMyProductsOngoing {
-    result: [
-      {
-        commonInfo: {
-          investmentId: number;
-          eventId: number;
-          productId: number;
-          name: string;
-          thumbnailUrl: string;
-          calculatedStatus: string;
-          createdAt: string;
-        };
-        shipping: string;
-        transportNum: string;
-        feedbackStart: string;
-        feedbackEnd: string;
-      }
-    ];
+  export interface Delivery {
+    deliveryName: string | null;
+    deliveryPhone: string | null;
+    baseAddress: string | null;
+    detailAddress: string | null;
   }
-  export interface GetMyProductsSelected {
-    result: [
-      {
-        commonInfo: {
-          investmentId: number;
-          eventId: number;
-          productId: number;
-          name: string;
-          thumbnailUrl: string;
-          calculatedStatus: string;
-          createdAt: string;
-        };
-        judgeEnd: string;
-        ddayToComplete: number;
-      }
-    ];
-  }
-  export interface GetMyProductsCompleted {
-    result: [
-      {
-        commonInfo: {
-          investmentId: number;
-          eventId: number;
-          productId: number;
-          name: string;
-          thumbnailUrl: string;
-          calculatedStatus: string;
-          createdAt: string;
-        };
-        penalty: true;
-      }
-    ];
+
+  export interface GetDelivery {
+    result: Delivery;
   }
 }

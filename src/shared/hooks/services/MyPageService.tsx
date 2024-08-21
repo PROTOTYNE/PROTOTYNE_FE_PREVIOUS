@@ -9,7 +9,7 @@ export const MyPageService = () => {
       headers: {
         Authorization: getAccess(),
       },
-    })) as AxiosResponse<User.GetMyProductsSelected>;
+    })) as AxiosResponse;
 
     return result;
   };
@@ -56,7 +56,7 @@ export const MyPageService = () => {
       headers: {
         Authorization: getAccess(),
       },
-    })) as AxiosResponse<User.GetMyProductsOngoing>;
+    })) as AxiosResponse;
 
     console.log(progressProduct);
 
@@ -70,7 +70,7 @@ export const MyPageService = () => {
       headers: {
         Authorization: getAccess(),
       },
-    })) as AxiosResponse<User.GetMyProductsCompleted>;
+    })) as AxiosResponse;
     return completedProduct;
   };
 

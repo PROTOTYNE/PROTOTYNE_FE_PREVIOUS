@@ -1,4 +1,3 @@
-import React from "react";
 import ApplyButton from "./ApplyButton";
 import BookmarkButton from "./BookmarkButton";
 import styled from "@emotion/styled";

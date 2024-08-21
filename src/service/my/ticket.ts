@@ -10,23 +10,25 @@ interface TicketCountResponse {
   };
 }
 
-export async function getTicketCount(p0: string, p1: string) {
+export async function getTicketCount() {
   try {
     const accessToken = await getAccess();
-    const response = await API.get('/ticket', {
-      headers: { Authorization: `Bearer ${accessToken}` }
+    const response = await API.get("/ticket", {
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
 
     const data: TicketCountResponse = response.data;
     if (!data.isSuccess) {
-      console.warn(`Failed to fetch ticket count. Code: ${data.code}, Message: ${data.message}`);
+      console.warn(
+        `Failed to fetch ticket count. Code: ${data.code}, Message: ${data.message}`
+      );
       return null;
     }
 
     // 티켓 개수를 반환
     return data.result.ticketNumber;
   } catch (error) {
-    console.error('Error fetching ticket count:', error);
+    console.error("Error fetching ticket count:", error);
     return null;
   }
 }
@@ -47,22 +49,24 @@ interface TicketUsedResponse {
 export async function getTicketUsed(startDate: string, endDate: string) {
   try {
     const accessToken = await getAccess();
-    const response = await API.get('/ticket/used', {
+    const response = await API.get("/ticket/used", {
       headers: { Authorization: `Bearer ${accessToken}` },
-      params: { startDate, endDate } // 날짜를 전달
+      params: { startDate, endDate }, // 날짜를 전달
     });
 
     const data: TicketUsedResponse = response.data;
-    console.log(data)
+    console.log(data);
     if (!data.isSuccess) {
-      console.warn(`Failed to fetch used tickets. Code: ${data.code}, Message: ${data.message}`);
+      console.warn(
+        `Failed to fetch used tickets. Code: ${data.code}, Message: ${data.message}`
+      );
       return 0;
     }
 
     // 티켓 사용 내역을 반환
-    return data.result.length
+    return data.result.length;
   } catch (error) {
-    console.error('Error fetching used tickets:', error);
+    console.error("Error fetching used tickets:", error);
     return 0;
   }
 }
@@ -83,22 +87,24 @@ interface TicketAllResponse {
 export async function getAllTickets(startDate: string, endDate: string) {
   try {
     const accessToken = await getAccess();
-    const response = await API.get('/ticket/all', {
+    const response = await API.get("/ticket/all", {
       headers: { Authorization: `Bearer ${accessToken}` },
-      params: { startDate, endDate } // 날짜를 전달
+      params: { startDate, endDate }, // 날짜를 전달
     });
 
     const data: TicketAllResponse = response.data;
 
     if (!data.isSuccess) {
-      console.warn(`Failed to fetch all tickets. Code: ${data.code}, Message: ${data.message}`);
+      console.warn(
+        `Failed to fetch all tickets. Code: ${data.code}, Message: ${data.message}`
+      );
       return [];
     }
 
     // 전체 티켓 내역을 반환
     return data.result;
   } catch (error) {
-    console.error('Error fetching all tickets:', error);
+    console.error("Error fetching all tickets:", error);
     return [];
   }
 }

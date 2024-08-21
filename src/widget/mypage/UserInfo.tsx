@@ -81,7 +81,7 @@ export const UserInfoWidget: React.FC<UserInfoProps> = ({
       if (usedCount !== null) {
         setTicketsUsed(usedCount);
       }
-      const ownedCount = await getTicketCount("2024-08-18", "2024-12-02");
+      const ownedCount = await getTicketCount();
       if (ownedCount !== null) {
         setTicketsOwned(ownedCount);
       }
