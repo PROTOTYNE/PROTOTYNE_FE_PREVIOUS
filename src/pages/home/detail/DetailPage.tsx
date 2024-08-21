@@ -22,7 +22,10 @@ const Container = styled.div`
     background-color: #F9F9F9;
     display: flex;
     flex-direction: column;
+    width: 100%;
     margin-top: 60px;
+    padding: 0px 10px;
+    
 `;
 const Title = styled.h3`
     margin: 20px 10px;

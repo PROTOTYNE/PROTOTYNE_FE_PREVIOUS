@@ -40,6 +40,7 @@ interface ProductProp {
   products: [
     {
       productId: 0;
+      eventId: 0;
       name: string;
       reqTickets: 0;
       thumbnailUrl: string;
@@ -64,6 +65,7 @@ const MyPage: React.FC = () => {
     products: [
       {
         productId: 0,
+        eventId: 0,
         name: "",
         reqTickets: 0,
         thumbnailUrl: "",

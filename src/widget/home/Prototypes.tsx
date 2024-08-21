@@ -52,6 +52,7 @@ interface BookmarkProp {
     userId: 0;
     products: [{
         productId: 0;
+        eventId: 0;
         name: string;
         reqTickets: 0;
         thumbnailUrl: string;
@@ -60,6 +61,7 @@ interface BookmarkProp {
 }
 interface ProductProp {
     productId: 0;
+    eventId: 0;
     name: string;
     reqTickets: 0;
     thumbnailUrl: string;
@@ -70,7 +72,7 @@ export const BookmarkPrototypes = ({ prototype } : { prototype: BookmarkProp }) 
         <Container>
             {(prototype.products).map((prototype: ProductProp) => (
                     <BookmarkPrototype 
-                    key={prototype.productId}
+                    key={prototype.eventId}
                     prototype={prototype}
                     />
                 ))}
@@ -83,7 +85,7 @@ export const SmallBookmarkPrototypes = ({ prototype } : { prototype: BookmarkPro
         <Container>
             {(prototype.products).map((prototype: ProductProp) => (
                     <SmallBookmarkPrototype 
-                    key={prototype.productId}
+                    key={prototype.eventId}
                     prototype={prototype}
                     />
                 ))}

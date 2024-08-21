@@ -116,6 +116,7 @@ declare namespace Product {
       products: [
         {
           productId: 0;
+          eventId: 0;
           name: string;
           reqTickets: 0;
           thumbnailUrl: string;
