@@ -10,6 +10,7 @@ export {
   Prototype,
   MiniPrototype,
   BookmarkPrototype,
+  SmallBookmarkPrototype,
 } from "./element/Prototype";
 export { Button, DisableButton, TwoOptionsButton } from "./element/Button";
 export { MidPointLine, GrayLine } from "./element/Line";
