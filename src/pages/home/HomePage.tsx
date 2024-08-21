@@ -10,7 +10,7 @@ const homeService = ProductDetailService();
 
 const Title = styled.h3`
   width: 90%;
-  margin: 15px 0px 0px 20px;
+  margin: 10px 0px 0px 0px;
 `;
 
 interface ProductProp {

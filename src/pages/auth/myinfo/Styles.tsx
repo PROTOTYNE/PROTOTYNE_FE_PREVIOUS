@@ -46,7 +46,7 @@ export const SubTitle = styled.div`
 
 export const InfoContianer = styled(Container)`
   width: 100%;
-  height: 15%;
+  height: 17%;
 
   background-color: white;
   border-radius: 8px;
@@ -91,8 +91,6 @@ const ScrollContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-
-  padding-top: 30px;
 `;
 
 export const Info = styled.div`
@@ -116,7 +114,12 @@ export const Info = styled.div`
 export const Address = styled.div`
   width: calc(100% - 30px);
 
+  color: #414141;
+  font-size: 15px;
+
   > span {
+    font-size: 15px;
+    color: #000000;
     font-weight: bold;
   }
 `;

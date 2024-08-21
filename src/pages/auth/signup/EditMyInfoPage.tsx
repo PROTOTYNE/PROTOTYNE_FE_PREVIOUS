@@ -90,7 +90,7 @@ const EditMyInfoPage = () => {
         <Styles.SubTitle>
           개인 정보 수정은 6개월에 한 번만 가능합니다.
         </Styles.SubTitle>
-        <div style={{ height: "300px" }}></div>
+        <div style={{ height: "200px" }}></div>
       </Styles.Container>
       <Button
         onClick={() => {

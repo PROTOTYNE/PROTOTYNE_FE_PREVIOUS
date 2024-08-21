@@ -101,7 +101,7 @@ const ScrollBox = styled.div`
   background-color: #ffffffbe;
 
   width: calc(100% - 16px);
-  height: 60vh;
+  height: 50vh;
 
   margin-top: 10px;
 

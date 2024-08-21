@@ -2,6 +2,8 @@ import { SearchHeader, Searches } from "@/widget";
 import { MiniPrototype } from "@/entities";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
+import ClearIcon from "@mui/icons-material/Clear";
+
 import styled from "@emotion/styled";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
@@ -199,7 +201,7 @@ const SearchPage = ({}) => {
               navigate("/home");
             }}
           >
-            취소
+            <ClearIcon />
           </Cancel>
         </BackgoundContainer>
       </SearchContainer>
