@@ -61,6 +61,7 @@ export async function getProductCount(): Promise<ProductCount> {
   }
 
   const responseData = response.data as APIResponse;
+
   if (responseData.isSuccess) {
     const results = responseData.result as AllRequestedResultResponse[];
 

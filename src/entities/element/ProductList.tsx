@@ -82,11 +82,13 @@ interface appliedProduct {
 const ProductContainer = styled.div`
   display: flex;
   flex-direction: row;
+
+  align-items: center;
   margin-top: 0;
 `;
 const ProductName = styled.div`
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 1px;
 `;
 const ProductDate = styled.div`
   font-size: 12px;
@@ -95,7 +97,7 @@ const ProductDate = styled.div`
 const Image = styled.img`
   width: 60px;
   height: 60px;
-  margin: 0px 10px 10px 0px;
+  margin: 10px 10px 10px 0px;
 
   border-radius: 8px;
 `;
@@ -140,6 +142,15 @@ const ColorProductStatus = styled.div`
   > span {
     font-size: 12px;
   }
+`;
+
+const DeliveryState = styled.div`
+  margin-top: 1px;
+
+  font-weight: bold;
+
+  color: #686868;
+  font-size: 15px;
 `;
 
 export const ProductList: React.FC<ProductListProps> = ({ status }) => {
@@ -194,7 +205,7 @@ export const ProductList: React.FC<ProductListProps> = ({ status }) => {
 
   return (
     <div>
-      <h4>
+      <h4 style={{ marginBottom: "3px" }}>
         {status === StatusType.applied
           ? "신청중인 체험"
           : status === StatusType.ongoing
@@ -227,7 +238,11 @@ const ApplyProductList = ({
   const navigate = useNavigate();
 
   return product.map((product) => (
-    <ProductContainer>
+    <ProductContainer
+      onClick={() => {
+        navigate("/product/" + product.commonInfo.eventId);
+      }}
+    >
       <Image
         src={product.commonInfo.thumbnailUrl}
         alt={product.commonInfo.name}
@@ -241,13 +256,6 @@ const ApplyProductList = ({
       <ProductStatus>
         <span>발표일</span>
         D-{product.ddayToSelected}
-      </ProductStatus>
-      <ProductStatus
-        onClick={() => {
-          navigate("/product/" + product.commonInfo.eventId);
-        }}
-      >
-        {">"}
       </ProductStatus>
     </ProductContainer>
   ));
@@ -269,7 +277,11 @@ const SelectedProductList = ({
   const navigate = useNavigate();
 
   return product.map((product) => (
-    <ProductContainer>
+    <ProductContainer
+      onClick={() => {
+        navigate("/product/" + product.commonInfo.eventId);
+      }}
+    >
       <Image
         src={product.commonInfo.thumbnailUrl}
         alt={product.commonInfo.name}
@@ -283,13 +295,6 @@ const SelectedProductList = ({
       <ProductStatus>
         <span>발표일</span>
         {product.ddayToComplete ? `D-${product.ddayToComplete}` : "D-Day"}
-      </ProductStatus>
-      <ProductStatus
-        onClick={() => {
-          navigate("/product/" + product.commonInfo.eventId);
-        }}
-      >
-        {">"}
       </ProductStatus>
     </ProductContainer>
   ));
@@ -315,7 +320,7 @@ const WinningProductList = ({
           후기 작성 기간 : {getFormattedDate(product.feedbackStart)} ~{" "}
           {getFormattedDate(product.feedbackEnd)}
         </ProductDate>
-        <ProductName>{product.shipping}</ProductName>
+        <DeliveryState>{product.shipping}</DeliveryState>
       </Info>
       <ColorProductStatus
         onClick={() => {
