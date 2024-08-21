@@ -1,5 +1,5 @@
 // BookmarkButton.tsx
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 
 import bookmarkIcon from "/image/product/bookmark.svg";
@@ -29,7 +29,11 @@ const BookmarkButton = ({
   isBookmarked: boolean;
   id: string;
 }) => {
-  const [state, setState] = useState(isBookmarked);
+  const [state, setState] = useState(false);
+
+  useEffect(() => {
+    setState(isBookmarked);
+  }, [isBookmarked]);
 
   const { onBookmark, offBookmark } = ProductService();
 
