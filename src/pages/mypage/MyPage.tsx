@@ -26,6 +26,8 @@ const ProductContainer = styled.div`
   display: flex;
   flex-direction: column;
   with: 350px;
+  justify-content: center;
+  align-items: center;
 `;
 const BookmarkContainer = styled.div`
   

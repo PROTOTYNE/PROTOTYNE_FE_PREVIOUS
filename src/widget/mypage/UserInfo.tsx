@@ -1,6 +1,7 @@
 import { getTicketCount, getTicketUsed } from "@/service/my/ticket";
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 
 
@@ -70,7 +71,7 @@ export const UserInfoWidget: React.FC<UserInfoProps> = ({
   userName,
   status,
 }) => {
-
+  const navigate = useNavigate();
   const [ticketsOwned, setTicketsOwned]= useState <number>(0);
   const [ticketsUsed, setTicketsUsed]= useState <number>(0);    //값은 만들어놓았음
 
@@ -89,7 +90,7 @@ export const UserInfoWidget: React.FC<UserInfoProps> = ({
   return (
     <WidgetContainer>
       <UserInfoContainer>
-        <UserName>{userName}</UserName>
+        <UserName onClick={() => navigate('/myinfo')}>{userName}</UserName>
         <span style={{ color: "#000" }}>&gt;</span>
       </UserInfoContainer>
       <TicketInfo>
