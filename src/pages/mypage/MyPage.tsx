@@ -7,7 +7,7 @@ import {
 import { BookmarkService } from "@/shared";
 import { useUserStore } from "@/shared";
 import {
-  BookmarkPrototypes,
+  SmallBookmarkPrototypes,
   ProductExperience,
   ProductInfoContainer,
   UserInfoWidget,
@@ -123,7 +123,7 @@ const MyPage: React.FC = () => {
               <hr />
             </div>
             <div className="wishlist-divider"></div>
-            <BookmarkPrototypes
+            <SmallBookmarkPrototypes
               prototype={product}
             />
           </BookmarkContainer>

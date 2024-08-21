@@ -217,9 +217,53 @@ export const BookmarkPrototype = ({ prototype } : { prototype: BookmarkProp }) =
     );
 }
 
-export const MyPagePrototype = ({ prototype } : { prototype: PrototypeProp }) => {
+const SmallBookmarkContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    flex-wrap: wrap;
+    width: 125px;
+    height: 270px;
+    margin: 10px 8px;
+    position: relative;
+`;
+
+const SmallBookmarkIconContainer = styled.div`
+    display: flex;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+`;
+
+const SmallInfoBookmarkContainer = styled.div`
+    width: 100%;
+    margin-top: 10px;
+`;
+
+const SmallPrototypeName = styled.p`
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0px;
+`;
+const SmallBookmarkTicketContainer = styled.div`
+    display: flex;
+    margin-left: 50px;
+`;
+
+export const SmallBookmarkPrototype = ({ prototype } : { prototype: BookmarkProp }) => {
+    const navigate = useNavigate();
     return (
-        <>
-        </>
+        <SmallBookmarkContainer onClick={() => navigate(`/product/${prototype.productId}`)}>
+            <PrototypeImg src={prototype.thumbnailUrl ?? "/apple-icon-180x180.png"} alt={prototype.name} width="130px" height="130px" />
+            <SmallBookmarkIconContainer>
+                <Bookmark src="../image/checkBookmark.svg"></Bookmark>
+            </SmallBookmarkIconContainer>
+            <SmallInfoBookmarkContainer>
+                <SmallPrototypeName>{prototype.name.length > 20 ? prototype.name.substring(0, 17) + ".." : prototype.name}</SmallPrototypeName>
+                <SmallBookmarkTicketContainer>
+                    <Ticket ticketNum={prototype.reqTickets} />
+                </SmallBookmarkTicketContainer>
+            </SmallInfoBookmarkContainer>
+        </SmallBookmarkContainer>
     );
 }
