@@ -79,7 +79,14 @@ const AddressInfoPage = () => {
         ) : (
           <>
             <Title>
-              배송지 정보<span>입력하기</span>
+              배송지 정보
+              <span
+                onClick={() => {
+                  navigate(PAGE_URL.Address);
+                }}
+              >
+                입력하기
+              </span>
             </Title>
             <span>입력된 배송지가 없습니다.</span>
             <DisableButton>배송지를 입력해주세요!</DisableButton>
