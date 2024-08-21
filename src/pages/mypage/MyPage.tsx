@@ -4,7 +4,7 @@ import {
   ProductCount,
   StatusType,
 } from "@/service/my/product";
-import { BookmarkService } from "@/shared";
+import { BookmarkService, MyPageService } from "@/shared";
 import { useUserStore } from "@/shared";
 import {
   SmallBookmarkPrototypes,
@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 const bookmarkService = BookmarkService();
+const myPageService = MyPageService();
 
 const UserInfoContainer = styled.div`
   width: 100%;
@@ -49,15 +50,11 @@ interface ProductProp {
   ];
 }
 
-const MyPage: React.FC = () => {
-  const name = useUserStore((state) => state.name);
 
-  const [countStatus, setCountStatus] = useState<ProductCount>({
-    applied: 0,
-    ongoing: 0,
-    winning: 0,
-    completed: 0,
-  });
+const MyPage: React.FC = () => {
+
+
+  const name = useUserStore((state) => state.name);
   // 선택된 상태값 관리
   const [selected, setSelected] = useState<StatusType>(StatusType.applied);
   const [product, setProduct] = useState<ProductProp>({
@@ -83,15 +80,6 @@ const MyPage: React.FC = () => {
     fetchProduct().then((product) => setProduct(product));
   }, []);
 
-  useEffect(() => {
-    async function load() {
-      const result = await getProductCount();
-      setCountStatus(result);
-    }
-
-    load().then();
-  }, []);
-
   return (
     <div
       id="my-page"
@@ -111,7 +99,6 @@ const MyPage: React.FC = () => {
         <ProductInfoContainer>
           <ProductExContainer title="나의 시제품 체험">
             <ProductExperience
-              status={countStatus}
               selected={selected}
               onStatusSelected={(selected: StatusType) => {
                 setSelected(selected);
