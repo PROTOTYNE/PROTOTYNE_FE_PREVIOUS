@@ -29,8 +29,6 @@ export const AuthService = () => {
 
     const birth = detailInfo.birth.split("-");
 
-    console.log(detailInfo.familyMember);
-
     userStore.setUserAllInfo({
       name: username,
       birthYear: birth[0],
@@ -68,8 +66,6 @@ export const AuthService = () => {
     if (userStore.healthStatus)
       reqData.addInfoRequest.healthStatus = userStore.healthStatus;
 
-    console.log(reqData);
-
     await API.post("/oauth2/signup", reqData);
   };
 
@@ -101,6 +97,18 @@ export const AuthService = () => {
     });
   };
 
+  const getDelivery = async () => {
+    const {
+      data: { result },
+    } = (await API.get("/delivery")) as AxiosResponse<User.GetDelivery>;
+
+    return result;
+  };
+
+  const patchDelivery = async (data: User.Delivery) => {
+    await API.patch("/delivery", data);
+  };
+
   return {
     signin,
     getUserInfo,
@@ -108,5 +116,7 @@ export const AuthService = () => {
     getAlarms,
     updateBasicInfo,
     updateAdditionalInfo,
+    getDelivery,
+    patchDelivery,
   };
 };

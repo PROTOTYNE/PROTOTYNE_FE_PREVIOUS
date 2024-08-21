@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
-import ApplyComplete from "./ApplyComplete";
+import { useNavigate } from "react-router";
+
 import AddressSearchModal from "./AddressSearchModal";
 
-const TopBar = styled.div`
-  display: flex;
-  justify-content: center;
-  height: 10%;
-  text-align: center;
-`;
+import { AuthService } from "@/shared";
+import { Header } from "../Header";
 
 const FormContainer = styled.div`
   padding: 10px;
@@ -16,12 +13,8 @@ const FormContainer = styled.div`
   max-width: 400px;
   margin: 0 auto;
   border-radius: 8px;
-`;
 
-const FormTitle = styled.h2`
-  font-size: 18px;
-  margin-bottom: 20px;
-  text-align: center;
+  margin-top: 50px;
 `;
 
 const FormGroup = styled.div`
@@ -76,7 +69,11 @@ const Checkbox = styled.input`
 
 const SubmitButton = styled.button<{ disabled: boolean }>`
   position: fixed;
+
   bottom: 3%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+
   width: 85%;
   height: 25px;
   text-align: center;
@@ -87,6 +84,7 @@ const SubmitButton = styled.button<{ disabled: boolean }>`
       ? "#D9D9D9"
       : "linear-gradient(270deg, #0D1B4A 0%, #476090 50%, #7995B2 100%);"};
   color: white;
+
   border: none;
   border-radius: 8px;
   font-size: 18px;
@@ -98,10 +96,12 @@ export const AddressForm: React.FC = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [detailedAddress, setDetailedAddress] = useState("");
-  const [saveAsDefault, setSaveAsDefault] = useState(false);
+  const [saveAsDefault, setSaveAsDefault] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isFormValid, setIsFormValid] = useState<boolean | string>(false);
-  const [isCompleteModalVisible, setIsCompleteModalVisible] = useState(false);
+
+  const navigate = useNavigate();
+  const { patchDelivery } = AuthService();
 
   useEffect(() => {
     const isValid = recipient && phone && address && detailedAddress;
@@ -121,20 +121,25 @@ export const AddressForm: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    if (isFormValid) {
-      setIsCompleteModalVisible(true);
-    }
+    if (!isFormValid) return;
+
+    patchDelivery({
+      deliveryName: recipient,
+      deliveryPhone: phone,
+      baseAddress: address,
+      detailAddress: detailedAddress,
+    }).then(() => {
+      navigate(-1);
+    });
   };
 
-  const handleCloseCompleteModal = () => {
+  /* const handleCloseCompleteModal = () => {
     setIsCompleteModalVisible(false);
-  };
+  }; */
 
   return (
-    <div>
-      <TopBar>
-        <FormTitle>배송지 입력</FormTitle>
-      </TopBar>
+    <>
+      <Header onBack>배송지 입력</Header>
       <FormContainer>
         <h3>배송지 정보</h3>
         <FormGroup>
@@ -201,10 +206,6 @@ export const AddressForm: React.FC = () => {
         onClose={handleCloseModal}
         onSelectAddress={handleSelectAddress}
       />
-      <ApplyComplete
-        visible={isCompleteModalVisible}
-        onClose={handleCloseCompleteModal}
-      />
-    </div>
+    </>
   );
 };

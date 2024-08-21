@@ -1,11 +1,13 @@
-// UsageList.tsx
-import React from "react";
 import styled from "@emotion/styled";
 
 const UsageListContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  position: relative;
+  width: 92%;
+  left: 4%;
 `;
 
 const UsageItem = styled.div`
@@ -40,15 +42,8 @@ const UsageAmount = styled.div`
   color: #0d1b4a;
 `;
 
-interface Usage {
-  date: string;
-  title: string;
-  company: string;
-  amount: string;
-}
-
 interface UsageListProps {
-  usages: Usage[];
+  usages: Ticket.Usage[];
 }
 
 export const UsageList: React.FC<UsageListProps> = ({ usages }) => {

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
-import styled from '@emotion/styled';
-import ApplyReject from './ApplyReject';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import styled from "@emotion/styled";
 
+import ApplyReject from "./ApplyReject";
+
+import { TicketService } from "@/shared";
 
 const Button = styled.button`
   /* Rectangle 109 */
@@ -13,29 +15,38 @@ const Button = styled.button`
   bottom: 11px;
 
   /* blue gra */
-  background: linear-gradient(270deg, #0D1B4A 0%, #476090 50%, #7995B2 100%);
-  border-radius: 18px;
+  background: linear-gradient(270deg, #0d1b4a 0%, #476090 50%, #7995b2 100%);
+  border-radius: 10px;
 `;
 
 const ButtonText = styled.span`
-  font-family: 'Inter';
+  font-family: "Inter";
   font-weight: 600;
   font-size: 18px;
   line-height: 17px;
   /* identical to box height, or 94% */
 
-  color: #FFFFFF;
+  color: #ffffff;
 `;
 
-const ApplyButton: React.FC = () => {
+const ApplyButton = ({ require, id }: { require: number; id: string }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const navigate = useNavigate();
 
-  const hasTickets = false; // 티켓 충족 여부를 확인하는 조건 (테스트를 위해 false로 설정)
+  const { getTicketNumber } = TicketService();
+
+  useEffect(() => {
+    getTicketNumber().then((ticket) => {
+      if (ticket > require) setHasTickets(true);
+      else setHasTickets(false);
+    });
+  }, []);
+
+  const [hasTickets, setHasTickets] = useState(false);
 
   const handleButtonClick = () => {
     if (hasTickets) {
-      navigate('/address');
+      navigate("/addressinfo/" + id);
     } else {
       setIsModalVisible(true);
     }
@@ -54,14 +65,5 @@ const ApplyButton: React.FC = () => {
     </div>
   );
 };
-//TODO: 보러가기 버튼 이벤트 나중에 추가
-
-/*
-TODO: 
-case i) 티켓 부족 시 -> 티켓 부족 모달 (구현 완료)
-case ii) 티켓 충족 (구현 필요)
-- 배송지 입력 X: addressPage로 navigate
-- 배송지 입력 O: addressInfoPage로 navigate
-*/
 
 export default ApplyButton;

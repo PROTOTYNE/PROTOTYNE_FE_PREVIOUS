@@ -6,10 +6,14 @@ const TransactionListContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  position: relative;
+  width: 92%;
+  left: 4%;
 `;
 
 const TransactionItem = styled.div`
-  potisition: relative;
+  position: relative;
 
   display: flex;
   flex-direction: column;
@@ -19,12 +23,11 @@ const TransactionItem = styled.div`
 
 const TransactionDate = styled.div`
   font-size: 16px;
-  color: #090909;
+  color: #6e6e6e;
 `;
 
 const TransactionTitle = styled.div`
-  font-family: "Inter";
-  font-weight: 700;
+  font-weight: bold;
   font-size: 16px;
 
   color: #000000;
@@ -38,10 +41,14 @@ const TransactionDetail = styled.div`
 `;
 
 const TransactionAmount = styled.div<{ isNegative?: boolean }>`
-  font-family: "Inter";
-  font-weight: 700;
+  position: absolute;
+
+  font-weight: bold;
   font-size: 17px;
+
   align-self: flex-end;
+  top: 30px;
+
   color: ${(props) => (props.isNegative ? "#FF1304" : "#1d3656")};
 `;
 

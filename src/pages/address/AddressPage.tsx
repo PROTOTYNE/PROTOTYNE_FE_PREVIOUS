@@ -1,6 +1,6 @@
 import { AddressForm } from "@/entities";
 
-const App: React.FC = () => {
+const AddressPage = () => {
   return (
     <div>
       <AddressForm />
@@ -8,4 +8,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default AddressPage;
