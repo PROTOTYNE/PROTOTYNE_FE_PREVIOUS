@@ -14,6 +14,7 @@ interface StatusProps {
   onStatusSelected: (status: StatusType) => void;
 }
 const myPageService = MyPageService();
+
 export const ProductExperience: React.FC<StatusProps> = ({
   selected,
   onStatusSelected,
@@ -38,7 +39,7 @@ export const ProductExperience: React.FC<StatusProps> = ({
   };
 
   useEffect(() => {
-    fetchOngoing().then((result) => setOngoingNum(result.length));
+    fetchOngoing().then((result) => setWinningNum(result.length));
   }, []);
 
   const fetchSelected = async () => {
@@ -47,7 +48,7 @@ export const ProductExperience: React.FC<StatusProps> = ({
   };
 
   useEffect(() => {
-    fetchSelected().then((result) => setWinningNum(result.length));
+    fetchSelected().then((result) => setOngoingNum(result.length));
   }, []);
 
   const fetchCompleted = async () => {

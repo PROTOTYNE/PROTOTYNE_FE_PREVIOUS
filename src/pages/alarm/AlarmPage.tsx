@@ -17,9 +17,13 @@ const AlarmPage = () => {
     })();
   }, []);
 
+  console.log(alarms);
+
   return (
     <>
-      <Header onBack>알림</Header>
+      <Header onBack background>
+        알림
+      </Header>
       <div style={{ height: "65px" }}></div>
       <Container>
         {alarms.map((alarm) => (
