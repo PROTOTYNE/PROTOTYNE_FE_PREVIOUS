@@ -91,6 +91,8 @@ const ScrollContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  margin-top: 50px;
 `;
 
 export const Info = styled.div`

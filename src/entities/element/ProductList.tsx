@@ -109,12 +109,14 @@ const Info = styled.div`
 `;
 
 const ProductStatus = styled.div`
+  width: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin-left: auto;
   font-weight: 500;
+  text-align: end;
 
   > span {
     font-size: 10px;
@@ -135,7 +137,7 @@ const ColorProductStatus = styled.div`
   font-weight: bold;
   font-size: 15px;
 
-  width: 70px;
+  width: 80px;
 
   color: #002c7e;
 
@@ -158,7 +160,7 @@ export const ProductList: React.FC<ProductListProps> = ({ status }) => {
   const [selectedProduct, setSelectedProduct] = useState<Selected[]>([]);
   const [completedProduct, setCompletedProduct] = useState<Completed[]>([]);
   const [appliedProduct, setAppliedProduct] = useState<appliedProduct[]>([]);
-  
+
   const fetchApplied = async () => {
     const result = await myPageService.getMyProductsApplied();
     return result;
