@@ -123,6 +123,25 @@ const ProductStatus = styled.div`
   }
 `;
 
+const ColorProductStatus = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: auto;
+
+  font-weight: bold;
+  font-size: 15px;
+
+  width: 70px;
+
+  color: #002c7e;
+
+  > span {
+    font-size: 12px;
+  }
+`;
+
 export const ProductList: React.FC<ProductListProps> = ({ status }) => {
   const [ongoingProduct, setOngoingProduct] = useState<Ongoing[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Selected[]>([]);
@@ -298,13 +317,15 @@ const WinningProductList = ({
         </ProductDate>
         <ProductName>{product.shipping}</ProductName>
       </Info>
-      <ProductStatus
+      <ColorProductStatus
         onClick={() => {
           navigate("/review/" + product.commonInfo.eventId);
         }}
       >
-        {"후기 작성 >"}
-      </ProductStatus>
+        후기 작성
+        <br />
+        <span>페이지 이동</span>
+      </ColorProductStatus>
     </ProductContainer>
   ));
 };

@@ -6,9 +6,9 @@ import { useNavigate } from "react-router";
 
 // Styled Components 정의
 const WidgetContainer = styled.div`
-  width: 343px;
+  width: 100%;
   height: auto;
-  padding: 16px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -20,7 +20,7 @@ const UserInfoContainer = styled.div`
 `;
 
 const UserName = styled.span`
-  font-size: 24spx;
+  font-size: 26px;
   color: #000;
   font-weight: bold;
   margin-right: 8px;
@@ -44,7 +44,7 @@ const PurchaseContainer = styled.div`
 const PurchaseBox = styled.div`
   height: 20px; /* 높이를 조정하여 공간 확보 */
   background-color: #f8f9ff;
-  border-radius: 19px;
+  border-radius: 10px;
   display: flex;
   justify-content: space-between; /* 좌우 정렬 */
   align-items: center; /* 수직 중앙 정렬 */
@@ -92,8 +92,9 @@ export const UserInfoWidget: React.FC<UserInfoProps> = ({
   return (
     <WidgetContainer>
       <UserInfoContainer>
-        <UserName onClick={() => navigate("/myinfo")}>{userName}</UserName>
-        <span style={{ color: "#000" }}>&gt;</span>
+        <UserName onClick={() => navigate("/myinfo")}>
+          {userName} {">"}
+        </UserName>
       </UserInfoContainer>
       <TicketInfo>
         {ticketsOwned}개의 티켓으로 총 {ticketsUsed}개의 시제품을 체험했어요!

@@ -7,6 +7,8 @@ const Title = styled.h2`
   color: black;
   font-size: 16px;
   width: 100%;
+
+  margin-top: -9px;
 `;
 
 // 직선

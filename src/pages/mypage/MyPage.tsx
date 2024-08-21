@@ -19,16 +19,21 @@ import { useNavigate } from "react-router";
 const bookmarkService = BookmarkService();
 
 const UserInfoContainer = styled.div`
+  width: 100%;
+
   display: flex;
-  margin-top: 60px;
+  margin-top: 50px;
 `;
+
 const ProductContainer = styled.div`
   display: flex;
   flex-direction: column;
-  with: 350px;
+  width: 100%;
+
   justify-content: center;
   align-items: center;
 `;
+
 const BookmarkContainer = styled.div``;
 interface ProductProp {
   userId: 0;
@@ -90,8 +95,8 @@ const MyPage: React.FC = () => {
       id="my-page"
       style={{
         background: "linear-gradient(to bottom, #90A2B7, #FFFFFF)",
-        minHeight: "100vh",
-        padding: "20px", // 여백을 주기 위해 추가
+        padding: "20px",
+        overflowY: "hidden",
       }}
     >
       <Header onBack styled>
