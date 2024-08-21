@@ -7,7 +7,7 @@ const Container = styled.div`
   background: white;
   width: 88%;
 
-  height: 565px;
+  height: 720px;
 
   border-radius: 10px;
   margin: 20px 5px; /* 상하 여백은 20px, 좌우 여백은 5px */

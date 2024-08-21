@@ -98,9 +98,14 @@ export const SmallBookmarkPrototypes = ({
 }) => {
   return (
     <Container>
-      {prototype.products.map((prototype: ProductProp) => (
-        <SmallBookmarkPrototype key={prototype.eventId} prototype={prototype} />
-      ))}
+      {prototype.products.map((prototype: ProductProp, index) =>
+        index < 2 ? (
+          <SmallBookmarkPrototype
+            key={prototype.eventId}
+            prototype={prototype}
+          />
+        ) : null
+      )}
     </Container>
   );
 };
