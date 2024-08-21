@@ -158,7 +158,7 @@ export const ProductList: React.FC<ProductListProps> = ({ status }) => {
   const [selectedProduct, setSelectedProduct] = useState<Selected[]>([]);
   const [completedProduct, setCompletedProduct] = useState<Completed[]>([]);
   const [appliedProduct, setAppliedProduct] = useState<appliedProduct[]>([]);
-
+  
   const fetchApplied = async () => {
     const result = await myPageService.getMyProductsApplied();
     return result;

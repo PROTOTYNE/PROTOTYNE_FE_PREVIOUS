@@ -169,6 +169,7 @@ export const MiniPrototype = ({ prototype } : { prototype: MiniPrototypeProp }) 
 
 interface BookmarkProp {
     productId: 0;
+    eventId: 0;
     name: string;
     reqTickets: 0;
     thumbnailUrl: string;
@@ -202,7 +203,7 @@ const InfoBookmarkContainer = styled.div`
 export const BookmarkPrototype = ({ prototype } : { prototype: BookmarkProp }) => {
     const navigate = useNavigate();
     return (
-        <BookmarkContainer onClick={() => navigate(`/product/${prototype.productId}`)}>
+        <BookmarkContainer onClick={() => navigate(`/product/${prototype.eventId}`)}>
             <PrototypeImg src={prototype.thumbnailUrl ?? "/apple-icon-180x180.png"} alt={prototype.name} width="170px" height="170px" />
             <BookmarkIconContainer>
                 <Bookmark src="../image/checkBookmark.svg"></Bookmark>
@@ -223,8 +224,8 @@ const SmallBookmarkContainer = styled.div`
     border-radius: 16px;
     flex-wrap: wrap;
     width: 125px;
-    height: 270px;
-    margin: 10px 8px;
+    height: 230px;
+    margin: 2px 8px 0px 8px;
     position: relative;
 `;
 
@@ -253,7 +254,7 @@ const SmallBookmarkTicketContainer = styled.div`
 export const SmallBookmarkPrototype = ({ prototype } : { prototype: BookmarkProp }) => {
     const navigate = useNavigate();
     return (
-        <SmallBookmarkContainer onClick={() => navigate(`/product/${prototype.productId}`)}>
+        <SmallBookmarkContainer onClick={() => navigate(`/product/${prototype.eventId}`)}>
             <PrototypeImg src={prototype.thumbnailUrl ?? "/apple-icon-180x180.png"} alt={prototype.name} width="130px" height="130px" />
             <SmallBookmarkIconContainer>
                 <Bookmark src="../image/checkBookmark.svg"></Bookmark>
