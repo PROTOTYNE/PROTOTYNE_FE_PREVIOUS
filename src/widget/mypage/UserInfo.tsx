@@ -1,12 +1,14 @@
-import React from "react";
+import { getTicketCount, getTicketUsed } from "@/service/my/ticket";
+import { PAGE_URL } from "@/shared";
 import styled from "@emotion/styled";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 // Styled Components 정의
 const WidgetContainer = styled.div`
-  width: 343px;
-  height: auto; /* 높이를 자동으로 조정 */
-  background-color: #9dc2e9cd;
-  padding: 16px;
+  width: 100%;
+  height: auto;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -18,7 +20,7 @@ const UserInfoContainer = styled.div`
 `;
 
 const UserName = styled.span`
-  font-size: 16px;
+  font-size: 26px;
   color: #000;
   font-weight: bold;
   margin-right: 8px;
@@ -42,7 +44,7 @@ const PurchaseContainer = styled.div`
 const PurchaseBox = styled.div`
   height: 20px; /* 높이를 조정하여 공간 확보 */
   background-color: #f8f9ff;
-  border-radius: 19px;
+  border-radius: 10px;
   display: flex;
   justify-content: space-between; /* 좌우 정렬 */
   align-items: center; /* 수직 중앙 정렬 */
@@ -59,23 +61,40 @@ const BuyButton = styled.span`
 // Props 인터페이스 정의
 interface UserInfoProps {
   userName: string; // 사용자 이름
-  ticketsOwned: number; // 보유한 티켓 수
-  ticketsUsed: number; // 체험한 시제품 수
   status: "신청" | "진행중" | "당첨" | "종료"; // 상태 (신청 또는 기타)
 }
 
 // UserInfoWidget 컴포넌트 정의
 export const UserInfoWidget: React.FC<UserInfoProps> = ({
   userName,
-  ticketsOwned,
-  ticketsUsed,
   status,
 }) => {
+  const navigate = useNavigate();
+  const [ticketsOwned, setTicketsOwned] = useState<number>(0);
+  const [ticketsUsed, setTicketsUsed] = useState<number>(0); //값은 만들어놓았음
+
+  //api로 가져와야 함(useeffect)
+
+  useEffect(() => {
+    async function load() {
+      const usedCount = await getTicketUsed("2024-08-18", "2024-12-02");
+      if (usedCount !== null) {
+        setTicketsUsed(usedCount);
+      }
+      const ownedCount = await getTicketCount();
+      if (ownedCount !== null) {
+        setTicketsOwned(ownedCount);
+      }
+    }
+    load().then();
+  }, []);
+
   return (
     <WidgetContainer>
       <UserInfoContainer>
-        <UserName>{userName}</UserName>
-        <span style={{ color: "#000" }}>&gt;</span>
+        <UserName onClick={() => navigate("/myinfo")}>
+          {userName} {">"}
+        </UserName>
       </UserInfoContainer>
       <TicketInfo>
         {ticketsOwned}개의 티켓으로 총 {ticketsUsed}개의 시제품을 체험했어요!
@@ -84,7 +103,13 @@ export const UserInfoWidget: React.FC<UserInfoProps> = ({
         <PurchaseContainer>
           <PurchaseBox>
             <TicketCount>보유 티켓: {ticketsOwned}개</TicketCount>
-            <BuyButton>구매하기</BuyButton>
+            <BuyButton
+              onClick={() => {
+                navigate(PAGE_URL.MyTicket);
+              }}
+            >
+              구매하기
+            </BuyButton>
           </PurchaseBox>
         </PurchaseContainer>
       )}

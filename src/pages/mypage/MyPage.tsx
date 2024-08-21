@@ -1,61 +1,123 @@
-import { MyPageHeader, ProductExContainer, ProductList } from "@/entities";
+import { Header, ProductExContainer, ProductList } from "@/entities";
+import { StatusType } from "@/service/my/product";
+import { BookmarkService } from "@/shared";
+import { useUserStore } from "@/shared";
 import {
+  SmallBookmarkPrototypes,
   ProductExperience,
-  UserInfoWidget,
-  WishList,
   ProductInfoContainer,
+  UserInfoWidget,
 } from "@/widget";
+import styled from "@emotion/styled";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+
+const bookmarkService = BookmarkService();
+
+const UserInfoContainer = styled.div`
+  width: 100%;
+
+  display: flex;
+  margin-top: 50px;
+`;
+
+const ProductContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  justify-content: center;
+  align-items: center;
+`;
+
+const BookmarkContainer = styled.div``;
+interface ProductProp {
+  userId: 0;
+  products: [
+    {
+      productId: 0;
+      eventId: 0;
+      name: string;
+      reqTickets: 0;
+      thumbnailUrl: string;
+      count: 0;
+    }
+  ];
+}
 
 const MyPage: React.FC = () => {
-  const statuses = [
-    { count: 3, name: "신청", isActive: true },
-    { count: 5, name: "진행중", isActive: false },
-    { count: 2, name: "당첨", isActive: false },
-    { count: 1, name: "종료", isActive: false },
-  ];
+  const name = useUserStore((state) => state.name);
+  // 선택된 상태값 관리
+  const [selected, setSelected] = useState<StatusType>(StatusType.applied);
+  const [product, setProduct] = useState<ProductProp>({
+    userId: 0,
+    products: [
+      {
+        productId: 0,
+        eventId: 0,
+        name: "",
+        reqTickets: 0,
+        thumbnailUrl: "",
+        count: 0,
+      },
+    ],
+  });
+  const navigate = useNavigate();
+  const fetchProduct = async () => {
+    const product = await bookmarkService.getBookmarkProduct();
+    return product;
+  };
 
-  const isWinnerStatusActive = statuses.some(
-    (status) => status.name === "신청" && status.isActive
-  );
+  useEffect(() => {
+    fetchProduct().then((product) => setProduct(product));
+  }, []);
 
   return (
     <div
       id="my-page"
       style={{
         background: "linear-gradient(to bottom, #90A2B7, #FFFFFF)",
-        minHeight: "100vh",
-        padding: "20px", // 여백을 주기 위해 추가
+        padding: "20px",
+        overflowY: "hidden",
       }}
     >
-      <MyPageHeader title="마이페이지" />
-      <div className="user-info-section">
-        <UserInfoWidget
-          userName="조서영"
-          ticketsOwned={12}
-          ticketsUsed={4}
-          status="신청"
-        />
-      </div>
-      <ProductInfoContainer>
-        <div className="product-info-section">
+      <Header onBack styled>
+        마이 페이지
+      </Header>
+      <UserInfoContainer>
+        <UserInfoWidget userName={name} status="신청" />
+      </UserInfoContainer>
+      <ProductContainer>
+        <ProductInfoContainer>
           <ProductExContainer title="나의 시제품 체험">
-            <ProductExperience statuses={statuses} />
+            <ProductExperience
+              selected={selected}
+              onStatusSelected={(selected: StatusType) => {
+                setSelected(selected);
+              }}
+            />
           </ProductExContainer>
-        </div>
-        <div className="product-list-section">
-          <ProductList status="신청" /> {/* 상태에 따라 다르게 표시 */}
-        </div>
-        {isWinnerStatusActive && ( // '당첨' 상태일 때만 위시리스트 표시
-          <div className="wishlist-section">
-            <div className="wishlist-header">
-              <span className="wishlist-title">관심 목록</span>
-              <span className="wishlist-view-all">전체보기</span>
-            </div>
-            <div className="wishlist-divider"></div>
-            <WishList />
+          <div className="product-list-section">
+            <ProductList status={selected} /> {/* 상태에 따라 다르게 표시 */}
           </div>
-        )}
-      </ProductInfoContainer>
+          {selected === StatusType.applied && ( // '당첨' 상태일 때만 위시리스트 표시
+            <BookmarkContainer>
+              <div className="wishlist-header">
+                <span className="wishlist-title">관심 목록</span>
+                <span
+                  className="wishlist-view-all"
+                  onClick={() => navigate("/bookmark")}
+                >
+                  전체보기
+                </span>
+                <hr />
+              </div>
+              <div className="wishlist-divider"></div>
+              <SmallBookmarkPrototypes prototype={product} />
+            </BookmarkContainer>
+          )}
+        </ProductInfoContainer>
+      </ProductContainer>
     </div>
   );
 };

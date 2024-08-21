@@ -108,7 +108,7 @@ export const Prototype = ({ prototype } : { prototype: PrototypeProp }) => {
             <InfoContainer>
                 <InfoSubContainer>
                     <PrototypeName>{prototype.name.length > 10 ? prototype.name.substring(0, 8) + " ..." : prototype.name}</PrototypeName>
-                    <Bookmark src={prototype.name ? "../image/checkBookmark.svg":"../image/unCheckBookmark.svg"}></Bookmark>
+                    <Bookmark src={prototype.bookmark ? "../image/checkBookmark.svg":"../image/unCheckBookmark.svg"}></Bookmark>
                 </InfoSubContainer>
                 <TicketContainer>
                     <TicketNeed>
@@ -159,7 +159,7 @@ export const MiniPrototype = ({ prototype } : { prototype: MiniPrototypeProp }) 
                     <PrototypeName>{prototype.name.length > 7 ? prototype.name.substring(0, 7) + ".." : prototype.name}</PrototypeName>
                     <TicketContainer>
                         <Ticket ticketNum={prototype.reqTickets} />
-                        <Bookmark src={prototype.name ? "../image/checkBookmark.svg":"../image/unCheckBookmark.svg"}></Bookmark>
+                        <Bookmark src={prototype.bookmark ? "../image/checkBookmark.svg":"../image/unCheckBookmark.svg"}></Bookmark>
                     </TicketContainer>
                 </InfoMiniContainer>
             </MiniPrototypeContainer>
@@ -169,6 +169,7 @@ export const MiniPrototype = ({ prototype } : { prototype: MiniPrototypeProp }) 
 
 interface BookmarkProp {
     productId: 0;
+    eventId: 0;
     name: string;
     reqTickets: 0;
     thumbnailUrl: string;
@@ -202,7 +203,7 @@ const InfoBookmarkContainer = styled.div`
 export const BookmarkPrototype = ({ prototype } : { prototype: BookmarkProp }) => {
     const navigate = useNavigate();
     return (
-        <BookmarkContainer onClick={() => navigate(`/product/${prototype.productId}`)}>
+        <BookmarkContainer onClick={() => navigate(`/product/${prototype.eventId}`)}>
             <PrototypeImg src={prototype.thumbnailUrl ?? "/apple-icon-180x180.png"} alt={prototype.name} width="170px" height="170px" />
             <BookmarkIconContainer>
                 <Bookmark src="../image/checkBookmark.svg"></Bookmark>
@@ -214,5 +215,56 @@ export const BookmarkPrototype = ({ prototype } : { prototype: BookmarkProp }) =
                 </BookmarkTicketContainer>
             </InfoBookmarkContainer>
         </BookmarkContainer>
+    );
+}
+
+const SmallBookmarkContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    flex-wrap: wrap;
+    width: 125px;
+    height: 230px;
+    margin: 2px 8px 0px 8px;
+    position: relative;
+`;
+
+const SmallBookmarkIconContainer = styled.div`
+    display: flex;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+`;
+
+const SmallInfoBookmarkContainer = styled.div`
+    width: 100%;
+    margin-top: 10px;
+`;
+
+const SmallPrototypeName = styled.p`
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0px;
+`;
+const SmallBookmarkTicketContainer = styled.div`
+    display: flex;
+    margin-left: 50px;
+`;
+
+export const SmallBookmarkPrototype = ({ prototype } : { prototype: BookmarkProp }) => {
+    const navigate = useNavigate();
+    return (
+        <SmallBookmarkContainer onClick={() => navigate(`/product/${prototype.eventId}`)}>
+            <PrototypeImg src={prototype.thumbnailUrl ?? "/apple-icon-180x180.png"} alt={prototype.name} width="130px" height="130px" />
+            <SmallBookmarkIconContainer>
+                <Bookmark src="../image/checkBookmark.svg"></Bookmark>
+            </SmallBookmarkIconContainer>
+            <SmallInfoBookmarkContainer>
+                <SmallPrototypeName>{prototype.name.length > 20 ? prototype.name.substring(0, 17) + ".." : prototype.name}</SmallPrototypeName>
+                <SmallBookmarkTicketContainer>
+                    <Ticket ticketNum={prototype.reqTickets} />
+                </SmallBookmarkTicketContainer>
+            </SmallInfoBookmarkContainer>
+        </SmallBookmarkContainer>
     );
 }

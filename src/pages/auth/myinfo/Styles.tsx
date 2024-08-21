@@ -39,7 +39,7 @@ export const Title = styled.div`
 
 export const SubTitle = styled.div`
   color: gray;
-  font-size: 16px;
+  font-size: 14px;
 
   width: calc(100% - 30px);
 `;
@@ -66,6 +66,9 @@ const ScrollBox = styled(InfoContianer)`
   height: 40vh;
 
   overflow-y: auto;
+
+  border-top: 10px solid white;
+  border-bottom: 10px solid white;
 
   ::-webkit-scrollbar {
     width: 6px;
@@ -95,7 +98,7 @@ const ScrollContainer = styled.div`
 export const Info = styled.div`
   position: relative;
   width: calc(100% - 30px);
-  font-size: 17px;
+  font-size: 15px;
 
   margin-top: 5px;
   margin-bottom: 5px;
@@ -106,7 +109,15 @@ export const Info = styled.div`
     color: #555555;
     font-weight: normal;
     position: absolute;
-    left: 47%;
+    left: 50%;
+  }
+`;
+
+export const Address = styled.div`
+  width: calc(100% - 30px);
+
+  > span {
+    font-weight: bold;
   }
 `;
 

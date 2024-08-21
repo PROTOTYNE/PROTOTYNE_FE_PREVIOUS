@@ -12,10 +12,10 @@ export enum PAGE_URL {
 
   Home = "/home",
 
-  Product = "/product/:id",
+  Product = "/product/:eventId",
   Address = "/address",
-  AddressInfo = "/addressinfo",
-  MyTicket = "/MyTicket",
+  AddressInfo = "/addressinfo/:id",
+  MyTicket = "/myticket",
 
   My = "/my",
 

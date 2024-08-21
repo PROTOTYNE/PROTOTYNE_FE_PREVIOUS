@@ -1,4 +1,15 @@
 declare namespace User {
+  export interface Delivery {
+    deliveryName: string | null;
+    deliveryPhone: string | null;
+    baseAddress: string | null;
+    detailAddress: string | null;
+  }
+
+  export interface GetDelivery {
+    result: Delivery;
+  }
+
   export type Alarms = {
     thumbnailUrl: string;
     title: string;
@@ -114,5 +125,41 @@ declare namespace User {
       dateAgo: number;
       thumbnailUrl: string;
     }[];
+  }
+
+  export interface GetDelivery {
+    result: Delivery;
+  }
+
+  export interface GetTicketResDto {
+    result: {
+      ticketNumber: number;
+    };
+  }
+
+  export interface GetMyProductsApplied {
+    result: {
+      commonInfo: {
+        investmentId: number;
+        eventId: number;
+        productId: number;
+        name: string;
+        thumbnailUrl: string;
+        calculatedStatus: string;
+        createdAt: string;
+      };
+      ddayToSelected: 0;
+    }[];
+  }
+
+  export interface Delivery {
+    deliveryName: string | null;
+    deliveryPhone: string | null;
+    baseAddress: string | null;
+    detailAddress: string | null;
+  }
+
+  export interface GetDelivery {
+    result: Delivery;
   }
 }

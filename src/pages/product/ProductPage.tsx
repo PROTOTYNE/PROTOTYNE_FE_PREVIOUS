@@ -1,7 +1,9 @@
 import { useParams } from "react-router";
+import { useEffect, useState } from "react";
+import { ProductService } from "@/shared";
 
 import {
-  Date,
+  DateData,
   ImageSlide,
   Product,
   ProductInfo,
@@ -9,28 +11,76 @@ import {
   Header,
 } from "@/entities";
 
-const ProductPage: React.FC = () => {
-  const { id } = useParams();
-  console.log(id);
+const ProductPage = () => {
+  const { eventId } = useParams();
+  const { getResult } = ProductService();
+
+  const [result, setResult] = useState({
+    id: 0,
+    name: "",
+    enterprise: "",
+    category: "",
+    reqTickets: 0,
+    imageUrls: [""],
+    notes: "",
+    contents: "",
+    isBookmarked: true,
+  });
+
+  const fetchProduct = async () => {
+    console.log(`Request URL: /product/detail/${eventId}`);
+
+    if (!eventId) {
+      console.log(`eventId error=${eventId}`);
+      return;
+    }
+    try {
+      console.log(`Fetching product data for flag=${eventId}`);
+      const data = await getResult(eventId);
+
+      console.log("API Response Data:", data);
+
+      if (data) {
+        setResult(data);
+      }
+    } catch (error) {
+      console.error("Failed to fetch product data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProduct();
+  }, [eventId]);
+
   return (
     <div>
       <Header colorBackground onBack>
-        <img src="/image/logo2.png" alt="logo"></img>
+        <img
+          style={{ marginTop: "10px", width: "4.3rem" }}
+          src="/image/logo2.png"
+          alt="logo"
+        ></img>
       </Header>
-      <ImageSlide />
+      <ImageSlide imageUrls={result.imageUrls} />
       <Product
-        category="#식품"
-        name="마라탕후루 만두 마라맛"
-        company="(주)서영식품"
-        quantity={2}
+        category={result.category}
+        name={result.name}
+        company={result.enterprise}
+        quantity={result.reqTickets}
       />
-      <Date />
+      {eventId ? <DateData eventId={eventId} /> : null}
       <ProductInfo
-        productName="마라탕후루 만두 12개입"
-        productDescription="한국에서는 밀가루피에 고기, 두부, 채소 등 소를 넣어 조리한 모든 음식을 통칭해서 만두라고 부른다. 고기와 채소가 아닌 단팥 등을 넣은 것은 보통 찐빵이라 한다.  하지만 일반적으로 우리가 만두라고 부르는 것은 중국이나 일본에서는 교자라고 부르며 만두와는 구별된다."
-        additionalNotes="제공받은 제품 양도하면 안되고.. 후기 작성 하지 않으면 불이익 어쩌구 저쩌구"
+        productName={result.name}
+        productDescription={result.contents}
+        additionalNotes={result.notes}
       />
-      <Footer />
+      {eventId ? (
+        <Footer
+          require={result.reqTickets}
+          id={eventId}
+          isBookmarked={result.isBookmarked}
+        />
+      ) : null}
     </div>
   );
 };

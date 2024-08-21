@@ -1,4 +1,4 @@
-import { Prototype, MiniPrototype, BookmarkPrototype } from "@/entities/element/Prototype";
+import { Prototype, MiniPrototype, BookmarkPrototype, SmallBookmarkPrototype } from "@/entities/element/Prototype";
 import styled from "@emotion/styled";
 
 
@@ -52,6 +52,7 @@ interface BookmarkProp {
     userId: 0;
     products: [{
         productId: 0;
+        eventId: 0;
         name: string;
         reqTickets: 0;
         thumbnailUrl: string;
@@ -60,6 +61,7 @@ interface BookmarkProp {
 }
 interface ProductProp {
     productId: 0;
+    eventId: 0;
     name: string;
     reqTickets: 0;
     thumbnailUrl: string;
@@ -70,7 +72,20 @@ export const BookmarkPrototypes = ({ prototype } : { prototype: BookmarkProp }) 
         <Container>
             {(prototype.products).map((prototype: ProductProp) => (
                     <BookmarkPrototype 
-                    key={prototype.productId}
+                    key={prototype.eventId}
+                    prototype={prototype}
+                    />
+                ))}
+        </Container>
+    );
+};
+
+export const SmallBookmarkPrototypes = ({ prototype } : { prototype: BookmarkProp }) => {
+    return (
+        <Container>
+            {(prototype.products).map((prototype: ProductProp) => (
+                    <SmallBookmarkPrototype 
+                    key={prototype.eventId}
                     prototype={prototype}
                     />
                 ))}

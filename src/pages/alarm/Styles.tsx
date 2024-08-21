@@ -38,16 +38,17 @@ const Img = styled.img`
   height: 90px;
   width: 90px;
   margin-top: 5px;
+  margin-right: 5px;
 
   border-radius: 10px;
 
-  object-fit: contain;
+  object-fit: cover;
 
   background-color: #b6b6b6;
 `;
 
 const Content = styled.div`
-  width: 65%;
+  width: 60%;
 
   display: flex;
   flex-direction: column;
@@ -56,11 +57,11 @@ const Content = styled.div`
 
   font-weight: bold;
 
-  font-size: 18px;
+  font-size: 16px;
 
   > div {
     display: inline-block;
-    width: 90%;
+    width: 130%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -68,7 +69,7 @@ const Content = styled.div`
 
   > span {
     font-weight: normal;
-    font-size: 16px;
+    font-size: 15px;
 
     display: inline-block;
     width: 100%;
@@ -81,6 +82,8 @@ const Content = styled.div`
 `;
 
 const Time = styled.div`
+  width: 60px;
+  text-align: end;
   margin-top: 70px;
 
   font-size: 16px;

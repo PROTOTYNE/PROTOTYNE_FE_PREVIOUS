@@ -1,30 +1,94 @@
-import React from "react";
 import {
-  Arrow,
+  Divider,
   StatusBox,
   StatusContainer,
   StatusCount,
   StatusName,
-  Divider,
 } from "@/entities";
-
+import { StatusType } from "@/service/my/product";
+import { MyPageService } from "@/shared";
+import React from "react";
+import { useEffect, useState } from "react";
 interface StatusProps {
-  statuses: { count: number; name: string; isActive: boolean }[];
+  selected: StatusType;
+  onStatusSelected: (status: StatusType) => void;
 }
+const myPageService = MyPageService();
 
-export const ProductExperience: React.FC<StatusProps> = ({ statuses }) => {
+export const ProductExperience: React.FC<StatusProps> = ({
+  selected,
+  onStatusSelected,
+}) => {
+  const [appliedNum, setAppliedNum] = useState(0);
+  const [ongoingNum, setOngoingNum] = useState(0);
+  const [winningNum, setWinningNum] = useState(0);
+  const [completedNum, setCompletedNum] = useState(0);
+
+  const fetchApplied = async () => {
+    const result = await myPageService.getMyProductsApplied();
+    return result;
+  };
+
+  useEffect(() => {
+    fetchApplied().then((result) => setAppliedNum(result.length));
+  }, []);
+
+  const fetchOngoing = async () => {
+    const result = await myPageService.getOngoing();
+    return result;
+  };
+
+  useEffect(() => {
+    fetchOngoing().then((result) => setWinningNum(result.length));
+  }, []);
+
+  const fetchSelected = async () => {
+    const result = await myPageService.getSelectedProduct();
+    return result;
+  };
+
+  useEffect(() => {
+    fetchSelected().then((result) => setOngoingNum(result.length));
+  }, []);
+
+  const fetchCompleted = async () => {
+    const result = await myPageService.getCompleted();
+    return result;
+  };
+
+  useEffect(() => {
+    fetchCompleted().then((result) => setCompletedNum(result.length));
+  }, []);
   return (
     <StatusContainer>
-      {statuses.map((status, index) => (
-        <React.Fragment key={index}>
-          <StatusBox isActive={status.isActive}>
-            <StatusCount>{status.count}</StatusCount>
-            <StatusName>{status.name}</StatusName>
-          </StatusBox>
-          {index < statuses.length - 1 && <Arrow />}{" "}
-          {/* 마지막 상태 뒤에는 화살표를 추가하지 않음 */}
-        </React.Fragment>
-      ))}
+      <StatusBox
+        isActive={selected == StatusType.applied}
+        onClick={() => onStatusSelected(StatusType.applied)}
+      >
+        <StatusCount>{appliedNum}</StatusCount>
+        <StatusName>{StatusType.applied}</StatusName>
+      </StatusBox>
+      <StatusBox
+        isActive={selected == StatusType.ongoing}
+        onClick={() => onStatusSelected(StatusType.ongoing)}
+      >
+        <StatusCount>{ongoingNum}</StatusCount>
+        <StatusName>{StatusType.ongoing}</StatusName>
+      </StatusBox>
+      <StatusBox
+        isActive={selected == StatusType.winning}
+        onClick={() => onStatusSelected(StatusType.winning)}
+      >
+        <StatusCount>{winningNum}</StatusCount>
+        <StatusName>{StatusType.winning}</StatusName>
+      </StatusBox>
+      <StatusBox
+        isActive={selected == StatusType.completed}
+        onClick={() => onStatusSelected(StatusType.completed)}
+      >
+        <StatusCount>{completedNum}</StatusCount>
+        <StatusName>{StatusType.completed}</StatusName>
+      </StatusBox>
       <Divider /> {/* 모든 상태 아래에 하나의 Divider 추가 */}
     </StatusContainer>
   );

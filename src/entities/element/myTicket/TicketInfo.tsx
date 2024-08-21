@@ -4,25 +4,35 @@ import styled from "@emotion/styled";
 
 const TicketInfoContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  width: 110px;
+
+  width: 100%;
 `;
 
 const TicketCount = styled.div`
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
+
+  margin-left: 10px;
 `;
 
 const TicketLabel = styled.div`
-  font-size: 16px;
-  font-weight: normal;
+  font-size: 18px;
+  font-weight: bold;
+  color: #0d1b4a;
+
+  margin-left: 17px;
 `;
 
 const TicketLine = styled.div`
-  width: 100%;
+  position: relative;
+  width: 90%;
+
+  left: 5%;
+
   height: 0.5px;
-  left: 100px;
+
   margin-top: 10px;
 
   background: #8e8e8e;

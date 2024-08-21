@@ -97,6 +97,18 @@ export const AuthService = () => {
     });
   };
 
+  const getDelivery = async () => {
+    const {
+      data: { result },
+    } = (await API.get("/delivery")) as AxiosResponse<User.GetDelivery>;
+
+    return result;
+  };
+
+  const patchDelivery = async (data: User.Delivery) => {
+    await API.patch("/delivery", data);
+  };
+
   return {
     signin,
     getUserInfo,
@@ -104,5 +116,7 @@ export const AuthService = () => {
     getAlarms,
     updateBasicInfo,
     updateAdditionalInfo,
+    getDelivery,
+    patchDelivery,
   };
 };

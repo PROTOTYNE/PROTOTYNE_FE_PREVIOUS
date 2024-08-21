@@ -1,8 +1,11 @@
 // BookmarkButton.tsx
-import React, { useState } from 'react';
-import styled from '@emotion/styled';
-import bookmarkIcon from '../../../../public/image/product/bookmark.svg';
-import checkBookmarkIcon from '../../../../public/image/product/checkBookmark.svg';
+import { useEffect, useState } from "react";
+import styled from "@emotion/styled";
+
+import bookmarkIcon from "/image/product/bookmark.svg";
+import checkBookmarkIcon from "/image/product/checkBookmark.svg";
+
+import { ProductService } from "@/shared";
 
 const Button = styled.button`
   background: none;
@@ -19,16 +22,34 @@ const Icon = styled.img`
   height: 7%;
 `;
 
-const BookmarkButton: React.FC = () => {
-  const [isBookmarked, setIsBookmarked] = useState(false);
+const BookmarkButton = ({
+  isBookmarked,
+  id,
+}: {
+  isBookmarked: boolean;
+  id: string;
+}) => {
+  const [state, setState] = useState(false);
+
+  useEffect(() => {
+    setState(isBookmarked);
+  }, [isBookmarked]);
+
+  const { onBookmark, offBookmark } = ProductService();
 
   const handleBookmarkClick = () => {
-    setIsBookmarked(prevState => !prevState);
+    if (state) offBookmark(id);
+    else onBookmark(id);
+
+    setState((prevState) => !prevState);
   };
 
   return (
     <Button onClick={handleBookmarkClick}>
-      <Icon src={isBookmarked ? checkBookmarkIcon : bookmarkIcon} alt="Bookmark Icon" />
+      <Icon
+        src={state ? checkBookmarkIcon : bookmarkIcon}
+        alt="Bookmark Icon"
+      />
     </Button>
   );
 };

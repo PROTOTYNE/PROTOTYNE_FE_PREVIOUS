@@ -5,7 +5,6 @@ import { PAGE_URL, getAccess, setAccess, AuthService } from "@/shared";
 
 const AuthRouter = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
-
   const { getUserInfo } = AuthService();
 
   useEffect(() => {

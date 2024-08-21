@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from '@emotion/styled';
+import React from "react";
+import styled from "@emotion/styled";
 
 interface ApplyRejectProps {
   visible: boolean;
@@ -31,14 +31,13 @@ const StyledCloseButton = styled.button`
   /* 버튼 스타일 */
   padding: 10px 20px;
   width: 50%;
-  background-color: #A4A4A5;
+  background-color: #a4a4a5;
   color: white;
   border: none;
   border-radius: 5px;
   margin: 5px;
   cursor: pointer;
 `;
-
 
 const ApplyReject: React.FC<ApplyRejectProps> = ({ visible, onClose }) => {
   if (!visible) return null;
@@ -47,7 +46,10 @@ const ApplyReject: React.FC<ApplyRejectProps> = ({ visible, onClose }) => {
     <ModalBackground onClick={onClose}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
         <h2>티켓 부족</h2>
-        <p>보유한 티켓이 부족하여 신청할 수 없어요 어쩌구 저쩌구</p>
+        <p>
+          보유한 티켓이 부족하여 <br />
+          신청이 불가능합니다.
+        </p>
         <StyledCloseButton onClick={onClose}>닫기</StyledCloseButton>
       </ModalContent>
     </ModalBackground>
@@ -55,6 +57,3 @@ const ApplyReject: React.FC<ApplyRejectProps> = ({ visible, onClose }) => {
 };
 
 export default ApplyReject;
-
-
-
