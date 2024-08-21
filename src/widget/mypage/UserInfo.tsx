@@ -1,9 +1,8 @@
 import { getTicketCount, getTicketUsed } from "@/service/my/ticket";
+import { PAGE_URL } from "@/shared";
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-
-
 
 // Styled Components 정의
 const WidgetContainer = styled.div`
@@ -65,32 +64,35 @@ interface UserInfoProps {
   status: "신청" | "진행중" | "당첨" | "종료"; // 상태 (신청 또는 기타)
 }
 
-
 // UserInfoWidget 컴포넌트 정의
 export const UserInfoWidget: React.FC<UserInfoProps> = ({
   userName,
   status,
 }) => {
   const navigate = useNavigate();
-  const [ticketsOwned, setTicketsOwned]= useState <number>(0);
-  const [ticketsUsed, setTicketsUsed]= useState <number>(0);    //값은 만들어놓았음
+  const [ticketsOwned, setTicketsOwned] = useState<number>(0);
+  const [ticketsUsed, setTicketsUsed] = useState<number>(0); //값은 만들어놓았음
 
   //api로 가져와야 함(useeffect)
 
-  useEffect(()=> {
-   async function load(){
-    const usedCount = await getTicketUsed("2024-08-18","2024-12-02")
-    if (usedCount !== null ) {setTicketsUsed(usedCount)}
-    const ownedCount = await getTicketCount("2024-08-18","2024-12-02")
-    if(ownedCount !== null) {setTicketsOwned(ownedCount)}
-   }
-   load() .then()
-  },[])
+  useEffect(() => {
+    async function load() {
+      const usedCount = await getTicketUsed("2024-08-18", "2024-12-02");
+      if (usedCount !== null) {
+        setTicketsUsed(usedCount);
+      }
+      const ownedCount = await getTicketCount("2024-08-18", "2024-12-02");
+      if (ownedCount !== null) {
+        setTicketsOwned(ownedCount);
+      }
+    }
+    load().then();
+  }, []);
 
   return (
     <WidgetContainer>
       <UserInfoContainer>
-        <UserName onClick={() => navigate('/myinfo')}>{userName}</UserName>
+        <UserName onClick={() => navigate("/myinfo")}>{userName}</UserName>
         <span style={{ color: "#000" }}>&gt;</span>
       </UserInfoContainer>
       <TicketInfo>
@@ -100,7 +102,13 @@ export const UserInfoWidget: React.FC<UserInfoProps> = ({
         <PurchaseContainer>
           <PurchaseBox>
             <TicketCount>보유 티켓: {ticketsOwned}개</TicketCount>
-            <BuyButton>구매하기</BuyButton>
+            <BuyButton
+              onClick={() => {
+                navigate(PAGE_URL.MyTicket);
+              }}
+            >
+              구매하기
+            </BuyButton>
           </PurchaseBox>
         </PurchaseContainer>
       )}

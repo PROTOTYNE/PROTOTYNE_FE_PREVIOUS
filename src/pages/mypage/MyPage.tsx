@@ -29,21 +29,23 @@ const ProductContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const BookmarkContainer = styled.div`
-  
-`;
+const BookmarkContainer = styled.div``;
 interface ProductProp {
   userId: 0;
-  products: [{
-    productId: 0;
-    name: string;
-    reqTickets: 0;
-    thumbnailUrl: string;
-    count: 0;
-  }]
+  products: [
+    {
+      productId: 0;
+      name: string;
+      reqTickets: 0;
+      thumbnailUrl: string;
+      count: 0;
+    }
+  ];
 }
 
 const MyPage: React.FC = () => {
+  const name = useUserStore((state) => state.name);
+
   const [countStatus, setCountStatus] = useState<ProductCount>({
     applied: 0,
     ongoing: 0,
@@ -54,24 +56,25 @@ const MyPage: React.FC = () => {
   const [selected, setSelected] = useState<StatusType>(StatusType.applied);
   const [product, setProduct] = useState<ProductProp>({
     userId: 0,
-    products: [{
-      productId: 0,
-      name: "",
-      reqTickets: 0,
-      thumbnailUrl: "",
-      count: 0,
-    }]
+    products: [
+      {
+        productId: 0,
+        name: "",
+        reqTickets: 0,
+        thumbnailUrl: "",
+        count: 0,
+      },
+    ],
   });
   const navigate = useNavigate();
   const fetchProduct = async () => {
     const product = await bookmarkService.getBookmarkProduct();
     return product;
-  }
+  };
 
   useEffect(() => {
-      fetchProduct()
-      .then(product => setProduct(product));
-  }, [])
+    fetchProduct().then((product) => setProduct(product));
+  }, []);
 
   useEffect(() => {
     async function load() {
@@ -82,10 +85,6 @@ const MyPage: React.FC = () => {
     load().then();
   }, []);
 
-  const getCurrentUser = () => {
-    const userStore = useUserStore((state) => state);
-    return userStore.name;
-  }
   return (
     <div
       id="my-page"
@@ -99,7 +98,7 @@ const MyPage: React.FC = () => {
         마이 페이지
       </Header>
       <UserInfoContainer>
-        <UserInfoWidget userName={getCurrentUser()} status="신청" />
+        <UserInfoWidget userName={name} status="신청" />
       </UserInfoContainer>
       <ProductContainer>
         <ProductInfoContainer>
@@ -113,23 +112,25 @@ const MyPage: React.FC = () => {
             />
           </ProductExContainer>
           <div className="product-list-section">
-          <ProductList status={selected} /> {/* 상태에 따라 다르게 표시 */}
-        </div>
-        {selected === StatusType.applied && ( // '당첨' 상태일 때만 위시리스트 표시
-          <BookmarkContainer>
-            <div className="wishlist-header">
-              <span className="wishlist-title">관심 목록</span>
-              <span className="wishlist-view-all" onClick={() => navigate('/bookmark')}>전체보기</span>
-              <hr />
-            </div>
-            <div className="wishlist-divider"></div>
-            <BookmarkPrototypes
-              prototype={product}
-            />
-          </BookmarkContainer>
-        )}
+            <ProductList status={selected} /> {/* 상태에 따라 다르게 표시 */}
+          </div>
+          {selected === StatusType.applied && ( // '당첨' 상태일 때만 위시리스트 표시
+            <BookmarkContainer>
+              <div className="wishlist-header">
+                <span className="wishlist-title">관심 목록</span>
+                <span
+                  className="wishlist-view-all"
+                  onClick={() => navigate("/bookmark")}
+                >
+                  전체보기
+                </span>
+                <hr />
+              </div>
+              <div className="wishlist-divider"></div>
+              <BookmarkPrototypes prototype={product} />
+            </BookmarkContainer>
+          )}
         </ProductInfoContainer>
-        
       </ProductContainer>
     </div>
   );

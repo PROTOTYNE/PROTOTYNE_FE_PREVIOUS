@@ -140,59 +140,60 @@ declare namespace User {
         calculatedStatus: string;
         createdAt: string;
       };
-      ddayToSelected: 0;
+      ddayToSelected: number;
     }[];
   }
+
   export interface GetMyProductsOngoing {
     result: [
       {
         commonInfo: {
-          investmentId: 0,
-          eventId: 0,
-          productId: 0,
-          name: string,
-          thumbnailUrl: string,
-          calculatedStatus: string,
-          createdAt: string,
-        },
-        shipping: string,
-        transportNum: string,
-        feedbackStart: string,
-        feedbackEnd: string
+          investmentId: number;
+          eventId: number;
+          productId: number;
+          name: string;
+          thumbnailUrl: string;
+          calculatedStatus: string;
+          createdAt: string;
+        };
+        shipping: string;
+        transportNum: string;
+        feedbackStart: string;
+        feedbackEnd: string;
       }
-    ]
+    ];
   }
   export interface GetMyProductsSelected {
     result: [
       {
         commonInfo: {
-          investmentId: 0,
-          eventId: 0,
-          productId: 0,
-          name: string,
-          thumbnailUrl: string,
-          calculatedStatus: string,
-          createdAt: string,
-        },
-        judgeEnd: string,
-        ddayToComplete: 0,
+          investmentId: number;
+          eventId: number;
+          productId: number;
+          name: string;
+          thumbnailUrl: string;
+          calculatedStatus: string;
+          createdAt: string;
+        };
+        judgeEnd: string;
+        ddayToComplete: number;
       }
-    ]
+    ];
   }
   export interface GetMyProductsCompleted {
     result: [
       {
         commonInfo: {
-          investmentId: 0,
-          eventId: 0,
-          productId: 0,
-          name: string,
-          thumbnailUrl: string,
-          calculatedStatus: string,
-          createdAt: string,
-        },
-        penalty: true,
+          investmentId: number;
+          eventId: number;
+          productId: number;
+          name: string;
+          thumbnailUrl: string;
+          calculatedStatus: string;
+          createdAt: string;
+        };
+        penalty: true;
       }
-    ]
+    ];
   }
 }

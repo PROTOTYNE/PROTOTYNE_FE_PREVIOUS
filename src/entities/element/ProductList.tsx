@@ -1,62 +1,54 @@
-import { StatusType } from "@/service/my/product";
-import { MyPageService } from "@/shared";
-import React from "react";
+import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-// import ProductItem from "./ProductItem";
 import styled from "@emotion/styled";
 
-const myPageService = MyPageService();
-interface AnnouncementDate {
-  daysLeft: number;
-  status: "당첨" | "미당첨" | null; // 특정 문자열로 제한
-}
+import { StatusType } from "@/service/my/product";
+import { MyPageService } from "@/shared";
 
-interface Product {
-  name: string;
-  applicationDate: string;
-  announcementDate?: AnnouncementDate | null; // announcementDate는 선택적
-  shippingStatus?: "배송 준비중" | "배송중" | "배송 완료" | undefined; // 특정 문자열로 제한
-}
+// import ProductItem from "./ProductItem";
+
+const myPageService = MyPageService();
 
 interface Ongoing {
   commonInfo: {
-    investmentId: 0,
-    eventId: 0,
-    productId: 0,
-    name: string,
-    thumbnailUrl: string,
-    calculatedStatus: string,
-    createdAt: string,
-  },
-  shipping: string,
-  transportNum: string,
-  feedbackStart: string,
-  feedbackEnd: string
+    investmentId: number;
+    eventId: number;
+    productId: number;
+    name: string;
+    thumbnailUrl: string;
+    calculatedStatus: string;
+    createdAt: string;
+  };
+  shipping: string;
+  transportNum: string;
+  feedbackStart: string;
+  feedbackEnd: string;
 }
+
 interface Selected {
   commonInfo: {
-    investmentId: 0,
-    eventId: 0,
-    productId: 0,
-    name: string,
-    thumbnailUrl: string,
-    calculatedStatus: string,
-    createdAt: string,
-  },
-  judgeEnd: string,
-  ddayToComplete: 0,
+    investmentId: number;
+    eventId: number;
+    productId: number;
+    name: string;
+    thumbnailUrl: string;
+    calculatedStatus: string;
+    createdAt: string;
+  };
+  judgeEnd: string;
+  ddayToComplete: number;
 }
 interface Completed {
   commonInfo: {
-    investmentId: 0,
-    eventId: 0,
-    productId: 0,
-    name: string,
-    thumbnailUrl: string,
-    calculatedStatus: string,
-    createdAt: string,
-  },
-  penalty: true,
+    investmentId: number;
+    eventId: number;
+    productId: number;
+    name: string;
+    thumbnailUrl: string;
+    calculatedStatus: string;
+    createdAt: string;
+  };
+  penalty: true;
 }
 
 interface ProductListProps {
@@ -73,10 +65,11 @@ interface appliedProduct {
     calculatedStatus: string;
     createdAt: string;
   };
-  ddayToSelected: 0;
-}[];
+  ddayToSelected: number;
+}
+[];
 
-interface AllRequested {
+/* interface AllRequested {
   investmentId: number;
   eventId: number;
   productId: number;
@@ -84,7 +77,7 @@ interface AllRequested {
   thumbnailUrl: string;
   calculatedStatus: string;
   createdAt: string;
-}
+} */
 
 const ProductContainer = styled.div`
   display: flex;
@@ -100,22 +93,34 @@ const ProductDate = styled.div`
 `;
 
 const Image = styled.img`
-width: 60px;
-height: 60px;
-margin: 0px 10px 10px 0px;
+  width: 60px;
+  height: 60px;
+  margin: 0px 10px 10px 0px;
+
+  border-radius: 8px;
 `;
+
 const Info = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const ProductStatus = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   margin-left: auto;
   font-weight: 500;
+
+  > span {
+    font-size: 10px;
+  }
+
+  > div {
+    color: red;
+  }
 `;
 
 export const ProductList: React.FC<ProductListProps> = ({ status }) => {
@@ -123,128 +128,50 @@ export const ProductList: React.FC<ProductListProps> = ({ status }) => {
   const [selectedProduct, setSelectedProduct] = useState<Selected[]>([]);
   const [completedProduct, setCompletedProduct] = useState<Completed[]>([]);
   const [appliedProduct, setAppliedProduct] = useState<appliedProduct[]>([]);
-  const [all, setAll] = useState<AllRequested[]>([]);
 
   const fetchApplied = async () => {
     const result = await myPageService.getMyProductsApplied();
     return result;
-  }
+  };
+
   useEffect(() => {
-    fetchApplied()
-    .then((result) => setAppliedProduct(result));
+    fetchApplied().then((result) => setAppliedProduct(result));
   }, []);
-  
+
   const fetchOngoing = async () => {
     const result = await myPageService.getOngoing();
     return result;
-  }
+  };
+
   useEffect(() => {
-    fetchOngoing()
-    .then((result) => setOngoingProduct(result));
+    fetchOngoing().then((result) => setOngoingProduct(result));
   }, []);
 
   const fetchSelected = async () => {
     const result = await myPageService.getSelectedProduct();
     return result;
-  }
+  };
 
   useEffect(() => {
-    fetchSelected()
-    .then((result) => setSelectedProduct(result));
+    fetchSelected().then((result) => setSelectedProduct(result));
   }, []);
-  
+
   const fetchCompleted = async () => {
     const result = await myPageService.getCompleted();
     return result;
-  }
+  };
 
   useEffect(() => {
-    fetchCompleted()
-    .then((result) => setCompletedProduct(result));
+    fetchCompleted().then((result) => setCompletedProduct(result));
   }, []);
 
-  const allRequested = async () => {
+  /* const allRequested = async () => {
     const result = await myPageService.getAllRequested();
     return result;
-  }
-  useEffect(() => {
-    allRequested()
-    .then((result) => setAll(result));
-  },[]);
-
-  const getFormattedDate = (date: any) => {
-    date = date.split("T")[0];
-    date = date.split("-");
-    date = date[0] + "." + date[1] + "." + date[2];
-    return date
   };
-  
-  const ApplyProductList = ({ status, product }: { status: StatusType, product: appliedProduct[] }) => {
-    return (
-      product.map((product) => (
-        <ProductContainer>
-          <Image src={product.commonInfo.thumbnailUrl} alt={product.commonInfo.name} />
-          <Info>
-            <ProductName>{product.commonInfo.name}</ProductName>
-            {status === StatusType.applied && <ProductDate>체험 신청일 : {getFormattedDate(product.commonInfo.createdAt)}</ProductDate>}
-            {status === StatusType.ongoing && <ProductDate>결과 발표일 : {getFormattedDate(product.commonInfo.createdAt)}</ProductDate>}
-            {status === StatusType.winning && <ProductDate>후기 작성 기간 : {getFormattedDate(product.commonInfo.createdAt)}</ProductDate>}
-            {status === StatusType.completed && <ProductDate>체험 신청일 : {getFormattedDate(product.commonInfo.createdAt)}</ProductDate>}
-          </Info>
-          <ProductStatus>{"당첨 >"}</ProductStatus>
-        </ProductContainer>
-      )));
-  }
-
-  const SelectedProductList = ({ status, product }: { status: StatusType, product: Selected[] }) => {
-    return (
-      product.map((product) => (
-        <ProductContainer>
-          <Image src={product.commonInfo.thumbnailUrl} alt={product.commonInfo.name} />
-          <Info>
-            <ProductName>{product.commonInfo.name}</ProductName>
-            {status === StatusType.applied && <ProductDate>체험 신청일 : {getFormattedDate(product.commonInfo.createdAt)}</ProductDate>}
-            {status === StatusType.ongoing && <ProductDate>결과 발표일 : {getFormattedDate(product.commonInfo.createdAt)}</ProductDate>}
-            {status === StatusType.winning && <ProductDate>후기 작성 기간 : {getFormattedDate(product.commonInfo.createdAt)}</ProductDate>}
-            {status === StatusType.completed && <ProductDate>체험 신청일 : {getFormattedDate(product.commonInfo.createdAt)}</ProductDate>}
-          </Info>
-          <ProductStatus>{"당첨 >"}</ProductStatus>
-        </ProductContainer>
-      )));
-  }
-
-  const WinningProductList = ({ status, product }: { status: StatusType, product: Ongoing[] }) => {
-    return (
-      product.map((product) => (
-        <ProductContainer>
-          <Image src={product.commonInfo.thumbnailUrl} alt={product.commonInfo.name} />
-          <Info>
-            <ProductName>{product.commonInfo.name}</ProductName>
-            {status === StatusType.applied && <ProductDate>체험 신청일 : {getFormattedDate(product.commonInfo.createdAt)}</ProductDate>}
-            {status === StatusType.ongoing && <ProductDate>결과 발표일 : {getFormattedDate(product.commonInfo.createdAt)}</ProductDate>}
-            {status === StatusType.winning && <ProductDate>후기 작성 기간 : {getFormattedDate(product.commonInfo.createdAt)}</ProductDate>}
-            {status === StatusType.completed && <ProductDate>체험 신청일 : {getFormattedDate(product.commonInfo.createdAt)}</ProductDate>}
-          </Info>
-          <ProductStatus>{"당첨 >"}</ProductStatus>
-        </ProductContainer>
-      )));
-  }
-  const CompletedProductList = ({ status, product }: { status: StatusType, product: Completed[] }) => {
-    return (
-      product.map((product) => (
-        <ProductContainer>
-          <Image src={product.commonInfo.thumbnailUrl} alt={product.commonInfo.name} />
-          <Info>
-            <ProductName>{product.commonInfo.name}</ProductName>
-            {status === StatusType.applied && <ProductDate>체험 신청일 : {getFormattedDate(product.commonInfo.createdAt)}</ProductDate>}
-            {status === StatusType.ongoing && <ProductDate>결과 발표일 : {getFormattedDate(product.commonInfo.createdAt)}</ProductDate>}
-            {status === StatusType.winning && <ProductDate>후기 작성 기간 : {getFormattedDate(product.commonInfo.createdAt)}</ProductDate>}
-            {status === StatusType.completed && <ProductDate>체험 신청일 : {getFormattedDate(product.commonInfo.createdAt)}</ProductDate>}
-          </Info>
-          <ProductStatus>{"당첨 >"}</ProductStatus>
-        </ProductContainer>
-      )));
-  }
+  useEffect(() => {
+    allRequested().then((result) => setAll(result));
+  }, []); */
 
   return (
     <div>
@@ -258,15 +185,151 @@ export const ProductList: React.FC<ProductListProps> = ({ status }) => {
           : "종료된 체험"}
       </h4>
       <div>
-        {status === StatusType.applied ?
+        {status === StatusType.applied ? (
           <ApplyProductList status={status} product={appliedProduct} />
-          : status === StatusType.ongoing ?
+        ) : status === StatusType.ongoing ? (
           <SelectedProductList status={status} product={selectedProduct} />
-          : status === StatusType.winning ?
+        ) : status === StatusType.winning ? (
           <WinningProductList status={status} product={ongoingProduct} />
-          : <CompletedProductList status={status} product={completedProduct} />
-        }
+        ) : (
+          <CompletedProductList status={status} product={completedProduct} />
+        )}
       </div>
     </div>
   );
+};
+
+const ApplyProductList = ({
+  product,
+}: {
+  status: StatusType;
+  product: appliedProduct[];
+}) => {
+  const navigate = useNavigate();
+
+  return product.map((product) => (
+    <ProductContainer>
+      <Image
+        src={product.commonInfo.thumbnailUrl}
+        alt={product.commonInfo.name}
+      />
+      <Info>
+        <ProductName>{product.commonInfo.name}</ProductName>
+        <ProductDate>
+          체험 신청일 : {getFormattedDate(product.commonInfo.createdAt)}
+        </ProductDate>
+      </Info>
+      <ProductStatus>
+        <span>발표일</span>
+        D-{product.ddayToSelected}
+      </ProductStatus>
+      <ProductStatus
+        onClick={() => {
+          navigate("/product/" + product.commonInfo.eventId);
+        }}
+      >
+        {">"}
+      </ProductStatus>
+    </ProductContainer>
+  ));
+};
+
+const getFormattedDate = (date: string) => {
+  const date1 = date.split("T")[0];
+  const date2 = date1.split("-");
+  const date3 = date2[0] + "." + date2[1] + "." + date2[2];
+  return date3;
+};
+
+const SelectedProductList = ({
+  product,
+}: {
+  status: StatusType;
+  product: Selected[];
+}) => {
+  const navigate = useNavigate();
+
+  return product.map((product) => (
+    <ProductContainer>
+      <Image
+        src={product.commonInfo.thumbnailUrl}
+        alt={product.commonInfo.name}
+      />
+      <Info>
+        <ProductName>{product.commonInfo.name}</ProductName>
+        <ProductDate>
+          결과 발표일 : {getFormattedDate(product.judgeEnd)}
+        </ProductDate>
+      </Info>
+      <ProductStatus>
+        <span>발표일</span>
+        {product.ddayToComplete ? `D-${product.ddayToComplete}` : "D-Day"}
+      </ProductStatus>
+      <ProductStatus
+        onClick={() => {
+          navigate("/product/" + product.commonInfo.eventId);
+        }}
+      >
+        {">"}
+      </ProductStatus>
+    </ProductContainer>
+  ));
+};
+
+const WinningProductList = ({
+  product,
+}: {
+  status: StatusType;
+  product: Ongoing[];
+}) => {
+  const navigate = useNavigate();
+
+  return product.map((product) => (
+    <ProductContainer>
+      <Image
+        src={product.commonInfo.thumbnailUrl}
+        alt={product.commonInfo.name}
+      />
+      <Info>
+        <ProductName>{product.commonInfo.name}</ProductName>
+        <ProductDate>
+          후기 작성 기간 : {getFormattedDate(product.feedbackStart)} ~{" "}
+          {getFormattedDate(product.feedbackEnd)}
+        </ProductDate>
+        <ProductName>{product.shipping}</ProductName>
+      </Info>
+      <ProductStatus
+        onClick={() => {
+          navigate("/review/" + product.commonInfo.eventId);
+        }}
+      >
+        {"후기 작성 >"}
+      </ProductStatus>
+    </ProductContainer>
+  ));
+};
+
+const CompletedProductList = ({
+  product,
+}: {
+  status: StatusType;
+  product: Completed[];
+}) => {
+  return product.map((product) => (
+    <ProductContainer>
+      <Image
+        src={product.commonInfo.thumbnailUrl}
+        alt={product.commonInfo.name}
+      />
+      <Info>
+        <ProductName>{product.commonInfo.name}</ProductName>
+        <ProductDate>
+          체험 신청일 : {getFormattedDate(product.commonInfo.createdAt)}
+        </ProductDate>
+      </Info>
+      <ProductStatus>
+        {!product.penalty ? "완료" : <div>패널티</div>}
+      </ProductStatus>
+    </ProductContainer>
+  ));
 };
