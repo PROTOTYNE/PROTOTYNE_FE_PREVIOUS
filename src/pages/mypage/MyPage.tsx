@@ -5,7 +5,7 @@ import {
   StatusType,
 } from "@/service/my/product";
 import { BookmarkService } from "@/shared";
-// import { useUserStore } from "@/shared";
+import { useUserStore } from "@/shared";
 import {
   BookmarkPrototypes,
   ProductExperience,
@@ -18,7 +18,6 @@ import { useNavigate } from "react-router";
 
 const bookmarkService = BookmarkService();
 
-// const userStore = useUserStore((state) => state);
 const UserInfoContainer = styled.div`
   display: flex;
   margin-top: 60px;
@@ -27,6 +26,9 @@ const ProductContainer = styled.div`
   display: flex;
   flex-direction: column;
   with: 350px;
+`;
+const BookmarkContainer = styled.div`
+  
 `;
 interface ProductProp {
   userId: 0;
@@ -78,6 +80,10 @@ const MyPage: React.FC = () => {
     load().then();
   }, []);
 
+  const getCurrentUser = () => {
+    const userStore = useUserStore((state) => state);
+    return userStore.name;
+  }
   return (
     <div
       id="my-page"
@@ -91,7 +97,7 @@ const MyPage: React.FC = () => {
         마이 페이지
       </Header>
       <UserInfoContainer>
-        <UserInfoWidget userName="aaa" status="신청" />
+        <UserInfoWidget userName={getCurrentUser()} status="신청" />
       </UserInfoContainer>
       <ProductContainer>
         <ProductInfoContainer>
@@ -108,7 +114,7 @@ const MyPage: React.FC = () => {
           <ProductList status={selected} /> {/* 상태에 따라 다르게 표시 */}
         </div>
         {selected === StatusType.applied && ( // '당첨' 상태일 때만 위시리스트 표시
-          <div className="wishlist-section">
+          <BookmarkContainer>
             <div className="wishlist-header">
               <span className="wishlist-title">관심 목록</span>
               <span className="wishlist-view-all" onClick={() => navigate('/bookmark')}>전체보기</span>
@@ -118,7 +124,7 @@ const MyPage: React.FC = () => {
             <BookmarkPrototypes
               prototype={product}
             />
-          </div>
+          </BookmarkContainer>
         )}
         </ProductInfoContainer>
         

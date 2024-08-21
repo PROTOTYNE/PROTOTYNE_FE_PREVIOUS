@@ -12,6 +12,7 @@ export enum StatusType {
     applied= "신청",
     ongoing= "진행중",
     winning= "당첨",
+    reposrt= "후기작성",
     completed="종료"
 }
 
@@ -70,10 +71,15 @@ export async function getProductCount(): Promise<ProductCount> {
         
         // TODO [P1] 상태 계산 로직 수정 필요 
         results.forEach(data => {
-            if(data.calculatedStatus === "당첨")
+            if(data.calculatedStatus === "당첨") {
                 productCountResult.winning += 1
-            else if (data.calculatedStatus === "미당첨")
+            } 
+            else if(data.calculatedStatus === "미당첨") {
                 productCountResult.completed += 1
+            }
+            else {
+                productCountResult.applied += 1
+            }
         });
         
     }
