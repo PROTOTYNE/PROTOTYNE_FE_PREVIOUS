@@ -79,6 +79,7 @@ const Cancel = styled.div`
 const SearchListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  margin: 0px 20px 0px 20px;
 `;
 const Info = styled.div`
     display: flex;
