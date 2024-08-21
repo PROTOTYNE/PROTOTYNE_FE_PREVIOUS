@@ -22,7 +22,6 @@ export const ProductService = () => {
         Authorization: getAccess(),
       },
     })) as AxiosResponse<Product.InvestDto>;
-    console.log(data);
 
     return data;
   };
@@ -45,5 +44,20 @@ export const ProductService = () => {
     await API.post(`/application/${id}`);
   };
 
-  return { getDates, getInvest, getResult, application };
+  const onBookmark = async (id: string) => {
+    await API.post(`/like/${id}`);
+  };
+
+  const offBookmark = async (id: string) => {
+    await API.delete(`/unlike/${id}`);
+  };
+
+  return {
+    getDates,
+    getInvest,
+    getResult,
+    application,
+    onBookmark,
+    offBookmark,
+  };
 };

@@ -74,7 +74,13 @@ const ProductPage = () => {
         productDescription={result.contents}
         additionalNotes={result.notes}
       />
-      {eventId ? <Footer require={result.reqTickets} id={eventId} /> : null}
+      {eventId ? (
+        <Footer
+          require={result.reqTickets}
+          id={eventId}
+          isBookmarked={result.isBookmarked}
+        />
+      ) : null}
     </div>
   );
 };
