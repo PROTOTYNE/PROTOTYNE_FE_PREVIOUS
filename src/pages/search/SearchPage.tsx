@@ -26,7 +26,7 @@ const SearchIcon = styled(SearchRoundedIcon)`
   font-size: 25px;
   position: absolute;
   top: 28%;
-  left: 8%;
+  left: 30px;
 `;
 
 const CancelIcon = styled(CancelRoundedIcon)`
@@ -171,24 +171,14 @@ const SearchPage = () => {
     setRecentSearch([]);
     searchService.deleteAllSearch();
   };
-  
-  // const handleSearch = () => {
-  //   const searchInput = document.querySelector("input");
-  //   if (searchInput.value !== null) {
 
-  //     setResult(searchInput?.value);
-  //     if(result != "") {
-  //       fetchProduct(result).then((product) => setSearchList(product));
-  //     }
-  //   }
-  // };
   const handleSearch = () => {
     const searchInput = document.querySelector("input");
     if (searchInput && searchInput.value.trim() !== "") {
-      const searchValue = searchInput.value; // 입력값을 직접 사용
-      setResult(searchValue); // 상태 업데이트
+      const searchValue = searchInput.value;
+      setResult(searchValue); 
   
-      fetchProduct(searchValue).then((product) => setSearchList(product)); // 업데이트된 값으로 검색 수행
+      fetchProduct(searchValue).then((product) => setSearchList(product)); 
     }
   };
   
