@@ -103,7 +103,7 @@ interface PrototypeProp {
   bookmark: true;
 }
 
-const SearchPage = ({}) => {
+const SearchPage = () => {
   const location = useLocation();
   const [search, setSearch] = useState<string>(() =>
     location.state && location.state.title ? location.state.title : ""
@@ -166,6 +166,7 @@ const SearchPage = ({}) => {
     }
     fetchProduct(name).then((product) => setSearchList(product));
   };
+
   const handleDeleteAll = () => {
     setRecentSearch([]);
     searchService.deleteAllSearch();
@@ -176,6 +177,8 @@ const SearchPage = ({}) => {
       setSearch(event.currentTarget.value);
       if (event.key === "Enter") {
         setResult(event.currentTarget.value);
+
+        console.log(event.currentTarget.value);
         if (result != "") {
           fetchProduct(result).then((product) => setSearchList(product));
         }

@@ -104,8 +104,17 @@ export const AddressForm: React.FC = () => {
   const { patchDelivery } = AuthService();
 
   useEffect(() => {
-    const isValid = recipient && phone && address && detailedAddress;
-    setIsFormValid(isValid);
+    if (
+      recipient &&
+      phone &&
+      address &&
+      detailedAddress &&
+      detailedAddress.length > 4 &&
+      phone.length > 4 &&
+      address.length > 4
+    )
+      setIsFormValid(true);
+    else setIsFormValid(false);
   }, [recipient, phone, address, detailedAddress]);
 
   const handleOpenModal = () => {
@@ -173,6 +182,7 @@ export const AddressForm: React.FC = () => {
               placeholder="주소 찾기로 입력해주세요"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
+              readOnly
             />
             <SearchButton onClick={handleOpenModal}>주소 찾기</SearchButton>
           </FindAddress>
@@ -181,7 +191,7 @@ export const AddressForm: React.FC = () => {
         <FormGroup>
           <Input
             type="text"
-            placeholder="상세 주소를 입력해주세요"
+            placeholder="상세 주소를 입력해주세요 (5자 이상)"
             value={detailedAddress}
             onChange={(e) => setDetailedAddress(e.target.value)}
           />

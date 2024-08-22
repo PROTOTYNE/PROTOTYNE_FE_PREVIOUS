@@ -17,8 +17,6 @@ const AlarmPage = () => {
     })();
   }, []);
 
-  console.log(alarms);
-
   return (
     <>
       <Header onBack background>
