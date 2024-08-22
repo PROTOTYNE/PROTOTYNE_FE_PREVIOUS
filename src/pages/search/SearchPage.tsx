@@ -171,18 +171,36 @@ const SearchPage = () => {
     setRecentSearch([]);
     searchService.deleteAllSearch();
   };
+  
+  // const handleSearch = () => {
+  //   const searchInput = document.querySelector("input");
+  //   if (searchInput.value !== null) {
 
+  //     setResult(searchInput?.value);
+  //     if(result != "") {
+  //       fetchProduct(result).then((product) => setSearchList(product));
+  //     }
+  //   }
+  // };
+  const handleSearch = () => {
+    const searchInput = document.querySelector("input");
+    if (searchInput && searchInput.value.trim() !== "") {
+      const searchValue = searchInput.value; // 입력값을 직접 사용
+      setResult(searchValue); // 상태 업데이트
+  
+      fetchProduct(searchValue).then((product) => setSearchList(product)); // 업데이트된 값으로 검색 수행
+    }
+  };
+  
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.currentTarget.value !== "") {
       setSearch(event.currentTarget.value);
       if (event.key === "Enter") {
         setResult(event.currentTarget.value);
 
-        console.log(event.currentTarget.value);
         if (result != "") {
           fetchProduct(result).then((product) => setSearchList(product));
         }
-        console.log(result)
       }
     }
   };
@@ -191,7 +209,8 @@ const SearchPage = () => {
     <>
       <SearchContainer>
         <BackgoundContainer>
-          <SearchIcon />
+          <SearchIcon
+          onClick={handleSearch} />
           <SearchInput
             defaultValue={
               search ? (location.state ? `#${search}` : `${search}`) : ""
