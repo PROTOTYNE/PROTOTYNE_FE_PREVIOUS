@@ -177,6 +177,7 @@ const SearchPage = ({}) => {
         if (result != "") {
           fetchProduct(result).then((product) => setSearchList(product));
         }
+        console.log(result)
       }
     }
   };
@@ -206,7 +207,7 @@ const SearchPage = ({}) => {
       {result ? (
         <>
           <Info>
-            '{search.length >= 6 ? search.substring(0, 6) + "..." : search}'에
+            '{result.length >= 6 ? search.substring(0, 6) + "..." : result}'에
             대한 {searchList.length}개의 시제품이 조회되었습니다.
           </Info>
           <br />
