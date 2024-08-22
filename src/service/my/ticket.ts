@@ -55,7 +55,7 @@ export async function getTicketUsed(startDate: string, endDate: string) {
     });
 
     const data: TicketUsedResponse = response.data;
-    console.log(data);
+
     if (!data.isSuccess) {
       console.warn(
         `Failed to fetch used tickets. Code: ${data.code}, Message: ${data.message}`
