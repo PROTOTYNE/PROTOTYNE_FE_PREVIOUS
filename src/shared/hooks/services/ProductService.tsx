@@ -35,8 +35,6 @@ export const ProductService = () => {
       },
     })) as AxiosResponse<Product.ResultDto>;
 
-    console.log(result);
-
     return result;
   };
 

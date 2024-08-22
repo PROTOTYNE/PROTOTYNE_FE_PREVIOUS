@@ -58,8 +58,6 @@ export const MyPageService = () => {
       },
     })) as AxiosResponse;
 
-    console.log(progressProduct);
-
     return progressProduct;
   };
 
