@@ -5,13 +5,12 @@ import {
   StatusCount,
   StatusName,
 } from "@/entities";
-import { StatusType } from "@/service/my/product";
 import { MyPageService } from "@/shared";
 import React from "react";
 import { useEffect, useState } from "react";
 interface StatusProps {
-  selected: StatusType;
-  onStatusSelected: (status: StatusType) => void;
+  selected: User.StatusType;
+  onStatusSelected: (status: User.StatusType) => void;
 }
 const myPageService = MyPageService();
 
@@ -62,32 +61,32 @@ export const ProductExperience: React.FC<StatusProps> = ({
   return (
     <StatusContainer>
       <StatusBox
-        isActive={selected == StatusType.applied}
-        onClick={() => onStatusSelected(StatusType.applied)}
+        isActive={selected == User.StatusType.applied}
+        onClick={() => onStatusSelected(User.StatusType.applied)}
       >
         <StatusCount>{appliedNum}</StatusCount>
-        <StatusName>{StatusType.applied}</StatusName>
+        <StatusName>{User.StatusType.applied}</StatusName>
       </StatusBox>
       <StatusBox
-        isActive={selected == StatusType.ongoing}
-        onClick={() => onStatusSelected(StatusType.ongoing)}
+        isActive={selected == User.StatusType.ongoing}
+        onClick={() => onStatusSelected(User.StatusType.ongoing)}
       >
         <StatusCount>{ongoingNum}</StatusCount>
-        <StatusName>{StatusType.ongoing}</StatusName>
+        <StatusName>{User.StatusType.ongoing}</StatusName>
       </StatusBox>
       <StatusBox
-        isActive={selected == StatusType.winning}
-        onClick={() => onStatusSelected(StatusType.winning)}
+        isActive={selected == User.StatusType.winning}
+        onClick={() => onStatusSelected(User.StatusType.winning)}
       >
         <StatusCount>{winningNum}</StatusCount>
-        <StatusName>{StatusType.winning}</StatusName>
+        <StatusName>{User.StatusType.winning}</StatusName>
       </StatusBox>
       <StatusBox
-        isActive={selected == StatusType.completed}
-        onClick={() => onStatusSelected(StatusType.completed)}
+        isActive={selected == User.StatusType.completed}
+        onClick={() => onStatusSelected(User.StatusType.completed)}
       >
         <StatusCount>{completedNum}</StatusCount>
-        <StatusName>{StatusType.completed}</StatusName>
+        <StatusName>{User.StatusType.completed}</StatusName>
       </StatusBox>
       <Divider /> {/* 모든 상태 아래에 하나의 Divider 추가 */}
     </StatusContainer>
