@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 
 import { StatusType } from "@/service/my/product";
-import { MyPageService } from "@/shared";
+import { MyPageService, UserService } from "@/shared";
 
 // import ProductItem from "./ProductItem";
 
