@@ -1,5 +1,4 @@
-import { getTicketCount, getTicketUsed } from "@/service/my/ticket";
-import { PAGE_URL } from "@/shared";
+import { PAGE_URL, UserService } from "@/shared";
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
@@ -74,6 +73,8 @@ export const UserInfoWidget: React.FC<UserInfoProps> = ({
   const [ticketsUsed, setTicketsUsed] = useState<number>(0); //값은 만들어놓았음
 
   //api로 가져와야 함(useeffect)
+
+  const { getTicketUsed, getTicketCount } = UserService();
 
   useEffect(() => {
     async function load() {

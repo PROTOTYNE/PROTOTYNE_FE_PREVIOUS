@@ -1,4 +1,12 @@
 declare namespace User {
+  export enum StatusType {
+    applied = "신청",
+    ongoing = "진행중",
+    winning = "당첨",
+    reposrt = "후기작성",
+    completed = "종료",
+  }
+
   export interface Delivery {
     deliveryName: string | null;
     deliveryPhone: string | null;

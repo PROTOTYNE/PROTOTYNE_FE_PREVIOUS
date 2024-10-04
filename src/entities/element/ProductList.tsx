@@ -2,7 +2,6 @@ import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 
-import { StatusType } from "@/service/my/product";
 import { MyPageService } from "@/shared";
 
 // import ProductItem from "./ProductItem";
@@ -52,7 +51,7 @@ interface Completed {
 }
 
 interface ProductListProps {
-  status: StatusType;
+  status: User.StatusType;
 }
 
 interface appliedProduct {
@@ -208,20 +207,20 @@ export const ProductList: React.FC<ProductListProps> = ({ status }) => {
   return (
     <div>
       <h4 style={{ marginBottom: "3px" }}>
-        {status === StatusType.applied
+        {status === User.StatusType.applied
           ? "신청중인 체험"
-          : status === StatusType.ongoing
+          : status === User.StatusType.ongoing
           ? "진행중인 체험"
-          : status === StatusType.winning
+          : status === User.StatusType.winning
           ? "당첨된 체험"
           : "종료된 체험"}
       </h4>
       <div>
-        {status === StatusType.applied ? (
+        {status === User.StatusType.applied ? (
           <ApplyProductList status={status} product={appliedProduct} />
-        ) : status === StatusType.ongoing ? (
+        ) : status === User.StatusType.ongoing ? (
           <SelectedProductList status={status} product={selectedProduct} />
-        ) : status === StatusType.winning ? (
+        ) : status === User.StatusType.winning ? (
           <WinningProductList status={status} product={ongoingProduct} />
         ) : (
           <CompletedProductList status={status} product={completedProduct} />
@@ -234,7 +233,7 @@ export const ProductList: React.FC<ProductListProps> = ({ status }) => {
 const ApplyProductList = ({
   product,
 }: {
-  status: StatusType;
+  status: User.StatusType;
   product: appliedProduct[];
 }) => {
   const navigate = useNavigate();
@@ -273,7 +272,7 @@ const getFormattedDate = (date: string) => {
 const SelectedProductList = ({
   product,
 }: {
-  status: StatusType;
+  status: User.StatusType;
   product: Selected[];
 }) => {
   const navigate = useNavigate();
@@ -305,7 +304,7 @@ const SelectedProductList = ({
 const WinningProductList = ({
   product,
 }: {
-  status: StatusType;
+  status: User.StatusType;
   product: Ongoing[];
 }) => {
   const navigate = useNavigate();
@@ -340,7 +339,7 @@ const WinningProductList = ({
 const CompletedProductList = ({
   product,
 }: {
-  status: StatusType;
+  status: User.StatusType;
   product: Completed[];
 }) => {
   return product.map((product) => (

@@ -1,5 +1,4 @@
 import { Header, ProductExContainer, ProductList } from "@/entities";
-import { StatusType } from "@/service/my/product";
 import { BookmarkService } from "@/shared";
 import { useUserStore } from "@/shared";
 import {
@@ -48,7 +47,9 @@ interface ProductProp {
 const MyPage: React.FC = () => {
   const name = useUserStore((state) => state.name);
   // 선택된 상태값 관리
-  const [selected, setSelected] = useState<StatusType>(StatusType.applied);
+  const [selected, setSelected] = useState<User.StatusType>(
+    User.StatusType.applied
+  );
   const [product, setProduct] = useState<ProductProp>({
     userId: 0,
     products: [
@@ -92,7 +93,7 @@ const MyPage: React.FC = () => {
           <ProductExContainer title="나의 시제품 체험">
             <ProductExperience
               selected={selected}
-              onStatusSelected={(selected: StatusType) => {
+              onStatusSelected={(selected: User.StatusType) => {
                 setSelected(selected);
               }}
             />
@@ -100,7 +101,7 @@ const MyPage: React.FC = () => {
           <div className="product-list-section">
             <ProductList status={selected} /> {/* 상태에 따라 다르게 표시 */}
           </div>
-          {selected === StatusType.applied && ( // '당첨' 상태일 때만 위시리스트 표시
+          {selected === User.StatusType.applied && ( // '당첨' 상태일 때만 위시리스트 표시
             <BookmarkContainer>
               <div className="wishlist-header">
                 <span className="wishlist-title">관심 목록</span>

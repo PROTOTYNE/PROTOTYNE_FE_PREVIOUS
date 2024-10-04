@@ -22,4 +22,5 @@ export { useProductStore } from "./hooks/stores/useProductStore";
 
 export { ProductDetailService } from "./hooks/services/HomeService";
 export { SearchService } from "./hooks/services/SearchService";
+export { UserService } from "./hooks/services/UserService";
 export { BookmarkService } from "./hooks/services/BookmarkService";
